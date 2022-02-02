@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,700|Lato:300,400,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        font-family: "Poppins", sans-serif;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    h1 a,
+    h2 a,
+    h3 a,
+    h4 a,
+    h5 a,
+    h6 a {
+        font-family: "Poppins", sans-serif;
+    }
+    p {
+        font-size: 16px;
+        line-height: 24px;
+        @apply text-gray-700;
+        font-family: "Lato", sans-serif;
+    }
+
+    .container {
+        @apply mx-auto px-5 sm:px-20;
+    }
+
+    .row {
+        @apply flex flex-wrap;
+    }
+
+    .section-title .line {
+        background: linear-gradient(#fe8464 50%, #fe6e9a 100%);
+        @apply mb-3 h-1 w-40;
+    }
+
+    .section-title .title {
+        @apply pt-2 text-3xl font-bold text-slate-800 dark:text-slate-50 md:text-5xl;
+    }
+
+    .gradient-btn {
+        background-image: linear-gradient(
+            to right,
+            #fe8464 0%,
+            #fe6e9a 50%,
+            #fe8464 100%
+        );
+        background-size: 200% auto;
+        overflow: hidden;
+
+        @apply hover:bg-red-400 focus:ring-4 focus:ring-red-300 px-6 py-3 font-medium text-white;
+    }
+    .gradient-btn-2 {
+        background-image: linear-gradient(
+            to right,
+            #33c8c1 0%,
+            #119bd2 50%,
+            #33c8c1 100%
+        );
+    }
+    .gradient-btn:hover {
+        background-position: right center;
+        @apply shadow-xl;
+    }
+    /* text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 */
+    .main-btn {
+        @apply inline-block rounded-lg bg-blue-600 px-6 py-3 font-medium text-white duration-300;
+    }
+    .main-btn:hover {
+        @apply bg-blue-400;
+    }
+    .about-shape-1 {
+        z-index: -1;
+        width: 35%;
+        @apply absolute top-0 right-0 h-full;
+    }
+    .about-shape-2 {
+        z-index: -1;
+        width: 35%;
+        @apply absolute top-0 left-0 h-full;
+    }
+
+    .single-counter {
+        width: 155px;
+        height: 120px;
+        border-radius: 60px;
+        @apply relative z-10 mt-16;
+    }
+    .single-counter::before {
+        content: "";
+        border-radius: 60px;
+        z-index: -1;
+        @apply absolute top-0 left-0 h-full w-full -rotate-45 transform;
+    }
+    .counter-color-1::before {
+        background-image: linear-gradient(#33c8c1 0%, #119bd2 100%);
+    }
+    .counter-color-2::before {
+        background-image: linear-gradient(#fe8464 0%, #fe6e9a 100%);
+    }
+    .counter-color-3::before {
+        background-image: linear-gradient(#361cc1 0%, #2e82ef 100%);
+    }
+
+    .subscribe-form .main-btn {
+        border-radius: 0 0.25em 0.25em 0;
+        @apply absolute top-0 right-0 h-full py-4;
+    }
+    @media (max-width: 500px) {
+        .container {
+            @apply px-3;
+        }
+        .subscribe-form .main-btn {
+            @apply static mt-4 w-full rounded;
+        }
+    }
+    .footer-bg {
+        z-index: -1;
+        @apply absolute bottom-0 left-0 h-full w-full;
+    }
+
+    .footer-social li a,
+    i {
+        @apply mr-6 inline-block text-lg text-slate-800 dark:text-slate-50;
+    }
+    .footer-social li a:hover {
+        @apply text-red-400;
+    }
+
+    .contact li {
+        @apply mb-3 text-white;
+    }
+    .link li a {
+        @apply mb-3 inline-block text-base text-slate-800 dark:text-slate-50;
+    }
+
+    .link li a:hover {
+        @apply text-red-400;
+    }
+
+    [type="text"],
+    [type="email"],
+    [type="url"],
+    [type="password"],
+    [type="number"],
+    [type="date"],
+    [type="datetime-local"],
+    [type="month"],
+    [type="search"],
+    [type="tel"],
+    [type="time"],
+    [type="week"],
+    [multiple],
+    textarea,
+    select {
+        @apply w-full bg-transparent border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500;
+    }
+    [type="checkbox"],
+    [type="radio"] {
+        @apply border-gray-300 rounded text-indigo-600 focus:ring-indigo-500;
+    }
+}
