@@ -127,7 +127,7 @@ export default function Register() {
                     />
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-4 border-b border-slate-200">
                     <Label forInput="gender" value="Gender" />
                     <div className="flex items-baseline mb-2 pb-2 space-x-2">
                         <RadioButton name="gender" value="Male" btnName="Male" />
@@ -135,8 +135,7 @@ export default function Register() {
                     </div>
                 </div>
 
-
-                <div class="flex items-center">
+                <div class="flex items-center pt-5">
                     <input id="terms-and-privacy" name="terms-and-privacy" type="checkbox" class="" />
                     <label for="terms-and-privacy" class="ml-2 block text-sm text-gray-900"
                         >I agree to the
@@ -146,8 +145,8 @@ export default function Register() {
                     </label>
                 </div>
 
-                <div className="flex items-center justify-center mt-4">
-                    <Button className="" processing={processing}>
+                <div className="flex items-center justify-end mt-4">
+                    <Button className="w-full" processing={processing}>
                         Sign Up
                     </Button>
                 </div>

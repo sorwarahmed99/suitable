@@ -11,10 +11,10 @@ export default function Guest({ children, bgimage, title, subtitle, linktext, hr
                     >
                     <div className="absolute bg-gradient-to-b from-red-600 to-pink-500 opacity-10 inset-0 z-0"></div>
                     <div className="w-full  max-w-md z-10">
-                        <div className="sm:text-4xl xl:text-5xl font-bold leading-tight mb-6">
+                        <div className="sm:text-xl xl:text-4xl font-bold leading-tight mb-4">
                             { title }
                         </div>
-                        <div className="sm:text-sm xl:text-lg text-gray-200 font-normal">
+                        <div className="sm:text-sm xl:text-lg leading-tight text-gray-200 font-normal">
                             {subtitle}
                         </div>
                         <p className="mt-8 sm:text-sm xl:text-md text-gray-200 font-normal">{linktext} <Link className="underline text-slate-50 font-semibold ml-5" href={href}>{btnName}</Link>  </p>

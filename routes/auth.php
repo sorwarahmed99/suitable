@@ -18,12 +18,56 @@ Route::get('/register', [RegisteredUserController::class, 'create'])
 Route::post('/register', [RegisteredUserController::class, 'store'])
     ->middleware('guest');
 
+// Set up profile
+
+// 1
+
 Route::get('/set-up-profile-step-1', [SetUpProfileStepsController::class, 'create'])
     ->middleware('guest')
-    ->name('register');
+    ->name('setupprofilestep1');
 
-Route::post('/set-up-profile-step-1', [SetUpProfileStepsController::class, 'store'])
+Route::post('/set-up-profile-step-2', [SetUpProfileStepsController::class, 'store'])
     ->middleware('guest');
+
+
+// 1
+
+Route::get('/set-up-profile-step-2', [SetUpProfileStepsController::class, 'setupprofilestep2create'])
+    ->middleware('guest')
+    ->name('setupprofilestep2');
+
+Route::post('/set-up-profile-step-2', [SetUpProfileStepsController::class, 'setupprofilestep2store'])
+    ->middleware('guest');
+
+// 3
+
+Route::get('/set-up-profile-step-3', [SetUpProfileStepsController::class, 'setupprofilestep3create'])
+    ->middleware('guest')
+    ->name('setupprofilestep3');
+
+Route::post('/set-up-profile-step-3', [SetUpProfileStepsController::class, 'setupprofilestep3store'])
+    ->middleware('guest');
+
+// 4
+
+Route::get('/set-up-profile-step-4', [SetUpProfileStepsController::class, 'setupprofilestep4create'])
+    ->middleware('guest')
+    ->name('setupprofilestep4');
+
+Route::post('/set-up-profile-step-4', [SetUpProfileStepsController::class, 'setupprofilestep4store'])
+    ->middleware('guest');
+
+// 5
+
+Route::get('/upload-profile-pic', [SetUpProfileStepsController::class, 'uploadProfilePicCreate'])
+    ->middleware('guest')
+    ->name('uploadProfilePic');
+
+Route::post('/upload-profile-pic', [SetUpProfileStepsController::class, 'uploadProfilePicStore'])
+    ->middleware('guest');
+
+// Set up profile
+
 
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])

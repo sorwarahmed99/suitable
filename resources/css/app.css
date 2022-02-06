@@ -56,7 +56,7 @@
         background-size: 200% auto;
         overflow: hidden;
 
-        @apply hover:bg-red-400 focus:ring-4 focus:ring-red-300 px-6 py-3 font-medium text-white;
+        @apply hover:bg-red-400 focus:ring-4 focus:ring-red-300 focus:outline-none px-6 py-3 font-medium text-white;
     }
     .gradient-btn-2 {
         background-image: linear-gradient(

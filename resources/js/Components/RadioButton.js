@@ -7,7 +7,7 @@ function RadioButton({ labelName, name, value, btnName }) {
                 <div className="flex text-sm">
                     <Label>
                         <input className="sr-only peer" name={name} type="radio" value={ value } />
-                        <div className="px-10 py-2 cursor-pointer rounded-lg border border-slate-300 flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-800 peer-checked:text-white">
+                        <div className="px-5 py-2 cursor-pointer rounded-lg border border-slate-300 flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-800 peer-checked:text-white">
                             {btnName}
                         </div>
                     </Label>

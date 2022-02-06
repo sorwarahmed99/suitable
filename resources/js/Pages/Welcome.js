@@ -31,8 +31,8 @@ export default function Welcome(props) {
                             )}
 
                             {props.auth.user ? (
-                                    <Link href={route('dashboard')} className="main-btn gradient-btn">
-                                        Dashboard
+                                    <Link href={route('home')} className="main-btn gradient-btn">
+                                        {props.auth.user.name}
                                     </Link>
                                 ) : (
 
@@ -51,7 +51,7 @@ export default function Welcome(props) {
                     <div className="container">
                         <div className="row">
                             <div className="w-full lg:w-1/2">
-                                <div className="mx-4 mt-12 about-content wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.5s">
+                                <div className="mx-4 mt-12 about-content">
                                     <div className="relative mb-4 section-title">
                                         <div className="line"></div>
                                         {/* {-- <img className="absolute bottom-0 left-0 t-0  dots opacity-40 !h-20" src="assets/images/dots.svg" alt="dots"> --} */}

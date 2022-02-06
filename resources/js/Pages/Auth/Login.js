@@ -26,7 +26,6 @@ export default function Login({ status, canResetPassword }) {
 
     const submit = (e) => {
         e.preventDefault();
-
         post(route('login'));
     };
 
@@ -36,8 +35,21 @@ export default function Login({ status, canResetPassword }) {
         >
             <Head title="Log in" />
 
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
+            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+            <div className="text-center">
+                <Link href="/" className="flex items-center justify-center">
+                    <img className="mr-3 h-10 w-10" src="assets/images/logo.png" alt="shape" />
+                    <span className="hidden sm:block self-center text-xl font-semibold whitespace-nowrap dark:text-white">Suitable</span>
+                </Link>
+                <h2 className="mt-6 text-3xl font-bold text-gray-900">
+                    Login to your account
+                </h2>
+                <p class="mt-2 text-center text-sm text-gray-600 max-w">
+                    Need help ?
+                    <Link href="#" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"> Contact Support</Link>
+                </p>
+            </div>
             <ValidationErrors errors={errors} />
 
             <form onSubmit={submit}>
@@ -86,7 +98,7 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-4">
-                    <Button className="" processing={processing}>
+                    <Button className="w-full" processing={processing}>
                         Log in
                     </Button>
                 </div>
