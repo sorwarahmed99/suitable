@@ -24,7 +24,7 @@ export default function Register() {
     }, []);
 
     const onHandleChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value, event.target.type === 'radio' ? event.target.checked : event.target.value );
+        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     };
 
     const submit = (e) => {
@@ -122,8 +122,8 @@ export default function Register() {
                 <div className="mt-4 border-b border-slate-200">
                     <Label forInput="gender" value="Gender" />
                     <div className="flex items-baseline mb-2 pb-2 space-x-2">
-                        <RadioButton name="gender" value={ data.Male } btnName="Male" handleChange={onHandleChange} />
-                        <RadioButton name="gender" value={data.Female} btnName="Female" handleChange={onHandleChange} />
+                        <RadioButton name="gender" value="Male" btnName="Male" />
+                        <RadioButton name="gender" value="Female" btnName="Female" />
                     </div>
                 </div>
 

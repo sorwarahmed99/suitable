@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,6 +24,18 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+
+Route::namespace('Admin')->prefix('/admin')->name('admin.')->group(function () {
+    Route::namespace('Auth')->middleware('guest:admin')->group(function () {
+        //login route
+        Route::get('login', 'AuthenticatedSessionController@create')->name('login');
+        Route::post('login', 'AuthenticatedSessionController@store')->name('adminlogin');
+    });
+    Route::post('logout', 'Auth\AuthenticatedSessionController@destroy')->name('logout');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+});
+
 
 Route::get('/home', function () {
     return Inertia::render('User/Home');

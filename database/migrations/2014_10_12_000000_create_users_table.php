@@ -15,13 +15,26 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('firstname');
+            $table->string('lastname');
             $table->string('email')->unique();
+            $table->integer('phone')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('date_of_birth')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('account_created_with')->nullable();
+            $table->boolean('account_status')->default(0)->nullable();
+            $table->string('last_login')->nullable();
+            // $table->unsignedBigInteger('account_verified_by')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
+
+        // Schema::table('admins', function (Blueprint $table) {
+        //     $table->foreignId('account_verified_by')->constrained();
+        // });
     }
 
     /**
