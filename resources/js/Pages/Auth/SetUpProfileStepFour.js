@@ -10,12 +10,13 @@ import InputSelect from '@/Components/InputSelect';
 import RadioButton from '@/Components/RadioButton';
 
 function SetUpProfileStepThree() {
-    const [selected, setSelected] = useState('');
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
+        highest_education: '',
+        graduation_year: '',
+        current_profession: '',
+        for_how_long: '',
+        company_name: '',
+        yearly_income: '',
     });
 
     useEffect(() => {
@@ -30,28 +31,48 @@ function SetUpProfileStepThree() {
 
     const submit = (e) => {
         e.preventDefault();
-
-        post(route('register'));
+        post('set-up-profile-step-4');
     };
-  return <Guest
-            bgimage="bg-login-background"
-            title="Help us find the perfect match for you"
-            subtitle="Tell us more about your lifestyle"
-            linktext="Need help ?"
-            href="/"
-            btnName="Contact support"
-        >
-                <Head title="Suitable | Set up profile" />
 
+    const educationOptions = [
+        {value: 'Masters', label: 'Masters'},
+        {value: 'Bachelor', label: 'Bachelor'},
+        {value: 'PHD', label: 'PHD'},
+    ];
+
+    const yearsOptions = [
+        {value: 'Newly Joined', label: 'Newly Joined'},
+        {value: '1-3 Years', label: '1-3 Years'},
+        {value: '3-5 Years', label: '3-5 Years'},
+        {value: '5+ Years', label: '5+ Years'},
+    ];
+
+    let minOffset = 0, maxOffset = 60;
+    let thisYear = (new Date()).getFullYear();
+    let allYears = [];
+    for(let x = 0; x <= maxOffset; x++) {
+        allYears.push(thisYear - x)
+    }
+
+    return <Guest
+                bgimage="bg-login-background"
+                title="Help us find the perfect match for you"
+                subtitle="Tell us more about your lifestyle"
+                linktext="Need help ?"
+                href="/"
+                btnName="Contact support"
+            >
+                <Head title="Suitable | Set up profile" />
+                
                 <div className="text-center">
                     <div className="flex mb-2 justify-between items-center">
                         <h2 className="mt-6 text-lg font-semibold text-gray-900">
-                            Appearence
+                            Education | Carrier
                         </h2>
                         <p className="mt-6 text-xl font-bold text-gray-900">80%</p>
                     </div>
-                    <div className="h-2 w-full bg-slate-400 relative">
-                        <div className="h-2 w-[200px] bg-slate-800 absolute z-50"></div>
+                    <div className="h-2 w-full bg-slate-400 relative rounded-full">
+                        <div className="h-2 w-[200px] bg-slate-800 absolute z-50 rounded-full"></div>
                     </div>
                 </div>
 
@@ -59,6 +80,83 @@ function SetUpProfileStepThree() {
 
                 <form onSubmit={submit}>
                     <div className="mt-4">
+                        <Label forInput="highest_education" value="Highest Education" />
+                        <InputSelect 
+                            defaultValue={data.highest_education} 
+                            onChange={onHandleChange} 
+                            options={educationOptions} 
+                            className={`block w-full sm:text-sm`} 
+                            placeholder={`Your educational qualification`} 
+                            name={`highest_education`}
+                        />
+                    </div>
+                    
+                    <div className="mt-4">
+                        <Label forInput="graduation_year" value="Graduation Year" />
+                        <select 
+                            className={
+                                `mt-1 border-gray-300 rounded-xl shadow-sm`
+                            }
+                            onChange={onHandleChange}
+                            name="graduation_year" 
+                            value={data.graduation_year} 
+                        >
+                            <option>Select graduation year</option>
+                            {
+                                allYears.map((year) => <option value={year} key={year}>{year}</option>)
+                            }
+                        </select>
+                    </div>
+
+                    <div className="mt-4">
+                        <Label forInput="current_profession" value="Profession" />
+                        <Input
+                            type="text"
+                            name="current_profession"
+                            value={data.current_profession}
+                            className="mt-1 block w-full"
+                            handleChange={onHandleChange}
+                            required
+                        />
+                    </div>
+                    
+                    <div className="mt-4">
+                        <Label forInput="for_how_long" value="Years" />
+                        <InputSelect 
+                            defaultValue={data.for_how_long} 
+                            onChange={onHandleChange} 
+                            options={yearsOptions} 
+                            className={`block w-full sm:text-sm`} 
+                            placeholder={`How long have you been in this position?`} 
+                            name={`for_how_long`}
+                        />
+                    </div>
+
+                    <div className="mt-4">
+                        <Label forInput="company_name" value="Company Name" />
+                        <Input
+                            type="text"
+                            name="company_name"
+                            value={data.company_name}
+                            className="mt-1 block w-full"
+                            handleChange={onHandleChange}
+                            required
+                        />
+                    </div>
+
+                    <div className="mt-4">
+                        <Label forInput="yearly_income" value="Yearly Income" />
+                        <Input
+                            type="number"
+                            name="yearly_income"
+                            value={data.yearly_income}
+                            className="mt-1 block w-full"
+                            handleChange={onHandleChange}
+                            required
+                        />
+                    </div>
+
+                    {/* <div className="mt-4">
                         <Label forInput="ethnic-origin" value="Height" />
 
                         <InputSelect name="ethnic-origin">
@@ -69,51 +167,12 @@ function SetUpProfileStepThree() {
                     </div>
                     <div className="mt-4">
                         <Label forInput="ethnic-origin" value="Hair color" />
-
                         <InputSelect name="ethnic-origin">
                             <option value="">Select your hair color</option>
                             <option value="{value}">Black</option>
                             <option value="{value}">Blonde</option>
                         </InputSelect>
-                    </div>
-
-                    <div className="mt-4">
-                        <Label forInput="password_confirmation" value="Profession" />
-
-                        <Input
-                            type="text"
-                            name="password_confirmation"
-                            value={data.password_confirmation}
-                            className="mt-1 block w-full"
-                            handleChange={onHandleChange}
-                            required
-                        />
-                    </div>
-
-                    <div className="mt-4">
-                        <Label forInput="ethnic-origin" value="Highest Education" />
-
-                        <InputSelect name="ethnic-origin">
-                            <option value="">Your educational qualification</option>
-                            <option value="{value}">Masters</option>
-                            <option value="{value}">Bachelor</option>
-                        </InputSelect>
-                   </div>
-
-                    <div className="mt-4">
-                        <div className="flex items-baseline mb-2 pb-2 space-x-2">
-                            <div className="w-1/3">
-                                <Label forInput="gender" value="Keep Beard" />
-                            </div>
-                            <div className="w-2/3 flex justify-end space-x-1">
-                                <RadioButton name="gender" value="Yes" btnName="Yes" />
-                                <RadioButton name="gender" value="No" btnName="No" />
-                                <RadioButton name="gender" value="No" btnName="Prefer not to say" />
-                            </div>
-                        </div>
-                    </div>
-
-
+                    </div> */}
 
                     <div className="flex items-center justify-end mt-4">
                         <Button className="bg-gray-800 hover:bg-gray-900 text-gray-50 font-bold py-2 px-4 rounded inline-flex items-center" processing={processing}>

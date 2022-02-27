@@ -24,9 +24,14 @@ class CreateUsersTable extends Migration
             $table->string('date_of_birth')->nullable();
             $table->string('gender')->nullable();
             $table->string('account_created_with')->nullable();
+            $table->string('ethnic_origin')->nullable();
+            $table->string('country')->nullable();
+            $table->string('recidency_status')->nullable();
+            $table->string('relocate')->nullable();
+            $table->string('postcode')->nullable();
+            $table->integer('profile_step')->nullable();
             $table->boolean('account_status')->default(0)->nullable();
-            $table->string('last_login')->nullable();
-            // $table->unsignedBigInteger('account_verified_by')->nullable();
+            $table->unsignedBigInteger('account_verified_by')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

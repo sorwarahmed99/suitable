@@ -7,7 +7,7 @@ export default function Guest({ children, bgimage, title, subtitle, linktext, hr
         <>
         <div className="relative min-h-screen flex ">
             <div className="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">
-                <div className={`${bgimage} sm:w-1/2 xl:w-3/5 h-full hidden md:flex flex-auto items-center justify-center p-10 overflow-hidden bg-purple-900/50 text-white bg-no-repeat bg-cover relative`}
+                <div className={`${bgimage} sm:w-1/2 xl:w-1/2 h-full hidden md:flex flex-auto items-center justify-center p-10 overflow-hidden bg-purple-900/50 text-white bg-no-repeat bg-cover relative`}
                     >
                     <div className="absolute bg-gradient-to-b from-red-600 to-pink-500 opacity-10 inset-0 z-0"></div>
                     <div className="w-full  max-w-md z-10">
@@ -20,7 +20,7 @@ export default function Guest({ children, bgimage, title, subtitle, linktext, hr
                         <p className="mt-8 sm:text-sm xl:text-md text-gray-200 font-normal">{linktext} <Link className="underline text-slate-50 font-semibold ml-5" href={href}>{btnName}</Link>  </p>
                     </div>
                 </div>
-                <div className="md:flex md:items-center md:justify-center w-full sm:w-auto md:h-full xl:w-2/5 p-8  md:p-10 lg:p-14 sm:rounded-lg md:rounded-none bg-white">
+                <div className="md:flex md:items-center md:justify-center w-full sm:w-auto md:h-full xl:w-1/2 p-12 md:p-14 lg:p-18 sm:rounded-lg md:rounded-none bg-white">
                     <div className="max-w-md w-full space-y-8">
 
                         {children}

@@ -34,12 +34,10 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            // 'phone' => 'number|max:12',
             'date_of_birth' => 'required|string',
             'gender' => 'required',
             'password' => ['required', Rules\Password::defaults()],
@@ -49,16 +47,17 @@ class RegisteredUserController extends Controller
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'email' => $request->email,
-            // 'phone' => $request->phone,
             'date_of_birth' => $request->date_of_birth,
             'gender' => $request->gender,
             'password' => Hash::make($request->password),
+            'account_status' => 0,
+            'profile_step' => 1,
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('onboarding');
     }
 }

@@ -21,13 +21,13 @@ function Home(props) {
                             <form class="flex-auto p-6">
                                 <div class="flex flex-wrap">
                                 <h1 class="flex-auto text-lg font-semibold text-slate-900">
-                                    Classic Utility Jacket
+                                    Zein Ahmed, 30
                                 </h1>
                                 <div class="text-lg font-semibold text-slate-500">
-                                    $110.00
+                                    online
                                 </div>
                                 <div class="w-full flex-none text-sm font-medium text-slate-700 mt-2">
-                                    In stock
+                                    From Germany Living in Berlin Citizen
                                 </div>
                                 </div>
                                 <div class="flex items-baseline mt-4 mb-6 pb-6 border-b border-slate-200">
@@ -36,10 +36,10 @@ function Home(props) {
                                 <div class="flex space-x-4 mb-6 text-sm font-medium">
                                 <div class="flex-auto flex space-x-4">
                                     <button class="h-10 px-6 font-semibold rounded-md bg-black text-white" type="submit">
-                                    Buy now
+                                    Invite
                                     </button>
                                     <button class="h-10 px-6 font-semibold rounded-md border border-slate-200 text-slate-900" type="button">
-                                    Add to bag
+                                    Save
                                     </button>
                                 </div>
                                 <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200" type="button" aria-label="Like">
@@ -49,7 +49,7 @@ function Home(props) {
                                 </button>
                                 </div>
                                 <p class="text-sm text-slate-700">
-                                Free shipping on all continental US orders.
+                                    You can view this user's profile once he accepted
                                 </p>
                             </form>
                     </div>

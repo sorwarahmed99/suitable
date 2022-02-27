@@ -10,7 +10,7 @@ function UploadProfilePic() {
     const [selectedFile, setSelectedFile] = useState()
     const [preview, setPreview] = useState()
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, progress } = useForm({
         name: '',
         email: '',
         password: '',
@@ -81,14 +81,24 @@ function UploadProfilePic() {
                                     <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                                         Attach a file</p>
                                 </div>
-                                    <Input type="file" handleChange={onSelectFile} className="opacity-0" />
+                                    <Input type="file" handleChange={onSelectFile} value={data.avatar} className="opacity-0" />
+                                    {progress && (
+                                        <progress value={progress.percentage} max="100">
+                                            {progress.percentage}%
+                                        </progress>
+                                    )}
                             </label>
                               : <div>
-                                  <img src={preview} layout="fill" className="w-full h-200 object-cover" />
-                                  <Input type="file" handleChange={onSelectFile} className="opacity-0" />
-                                  <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-                                        Click here to change file</p>
-                              </div>}
+                                  <img src={preview} layout="fill" className="object-cover h-100 w-100 aspect-square" />
+
+                                  <label className="flex flex-col w-full h-5 border-4 border-blue-100 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                                  <p className="text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+                                        Click here to change</p>
+                                    <Input type="file" handleChange={onSelectFile} className="opacity-0" />
+                                  </label>
+                              </div>
+                              
+                              }
                         </div>
                     </div>
                 </div>
@@ -96,7 +106,7 @@ function UploadProfilePic() {
 
             <div className="mt-6">
                 <p>Instruction</p>
-                <ul className="list-inside list-disc text-sm">
+                <ul className="list-inside list-disc text-sm text-slate-400">
                     <li>Upload clear photos</li>
                     <li>It is better to avoid group photos</li>
                     <li>Please upload your photos only.</li>

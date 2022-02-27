@@ -159,9 +159,10 @@
     [type="time"],
     [type="week"],
     [multiple],
+    .menu-flags,
     textarea,
     select {
-        @apply w-full bg-transparent border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500;
+        @apply text-xs sm:text-sm w-full bg-transparent border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500;
     }
     [type="checkbox"],
     [type="radio"] {

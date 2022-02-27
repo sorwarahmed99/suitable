@@ -9,6 +9,8 @@ export default function Input({
     required,
     isFocused,
     handleChange,
+    defaultValue,
+    placeholder
 }) {
     const input = useRef();
 
@@ -26,6 +28,8 @@ export default function Input({
                 type={type}
                 name={name}
                 value={value}
+                placeholder={placeholder}
+                defaultValue={defaultValue}
                 className={
                     `` +
                     className

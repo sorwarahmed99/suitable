@@ -5786,7 +5786,9 @@ function Input(_ref) {
       autoComplete = _ref.autoComplete,
       required = _ref.required,
       isFocused = _ref.isFocused,
-      handleChange = _ref.handleChange;
+      handleChange = _ref.handleChange,
+      defaultValue = _ref.defaultValue,
+      placeholder = _ref.placeholder;
   var input = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (isFocused) {
@@ -5800,6 +5802,8 @@ function Input(_ref) {
         type: type,
         name: name,
         value: value,
+        placeholder: placeholder,
+        defaultValue: defaultValue,
         className: "" + className,
         ref: input,
         autoComplete: autoComplete,
@@ -5830,16 +5834,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function InputSelect(_ref) {
-  var name = _ref.name,
-      children = _ref.children;
+  var id = _ref.id,
+      name = _ref.name,
+      onChange = _ref.onChange,
+      className = _ref.className,
+      options = _ref.options,
+      value = _ref.value,
+      placeholder = _ref.placeholder,
+      required = _ref.required;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     "class": "mt-1",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("select", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+      className: "border-gray-300 rounded-xl shadow-sm text-xs" + className,
       name: name,
-      id: name,
-      className: "",
-      children: children
+      required: required,
+      id: id,
+      onChange: onChange,
+      value: value //So I had to pass it here too
+      ,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        children: placeholder
+      }), options.map(function (option, index) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+          className: "text-xs",
+          value: option.value,
+          children: option.label
+        }, index);
+      })]
     })
   });
 }
@@ -5870,7 +5893,7 @@ function Label(_ref) {
       children = _ref.children;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
     htmlFor: forInput,
-    className: "block font-medium text-sm text-gray-700 " + className,
+    className: "block font-medium text-xs sm:text-sm text-gray-700 " + className,
     children: value ? value : children
   });
 }
@@ -5936,8 +5959,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function RadioButton(_ref) {
-  var labelName = _ref.labelName,
-      name = _ref.name,
+  var name = _ref.name,
       value = _ref.value,
       btnName = _ref.btnName,
       handleChange = _ref.handleChange;
@@ -5956,7 +5978,7 @@ function RadioButton(_ref) {
             return handleChange(e);
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "px-5 py-2 cursor-pointer rounded-lg border border-slate-300 flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-800 peer-checked:text-white",
+          className: "px-2 py-2 text-xs cursor-pointer rounded-lg border border-slate-300 flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-800 peer-checked:text-white",
           children: btnName
         })]
       })
@@ -6216,7 +6238,7 @@ function Authenticated(_ref) {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("button", {
                       type: "button",
                       className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-100 bg-white dark:bg-slate-700 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150",
-                      children: [auth.user.name, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("svg", {
+                      children: [auth.user.firstname, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("svg", {
                         className: "ml-2 -mr-0.5 h-4 w-4",
                         xmlns: "http://www.w3.org/2000/svg",
                         viewBox: "0 0 20 20",
@@ -6730,7 +6752,7 @@ function Guest(_ref) {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "".concat(bgimage, " sm:w-1/2 xl:w-3/5 h-full hidden md:flex flex-auto items-center justify-center p-10 overflow-hidden bg-purple-900/50 text-white bg-no-repeat bg-cover relative"),
+          className: "".concat(bgimage, " sm:w-1/2 xl:w-1/2 h-full hidden md:flex flex-auto items-center justify-center p-10 overflow-hidden bg-purple-900/50 text-white bg-no-repeat bg-cover relative"),
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
             className: "absolute bg-gradient-to-b from-red-600 to-pink-500 opacity-10 inset-0 z-0"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -6751,7 +6773,7 @@ function Guest(_ref) {
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "md:flex md:items-center md:justify-center w-full sm:w-auto md:h-full xl:w-2/5 p-8  md:p-10 lg:p-14 sm:rounded-lg md:rounded-none bg-white",
+          className: "md:flex md:items-center md:justify-center w-full sm:w-auto md:h-full xl:w-1/2 p-12 md:p-14 lg:p-18 sm:rounded-lg md:rounded-none bg-white",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
             className: "max-w-md w-full space-y-8",
             children: children
@@ -8011,6 +8033,64 @@ function Login(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Auth/OnboardingScreen.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/Pages/Auth/OnboardingScreen.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+function OnboardingScreen() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    className: "min-h-screen bg-login-background bg-no-repeat bg-cover  flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "max-w-md w-full space-y-8",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+          href: "/",
+          className: "flex items-center justify-center",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+            className: "h-12 w-auto mr-3",
+            src: "assets/images/logo.png",
+            alt: "shape"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+            className: "hidden sm:block self-center text-xl font-semibold whitespace-nowrap text-white",
+            children: "Suitable"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+          className: "mt-6 text-center text-3xl font-extrabold text-gray-50",
+          children: "Bismillah"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+          className: "mt-2 text-center text-md text-gray-300",
+          children: "The aim of these questions is to be transparent from the outset in finding a suitable match. Only will they show if you match with a profile and accept a friend request Otherwise just basic profile deatils will show and images of you have them on private or not We\u2019re all on here for the same reason. Don\u2019t be shy."
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+          href: "/set-up-profile-step-1",
+          className: "w-full text-center mt-4 font-semibold main-btn gradient-btn",
+          children: "Start Now"
+        })]
+      })
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OnboardingScreen);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Auth/Register.js":
 /*!*********************************************!*\
   !*** ./resources/js/Pages/Auth/Register.js ***!
@@ -8184,12 +8264,12 @@ function Register() {
           className: "flex items-baseline mb-2 pb-2 space-x-2",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
             name: "gender",
-            value: data.Male,
+            value: "Male",
             btnName: "Male",
             handleChange: onHandleChange
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
             name: "gender",
-            value: data.Female,
+            value: "Female",
             btnName: "Female",
             handleChange: onHandleChange
           })]
@@ -8349,9 +8429,9 @@ function ResetPassword(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Auth/SetUpProfileStepFour.js":
+/***/ "./resources/js/Pages/Auth/SetUpProfileStepFive.js":
 /*!*********************************************************!*\
-  !*** ./resources/js/Pages/Auth/SetUpProfileStepFour.js ***!
+  !*** ./resources/js/Pages/Auth/SetUpProfileStepFive.js ***!
   \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -8367,10 +8447,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.js");
 /* harmony import */ var _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var react_flags_select__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-flags-select */ "./node_modules/react-flags-select/build/index.esm.js");
-/* harmony import */ var _Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Components/InputSelect */ "./resources/js/Components/InputSelect.js");
-/* harmony import */ var _Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/Components/RadioButton */ "./resources/js/Components/RadioButton.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Components_InputSelect__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/InputSelect */ "./resources/js/Components/InputSelect.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -8394,19 +8472,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
 function SetUpProfileStepThree() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
-      selected = _useState2[0],
-      setSelected = _useState2[1];
+      nextStep = _useState2[0],
+      setNextStep = _useState2[1];
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.useForm)({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: ''
+    siblings: '',
+    a_day_living_with_family: '',
+    continue_working: '',
+    intend_to_move_out: '',
+    issues_living_with_inlaws: '',
+    future_plan: '',
+    get_married: '' // reference_name: '',
+    // contact_no: '',
+
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -8427,8 +8508,311 @@ function SetUpProfileStepThree() {
 
   var submit = function submit(e) {
     e.preventDefault();
-    post(route('register'));
+    post('set-up-profile-step-5');
   };
+
+  var continueWorkingOptions = [{
+    value: "Yes",
+    label: "Yes"
+  }, {
+    value: "No",
+    label: "No"
+  }, {
+    value: "Not sure",
+    label: "Not sure"
+  }];
+  var moveOutOptions = [{
+    value: "Yes",
+    label: "Yes"
+  }, {
+    value: "No",
+    label: "No"
+  }, {
+    value: "Not sure",
+    label: "Not sure"
+  }];
+  var getMarriedOptions = [{
+    value: 'As soon as possible',
+    label: 'As soon as possible'
+  }, {
+    value: 'Between 1-3 Years',
+    label: 'Between 1-3 Years'
+  }, {
+    value: 'Not sure',
+    label: 'Not sure'
+  }, {
+    value: 'Prefer not to say',
+    label: 'Prefer not to say'
+  }];
+  var nums = [];
+  var min = 1,
+      max = 20;
+
+  for (var i = min; i <= max; i++) {
+    nums.push(i);
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_Layouts_Guest__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    bgimage: "bg-login-background",
+    title: "Help us find the perfect match for you",
+    subtitle: "Tell us more about your family and future plan",
+    linktext: "Need help ?",
+    href: "/",
+    btnName: "Contact support",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.Head, {
+      title: "Suitable | Set up profile"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      className: "text-center",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        className: "flex mb-2 justify-between items-center",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h2", {
+          className: "mt-6 text-lg font-semibold text-gray-900",
+          children: "Family | Future Plan"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
+          className: "mt-6 text-xl font-bold text-gray-900",
+          children: "90%"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        className: "h-2 w-full bg-slate-400 relative rounded-full",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+          className: "h-2 w-[300px] sm:w-[350px] bg-slate-800 absolute z-50 rounded-full"
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      errors: errors
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("form", {
+      onSubmit: submit,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        className: "".concat(nextStep && "mt-2"),
+        children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          className: "mt-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            forInput: "siblings",
+            value: "Number of siblings"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("select", {
+            className: "mt-1 border-gray-300 rounded-xl shadow-sm",
+            onChange: onHandleChange,
+            name: "siblings",
+            value: data.siblings,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+              children: "Select how many"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+              value: "Only Child",
+              children: "I am only child"
+            }), nums.map(function (num) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+                value: num,
+                children: num
+              }, num);
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          className: "mt-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            forInput: "a_day_living_with_family",
+            value: "What will a day living with your family consist of? Any specific duties? "
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            type: "text",
+            name: "a_day_living_with_family",
+            value: data.a_day_living_with_family,
+            placeholder: "Write in short.. ",
+            className: "mt-1 block w-full",
+            handleChange: onHandleChange,
+            required: true
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          className: "mt-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            forInput: "get_married",
+            value: "Get married?"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            defaultValue: data.get_married,
+            onChange: onHandleChange,
+            options: getMarriedOptions,
+            className: "block w-full sm:text-sm",
+            placeholder: "When are you planning to get married ?",
+            name: "get_married"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          className: "mt-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            forInput: "continue_working",
+            value: "Do you intend to continue working when married?"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            defaultValue: data.continue_working,
+            onChange: onHandleChange,
+            options: continueWorkingOptions,
+            className: "block w-full sm:text-sm",
+            placeholder: "Select an option",
+            name: "continue_working"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          className: "mt-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            forInput: "intend_to_move_out",
+            value: "Do you intend to move out?"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            defaultValue: data.intend_to_move_out,
+            onChange: onHandleChange,
+            options: moveOutOptions,
+            className: "block w-full sm:text-sm",
+            placeholder: "Select an option",
+            name: "intend_to_move_out"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          className: "mt-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            forInput: "issues_living_with_inlaws",
+            value: "Do you have issues living with in laws?"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            defaultValue: data.issues_living_with_inlaws,
+            onChange: onHandleChange,
+            options: moveOutOptions,
+            className: "block w-full sm:text-sm",
+            placeholder: "Select an option",
+            name: "issues_living_with_inlaws"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          className: "mt-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            forInput: "future_plan",
+            value: "Where do you see yourself in 5 years"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            type: "text",
+            name: "future_plan",
+            placeholder: "Write in short.. ",
+            value: data.future_plan,
+            className: "mt-1 block w-full",
+            handleChange: onHandleChange,
+            required: true
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        className: "flex items-center justify-end mt-4",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          type: "submit",
+          className: "bg-gray-800 hover:bg-gray-900 text-gray-50 font-bold py-2 px-4 rounded inline-flex items-center",
+          processing: processing,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+            children: "Next"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("svg", {
+            className: "fill-current w-4 h-4 ml-2",
+            xmlns: "http://www.w3.org/2000/svg",
+            viewBox: "0 0 20 20",
+            fill: "currentColor",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("path", {
+              fillRule: "evenodd",
+              d: "M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z",
+              clipRule: "evenodd"
+            })
+          })]
+        })
+      })]
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SetUpProfileStepThree);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Auth/SetUpProfileStepFour.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/Pages/Auth/SetUpProfileStepFour.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.js");
+/* harmony import */ var _Layouts_Guest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Layouts/Guest */ "./resources/js/Layouts/Guest.js");
+/* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.js");
+/* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.js");
+/* harmony import */ var _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react_flags_select__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-flags-select */ "./node_modules/react-flags-select/build/index.esm.js");
+/* harmony import */ var _Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Components/InputSelect */ "./resources/js/Components/InputSelect.js");
+/* harmony import */ var _Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/Components/RadioButton */ "./resources/js/Components/RadioButton.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+function SetUpProfileStepThree() {
+  var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.useForm)({
+    highest_education: '',
+    graduation_year: '',
+    current_profession: '',
+    for_how_long: '',
+    company_name: '',
+    yearly_income: ''
+  }),
+      data = _useForm.data,
+      setData = _useForm.setData,
+      post = _useForm.post,
+      processing = _useForm.processing,
+      errors = _useForm.errors,
+      reset = _useForm.reset;
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    return function () {
+      reset('password', 'password_confirmation');
+    };
+  }, []);
+
+  var onHandleChange = function onHandleChange(event) {
+    setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+  };
+
+  var submit = function submit(e) {
+    e.preventDefault();
+    post('set-up-profile-step-4');
+  };
+
+  var educationOptions = [{
+    value: 'Masters',
+    label: 'Masters'
+  }, {
+    value: 'Bachelor',
+    label: 'Bachelor'
+  }, {
+    value: 'PHD',
+    label: 'PHD'
+  }];
+  var yearsOptions = [{
+    value: 'Newly Joined',
+    label: 'Newly Joined'
+  }, {
+    value: '1-3 Years',
+    label: '1-3 Years'
+  }, {
+    value: '3-5 Years',
+    label: '3-5 Years'
+  }, {
+    value: '5+ Years',
+    label: '5+ Years'
+  }];
+  var minOffset = 0,
+      maxOffset = 60;
+  var thisYear = new Date().getFullYear();
+  var allYears = [];
+
+  for (var x = 0; x <= maxOffset; x++) {
+    allYears.push(thisYear - x);
+  }
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Layouts_Guest__WEBPACK_IMPORTED_MODULE_2__["default"], {
     bgimage: "bg-login-background",
@@ -8445,15 +8829,15 @@ function SetUpProfileStepThree() {
         className: "flex mb-2 justify-between items-center",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h2", {
           className: "mt-6 text-lg font-semibold text-gray-900",
-          children: "Appearence"
+          children: "Education | Carrier"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
           className: "mt-6 text-xl font-bold text-gray-900",
           children: "80%"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-        className: "h-2 w-full bg-slate-400 relative",
+        className: "h-2 w-full bg-slate-400 relative rounded-full",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-          className: "h-2 w-[200px] bg-slate-800 absolute z-50"
+          className: "h-2 w-[200px] bg-slate-800 absolute z-50 rounded-full"
         })
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -8463,48 +8847,44 @@ function SetUpProfileStepThree() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "mt-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "ethnic-origin",
-          value: "Height"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          name: "ethnic-origin",
+          forInput: "highest_education",
+          value: "Highest Education"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          defaultValue: data.highest_education,
+          onChange: onHandleChange,
+          options: educationOptions,
+          className: "block w-full sm:text-sm",
+          placeholder: "Your educational qualification",
+          name: "highest_education"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+        className: "mt-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          forInput: "graduation_year",
+          value: "Graduation Year"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("select", {
+          className: "mt-1 border-gray-300 rounded-xl shadow-sm",
+          onChange: onHandleChange,
+          name: "graduation_year",
+          value: data.graduation_year,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "",
-            children: "Select your height"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "5ft 6in"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "6ft"
+            children: "Select graduation year"
+          }), allYears.map(function (year) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
+              value: year,
+              children: year
+            }, year);
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "mt-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "ethnic-origin",
-          value: "Hair color"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          name: "ethnic-origin",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "",
-            children: "Select your hair color"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Black"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Blonde"
-          })]
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-        className: "mt-4",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "password_confirmation",
+          forInput: "current_profession",
           value: "Profession"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
           type: "text",
-          name: "password_confirmation",
-          value: data.password_confirmation,
+          name: "current_profession",
+          value: data.current_profession,
           className: "mt-1 block w-full",
           handleChange: onHandleChange,
           required: true
@@ -8512,48 +8892,42 @@ function SetUpProfileStepThree() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "mt-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "ethnic-origin",
-          value: "Highest Education"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          name: "ethnic-origin",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "",
-            children: "Your educational qualification"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Masters"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Bachelor"
-          })]
+          forInput: "for_how_long",
+          value: "Years"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          defaultValue: data.for_how_long,
+          onChange: onHandleChange,
+          options: yearsOptions,
+          className: "block w-full sm:text-sm",
+          placeholder: "How long have you been in this position?",
+          name: "for_how_long"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "mt-4",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-          className: "flex items-baseline mb-2 pb-2 space-x-2",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-            className: "w-1/3",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-              forInput: "gender",
-              value: "Keep Beard"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-            className: "w-2/3 flex justify-end space-x-1",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "Yes",
-              btnName: "Yes"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "No",
-              btnName: "No"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "No",
-              btnName: "Prefer not to say"
-            })]
-          })]
-        })
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          forInput: "company_name",
+          value: "Company Name"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          type: "text",
+          name: "company_name",
+          value: data.company_name,
+          className: "mt-1 block w-full",
+          handleChange: onHandleChange,
+          required: true
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+        className: "mt-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          forInput: "yearly_income",
+          value: "Yearly Income"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          type: "number",
+          name: "yearly_income",
+          value: data.yearly_income,
+          className: "mt-1 block w-full",
+          handleChange: onHandleChange,
+          required: true
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
         className: "flex items-center justify-end mt-4",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -8603,7 +8977,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_RadioButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/RadioButton */ "./resources/js/Components/RadioButton.js");
 /* harmony import */ var react_flags_select__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-flags-select */ "./node_modules/react-flags-select/build/index.esm.js");
 /* harmony import */ var _Components_InputSelect__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/Components/InputSelect */ "./resources/js/Components/InputSelect.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _heroicons_react_solid__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @heroicons/react/solid */ "./node_modules/@heroicons/react/solid/esm/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -8629,17 +9004,787 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function SetUpProfileStepOne() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
-      selected = _useState2[0],
-      setSelected = _useState2[1];
+      selectedCountry = _useState2[0],
+      setSelectedCountry = _useState2[1];
+
+  var onSelect = function onSelect(code) {
+    return setSelectedCountry(code);
+  };
+
+  var relocateOptions = [{
+    value: "Yes",
+    label: "Yes"
+  }, {
+    value: "No",
+    label: "No"
+  }, {
+    value: "Not sure",
+    label: "Not sure"
+  }];
+  var residencystatusOptions = [{
+    value: "Student visa",
+    label: "Student visa"
+  }, {
+    value: "Work permit",
+    label: "Work permit"
+  }, {
+    value: "Citizen",
+    label: "Citizen"
+  }];
+  var ethnicOriginOptions = [{
+    value: "Asian",
+    label: "Asian"
+  }, {
+    value: "African",
+    label: "African"
+  }, {
+    value: "Asian-British",
+    label: "Asian-British"
+  }, {
+    value: "Asian-Bangladeshi",
+    label: "Asian-Bangladeshi"
+  }];
+  var countries = [{
+    name: 'Afghanistan',
+    code: 'AF'
+  }, {
+    name: 'Åland Islands',
+    code: 'AX'
+  }, {
+    name: 'Albania',
+    code: 'AL'
+  }, {
+    name: 'Algeria',
+    code: 'DZ'
+  }, {
+    name: 'American Samoa',
+    code: 'AS'
+  }, {
+    name: 'AndorrA',
+    code: 'AD'
+  }, {
+    name: 'Angola',
+    code: 'AO'
+  }, {
+    name: 'Anguilla',
+    code: 'AI'
+  }, {
+    name: 'Antarctica',
+    code: 'AQ'
+  }, {
+    name: 'Antigua and Barbuda',
+    code: 'AG'
+  }, {
+    name: 'Argentina',
+    code: 'AR'
+  }, {
+    name: 'Armenia',
+    code: 'AM'
+  }, {
+    name: 'Aruba',
+    code: 'AW'
+  }, {
+    name: 'Australia',
+    code: 'AU'
+  }, {
+    name: 'Austria',
+    code: 'AT'
+  }, {
+    name: 'Azerbaijan',
+    code: 'AZ'
+  }, {
+    name: 'Bahamas',
+    code: 'BS'
+  }, {
+    name: 'Bahrain',
+    code: 'BH'
+  }, {
+    name: 'Bangladesh',
+    code: 'BD'
+  }, {
+    name: 'Barbados',
+    code: 'BB'
+  }, {
+    name: 'Belarus',
+    code: 'BY'
+  }, {
+    name: 'Belgium',
+    code: 'BE'
+  }, {
+    name: 'Belize',
+    code: 'BZ'
+  }, {
+    name: 'Benin',
+    code: 'BJ'
+  }, {
+    name: 'Bermuda',
+    code: 'BM'
+  }, {
+    name: 'Bhutan',
+    code: 'BT'
+  }, {
+    name: 'Bolivia',
+    code: 'BO'
+  }, {
+    name: 'Bosnia and Herzegovina',
+    code: 'BA'
+  }, {
+    name: 'Botswana',
+    code: 'BW'
+  }, {
+    name: 'Bouvet Island',
+    code: 'BV'
+  }, {
+    name: 'Brazil',
+    code: 'BR'
+  }, {
+    name: 'British Indian Ocean Territory',
+    code: 'IO'
+  }, {
+    name: 'Brunei Darussalam',
+    code: 'BN'
+  }, {
+    name: 'Bulgaria',
+    code: 'BG'
+  }, {
+    name: 'Burkina Faso',
+    code: 'BF'
+  }, {
+    name: 'Burundi',
+    code: 'BI'
+  }, {
+    name: 'Cambodia',
+    code: 'KH'
+  }, {
+    name: 'Cameroon',
+    code: 'CM'
+  }, {
+    name: 'Canada',
+    code: 'CA'
+  }, {
+    name: 'Cape Verde',
+    code: 'CV'
+  }, {
+    name: 'Cayman Islands',
+    code: 'KY'
+  }, {
+    name: 'Central African Republic',
+    code: 'CF'
+  }, {
+    name: 'Chad',
+    code: 'TD'
+  }, {
+    name: 'Chile',
+    code: 'CL'
+  }, {
+    name: 'China',
+    code: 'CN'
+  }, {
+    name: 'Christmas Island',
+    code: 'CX'
+  }, {
+    name: 'Cocos (Keeling) Islands',
+    code: 'CC'
+  }, {
+    name: 'Colombia',
+    code: 'CO'
+  }, {
+    name: 'Comoros',
+    code: 'KM'
+  }, {
+    name: 'Congo',
+    code: 'CG'
+  }, {
+    name: 'Congo, The Democratic Republic of the',
+    code: 'CD'
+  }, {
+    name: 'Cook Islands',
+    code: 'CK'
+  }, {
+    name: 'Costa Rica',
+    code: 'CR'
+  }, {
+    name: 'Cote D\'Ivoire',
+    code: 'CI'
+  }, {
+    name: 'Croatia',
+    code: 'HR'
+  }, {
+    name: 'Cuba',
+    code: 'CU'
+  }, {
+    name: 'Cyprus',
+    code: 'CY'
+  }, {
+    name: 'Czech Republic',
+    code: 'CZ'
+  }, {
+    name: 'Denmark',
+    code: 'DK'
+  }, {
+    name: 'Djibouti',
+    code: 'DJ'
+  }, {
+    name: 'Dominica',
+    code: 'DM'
+  }, {
+    name: 'Dominican Republic',
+    code: 'DO'
+  }, {
+    name: 'Ecuador',
+    code: 'EC'
+  }, {
+    name: 'Egypt',
+    code: 'EG'
+  }, {
+    name: 'El Salvador',
+    code: 'SV'
+  }, {
+    name: 'Equatorial Guinea',
+    code: 'GQ'
+  }, {
+    name: 'Eritrea',
+    code: 'ER'
+  }, {
+    name: 'Estonia',
+    code: 'EE'
+  }, {
+    name: 'Ethiopia',
+    code: 'ET'
+  }, {
+    name: 'Falkland Islands (Malvinas)',
+    code: 'FK'
+  }, {
+    name: 'Faroe Islands',
+    code: 'FO'
+  }, {
+    name: 'Fiji',
+    code: 'FJ'
+  }, {
+    name: 'Finland',
+    code: 'FI'
+  }, {
+    name: 'France',
+    code: 'FR'
+  }, {
+    name: 'French Guiana',
+    code: 'GF'
+  }, {
+    name: 'French Polynesia',
+    code: 'PF'
+  }, {
+    name: 'French Southern Territories',
+    code: 'TF'
+  }, {
+    name: 'Gabon',
+    code: 'GA'
+  }, {
+    name: 'Gambia',
+    code: 'GM'
+  }, {
+    name: 'Georgia',
+    code: 'GE'
+  }, {
+    name: 'Germany',
+    code: 'DE'
+  }, {
+    name: 'Ghana',
+    code: 'GH'
+  }, {
+    name: 'Gibraltar',
+    code: 'GI'
+  }, {
+    name: 'Greece',
+    code: 'GR'
+  }, {
+    name: 'Greenland',
+    code: 'GL'
+  }, {
+    name: 'Grenada',
+    code: 'GD'
+  }, {
+    name: 'Guadeloupe',
+    code: 'GP'
+  }, {
+    name: 'Guam',
+    code: 'GU'
+  }, {
+    name: 'Guatemala',
+    code: 'GT'
+  }, {
+    name: 'Guernsey',
+    code: 'GG'
+  }, {
+    name: 'Guinea',
+    code: 'GN'
+  }, {
+    name: 'Guinea-Bissau',
+    code: 'GW'
+  }, {
+    name: 'Guyana',
+    code: 'GY'
+  }, {
+    name: 'Haiti',
+    code: 'HT'
+  }, {
+    name: 'Heard Island and Mcdonald Islands',
+    code: 'HM'
+  }, {
+    name: 'Holy See (Vatican City State)',
+    code: 'VA'
+  }, {
+    name: 'Honduras',
+    code: 'HN'
+  }, {
+    name: 'Hong Kong',
+    code: 'HK'
+  }, {
+    name: 'Hungary',
+    code: 'HU'
+  }, {
+    name: 'Iceland',
+    code: 'IS'
+  }, {
+    name: 'India',
+    code: 'IN'
+  }, {
+    name: 'Indonesia',
+    code: 'ID'
+  }, {
+    name: 'Iran, Islamic Republic Of',
+    code: 'IR'
+  }, {
+    name: 'Iraq',
+    code: 'IQ'
+  }, {
+    name: 'Ireland',
+    code: 'IE'
+  }, {
+    name: 'Isle of Man',
+    code: 'IM'
+  }, {
+    name: 'Israel',
+    code: 'IL'
+  }, {
+    name: 'Italy',
+    code: 'IT'
+  }, {
+    name: 'Jamaica',
+    code: 'JM'
+  }, {
+    name: 'Japan',
+    code: 'JP'
+  }, {
+    name: 'Jersey',
+    code: 'JE'
+  }, {
+    name: 'Jordan',
+    code: 'JO'
+  }, {
+    name: 'Kazakhstan',
+    code: 'KZ'
+  }, {
+    name: 'Kenya',
+    code: 'KE'
+  }, {
+    name: 'Kiribati',
+    code: 'KI'
+  }, {
+    name: 'Korea, Democratic People\'S Republic of',
+    code: 'KP'
+  }, {
+    name: 'Korea, Republic of',
+    code: 'KR'
+  }, {
+    name: 'Kuwait',
+    code: 'KW'
+  }, {
+    name: 'Kyrgyzstan',
+    code: 'KG'
+  }, {
+    name: 'Lao People\'S Democratic Republic',
+    code: 'LA'
+  }, {
+    name: 'Latvia',
+    code: 'LV'
+  }, {
+    name: 'Lebanon',
+    code: 'LB'
+  }, {
+    name: 'Lesotho',
+    code: 'LS'
+  }, {
+    name: 'Liberia',
+    code: 'LR'
+  }, {
+    name: 'Libyan Arab Jamahiriya',
+    code: 'LY'
+  }, {
+    name: 'Liechtenstein',
+    code: 'LI'
+  }, {
+    name: 'Lithuania',
+    code: 'LT'
+  }, {
+    name: 'Luxembourg',
+    code: 'LU'
+  }, {
+    name: 'Macao',
+    code: 'MO'
+  }, {
+    name: 'Macedonia, The Former Yugoslav Republic of',
+    code: 'MK'
+  }, {
+    name: 'Madagascar',
+    code: 'MG'
+  }, {
+    name: 'Malawi',
+    code: 'MW'
+  }, {
+    name: 'Malaysia',
+    code: 'MY'
+  }, {
+    name: 'Maldives',
+    code: 'MV'
+  }, {
+    name: 'Mali',
+    code: 'ML'
+  }, {
+    name: 'Malta',
+    code: 'MT'
+  }, {
+    name: 'Marshall Islands',
+    code: 'MH'
+  }, {
+    name: 'Martinique',
+    code: 'MQ'
+  }, {
+    name: 'Mauritania',
+    code: 'MR'
+  }, {
+    name: 'Mauritius',
+    code: 'MU'
+  }, {
+    name: 'Mayotte',
+    code: 'YT'
+  }, {
+    name: 'Mexico',
+    code: 'MX'
+  }, {
+    name: 'Micronesia, Federated States of',
+    code: 'FM'
+  }, {
+    name: 'Moldova, Republic of',
+    code: 'MD'
+  }, {
+    name: 'Monaco',
+    code: 'MC'
+  }, {
+    name: 'Mongolia',
+    code: 'MN'
+  }, {
+    name: 'Montserrat',
+    code: 'MS'
+  }, {
+    name: 'Morocco',
+    code: 'MA'
+  }, {
+    name: 'Mozambique',
+    code: 'MZ'
+  }, {
+    name: 'Myanmar',
+    code: 'MM'
+  }, {
+    name: 'Namibia',
+    code: 'NA'
+  }, {
+    name: 'Nauru',
+    code: 'NR'
+  }, {
+    name: 'Nepal',
+    code: 'NP'
+  }, {
+    name: 'Netherlands',
+    code: 'NL'
+  }, {
+    name: 'Netherlands Antilles',
+    code: 'AN'
+  }, {
+    name: 'New Caledonia',
+    code: 'NC'
+  }, {
+    name: 'New Zealand',
+    code: 'NZ'
+  }, {
+    name: 'Nicaragua',
+    code: 'NI'
+  }, {
+    name: 'Niger',
+    code: 'NE'
+  }, {
+    name: 'Nigeria',
+    code: 'NG'
+  }, {
+    name: 'Niue',
+    code: 'NU'
+  }, {
+    name: 'Norfolk Island',
+    code: 'NF'
+  }, {
+    name: 'Northern Mariana Islands',
+    code: 'MP'
+  }, {
+    name: 'Norway',
+    code: 'NO'
+  }, {
+    name: 'Oman',
+    code: 'OM'
+  }, {
+    name: 'Pakistan',
+    code: 'PK'
+  }, {
+    name: 'Palau',
+    code: 'PW'
+  }, {
+    name: 'Palestinian Territory, Occupied',
+    code: 'PS'
+  }, {
+    name: 'Panama',
+    code: 'PA'
+  }, {
+    name: 'Papua New Guinea',
+    code: 'PG'
+  }, {
+    name: 'Paraguay',
+    code: 'PY'
+  }, {
+    name: 'Peru',
+    code: 'PE'
+  }, {
+    name: 'Philippines',
+    code: 'PH'
+  }, {
+    name: 'Pitcairn',
+    code: 'PN'
+  }, {
+    name: 'Poland',
+    code: 'PL'
+  }, {
+    name: 'Portugal',
+    code: 'PT'
+  }, {
+    name: 'Puerto Rico',
+    code: 'PR'
+  }, {
+    name: 'Qatar',
+    code: 'QA'
+  }, {
+    name: 'Reunion',
+    code: 'RE'
+  }, {
+    name: 'Romania',
+    code: 'RO'
+  }, {
+    name: 'Russian Federation',
+    code: 'RU'
+  }, {
+    name: 'RWANDA',
+    code: 'RW'
+  }, {
+    name: 'Saint Helena',
+    code: 'SH'
+  }, {
+    name: 'Saint Kitts and Nevis',
+    code: 'KN'
+  }, {
+    name: 'Saint Lucia',
+    code: 'LC'
+  }, {
+    name: 'Saint Pierre and Miquelon',
+    code: 'PM'
+  }, {
+    name: 'Saint Vincent and the Grenadines',
+    code: 'VC'
+  }, {
+    name: 'Samoa',
+    code: 'WS'
+  }, {
+    name: 'San Marino',
+    code: 'SM'
+  }, {
+    name: 'Sao Tome and Principe',
+    code: 'ST'
+  }, {
+    name: 'Saudi Arabia',
+    code: 'SA'
+  }, {
+    name: 'Senegal',
+    code: 'SN'
+  }, {
+    name: 'Serbia and Montenegro',
+    code: 'CS'
+  }, {
+    name: 'Seychelles',
+    code: 'SC'
+  }, {
+    name: 'Sierra Leone',
+    code: 'SL'
+  }, {
+    name: 'Singapore',
+    code: 'SG'
+  }, {
+    name: 'Slovakia',
+    code: 'SK'
+  }, {
+    name: 'Slovenia',
+    code: 'SI'
+  }, {
+    name: 'Solomon Islands',
+    code: 'SB'
+  }, {
+    name: 'Somalia',
+    code: 'SO'
+  }, {
+    name: 'South Africa',
+    code: 'ZA'
+  }, {
+    name: 'South Georgia and the South Sandwich Islands',
+    code: 'GS'
+  }, {
+    name: 'Spain',
+    code: 'ES'
+  }, {
+    name: 'Sri Lanka',
+    code: 'LK'
+  }, {
+    name: 'Sudan',
+    code: 'SD'
+  }, {
+    name: 'Suriname',
+    code: 'SR'
+  }, {
+    name: 'Svalbard and Jan Mayen',
+    code: 'SJ'
+  }, {
+    name: 'Swaziland',
+    code: 'SZ'
+  }, {
+    name: 'Sweden',
+    code: 'SE'
+  }, {
+    name: 'Switzerland',
+    code: 'CH'
+  }, {
+    name: 'Syrian Arab Republic',
+    code: 'SY'
+  }, {
+    name: 'Taiwan, Province of China',
+    code: 'TW'
+  }, {
+    name: 'Tajikistan',
+    code: 'TJ'
+  }, {
+    name: 'Tanzania, United Republic of',
+    code: 'TZ'
+  }, {
+    name: 'Thailand',
+    code: 'TH'
+  }, {
+    name: 'Timor-Leste',
+    code: 'TL'
+  }, {
+    name: 'Togo',
+    code: 'TG'
+  }, {
+    name: 'Tokelau',
+    code: 'TK'
+  }, {
+    name: 'Tonga',
+    code: 'TO'
+  }, {
+    name: 'Trinidad and Tobago',
+    code: 'TT'
+  }, {
+    name: 'Tunisia',
+    code: 'TN'
+  }, {
+    name: 'Turkey',
+    code: 'TR'
+  }, {
+    name: 'Turkmenistan',
+    code: 'TM'
+  }, {
+    name: 'Turks and Caicos Islands',
+    code: 'TC'
+  }, {
+    name: 'Tuvalu',
+    code: 'TV'
+  }, {
+    name: 'Uganda',
+    code: 'UG'
+  }, {
+    name: 'Ukraine',
+    code: 'UA'
+  }, {
+    name: 'United Arab Emirates',
+    code: 'AE'
+  }, {
+    name: 'United Kingdom',
+    code: 'GB'
+  }, {
+    name: 'United States',
+    code: 'US'
+  }, {
+    name: 'United States Minor Outlying Islands',
+    code: 'UM'
+  }, {
+    name: 'Uruguay',
+    code: 'UY'
+  }, {
+    name: 'Uzbekistan',
+    code: 'UZ'
+  }, {
+    name: 'Vanuatu',
+    code: 'VU'
+  }, {
+    name: 'Venezuela',
+    code: 'VE'
+  }, {
+    name: 'Viet Nam',
+    code: 'VN'
+  }, {
+    name: 'Virgin Islands, British',
+    code: 'VG'
+  }, {
+    name: 'Virgin Islands, U.S.',
+    code: 'VI'
+  }, {
+    name: 'Wallis and Futuna',
+    code: 'WF'
+  }, {
+    name: 'Western Sahara',
+    code: 'EH'
+  }, {
+    name: 'Yemen',
+    code: 'YE'
+  }, {
+    name: 'Zambia',
+    code: 'ZM'
+  }, {
+    name: 'Zimbabwe',
+    code: 'ZW'
+  }];
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.useForm)({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: ''
+    ethnic_origin: '',
+    country: '',
+    recidency_status: '',
+    relocate: '',
+    postcode: ''
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -8654,131 +9799,132 @@ function SetUpProfileStepOne() {
     };
   }, []);
 
-  var onHandleChange = function onHandleChange(event) {
-    setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+  var onHandleChange = function onHandleChange(e) {
+    setData(e.target.name, e.target.type === 'hidden' ? e.target.defaultValue : e.target.value); // setData({ ...data, [e.target.name]: e.target.value });
   };
 
   var submit = function submit(e) {
     e.preventDefault();
-    post(route('register'));
+    post('set-up-profile-step-1');
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Layouts_Guest__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(_Layouts_Guest__WEBPACK_IMPORTED_MODULE_2__["default"], {
     bgimage: "bg-login-background",
     title: "Help us find the perfect match for you.",
     subtitle: "Share your details to find the one!",
     linktext: "Need help ?",
     href: "/",
     btnName: "Contact support",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.Head, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.Head, {
       title: "Suitable | Set up profile"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
       className: "text-center",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
         className: "flex mb-2 justify-between items-center",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h2", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("h2", {
           className: "mt-6 text-lg font-semibold text-gray-900",
-          children: "Your profile information"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
+          children: "Your personal information"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("p", {
           className: "mt-6 text-xl font-bold text-gray-900",
           children: "20%"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-        className: "h-2 w-full bg-slate-400 relative",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-          className: "h-2 w-[200px] bg-slate-800 absolute z-50"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+        className: "h-2 w-full bg-slate-400 relative rounded-full",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+          className: "h-2 w-[100px] bg-slate-800 absolute z-50 rounded-full"
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__["default"], {
       errors: errors
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("form", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("form", {
       onSubmit: submit,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
         className: "mt-4",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
           forInput: "ethnic-origin",
           value: "Ethnic Origin"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          name: "ethnic-origin",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "",
-            children: "Please select Your ethnic origin"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Asian"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Africa"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          defaultValue: data.ethnic_origin,
+          onChange: onHandleChange,
+          options: ethnicOriginOptions,
+          className: "block w-full sm:text-sm",
+          placeholder: "Select your ethnic origin",
+          name: "ethnic_origin"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+        className: "mt-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          forInput: "country",
+          value: "Country"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("select", {
+          className: "border-gray-300 rounded-xl shadow-sm",
+          name: "country",
+          onChange: onHandleChange,
+          value: data.country,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("option", {
+            children: "Select your country"
+          }), countries.map(function (country) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("option", {
+              value: country.name,
+              children: country.name
+            }, country.code);
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
         className: "mt-4",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "ethnic-origin",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          forInput: "recidency_status",
           value: "Recidency status"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          name: "ethnic-origin",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "",
-            children: "Please select your recidency status"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Citizen"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Student visa"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Work permit"
-          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          defaultValue: data.recidency_status,
+          onChange: onHandleChange,
+          options: residencystatusOptions,
+          className: "block w-full sm:text-sm",
+          placeholder: "Select your residency status",
+          name: "recidency_status"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
         className: "mt-4",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "ethnic-origin",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          forInput: "relocate",
           value: "Move abroad"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          name: "ethnic-origin",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "",
-            children: "Are you willing to relocate?"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Yes"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "No"
-          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          defaultValue: data.relocate,
+          onChange: onHandleChange,
+          options: relocateOptions,
+          className: "block w-full sm:text-sm",
+          placeholder: "Are you willing to relocate?",
+          name: "relocate"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
         className: "mt-4",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "password_confirmation",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          forInput: "postcode",
           value: "Postcode"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
           type: "text",
-          name: "password_confirmation",
-          value: data.password_confirmation,
+          name: "postcode",
+          value: data.postcode,
           className: "mt-1 block w-full",
           handleChange: onHandleChange,
           required: true
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
         className: "flex items-center justify-end mt-4",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
           className: "bg-gray-800 hover:bg-gray-900 text-gray-50 font-bold py-2 px-4 rounded inline-flex items-center",
           processing: processing,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
             children: "Next"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("svg", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("svg", {
             className: "fill-current w-4 h-4 ml-2",
             xmlns: "http://www.w3.org/2000/svg",
             viewBox: "0 0 20 20",
             fill: "currentColor",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
-              "fill-rule": "evenodd",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("path", {
+              fillRule: "evenodd",
               d: "M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z",
-              "clip-rule": "evenodd"
+              clipRule: "evenodd"
             })
           })]
         })
@@ -8809,23 +9955,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.js");
 /* harmony import */ var _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var react_flags_select__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-flags-select */ "./node_modules/react-flags-select/build/index.esm.js");
+/* harmony import */ var _Components_RadioButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/RadioButton */ "./resources/js/Components/RadioButton.js");
 /* harmony import */ var _Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Components/InputSelect */ "./resources/js/Components/InputSelect.js");
-/* harmony import */ var _Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/Components/RadioButton */ "./resources/js/Components/RadioButton.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -8839,16 +9971,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function SetUpProfileStepThree() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      selected = _useState2[0],
-      setSelected = _useState2[1];
-
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.useForm)({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: ''
+    marital_status: '',
+    living_with: '',
+    get_married: '',
+    have_children: '',
+    like_to_have_children: '',
+    poligony: '',
+    physical_disability: ''
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -8869,187 +9999,243 @@ function SetUpProfileStepThree() {
 
   var submit = function submit(e) {
     e.preventDefault();
-    post(route('register'));
+    post('set-up-profile-step-3');
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Layouts_Guest__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  var livingwithOptions = [{
+    value: "Parents",
+    label: "Parents"
+  }, {
+    value: "Live by myself",
+    label: "Live by myself"
+  }, {
+    value: "Hidden",
+    label: "Prefer not say"
+  }];
+  var maritalStatusOptions = [{
+    value: "Never married",
+    label: "Never married"
+  }, {
+    value: "Divorced",
+    label: "Divorced"
+  }];
+  var getMarriedOptions = [{
+    value: "As soon as possible",
+    label: "As soon as possible"
+  }, {
+    value: "Not now",
+    label: "Not now"
+  }, {
+    value: "Not sure",
+    label: "Not sure"
+  }];
+  var haveChildrenOptions = [{
+    value: "None",
+    label: "None"
+  }, {
+    value: "Prefer not to say",
+    label: "Prefer not to say"
+  }, {
+    value: "1",
+    label: "1"
+  }, {
+    value: "2",
+    label: "2"
+  }, {
+    value: "3",
+    label: "3"
+  }, {
+    value: "4",
+    label: "4"
+  }];
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_Layouts_Guest__WEBPACK_IMPORTED_MODULE_2__["default"], {
     bgimage: "bg-login-background",
     title: "Help us find the perfect match for you",
     subtitle: "Tell us more about your lifestyle",
     linktext: "Need help ?",
     href: "/",
     btnName: "Contact support",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.Head, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.Head, {
       title: "Suitable | Set up profile"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-      className: "text-center",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+      className: "",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
         className: "flex mb-2 justify-between items-center",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h2", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h2", {
           className: "mt-6 text-lg font-semibold text-gray-900",
-          children: "Lifestyle / Current status"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
+          children: "Your personal information"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
           className: "mt-6 text-xl font-bold text-gray-900",
-          children: "60%"
+          children: "40%"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-        className: "h-2 w-full bg-slate-400 relative",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-          className: "h-2 w-[200px] bg-slate-800 absolute z-50"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        className: "h-2 w-full bg-slate-400 relative rounded-full",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+          className: "h-2 w-[100px] bg-slate-800 absolute z-50 rounded-full"
         })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
+        className: "text-xs sm:text-sm mt-4 p-2 font-black leading-snug tracking-normal",
+        children: "Be yourself, your match will be depending on your answers. If you don't like to answer please select \"Prefer not say option\""
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__["default"], {
       errors: errors
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("form", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("form", {
       onSubmit: submit,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
         className: "mt-4",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          forInput: "marital_status",
+          value: "Marital Status"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          defaultValue: data.marital_status,
+          onChange: onHandleChange,
+          options: maritalStatusOptions,
+          className: "block w-full sm:text-sm",
+          placeholder: "Select your Marital Status",
+          name: "marital_status"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+        className: "mt-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          forInput: "living_with",
+          value: "Who do you live with ?"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          defaultValue: data.living_with,
+          onChange: onHandleChange,
+          options: livingwithOptions,
+          className: "block w-full sm:text-sm",
+          placeholder: "Please select ... ",
+          name: "living_with"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+        className: "mt-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          forInput: "get_married",
+          value: "Get married"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          defaultValue: data.get_married,
+          onChange: onHandleChange,
+          options: getMarriedOptions,
+          className: "block w-full sm:text-sm",
+          placeholder: "When would you like to",
+          name: "get_married"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+        className: "mt-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          forInput: "have_children",
+          value: "Do you have children"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          defaultValue: data.have_children,
+          onChange: onHandleChange,
+          options: haveChildrenOptions,
+          className: "block w-full sm:text-sm",
+          placeholder: "Select how many",
+          name: "have_children"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        className: "mt-4",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
           className: "flex items-baseline mb-2 pb-2 space-x-2",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
             className: "w-1/3",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-              forInput: "gender",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              forInput: "like_to_have_children",
+              value: "Like to have children"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+            className: "w-2/3 flex justify-end space-x-1",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              name: "like_to_have_children",
+              value: "Yes",
+              btnName: "Yes",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              name: "like_to_have_children",
+              value: "No",
+              btnName: "No",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              name: "like_to_have_children",
+              value: "Hidden",
+              btnName: "Prefer not to say",
+              handleChange: onHandleChange
+            })]
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        className: "mt-4",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+          className: "flex items-baseline mb-2 pb-2 space-x-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+            className: "w-1/3",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              forInput: "poligony",
               value: "Poligony"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             className: "w-2/3 flex justify-end space-x-1",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              name: "poligony",
               value: "Yes",
-              btnName: "Yes"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
+              btnName: "Yes",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              name: "poligony",
               value: "No",
-              btnName: "No"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "No",
-              btnName: "Prefer not to say"
+              btnName: "No",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              name: "poligony",
+              value: "Hidden",
+              btnName: "Prefer not to say",
+              handleChange: onHandleChange
             })]
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
         className: "mt-4",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
           className: "flex items-baseline mb-2 pb-2 space-x-2",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
             className: "w-1/3",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-              forInput: "gender",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              forInput: "physical_disability",
               value: "Any Physical disability ?"
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
             className: "w-2/3 flex justify-end space-x-1",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              name: "physical_disability",
               value: "Yes",
-              btnName: "Yes"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
+              btnName: "Yes",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              name: "physical_disability",
               value: "No",
-              btnName: "No"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "No",
-              btnName: "Prefer not to say"
+              btnName: "No",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+              name: "physical_disability",
+              value: "Hidden",
+              btnName: "Prefer not to say",
+              handleChange: onHandleChange
             })]
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-        className: "mt-4",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-          className: "flex items-baseline mb-2 pb-2 space-x-2",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-            className: "w-1/3",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-              forInput: "gender",
-              value: "Eat Halal ?"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-            className: "w-2/3 flex justify-end space-x-1",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "Yes",
-              btnName: "Yes"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "No",
-              btnName: "No"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "No",
-              btnName: "Prefer not to say"
-            })]
-          })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-        className: "mt-4",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-          className: "flex items-baseline mb-2 pb-2 space-x-2",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-            className: "w-1/3",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-              forInput: "gender",
-              value: "Do you smoke ?"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-            className: "w-2/3 flex justify-end space-x-1",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "Yes",
-              btnName: "Yes"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "No",
-              btnName: "No"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "No",
-              btnName: "Prefer not to say"
-            })]
-          })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-        className: "mt-4",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-          className: "flex items-baseline mb-2 pb-2 space-x-2",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-            className: "w-1/3",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-              forInput: "gender",
-              value: "Drink Alchohol ?"
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-            className: "w-2/3 flex justify-end space-x-1",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "Yes",
-              btnName: "Yes"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "No",
-              btnName: "No"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-              name: "gender",
-              value: "No",
-              btnName: "Prefer not to say"
-            })]
-          })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
         className: "flex items-center justify-end mt-4",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
           className: "bg-gray-800 hover:bg-gray-900 text-gray-50 font-bold py-2 px-4 rounded inline-flex items-center",
           processing: processing,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
             children: "Next"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("svg", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("svg", {
             className: "fill-current w-4 h-4 ml-2",
             xmlns: "http://www.w3.org/2000/svg",
             viewBox: "0 0 20 20",
             fill: "currentColor",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("path", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("path", {
               fillRule: "evenodd",
               d: "M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z",
               clipRule: "evenodd"
@@ -9087,17 +10273,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/Components/InputSelect */ "./resources/js/Components/InputSelect.js");
 /* harmony import */ var _Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/Components/RadioButton */ "./resources/js/Components/RadioButton.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -9111,18 +10286,47 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-function SetUpProfileStepTwo() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      selected = _useState2[0],
-      setSelected = _useState2[1];
+function SetUpProfileStepTwo(_ref) {
+  var auth = _ref.auth;
+  var regiousHistoryOptions = [{
+    value: "Convert",
+    label: "Convert"
+  }, {
+    value: "Revert",
+    label: "Revert"
+  }, {
+    value: "Not sure",
+    label: "Not sure"
+  }];
+  var sectOptions = [{
+    value: "Sunni",
+    label: "Sunni"
+  }, {
+    value: "Shia",
+    label: "Shia"
+  }, {
+    value: "Don't Follow",
+    label: "Don't Follow"
+  }];
+  var prayerFrequencyOptions = [{
+    value: "Never Missed",
+    label: "Never Missed"
+  }, {
+    value: "Sometimes Miss",
+    label: "Sometimes Miss"
+  }, {
+    value: "Occasionally",
+    label: "Occasionally"
+  }];
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.useForm)({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: ''
+    religious_history: '',
+    prayer_frequency: '',
+    sect: '',
+    eat_halal: '',
+    smoke: '',
+    drink_alchohol: '',
+    wear_hijab_keep_beard: ''
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -9143,7 +10347,7 @@ function SetUpProfileStepTwo() {
 
   var submit = function submit(e) {
     e.preventDefault();
-    post(route('register'));
+    post(route('setupprofilestep2store'));
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Layouts_Guest__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -9160,16 +10364,16 @@ function SetUpProfileStepTwo() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "flex mb-2 justify-between items-center",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("h2", {
-          className: "mt-6 text-lg font-semibold text-gray-900",
-          children: "Lifestyle / Current status"
+          className: "mt-6 text-md sm:text-lg font-semibold text-gray-900",
+          children: "Religious view"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
-          className: "mt-6 text-xl font-bold text-gray-900",
-          children: "40%"
+          className: "mt-6 text-lg sm:text-xl font-semibold text-slate-700",
+          children: "30%"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-        className: "h-2 w-full bg-slate-400 relative",
+        className: "h-2 w-full bg-slate-400 relative rounded-full",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-          className: "h-2 w-[200px] bg-slate-800 absolute z-50"
+          className: "h-2 w-[150px] bg-slate-700 absolute z-50 rounded-full"
         })
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -9179,128 +10383,162 @@ function SetUpProfileStepTwo() {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "mt-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "ethnic-origin",
-          value: "Religious History"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          name: "ethnic-origin",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "",
-            children: "Your religious history"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Convert"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Revert"
-          })]
+          forInput: "religious_history",
+          value: "Religious history"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          defaultValue: data.religious_history,
+          onChange: onHandleChange,
+          options: regiousHistoryOptions,
+          className: "block w-full sm:text-sm",
+          placeholder: "Select your religious history",
+          name: "religious_history"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "mt-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "ethnic-origin",
+          forInput: "prayer_frequency",
           value: "Do you pray"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          name: "ethnic-origin",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "",
-            children: "Please select your prayer frequency"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Regular"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Sometimes"
-          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          defaultValue: data.prayer_frequency,
+          onChange: onHandleChange,
+          options: prayerFrequencyOptions,
+          className: "block w-full sm:text-sm",
+          placeholder: "Select your prayer frequency",
+          name: "prayer_frequency"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "mt-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "ethnic-origin",
+          forInput: "sect",
           value: "Sect"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          name: "ethnic-origin",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "",
-            children: "What sect are you"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Sunni"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Shia"
-          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          defaultValue: data.sect,
+          onChange: onHandleChange,
+          options: sectOptions,
+          className: "block w-full sm:text-sm",
+          placeholder: "What sect are you",
+          name: "sect"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
         className: "mt-4",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "ethnic-origin",
-          value: "Marital Status"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          name: "ethnic-origin",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "",
-            children: "Select your Marital Status"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Never married"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Divorced"
-          })]
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-        className: "mt-4",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "ethnic-origin",
-          value: "Get married"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          name: "ethnic-origin",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "",
-            children: "When would you like to"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "As soon as possible"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "Not now"
-          })]
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-        className: "mt-4",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "ethnic-origin",
-          value: "Do you have children"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_InputSelect__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          name: "ethnic-origin",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "",
-            children: "Select how many"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "None"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("option", {
-            value: "{value}",
-            children: "1"
-          })]
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-        className: "mt-4",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          forInput: "gender",
-          value: "Like to have children"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
           className: "flex items-baseline mb-2 pb-2 space-x-2",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-            name: "gender",
-            value: "Yes",
-            btnName: "Yes"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-            name: "gender",
-            value: "No",
-            btnName: "No"
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            className: "w-1/3",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              forInput: "eat_halal",
+              value: "Do you eat halal ?"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+            className: "w-2/3 flex justify-end space-x-1",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+              name: "eat_halal",
+              value: "Yes",
+              btnName: "Yes",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+              name: "eat_halal",
+              value: "No",
+              btnName: "No",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+              name: "eat_halal",
+              value: "Hidden",
+              btnName: "Prefer not to say",
+              handleChange: onHandleChange
+            })]
           })]
-        })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+        className: "mt-4",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+          className: "flex items-baseline mb-2 pb-2 space-x-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            className: "w-1/3",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              forInput: "smoke",
+              value: "Do you smoke ?"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+            className: "w-2/3 flex justify-end space-x-1",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+              name: "smoke",
+              value: "Yes",
+              btnName: "Yes",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+              name: "smoke",
+              value: "No",
+              btnName: "No",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+              name: "smoke",
+              value: "Hidden",
+              btnName: "Prefer not to say",
+              handleChange: onHandleChange
+            })]
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+        className: "mt-4",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+          className: "flex items-baseline mb-2 pb-2 space-x-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            className: "w-1/3",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              forInput: "drink_alchohol",
+              value: "Drink Alchohol ?"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+            className: "w-2/3 flex justify-end space-x-1",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+              name: "drink_alchohol",
+              value: "Yes",
+              btnName: "Yes",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+              name: "drink_alchohol",
+              value: "No",
+              btnName: "No",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+              name: "drink_alchohol",
+              value: "Not to say",
+              btnName: "Prefer not to say",
+              handleChange: onHandleChange
+            })]
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+        className: "mt-4",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+          className: "flex items-baseline mb-2 pb-2 space-x-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            className: "w-1/3",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+              forInput: "wear_hijab_keep_beard",
+              value: "".concat(auth.user.gender == "Male" ? "Keep Beard" : "Wear Hijab ?")
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+            className: "w-2/3 flex justify-end space-x-1",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+              name: "wear_hijab_keep_beard",
+              value: "Yes",
+              btnName: "Yes",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+              name: "wear_hijab_keep_beard",
+              value: "No",
+              btnName: "No",
+              handleChange: onHandleChange
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_RadioButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+              name: "wear_hijab_keep_beard",
+              value: "Hidden",
+              btnName: "Prefer not to say",
+              handleChange: onHandleChange
+            })]
+          })]
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
         className: "flex items-center justify-end mt-4",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -9390,7 +10628,7 @@ function UploadProfilePic() {
       post = _useForm.post,
       processing = _useForm.processing,
       errors = _useForm.errors,
-      reset = _useForm.reset;
+      progress = _useForm.progress;
 
   var submit = function submit(e) {
     e.preventDefault();
@@ -9475,20 +10713,28 @@ function UploadProfilePic() {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
                   type: "file",
                   handleChange: onSelectFile,
+                  value: data.avatar,
                   className: "opacity-0"
+                }), progress && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("progress", {
+                  value: progress.percentage,
+                  max: "100",
+                  children: [progress.percentage, "%"]
                 })]
               }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
                   src: preview,
                   layout: "fill",
-                  className: "w-full h-200 object-cover"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                  type: "file",
-                  handleChange: onSelectFile,
-                  className: "opacity-0"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-                  className: "pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600",
-                  children: "Click here to change file"
+                  className: "object-cover h-100 w-100 aspect-square"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("label", {
+                  className: "flex flex-col w-full h-5 border-4 border-blue-100 border-dashed hover:bg-gray-100 hover:border-gray-300",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+                    className: "text-sm tracking-wider text-gray-400 group-hover:text-gray-600",
+                    children: "Click here to change"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                    type: "file",
+                    handleChange: onSelectFile,
+                    className: "opacity-0"
+                  })]
                 })]
               })
             })
@@ -9499,7 +10745,7 @@ function UploadProfilePic() {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
           children: "Instruction"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("ul", {
-          className: "list-inside list-disc text-sm",
+          className: "list-inside list-disc text-sm text-slate-400",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
             children: "Upload clear photos"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
@@ -9702,13 +10948,13 @@ function Home(props) {
               "class": "flex flex-wrap",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
                 "class": "flex-auto text-lg font-semibold text-slate-900",
-                children: "Classic Utility Jacket"
+                children: "Zein Ahmed, 30"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                 "class": "text-lg font-semibold text-slate-500",
-                children: "$110.00"
+                children: "online"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                 "class": "w-full flex-none text-sm font-medium text-slate-700 mt-2",
-                children: "In stock"
+                children: "From Germany Living in Berlin Citizen"
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               "class": "flex items-baseline mt-4 mb-6 pb-6 border-b border-slate-200"
@@ -9719,11 +10965,11 @@ function Home(props) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
                   "class": "h-10 px-6 font-semibold rounded-md bg-black text-white",
                   type: "submit",
-                  children: "Buy now"
+                  children: "Invite"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
                   "class": "h-10 px-6 font-semibold rounded-md border border-slate-200 text-slate-900",
                   type: "button",
-                  children: "Add to bag"
+                  children: "Save"
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
                 "class": "flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200",
@@ -9743,7 +10989,7 @@ function Home(props) {
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
               "class": "text-sm text-slate-700",
-              children: "Free shipping on all continental US orders."
+              children: "You can view this user's profile once he accepted"
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -50311,10 +51557,14 @@ var map = {
 	"./Auth/ImageUpload.js": "./resources/js/Pages/Auth/ImageUpload.js",
 	"./Auth/Login": "./resources/js/Pages/Auth/Login.js",
 	"./Auth/Login.js": "./resources/js/Pages/Auth/Login.js",
+	"./Auth/OnboardingScreen": "./resources/js/Pages/Auth/OnboardingScreen.js",
+	"./Auth/OnboardingScreen.js": "./resources/js/Pages/Auth/OnboardingScreen.js",
 	"./Auth/Register": "./resources/js/Pages/Auth/Register.js",
 	"./Auth/Register.js": "./resources/js/Pages/Auth/Register.js",
 	"./Auth/ResetPassword": "./resources/js/Pages/Auth/ResetPassword.js",
 	"./Auth/ResetPassword.js": "./resources/js/Pages/Auth/ResetPassword.js",
+	"./Auth/SetUpProfileStepFive": "./resources/js/Pages/Auth/SetUpProfileStepFive.js",
+	"./Auth/SetUpProfileStepFive.js": "./resources/js/Pages/Auth/SetUpProfileStepFive.js",
 	"./Auth/SetUpProfileStepFour": "./resources/js/Pages/Auth/SetUpProfileStepFour.js",
 	"./Auth/SetUpProfileStepFour.js": "./resources/js/Pages/Auth/SetUpProfileStepFour.js",
 	"./Auth/SetUpProfileStepOne": "./resources/js/Pages/Auth/SetUpProfileStepOne.js",

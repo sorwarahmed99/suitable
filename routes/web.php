@@ -19,9 +19,7 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'canRegister' => Route::has('register')
     ]);
 });
 
@@ -37,8 +35,11 @@ Route::namespace('Admin')->prefix('/admin')->name('admin.')->group(function () {
 });
 
 
-Route::get('/home', function () {
-    return Inertia::render('User/Home');
-})->middleware(['auth', 'verified'])->name('home');
+Route::group(['middleware' => ['auth', 'verified', 'registered_user']], function() {
+    Route::get('/home', function () {
+        return Inertia::render('User/Home');
+    })->name('home');
+});
+
 
 require __DIR__ . '/auth.php';
