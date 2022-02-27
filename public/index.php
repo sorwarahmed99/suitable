@@ -51,5 +51,8 @@ $kernel = $app->make(Kernel::class);
 $response = $kernel->handle(
     $request = Request::capture()
 )->send();
-
+if((!empty( $_SERVER['HTTP_X_FORWARDED_HOST'])) || (!empty( $_SERVER['HTTP_X_FORWARDED_FOR'])) ) {
+    $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_HOST'];
+    $_SERVER['HTTPS'] = 'on';
+}
 $kernel->terminate($request, $response);
