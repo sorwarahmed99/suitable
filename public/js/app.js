@@ -5808,9 +5808,7 @@ function Input(_ref) {
         ref: input,
         autoComplete: autoComplete,
         required: required,
-        onChange: function onChange(e) {
-          return handleChange(e);
-        }
+        onChange: handleChange
       })
     })
   });
@@ -11218,7 +11216,7 @@ function Welcome(props) {
           }), props.auth.user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
             href: route('home'),
             className: "main-btn gradient-btn",
-            children: props.auth.user.name
+            children: props.auth.user.firstname
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
             href: route('login'),
             className: "main-btn gradient-btn",

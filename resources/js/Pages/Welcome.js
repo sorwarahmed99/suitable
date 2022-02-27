@@ -32,7 +32,7 @@ export default function Welcome(props) {
 
                             {props.auth.user ? (
                                     <Link href={route('home')} className="main-btn gradient-btn">
-                                        {props.auth.user.name}
+                                        {props.auth.user.firstname}
                                     </Link>
                                 ) : (
 
