@@ -5843,7 +5843,7 @@ function InputSelect(_ref) {
       placeholder = _ref.placeholder,
       required = _ref.required;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    "class": "mt-1",
+    className: "mt-1",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
       className: "border-gray-300 rounded-xl shadow-sm text-xs" + className,
       name: name,
@@ -5926,7 +5926,7 @@ function NavLink(_ref) {
     className: active ? 'inline-flex items-center px-1 pt-1 border-b-2 border-red-400 text-sm font-medium leading-5 text-gray-900 dark:text-white focus:outline-none focus:border-red-700 transition duration-150 ease-in-out' : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 dark:text-slate-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out',
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
       xmlns: "http://www.w3.org/2000/svg",
-      "class": "mr-2 w-5 h-5 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300",
+      className: "mr-2 w-5 h-5 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300",
       fill: "none",
       viewBox: "0 0 24 24",
       stroke: "currentColor",
@@ -6383,7 +6383,7 @@ function Authenticated(_ref) {
           className: "bg-transparent text-slate-800 dark:text-slate-500 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-2 border-slate-800 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 px-4 rounded inline-flex items-center focus:outline-none transition duration-150 ease-in-out",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("svg", {
             xmlns: "http://www.w3.org/2000/svg",
-            "class": "fill-current w-4 h-4 mr-2",
+            className: "fill-current w-4 h-4 mr-2",
             viewBox: "0 0 20 20",
             fill: "currentColor",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("path", {
@@ -6603,31 +6603,31 @@ function Footer() {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                 className: "flex items-center mb-6",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("ul", {
-                  "class": "link",
+                  className: "link",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("a", {
                       href: "#",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-                        "class": "lni lni-envelope"
+                        className: "lni lni-envelope"
                       }), "info@suitable.com"]
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("a", {
                       href: "#",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-                        "class": "lni lni-facebook"
+                        className: "lni lni-facebook"
                       }), "fb.com/suitable"]
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("li", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("a", {
                       href: "#",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-                        "class": "lni lni-twitter"
+                        className: "lni lni-twitter"
                       }), "@suitable"]
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-                      "class": "lni lni-instagram"
+                      className: "lni lni-instagram"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
                       href: "#",
                       children: "@suitable"
@@ -7263,10 +7263,10 @@ function Register() {
         className: "mt-6 text-3xl font-bold text-gray-900",
         children: "Create your account"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("p", {
-        "class": "mt-2 text-center text-sm text-gray-600 max-w",
+        className: "mt-2 text-center text-sm text-gray-600 max-w",
         children: ["Need help ?", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.Link, {
           href: "#",
-          "class": "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500",
+          className: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500",
           children: " Contact Support"
         })]
       })]
@@ -7358,23 +7358,23 @@ function Register() {
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-        "class": "flex items-center pt-5",
+        className: "flex items-center pt-5",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
           id: "terms-and-privacy",
           name: "terms-and-privacy",
           type: "checkbox",
-          "class": "",
+          className: "",
           required: true
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("label", {
           htmlFor: "terms-and-privacy",
-          "class": "ml-2 block text-sm text-gray-900",
+          className: "ml-2 block text-sm text-gray-900",
           children: ["I agree to the", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("a", {
             href: "#",
-            "class": "text-indigo-600 hover:text-indigo-500",
+            className: "text-indigo-600 hover:text-indigo-500",
             children: "Terms "
           }), "and", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("a", {
             href: "#",
-            "class": "text-indigo-600 hover:text-indigo-500",
+            className: "text-indigo-600 hover:text-indigo-500",
             children: "  Data Policy"
           }), "."]
         })]
@@ -7953,10 +7953,10 @@ function Login(_ref) {
         className: "mt-6 text-3xl font-bold text-gray-900",
         children: "Login to your account"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("p", {
-        "class": "mt-2 text-center text-sm text-gray-600 max-w",
+        className: "mt-2 text-center text-sm text-gray-600 max-w",
         children: ["Need help ?", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.Link, {
           href: "#",
-          "class": "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500",
+          className: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500",
           children: " Contact Support"
         })]
       })]
@@ -8176,10 +8176,10 @@ function Register() {
         className: "mt-6 text-3xl font-bold text-gray-900",
         children: "Create your account"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("p", {
-        "class": "mt-2 text-center text-sm text-gray-600 max-w",
+        className: "mt-2 text-center text-sm text-gray-600 max-w",
         children: ["Need help ?", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.Link, {
           href: "#",
-          "class": "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500",
+          className: "font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500",
           children: " Contact Support"
         })]
       })]
@@ -8273,23 +8273,23 @@ function Register() {
           })]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-        "class": "flex items-center pt-5",
+        className: "flex items-center pt-5",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
           id: "terms-and-privacy",
           name: "terms-and-privacy",
           type: "checkbox",
-          "class": "",
+          className: "",
           required: true
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("label", {
           htmlFor: "terms-and-privacy",
-          "class": "ml-2 block text-sm text-gray-900",
+          className: "ml-2 block text-sm text-gray-900",
           children: ["I agree to the", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("a", {
             href: "#",
-            "class": "text-indigo-600 hover:text-indigo-500",
+            className: "text-indigo-600 hover:text-indigo-500",
             children: "Terms "
           }), "and", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("a", {
             href: "#",
-            "class": "text-indigo-600 hover:text-indigo-500",
+            className: "text-indigo-600 hover:text-indigo-500",
             children: "  Data Policy"
           }), "."]
         })]
@@ -10932,45 +10932,45 @@ function Home(props) {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "max-w-3xl mx-auto sm:px-6 lg:px-8",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          "class": "flex font-sans bg-white shadow-md rounded-lg",
+          className: "flex font-sans bg-white shadow-md rounded-lg",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            "class": "flex-none w-48 relative",
+            className: "flex-none w-48 relative",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
               src: "https://tailwindcomponents.com/storage/avatars/njkIbPhyZCftc4g9XbMWwVsa7aGVPajYLRXhEeoo.jpg",
               alt: "",
-              "class": "absolute inset-0 w-full h-full object-cover"
+              className: "absolute inset-0 w-full h-full object-cover"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
-            "class": "flex-auto p-6",
+            className: "flex-auto p-6",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              "class": "flex flex-wrap",
+              className: "flex flex-wrap",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
-                "class": "flex-auto text-lg font-semibold text-slate-900",
+                className: "flex-auto text-lg font-semibold text-slate-900",
                 children: "Zein Ahmed, 30"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                "class": "text-lg font-semibold text-slate-500",
+                className: "text-lg font-semibold text-slate-500",
                 children: "online"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                "class": "w-full flex-none text-sm font-medium text-slate-700 mt-2",
+                className: "w-full flex-none text-sm font-medium text-slate-700 mt-2",
                 children: "From Germany Living in Berlin Citizen"
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-              "class": "flex items-baseline mt-4 mb-6 pb-6 border-b border-slate-200"
+              className: "flex items-baseline mt-4 mb-6 pb-6 border-b border-slate-200"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              "class": "flex space-x-4 mb-6 text-sm font-medium",
+              className: "flex space-x-4 mb-6 text-sm font-medium",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                "class": "flex-auto flex space-x-4",
+                className: "flex-auto flex space-x-4",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-                  "class": "h-10 px-6 font-semibold rounded-md bg-black text-white",
+                  className: "h-10 px-6 font-semibold rounded-md bg-black text-white",
                   type: "submit",
                   children: "Invite"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-                  "class": "h-10 px-6 font-semibold rounded-md border border-slate-200 text-slate-900",
+                  className: "h-10 px-6 font-semibold rounded-md border border-slate-200 text-slate-900",
                   type: "button",
                   children: "Save"
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-                "class": "flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200",
+                className: "flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200",
                 type: "button",
                 "aria-label": "Like",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
@@ -10986,33 +10986,33 @@ function Home(props) {
                 })
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-              "class": "text-sm text-slate-700",
+              className: "text-sm text-slate-700",
               children: "You can view this user's profile once he accepted"
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "overflow-hidden ",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            "class": "bg-white dark:bg-gray-900 border dark:border-gray-900 shadow-lg rounded-3xl p-3 m-3",
+            className: "bg-white dark:bg-gray-900 border dark:border-gray-900 shadow-lg rounded-3xl p-3 m-3",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              "class": "flex-none sm:flex",
+              className: "flex-none sm:flex",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                "class": "relative sm:h-[10rem] w-full sm:w-32 sm:mb-0 mb-3",
+                className: "relative sm:h-[10rem] w-full sm:w-32 sm:mb-0 mb-3",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
                   src: "https://tailwindcomponents.com/storage/avatars/njkIbPhyZCftc4g9XbMWwVsa7aGVPajYLRXhEeoo.jpg",
                   alt: "aji",
                   className: "w-full sm:w-32 h-auto sm:h-[10rem] object-cover aspect-square rounded-2xl"
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                "class": "flex-auto sm:ml-5 justify-evenly",
+                className: "flex-auto sm:ml-5 justify-evenly",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                  "class": "flex items-center sm:mt-2",
+                  className: "flex items-center sm:mt-2",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                    "class": "flex items-center",
+                    className: "flex items-center",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                      "class": "flex flex-col ",
+                      className: "flex flex-col ",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                        "class": "w-full relative flex text-lg text-gray-900 dark:text-gray-200 font-bold leading-none",
+                        className: "w-full relative flex text-lg text-gray-900 dark:text-gray-200 font-bold leading-none",
                         children: ["Zein Ahmed, 30", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                           className: "m-1 ml-2 rounded-full bg-green-600 h-3 w-3"
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -11035,9 +11035,9 @@ function Home(props) {
                           })
                         })]
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                        "class": "flex-auto text-gray-700 dark:text-gray-400 my-1",
+                        className: "flex-auto text-gray-700 dark:text-gray-400 my-1",
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                          "class": "mr-3 ",
+                          className: "mr-3 ",
                           children: "From Germany Living in Berlin "
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                           children: "Citizen"
@@ -11052,12 +11052,12 @@ function Home(props) {
                     })
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                  "class": "flex pt-4 space-x-3 text-sm text-gray-400",
+                  className: "flex pt-4 space-x-3 text-sm text-gray-400",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_Components_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
                     className: "bg-transparent text-slate-800 dark:text-slate-500 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-800 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-1 px-3 rounded inline-flex items-center focus:outline-none transition duration-150 ease-in-out",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
                       xmlns: "http://www.w3.org/2000/svg",
-                      "class": "w-5 h-5 mr-2",
+                      className: "w-5 h-5 mr-2",
                       fill: "none",
                       viewBox: "0 0 24 24",
                       stroke: "currentColor",

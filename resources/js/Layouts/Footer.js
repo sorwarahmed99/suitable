@@ -234,11 +234,11 @@ function Footer() {
                             <div className="w-full mb-10">
                                 <h4 className="text-lg font-semibold mb-9 text-slate-800 dark:text-slate-50">Contact Us</h4>
                                 <div className="flex items-center mb-6">
-                                    <ul class="link">
-                                        <li><a href="#"><i class="lni lni-envelope"></i>info@suitable.com</a></li>
-                                        <li><a href="#"><i class="lni lni-facebook"></i>fb.com/suitable</a></li>
-                                        <li><a href="#"><i class="lni lni-twitter"></i>@suitable</a></li>
-                                        <li><i class="lni lni-instagram"></i><a href="#">@suitable</a></li>
+                                    <ul className="link">
+                                        <li><a href="#"><i className="lni lni-envelope"></i>info@suitable.com</a></li>
+                                        <li><a href="#"><i className="lni lni-facebook"></i>fb.com/suitable</a></li>
+                                        <li><a href="#"><i className="lni lni-twitter"></i>@suitable</a></li>
+                                        <li><i className="lni lni-instagram"></i><a href="#">@suitable</a></li>
                                     </ul>
                                 </div>
                             </div>

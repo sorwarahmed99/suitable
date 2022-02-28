@@ -11,7 +11,7 @@ function InputSelect({
     required,
 })  {
     return (
-        <div class="mt-1">
+        <div className="mt-1">
             {/* <select value={value} name={name} id={ name } className="">
                 { children }
             </select> */}

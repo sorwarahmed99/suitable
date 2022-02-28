@@ -47,9 +47,9 @@ export default function Register() {
                 <h2 className="mt-6 text-3xl font-bold text-gray-900">
                     Create your account
                 </h2>
-                <p class="mt-2 text-center text-sm text-gray-600 max-w">
+                <p className="mt-2 text-center text-sm text-gray-600 max-w">
                     Need help ?
-                    <Link href="#" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"> Contact Support</Link>
+                    <Link href="#" className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"> Contact Support</Link>
                 </p>
             </div>
 
@@ -126,13 +126,13 @@ export default function Register() {
                     </div>
                 </div>
 
-                <div class="flex items-center pt-5">
-                    <Input id="terms-and-privacy" name="terms-and-privacy" type="checkbox" class="" required />
-                    <label htmlFor="terms-and-privacy" class="ml-2 block text-sm text-gray-900"
+                <div className="flex items-center pt-5">
+                    <Input id="terms-and-privacy" name="terms-and-privacy" type="checkbox" className="" required />
+                    <label htmlFor="terms-and-privacy" className="ml-2 block text-sm text-gray-900"
                         >I agree to the
-                        <a href="#" class="text-indigo-600 hover:text-indigo-500">Terms </a>
+                        <a href="#" className="text-indigo-600 hover:text-indigo-500">Terms </a>
                           and
-                        <a href="#" class="text-indigo-600 hover:text-indigo-500">  Data Policy</a>.
+                        <a href="#" className="text-indigo-600 hover:text-indigo-500">  Data Policy</a>.
                     </label>
                 </div>
 

@@ -45,9 +45,9 @@ export default function Login({ status, canResetPassword }) {
                 <h2 className="mt-6 text-3xl font-bold text-gray-900">
                     Login to your account
                 </h2>
-                <p class="mt-2 text-center text-sm text-gray-600 max-w">
+                <p className="mt-2 text-center text-sm text-gray-600 max-w">
                     Need help ?
-                    <Link href="#" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"> Contact Support</Link>
+                    <Link href="#" className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"> Contact Support</Link>
                 </p>
             </div>
             <ValidationErrors errors={errors} />
