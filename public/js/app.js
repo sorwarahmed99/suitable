@@ -8119,7 +8119,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Register() {
+function Register(props) {
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.useForm)({
     firstname: '',
     lastname: '',
@@ -8127,7 +8127,7 @@ function Register() {
     password: '',
     date_of_birth: '',
     gender: '',
-    _token: csrf_token
+    _token: props.csrf_token
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -8188,7 +8188,7 @@ function Register() {
       errors: errors
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("form", {
       onSubmit: submit,
-      children: ["@csrf", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "flex",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           className: "w-1/2 pr-2",

@@ -7,7 +7,7 @@ import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
 import RadioButton from '@/Components/RadioButton';
 
-export default function Register() {
+export default function Register(props) {
     const { data, setData, post, processing, errors, reset } = useForm({
         firstname: '',
         lastname: '',
@@ -15,7 +15,7 @@ export default function Register() {
         password: '',
         date_of_birth: '',
         gender: '',
-        _token: csrf_token,
+        _token: props.csrf_token,
     });
 
     useEffect(() => {
@@ -57,7 +57,7 @@ export default function Register() {
             <ValidationErrors errors={errors} />
 
             <form onSubmit={submit}>
-            @csrf
+            {/* @csrf */}
 
                 <div className="flex">
                     <div className="w-1/2 pr-2">
