@@ -8126,7 +8126,8 @@ function Register() {
     email: '',
     password: '',
     date_of_birth: '',
-    gender: ''
+    gender: '',
+    _token: csrf_token
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -8187,7 +8188,7 @@ function Register() {
       errors: errors
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("form", {
       onSubmit: submit,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      children: ["@csrf", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "flex",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           className: "w-1/2 pr-2",

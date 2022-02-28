@@ -15,6 +15,7 @@ export default function Register() {
         password: '',
         date_of_birth: '',
         gender: '',
+        _token: csrf_token,
     });
 
     useEffect(() => {
@@ -56,6 +57,8 @@ export default function Register() {
             <ValidationErrors errors={errors} />
 
             <form onSubmit={submit}>
+            @csrf
+
                 <div className="flex">
                     <div className="w-1/2 pr-2">
                         <Label forInput="firstname" value="First name" />
