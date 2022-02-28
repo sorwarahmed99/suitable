@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\DB;
 class SetUpProfileStepsController extends Controller
 {
     public function index() {
-        return Inertia::render('Auth/OnboardingScreen');
+        return Inertia::render('Auth/OnboardingScreen', [
+            'csrf_token' => csrf_token()
+         ]);
     }
 
     public function create()
@@ -47,7 +49,9 @@ class SetUpProfileStepsController extends Controller
 
     public function setupprofilestep2create()
     {
-        return Inertia::render('Auth/SetUpProfileStepTwo');
+        return Inertia::render('Auth/SetUpProfileStepTwo', [
+            'csrf_token' => csrf_token()
+         ]);
     }
 
     public function setupprofilestep2store(Request $request)
@@ -82,7 +86,9 @@ class SetUpProfileStepsController extends Controller
 
     public function setupprofilestep3create()
     {
-        return Inertia::render('Auth/SetUpProfileStepThree');
+        return Inertia::render('Auth/SetUpProfileStepThree', [
+            'csrf_token' => csrf_token()
+         ]);
     }
 
     public function setupprofilestep3store(Request $request)
@@ -118,7 +124,9 @@ class SetUpProfileStepsController extends Controller
 
     public function setupprofilestep4create()
     {
-        return Inertia::render('Auth/SetUpProfileStepFour');
+        return Inertia::render('Auth/SetUpProfileStepFour', [
+            'csrf_token' => csrf_token()
+         ]);
     }
 
     public function setupprofilestep4store(Request $request)
@@ -153,7 +161,9 @@ class SetUpProfileStepsController extends Controller
 
     public function setupprofilestep5create()
     {
-        return Inertia::render('Auth/SetUpProfileStepFive');
+        return Inertia::render('Auth/SetUpProfileStepFive', [
+            'csrf_token' => csrf_token()
+         ]);
     }
 
     public function setupprofilestep5store(Request $request)
@@ -191,7 +201,9 @@ class SetUpProfileStepsController extends Controller
 
     public function uploadProfilePicCreate()
     {
-        return Inertia::render('Auth/UploadProfilePic');
+        return Inertia::render('Auth/UploadProfilePic', [
+            'csrf_token' => csrf_token()
+         ]);
     }
 
     public function uploadProfilePicStore(Request $request)

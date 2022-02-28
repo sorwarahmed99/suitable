@@ -17,7 +17,7 @@ class CheckRegistrationCompleted
     public function handle(Request $request, Closure $next)
     {
         if(auth()->user()->profile_step == 1){
-            return redirect()->route('setupprofilestep1');
+            return redirect()->route('onboarding');
         } else if (auth()->user()->profile_step == 2){
             return redirect()->route('setupprofilestep2');
         } else if (auth()->user()->profile_step == 3){

@@ -9,7 +9,7 @@ import ReactFlagsSelect from 'react-flags-select';
 import InputSelect from '@/Components/InputSelect';
 import RadioButton from '@/Components/RadioButton';
 
-function SetUpProfileStepTwo({auth}) {
+function SetUpProfileStepTwo(props) {
 
     const regiousHistoryOptions = [
         { value: "Convert", label: "Convert" },
@@ -36,6 +36,7 @@ function SetUpProfileStepTwo({auth}) {
         smoke: '',
         drink_alchohol: '',
         wear_hijab_keep_beard: '',
+        _token: props.csrf_token,
     });
 
     useEffect(() => {
@@ -158,7 +159,7 @@ function SetUpProfileStepTwo({auth}) {
                     <div className="mt-4">
                         <div className="flex items-baseline mb-2 pb-2 space-x-2">
                             <div className="w-1/3">
-                                <Label forInput="wear_hijab_keep_beard" value={`${auth.user.gender == "Male" ? "Keep Beard" : "Wear Hijab ?" }`} />
+                                <Label forInput="wear_hijab_keep_beard" value={`${props.auth.user.gender == "Male" ? "Keep Beard" : "Wear Hijab ?" }`} />
                             </div>
                             <div className="w-2/3 flex justify-end space-x-1">
                                 <RadioButton name="wear_hijab_keep_beard" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />

@@ -10285,8 +10285,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function SetUpProfileStepTwo(_ref) {
-  var auth = _ref.auth;
+function SetUpProfileStepTwo(props) {
   var regiousHistoryOptions = [{
     value: "Convert",
     label: "Convert"
@@ -10325,7 +10324,8 @@ function SetUpProfileStepTwo(_ref) {
     eat_halal: '',
     smoke: '',
     drink_alchohol: '',
-    wear_hijab_keep_beard: ''
+    wear_hijab_keep_beard: '',
+    _token: props.csrf_token
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -10516,7 +10516,7 @@ function SetUpProfileStepTwo(_ref) {
             className: "w-1/3",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
               forInput: "wear_hijab_keep_beard",
-              value: "".concat(auth.user.gender == "Male" ? "Keep Beard" : "Wear Hijab ?")
+              value: "".concat(props.auth.user.gender == "Male" ? "Keep Beard" : "Wear Hijab ?")
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
             className: "w-2/3 flex justify-end space-x-1",
