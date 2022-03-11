@@ -1,48 +1,49 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Button from '@/Components/Button';
 import Guest from '@/Layouts/Guest';
 import Input from '@/Components/Input';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import { Inertia } from '@inertiajs/inertia';
 
-function UploadProfilePic() {
-    const [selectedFile, setSelectedFile] = useState()
-    const [preview, setPreview] = useState()
+function UploadProfilePic({errors}) {
+    const photoRef = useRef();
 
-    const { data, setData, post, processing, errors, progress } = useForm({
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
-    });
+    const [selectedFile, setSelectedFile] = useState();
+    const [link, setLink] = useState(false);
+    const [values, setValues] = useState({photo: '',});
+    
+    
+    const onHandleChange = e => {    
+        const formData = new FormData();
 
-    const submit = (e) => {
+        formData.append('photo', photoRef.current.files[0])
+        // formData.append('photo', values.photo)
+        
+        Inertia.post('upload-profile-pic', formData, {
+            forceFormData: true,
+          });
+        setSelectedFile(URL.createObjectURL(e.target.files[0]) );
+
+        setLink(true);
+
+    }
+    
+    
+    const handleSubmit = (e) => {
         e.preventDefault();
+        // const formData = new FormData();
 
-        post(route('register'));
+        // formData.append('photo', photoRef.current.files[0])
+        // // formData.append('photo', values.photo)
+        
+        // Inertia.post('upload', formData, {
+        //     forceFormData: true,
+        //   });
     };
 
-    useEffect(() => {
-        if (!selectedFile) {
-            setPreview(undefined)
-            return
-        }
-
-        const objectUrl = URL.createObjectURL(selectedFile)
-        setPreview(objectUrl)
-
-        return () => URL.revokeObjectURL(objectUrl)
-    }, [selectedFile])
-
-    const onSelectFile = e => {
-        if (!e.target.files || e.target.files.length === 0) {
-            setSelectedFile(undefined)
-            return
-        }
-
-        setSelectedFile(e.target.files[0])
-    }
+    
 
   return <Guest
             bgimage="bg-login-background"
@@ -65,13 +66,14 @@ function UploadProfilePic() {
 
         <ValidationErrors errors={errors} />
 
-        <form onSubmit={submit}>
+        <form>
             <div className="flex justify-center mt-8">
                 <div className="rounded-lg shadow-xl bg-gray-50">
                     <div className="m-4">
-                      <div className="flex items-center justify-center w-full">
-                      {!selectedFile ?
-                            <label className="flex flex-col w-40 h-40 border-4 border-blue-100 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                        <div className="flex items-center justify-center w-full">
+                            
+                            {!selectedFile ?
+                            <label className="flex flex-col w-40 h-40 border-4 border-slate-100 border-dashed hover:bg-gray-100 hover:border-gray-300">
                               <div className="flex flex-col items-center justify-center pt-10">
                                  <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-gray-400 group-hover:text-gray-600"
                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -79,24 +81,22 @@ function UploadProfilePic() {
                                             d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                     </svg>
                                     <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-                                        Attach a file</p>
+                                        Choose a photo</p>
                                 </div>
-                                    <Input type="file" handleChange={onSelectFile} value={data.avatar} className="opacity-0" />
-                                    {progress && (
-                                        <progress value={progress.percentage} max="100">
-                                            {progress.percentage}%
-                                        </progress>
-                                    )}
-                            </label>
-                              : <div>
-                                  <img src={preview} layout="fill" className="object-cover h-100 w-100 aspect-square" />
 
-                                  <label className="flex flex-col w-full h-5 border-4 border-blue-100 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                                <input ref={photoRef} type="file" value={values.photo} className="opacity-0" onChange={onHandleChange} />
+                                    
+                            </label>
+                              : <div className="h-40 w-40">
+                                  <img src={selectedFile} layout="fill" className="object-cover aspect-square" />
+
+                                  <label className="mt- 2 flex flex-col w-full h-8 p-1 border-4 border-slate-100 border-dashed hover:bg-gray-100 hover:border-gray-300">
                                   <p className="text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                                         Click here to change</p>
-                                    <Input type="file" handleChange={onSelectFile} className="opacity-0" />
+                                    <input ref={photoRef} type="file" value={values.photo} className="opacity-0" onChange={onHandleChange} />
+
                                   </label>
-                              </div>
+                                </div>
                               
                               }
                         </div>
@@ -113,16 +113,13 @@ function UploadProfilePic() {
                     <li>Avoid adding photos of dolls, celebrities, pets scenery etc.</li>
                 </ul>
             </div>
-          <div className="flex items-center justify-center mt-4">
-              <Button className="bg-gray-800 w-full hover:bg-gray-900 text-gray-50 font-bold py-2 px-4 rounded inline-flex items-center" processing={processing}>
-                  <span>Next</span>
-                  <svg className="fill-current w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-              </Button>
-          </div>
       </form>
+      
+        {link && <Link href={route('choosePlan')}  type="button" className="w-full text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">
+            Upload 
+        </Link>}
 </Guest>;
 }
 
 export default UploadProfilePic;
+                        

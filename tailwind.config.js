@@ -16,7 +16,11 @@ module.exports = {
             // },
             backgroundImage: () => ({
                 'login-background':
-                    "linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('https://images.unsplash.com/photo-1614287893397-67d3e6137c56?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80')",
+                    "linear-gradient(rgba(230,91,90, 0.20), rgba(230,91,90, 0.20)), url('/assets/images/login.svg')",
+                'location-background':
+                    "linear-gradient(rgba(0,0,0, 0.10), rgba(0,0,0, 0.10)), url('/assets/images/location.svg')",
+                'plan-background':
+                    "linear-gradient(rgba(0,0,0, 0.10), rgba(0,0,0, 0.10)), url('/assets/images/plan.svg')",
                 'landing-background':
                     'linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url(https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80)',
                 'profile-background':

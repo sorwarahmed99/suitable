@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\SetUpProfileStepsController;
+use App\Http\Controllers\Auth\UserSubscriptionController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,9 +47,21 @@ Route::group(['middleware' => 'auth'], function() {
     
     // 6
     Route::get('/upload-profile-pic', [SetUpProfileStepsController::class, 'uploadProfilePicCreate'])->name('uploadProfilePic');
-    Route::post('/upload-profile-pic', [SetUpProfileStepsController::class, 'uploadProfilePicStore']);
-
+    Route::post('/upload-profile-pic', [SetUpProfileStepsController::class, 'uploadProfilePicStore'])->name('uploadProfilePicStore');
+    
+    
+    Route::get('/choose-a-plan', [UserSubscriptionController::class, 'index'])->name('choosePlan');
+    Route::post('/choose-a-plan', [UserSubscriptionController::class, 'store'])->name('choosePlanStore');
+    
     // Set up profile
+
+    // Route::post('usersubs', [UserSubscriptionController::class, 'store'])->name('usersubs');
+    Route::get('subscription', [UserSubscriptionController::class, 'subscription'])->name('subscription');
+    
+    Route::get('checkout/{plan}', [UserSubscriptionController::class, 'checkout'])->name('checkout');
+
+    // Route::post('user-subs', [UserSubscriptionController::class, 'store'])->name('usersubs');
+
 
 });
 

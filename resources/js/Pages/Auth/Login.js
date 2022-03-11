@@ -31,23 +31,23 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <Guest
-            bgimage = "bg-login-background" title = "Bismillah...."  subtitle = "Start Your soulmate search with the world's most reliable match making site!" linktext = "Need an account ?" href = "/register" btnName="Get started today"
+            bgimage = "bg-login-background" title = "Bismillah...."  subtitle = "Start Your soulmate search with the world's most reliable match making site!" linktext = "Need Help ?" href = "/register" btnName="Contact Support"
         >
             <Head title="Log in" />
 
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
             <div className="text-center">
-                <Link href="/" className="flex items-center justify-center">
+                <Link href="/register" className="flex items-center justify-center">
                     <img className="mr-3 h-10 w-10" src="assets/images/logo.png" alt="shape" />
                     <span className="hidden sm:block self-center text-xl font-semibold whitespace-nowrap dark:text-white">Suitable</span>
                 </Link>
                 <h2 className="mt-6 text-3xl font-bold text-gray-900">
-                    Login to your account
+                    Login to your account 
                 </h2>
                 <p className="mt-2 text-center text-sm text-gray-600 max-w">
-                    Need help ?
-                    <Link href="#" className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"> Contact Support</Link>
+                    Don't have account ? {` `}
+                    <Link href="/register" className="text-indigo-400 hover:text-blue-500 no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign up</Link>
                 </p>
             </div>
             <ValidationErrors errors={errors} />
@@ -102,13 +102,7 @@ export default function Login({ status, canResetPassword }) {
                         Log in
                     </Button>
                 </div>
-                <p className="sm:hidden flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500">
-                    <span>Don't have an account?</span>
-                    <Link href="/register"
-                        className="text-indigo-400 hover:text-blue-500 no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign
-                        up
-                    </Link>
-                </p>
+                
             </form>
 
         </Guest>

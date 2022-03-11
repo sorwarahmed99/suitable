@@ -99,7 +99,7 @@ function SetUpProfileStepThree() {
                             value={data.siblings} 
                         >
                             <option>Select how many</option>
-                            <option value="Only Child">I am only child</option>
+                            <option value="0">I am only child</option>
                             {
                                 nums.map((num) => <option value={num} key={num}>{num}</option>)
                             }

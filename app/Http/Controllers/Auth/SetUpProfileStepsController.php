@@ -201,12 +201,44 @@ class SetUpProfileStepsController extends Controller
 
     public function uploadProfilePicCreate()
     {
-        return Inertia::render('Auth/UploadProfilePic', [
+        return Inertia::render('Auth/UploadProfilePic'
+        , [
             'csrf_token' => csrf_token()
-         ]);
+         ]
+        );
     }
 
+    public function upload(Request $request)
+    {
+        // $request->validate([
+        //     'photo' => ['required', 'image'],
+        // ]);
+        // dd($request->all());
+        $user = auth()->user();
+        // dd($user);
+        auth()->user()->update([
+        ]);
+        // return redirect()->route('home');
+        
+    }
+    
     public function uploadProfilePicStore(Request $request)
     {
+        // dd($request->all());
+        $user = auth()->user();
+        $request->validate([
+            'photo' => ['required', 'image'],
+        ]);
+        
+        auth()->user()->update([
+            'profile_step' => 7,
+            'profile_image' => $request->file('photo')->getClientOriginalName() ?? null,
+        ]);
+       
+        $user = auth()->user();
+
+        $request->file('photo')->storePubliclyAs("user-images/{$user->id}", $request->file('photo')->getClientOriginalName(), 'public');
+        return back();
+
     }
 }
