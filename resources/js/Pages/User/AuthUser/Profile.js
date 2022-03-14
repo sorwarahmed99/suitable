@@ -4,7 +4,7 @@ import React from 'react'
 function Profile(props) {
   return (
     <Authenticated>
-
+        
     </Authenticated>
   )
 }

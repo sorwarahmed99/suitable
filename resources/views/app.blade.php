@@ -13,7 +13,7 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-        <link rel="stylesheet" href="{{ asset('assets/css/LineIcons.2.0.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('assets/css/LineIcons.2.0.css') }}">
 
         <!-- Scripts -->
         @routes
