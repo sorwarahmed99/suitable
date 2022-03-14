@@ -17,7 +17,8 @@ class UserSubscriptionController extends Controller
      */
     public function index(Request $request)
     {
-        $plans = SubscriptionPlan::all();       
+        
+        $plans = SubscriptionPlan::all();
         $checkout = $request->user()
                     ->newSubscription('default', config('stripe.price_id'))
                     ->checkout([

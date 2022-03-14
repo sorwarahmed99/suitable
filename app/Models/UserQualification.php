@@ -19,5 +19,8 @@ class UserQualification extends Model
         'yearly_income',
     ];
 
-
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -64,11 +64,6 @@ function SetUpProfileStepThree() {
 
     return <Guest
                 bgimage="bg-login-background"
-                title="Help us find the perfect match for you"
-                subtitle="Tell us more about your family and future plan"
-                linktext="Need help ?"
-                href="/"
-                btnName="Contact support"
             >
                 <Head title="Suitable | Set up profile" />
                 

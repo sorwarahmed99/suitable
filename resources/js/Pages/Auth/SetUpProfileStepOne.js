@@ -305,12 +305,7 @@ function SetUpProfileStepOne() {
     };
 
     return <Guest
-                bgimage="bg-login-background"
-                title="Help us find the perfect match for you."
-                subtitle="Share your details to find the one!"
-                linktext="Need help ?"
-                href="/"
-                btnName="Contact support"
+                bgimage="bg-location-background"
             >
                 <Head title="Suitable | Set up profile" />
                 <div className="text-center">
@@ -335,7 +330,7 @@ function SetUpProfileStepOne() {
                             onChange={onHandleChange} 
                             options={ethnicOriginOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder={`Select your ethnic origin`} 
+                            placeholder='Select your ethnic origin'
                             name={`ethnic_origin`}
                         />
                    </div>
@@ -350,7 +345,7 @@ function SetUpProfileStepOne() {
                             onChange={onHandleChange}
                             value={data.country}
                         >
-                            <option>Select your country</option>
+                            <option disabled>Select your country</option>
                             {countries.map((country) => {
                                 return (
                                     <option key={country.code} value={country.name}>
@@ -368,7 +363,7 @@ function SetUpProfileStepOne() {
                             onChange={onHandleChange} 
                             options={residencystatusOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder={`Select your residency status`} 
+                            placeholder='Select your residency status'
                             name={`recidency_status`}
                         />
                    </div>
@@ -381,7 +376,7 @@ function SetUpProfileStepOne() {
                             onChange={onHandleChange} 
                             options={relocateOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder={`Are you willing to relocate?`} 
+                            placeholder='Are you willing to relocate?'
                             name={`relocate`}
                         />
                    </div>

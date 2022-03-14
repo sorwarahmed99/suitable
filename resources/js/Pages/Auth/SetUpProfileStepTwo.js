@@ -57,16 +57,14 @@ function SetUpProfileStepTwo(props) {
 
 
     return <Guest
-            bgimage="bg-login-background"
-            title="Help us find the perfect match for you."
-            subtitle="Share your details to find the one!"
-            linktext="Need help ?"
-            href="/"
-            btnName="Contact support"
-        >
+                bgimage="bg-login-background"
+            >
                 <Head title="Suitable | Set up profile" />
 
-                <div className="text-center">
+                <div>
+                    <Link href="/register" className="flex items-start justify-start">
+                        <img className="h-5 w-full" src="assets/images/logo.svg" alt="suitable-logo" />
+                    </Link>
                     <div className="flex mb-2 justify-between items-center">
                         <h2 className="mt-6 text-md sm:text-lg font-semibold text-gray-900">
                             Religious view
@@ -84,11 +82,11 @@ function SetUpProfileStepTwo(props) {
                    <div className="mt-4">
                         <Label forInput="religious_history" value="Religious history" />
                         <InputSelect 
-                            defaultValue={data.religious_history} 
+                            value={data.religious_history} 
                             onChange={onHandleChange} 
                             options={regiousHistoryOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder={`Select your religious history`} 
+                            placeholder='Select your religious history'
                             name={`religious_history`}
                         />
                    </div>
@@ -96,11 +94,11 @@ function SetUpProfileStepTwo(props) {
                    <div className="mt-4">
                         <Label forInput="prayer_frequency" value="Do you pray" />
                         <InputSelect 
-                            defaultValue={data.prayer_frequency} 
+                            value={data.prayer_frequency} 
                             onChange={onHandleChange} 
                             options={prayerFrequencyOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder={`Select your prayer frequency`} 
+                            placeholder='Select your prayer frequency'
                             name={`prayer_frequency`}
                         />
                    </div>
@@ -108,12 +106,13 @@ function SetUpProfileStepTwo(props) {
                    <div className="mt-4">
                         <Label forInput="sect" value="Sect" />
                         <InputSelect 
-                            defaultValue={data.sect} 
+                            value={data.sect} 
                             onChange={onHandleChange} 
                             options={sectOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder={`What sect are you`} 
+                            placeholder='What sect are you'
                             name={`sect`}
+                            required={true}
                         />
                    </div>
 

@@ -36,28 +36,32 @@ export default function Register(props) {
 
     return (
         <Guest
-            bgimage = "bg-login-background" title = "Bismillah...."  subtitle = "Start Your soulmate search with the world's most reliable match making site!" linktext = "Already registered ?" href = "/login" btnName="Sign in here"
+            bgimage = "bg-register-background" 
         >
             <Head title="Suitable | Sign up" />
 
             <div className="text-center">
-                <Link href="/" className="flex items-center justify-center">
-                    <img className="mr-3 h-10 w-10" src="assets/images/logo.png" alt="shape" />
-                    <span className="hidden sm:block self-center text-xl font-semibold whitespace-nowrap dark:text-white">Suitable</span>
+                <Link href="/">
+                    <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" />
+                    {/* <span className="hidden sm:block self-center text-xl font-semibold whitespace-nowrap dark:text-white">Suitable</span> */}
                 </Link>
-                <h2 className="mt-6 text-3xl font-bold text-gray-900">
-                    Create your account
+                <h2 className="mt-6 text-md font-medium text-gray-900">
+                    Start Your soulmate search with the world's most reliable match making site!
                 </h2>
-                <p className="mt-2 text-center text-sm text-gray-600 max-w">
-                    Need help ?
-                    <Link href="#" className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"> Contact Support</Link>
-                </p>
+                {/* <p className="mt-2 text-center text-sm text-gray-600 max-w">
+                    Need Help
+                    <Link href="/faq" className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"> Contact Support</Link>
+                </p> */}
             </div>
 
             <ValidationErrors errors={errors} />
 
-            <form onSubmit={submit}>
-            {/* @csrf */}
+            <form className="px-12" onSubmit={submit}>
+                <div className="mt-4 mb-6 border-b border-slate-200 pb-3">
+                    <h2 className="mt-6 text-md font-semibold text-gray-900">
+                        Create new account
+                    </h2>
+                </div>
 
                 <div className="flex">
                     <div className="w-1/2 pr-2">
@@ -133,9 +137,9 @@ export default function Register(props) {
                     <Input id="terms-and-privacy" name="terms-and-privacy" type="checkbox" className="" required />
                     <label htmlFor="terms-and-privacy" className="ml-2 block text-sm text-gray-900"
                         >I agree to the
-                        <a href="#" className="text-indigo-600 hover:text-indigo-500">Terms </a>
+                        <a href="#" className="text-indigo-600 font-medium hover:text-indigo-500"> Terms </a>
                           and
-                        <a href="#" className="text-indigo-600 hover:text-indigo-500">  Data Policy</a>.
+                        <a href="#" className="text-indigo-600 font-medium hover:text-indigo-500">  Data Policy</a>.
                     </label>
                 </div>
 
@@ -145,6 +149,10 @@ export default function Register(props) {
                     </Button>
                 </div>
             </form>
+            <p className="text-center text-sm text-gray-600">
+                Already registered ? {` `}
+                <Link href="/login" className="text-indigo-400 hover:text-blue-500 no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign in</Link>
+            </p>
         </Guest>
     );
 }

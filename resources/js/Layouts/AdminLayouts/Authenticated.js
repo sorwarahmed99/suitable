@@ -29,9 +29,9 @@ export default function Authenticated({ auth, header, href, btnName, children })
                     {/* Sidebar starts */}
                     <div className="absolute lg:relative w-64 h-auto shadow bg-gray-100 hidden lg:block">
                         <div className="h-16 w-full flex items-center px-8">
-                            <a href="/" className="flex">
-                                <img className="mr-3 h-10 w-10" src="../../../assets/images/logo.png" alt="shape" />
-                                <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Suitable</span>
+                            <a href="dashboard" className="flex">
+                                <img className="h-6 w-full" src="../../../assets/images/logo.svg" alt="shape" />
+                                {/* <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Suitable</span> */}
                             </a>
                         </div>
                         <ul aria-orientation="vertical" className=" py-6">
@@ -46,7 +46,7 @@ export default function Authenticated({ auth, header, href, btnName, children })
                                             <rect x={14} y={14} width={6} height={6} rx={1} />
                                         </svg>
                                     </div>
-                                    <span className="ml-2">Dashboard</span>
+                                    <Link href={route('admin.dashboard')} className="ml-2">Dashboard</Link>
                                 </div>
                             </li>
                             <li className="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
@@ -420,7 +420,7 @@ export default function Authenticated({ auth, header, href, btnName, children })
                                     <div className="my-3 lg:my-5 container px-2 mx-auto flex flex-col md:flex-row items-start md:items-center justify-between pb-4 border-b border-gray-300">
                                         <div>
                                             <h4 className="text-2xl font-bold leading-tight text-gray-800 dark:text-gray-100">{header}</h4>
-                                            <ul className="flex flex-col md:flex-row items-start md:items-center text-gray-600 dark:text-gray-400 text-sm mt-3">
+                                            {/* <ul className="flex flex-col md:flex-row items-start md:items-center text-gray-600 dark:text-gray-400 text-sm mt-3">
                                                 <li className="flex items-center mr-4">
                                                     <div className="mr-1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler text-green-700 icon-tabler-paperclip" width={16} height={16} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -449,7 +449,7 @@ export default function Authenticated({ auth, header, href, btnName, children })
                                                     </div>
                                                     <span>Session started - 29 Jan 2022 at 21:09</span>
                                                 </li>
-                                            </ul>
+                                            </ul> */}
                                         </div>
                                         <div className="mt-6 md:mt-0">
                                             <Link href={href} className="transition focus:outline-none duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">{btnName}</Link>

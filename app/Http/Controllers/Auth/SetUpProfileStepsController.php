@@ -10,9 +10,15 @@ use App\Models\UserReligiousHistory;
 use App\Models\UserProfileInfo;
 use App\Models\UserQualification;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class SetUpProfileStepsController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
     public function index() {
         return Inertia::render('Auth/OnboardingScreen', [
             'csrf_token' => csrf_token()
@@ -21,6 +27,7 @@ class SetUpProfileStepsController extends Controller
 
     public function create()
     {
+        if(auth()->user()->profile_step >= 2) return redirect()->route('setupprofilestep2');
         return Inertia::render('Auth/SetUpProfileStepOne');
     }
 
@@ -33,7 +40,7 @@ class SetUpProfileStepsController extends Controller
             'country' => 'required',
             'recidency_status' => 'required',
             'relocate' => 'required',
-            'postcode' => 'required',
+            'postcode' => 'required', Rule::postcode(),
         ]);
 
         auth()->user()->update([
@@ -49,6 +56,8 @@ class SetUpProfileStepsController extends Controller
 
     public function setupprofilestep2create()
     {
+        if(auth()->user()->profile_step >= 3) return redirect()->route('setupprofilestep3');
+
         return Inertia::render('Auth/SetUpProfileStepTwo', [
             'csrf_token' => csrf_token()
          ]);
@@ -63,8 +72,16 @@ class SetUpProfileStepsController extends Controller
             'eat_halal' => 'required',
             'smoke' => 'required',
             'drink_alchohol' => 'required',
-            'wear_hijab_keep_beard' => 'required',
-        ]);
+        ],
+        [
+            'religious_history.required'=> 'Religious History is required!',
+            'prayer_frequency.required'=> 'Prayer frequency is required!', 
+            'sect.required'=> 'Please select your sect!',
+            'eat_halal.required'=> 'Please select if you eat halal food!',
+            'smoke.required'=> 'Please select if you smoke!',
+            'drink_alchohol.required'=> 'Please select if you drink alcohol!', 
+        ]
+        );
 
         UserReligiousHistory::create([
             'user_id' => auth()->id(),
@@ -86,6 +103,8 @@ class SetUpProfileStepsController extends Controller
 
     public function setupprofilestep3create()
     {
+        if(auth()->user()->profile_step >= 4) return redirect()->route('setupprofilestep4');
+
         return Inertia::render('Auth/SetUpProfileStepThree', [
             'csrf_token' => csrf_token()
          ]);
@@ -100,7 +119,6 @@ class SetUpProfileStepsController extends Controller
             'get_married' => 'required',
             'have_children' => 'required',
             'like_to_have_children' => 'required',
-            'poligony' => 'required',
             'physical_disability' => 'required',
         ]);
 
@@ -124,6 +142,8 @@ class SetUpProfileStepsController extends Controller
 
     public function setupprofilestep4create()
     {
+        if(auth()->user()->profile_step >= 5) return redirect()->route('setupprofilestep5');
+
         return Inertia::render('Auth/SetUpProfileStepFour', [
             'csrf_token' => csrf_token()
          ]);
@@ -161,6 +181,8 @@ class SetUpProfileStepsController extends Controller
 
     public function setupprofilestep5create()
     {
+        if(auth()->user()->profile_step >= 6) return redirect()->route('uploadProfilePic');
+
         return Inertia::render('Auth/SetUpProfileStepFive', [
             'csrf_token' => csrf_token()
          ]);
@@ -201,25 +223,13 @@ class SetUpProfileStepsController extends Controller
 
     public function uploadProfilePicCreate()
     {
+        if(auth()->user()->profile_step >= 7) return redirect()->route('choosePlan');
+
         return Inertia::render('Auth/UploadProfilePic'
         , [
             'csrf_token' => csrf_token()
          ]
         );
-    }
-
-    public function upload(Request $request)
-    {
-        // $request->validate([
-        //     'photo' => ['required', 'image'],
-        // ]);
-        // dd($request->all());
-        $user = auth()->user();
-        // dd($user);
-        auth()->user()->update([
-        ]);
-        // return redirect()->route('home');
-        
     }
     
     public function uploadProfilePicStore(Request $request)
@@ -227,7 +237,7 @@ class SetUpProfileStepsController extends Controller
         // dd($request->all());
         $user = auth()->user();
         $request->validate([
-            'photo' => ['required', 'image'],
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         
         auth()->user()->update([
@@ -235,10 +245,16 @@ class SetUpProfileStepsController extends Controller
             'profile_image' => $request->file('photo')->getClientOriginalName() ?? null,
         ]);
        
-        $user = auth()->user();
+        // $user = auth()->user();
 
-        $request->file('photo')->storePubliclyAs("user-images/{$user->id}", $request->file('photo')->getClientOriginalName(), 'public');
+        // $request->file('photo')->storePubliclyAs("uploads/user-images/{$user->id}", $request->file('photo')->getClientOriginalName(), 'public');
+        
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'uploads/user-images/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
         return back();
-
     }
 }

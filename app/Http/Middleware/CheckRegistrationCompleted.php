@@ -31,11 +31,13 @@ class CheckRegistrationCompleted
             return redirect()->route('uploadProfilePic');
         } else if (auth()->user()->profile_step == 7){
             return redirect()->route('choosePlan');
-        } else if (auth()->user()->profile_step == 8){
-            return redirect()->route('home');
-        } else if($user && !$user->subscribed('default')){
-            return redirect()->route('choosePlan');
-        }
+        } 
+        // else if (auth()->user()->profile_step == 8){
+        //     return redirect()->route('home');
+        // }
+        // else if($user && !$user->subscribed('default')){
+        //     return redirect()->route('choosePlan');
+        // }
         return $next($request);
     }
 }

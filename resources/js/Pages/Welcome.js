@@ -12,10 +12,9 @@ export default function Welcome(props) {
             <Head title="Suitable" />
             <nav className="bg-white shadow-md px-5 sm:px-20 dark:bg-gray-800 mx-auto top-0 left-0 z-40 w-full py-2 duration-300 sticky">
                 <div className="flex flex-wrap justify-between items-center">
-                        <a href="/" className="flex">
-                            <img className="mr-3 h-10 w-10" src="assets/images/logo.png" alt="shape" />
-                            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Suitable</span>
-                        </a>
+                    <Link href="/register" className="flex items-center justify-center">
+                        <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" />
+                    </Link>
                     <div className="flex space-x-3">
                         {theme === 'dark' ? (
                             <button id="theme-toggle" type="button" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className={`${theme === 'light' ? 'hidden' : ''}text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5`}>

@@ -69,10 +69,10 @@ function SetUpProfileStepThree() {
                         <h2 className="mt-6 text-lg font-semibold text-gray-900">
                             Education | Carrier
                         </h2>
-                        <p className="mt-6 text-xl font-bold text-gray-900">80%</p>
+                        <p className="mt-6 text-xl font-bold text-gray-900">60%</p>
                     </div>
                     <div className="h-2 w-full bg-slate-400 relative rounded-full">
-                        <div className="h-2 w-[200px] bg-slate-800 absolute z-50 rounded-full"></div>
+                        <div className="h-2 w-[280px] bg-slate-800 absolute z-50 rounded-full"></div>
                     </div>
                 </div>
 
@@ -101,7 +101,7 @@ function SetUpProfileStepThree() {
                             name="graduation_year" 
                             value={data.graduation_year} 
                         >
-                            <option>Select graduation year</option>
+                            <option value="0"disabled>Select graduation year</option>
                             {
                                 allYears.map((year) => <option value={year} key={year}>{year}</option>)
                             }
@@ -123,7 +123,7 @@ function SetUpProfileStepThree() {
                     <div className="mt-4">
                         <Label forInput="for_how_long" value="Years" />
                         <InputSelect 
-                            defaultValue={data.for_how_long} 
+                            value={data.for_how_long} 
                             onChange={onHandleChange} 
                             options={yearsOptions} 
                             className={`block w-full sm:text-sm`} 

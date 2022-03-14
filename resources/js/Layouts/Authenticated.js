@@ -18,23 +18,23 @@ export default function Authenticated({ auth, header, children }) {
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
-                            <Link href="/" className="flex">
-                                <img className="mr-3 h-10 w-10" src="assets/images/logo.png" alt="shape" />
-                                <span className="self-center text-xl font-semibold whitespace-nowrap text-slate-900 dark:text-white">Suitable</span>
-                            </Link>
+                                <Link href="/" className="flex">
+                                    <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" />
+                                    {/* <span className="self-center text-xl font-semibold whitespace-nowrap text-slate-900 dark:text-white">Suitable</span> */}
+                                </Link>
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink href={route('home')} active={route().current('home')} path={<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />}>
                                     Matches
                                 </NavLink>
-                                <NavLink href={route('home')} active={route().current('home')}>
+                                <NavLink href={route('home')} >
                                     Mutual Matches
                                 </NavLink>
-                                <NavLink href={route('home')} active={route().current('home')}>
+                                <NavLink href={route('home')}>
                                     Interests
                                 </NavLink>
-                                <NavLink href={route('home')} active={route().current('home')}>
+                                <NavLink href={route('home')} >
                                     Chat
                                 </NavLink>
                             </div>
@@ -82,6 +82,9 @@ export default function Authenticated({ auth, header, children }) {
                                     <Dropdown.Content >
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
                                             Log Out
+                                        </Dropdown.Link>
+                                        <Dropdown.Link href={route('auth.user.profile')} method="get" as="button">
+                                            Profile
                                         </Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
@@ -160,7 +163,7 @@ export default function Authenticated({ auth, header, children }) {
                 <header className="mt-4 ">
                     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between">
                         <div>{header}</div>
-                        <Button className="bg-transparent text-slate-800 dark:text-slate-500 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-2 border-slate-800 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 px-4 rounded inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
+                        <Button className="bg-transparent text-slate-800 dark:text-slate-50 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-500 dark:hover:bg-slate-900 border-2 border-slate-800 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 px-4 rounded inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
                             <svg xmlns="http://www.w3.org/2000/svg" className="fill-current w-4 h-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
                             </svg>

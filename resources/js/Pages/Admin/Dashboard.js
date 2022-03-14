@@ -9,8 +9,8 @@ export default function Dashboard(props) {
                 auth={props.auth}
                 errors={props.errors}
                 header={`Dashboard`}
-                btnName = {`Add Packege`}
-                href = {route('admin.plan.create')}
+                btnName = {`Route Users`}
+                href = {route('admin.users')}
             >
             {props.auth.user.firstname}
         </Authenticated>

@@ -37,23 +37,24 @@ export default function Login({ status, canResetPassword }) {
 
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
-            <div className="text-center">
+            <div className="text-center mb-2">
                 <Link href="/register" className="flex items-center justify-center">
-                    <img className="mr-3 h-10 w-10" src="assets/images/logo.png" alt="shape" />
-                    <span className="hidden sm:block self-center text-xl font-semibold whitespace-nowrap dark:text-white">Suitable</span>
+                    <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" />
                 </Link>
-                <h2 className="mt-6 text-3xl font-bold text-gray-900">
-                    Login to your account 
+                <h2 className="mt-6 text-md font-medium text-gray-900">
+                    Start Your soulmate search with the world's most reliable match making site!
                 </h2>
-                <p className="mt-2 text-center text-sm text-gray-600 max-w">
-                    Don't have account ? {` `}
-                    <Link href="/register" className="text-indigo-400 hover:text-blue-500 no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign up</Link>
-                </p>
             </div>
             <ValidationErrors errors={errors} />
 
-            <form onSubmit={submit}>
-                <div>
+            <form className="px-12" onSubmit={submit}>
+                <div className="mt-4 mb-6 border-b border-slate-200 pb-3">
+                    <h2 className="mt-6 text-md font-semibold text-gray-900">
+                        Welcome Back
+                    </h2>
+                    <p className="text-sm">Enter your login credentials</p>
+                </div>
+                <div >
                     <Label forInput="email" value="Email" className="block text-sm font-medium text-gray-700" />
 
                     <Input
@@ -90,9 +91,9 @@ export default function Login({ status, canResetPassword }) {
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="text-indigo-400 hover:text-blue-500 underline font-medium"
+                            className="text-indigo-400 hover:text-blue-500 underline text-sm"
                         >
-                            Forgot password?
+                            Reset
                         </Link>
                     )}
                 </div>
@@ -102,9 +103,12 @@ export default function Login({ status, canResetPassword }) {
                         Log in
                     </Button>
                 </div>
-                
+                <p className="mt-4 text-center text-sm text-gray-600 max-w">
+                    Don't have an account ? {` `}
+                    <Link href="/register" className="text-indigo-400 hover:text-blue-500 no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign up</Link>
+                </p>
             </form>
-
+            
         </Guest>
     );
 }

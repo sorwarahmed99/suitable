@@ -40,9 +40,11 @@ class RegisteredUserController extends Controller
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'date_of_birth' => 'required|string',
+            'date_of_birth' => 'required|string|date|before:-18 years',
             'gender' => 'required',
             'password' => ['required', Rules\Password::defaults()],
+        ], [
+            'date_of_birth.date'=> 'Age must be 18 years or older!',
         ]);
 
         $user = User::create([

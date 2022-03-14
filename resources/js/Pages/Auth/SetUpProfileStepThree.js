@@ -149,7 +149,7 @@ function SetUpProfileStepThree() {
                         </div>
                     </div>
 
-                    <div className="mt-4">
+                    {/* <div className="mt-4">
                         <div className="flex items-baseline mb-2 pb-2 space-x-2">
                             <div className="w-1/3">
                                 <Label forInput="poligony" value="Poligony" />
@@ -160,7 +160,7 @@ function SetUpProfileStepThree() {
                                 <RadioButton name="poligony" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange}  />
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="mt-4">
                         <div className="flex items-baseline mb-2 pb-2 space-x-2">
