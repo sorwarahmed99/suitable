@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'], function() {
     // 6
     Route::get('/upload-profile-pic', [SetUpProfileStepsController::class, 'uploadProfilePicCreate'])->name('uploadProfilePic');
     Route::post('/upload-profile-pic', [SetUpProfileStepsController::class, 'uploadProfilePicStore'])->name('uploadProfilePicStore');
+    Route::get('/uploaded', [SetUpProfileStepsController::class, 'uploaded'])->name('uploaded');
     
     // 7
     Route::get('/set-up-profile-step-6', [SetUpProfileStepsController::class, 'setupprofilestep6create'])->name('setupprofilestep6');

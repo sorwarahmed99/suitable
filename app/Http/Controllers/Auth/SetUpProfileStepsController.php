@@ -226,10 +226,6 @@ class SetUpProfileStepsController extends Controller
 
     public function setupprofilestep6create()
     {
-        auth()->user()->update([
-            'profile_step' => 7,
-        ]);
-
         if(auth()->user()->profile_step >= 8) return redirect()->route('choosePlan');
         
         return Inertia::render('Auth/SetUpProfileStepSix', [
@@ -242,10 +238,7 @@ class SetUpProfileStepsController extends Controller
     {   
         $user = auth()->user()->id;
         $input = $request->all();
-
-        auth()->user()->update([
-            'profile_step' => 8,
-        ]);
+        DB::beginTransaction();
 
         $about = UserProfileInfo::whereUserId($user)->first();
         $about->update($input);
@@ -254,6 +247,12 @@ class SetUpProfileStepsController extends Controller
         foreach($interests as $interest){
             $interest->users()->attach($user);
         }
+
+        auth()->user()->update([
+            'profile_step' => 8,
+        ]);
+
+        DB::commit();
         return redirect()->route('choosePlan');
     }
 
@@ -261,9 +260,7 @@ class SetUpProfileStepsController extends Controller
     public function uploadProfilePicCreate()
     {
         if(auth()->user()->profile_step >= 7) return redirect()->route('setupprofilestep6');
-        // auth()->user()->update([
-        //     'profile_step' => 7,
-        // ]);
+        
         return Inertia::render('Auth/UploadProfilePic', [
                 'csrf_token' => csrf_token()
             ]);
@@ -275,17 +272,32 @@ class SetUpProfileStepsController extends Controller
         $request->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        
+        if ($request->hasFile('photo')) {
+            $image_path = $request->file('image')->store('image', 'public');
+        }
 
         if ($image = $request->file('photo')) {
             $destinationPath = 'uploads/user-profile-images/';
             $profileImage = $user->id.date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-
+            
             auth()->user()->update([
-                'profile_image' => $profileImage ?? null,
+                'profile_image' => $destinationPath.$profileImage ?? null,
             ]);
         }
+        
         return redirect()->back();
+
+    }
+
+
+    public function uploaded(){
+        auth()->user()->update([
+            'profile_step' => 7,
+        ]);
+
+        return redirect()->route('setupprofilestep6');
 
     }
 }

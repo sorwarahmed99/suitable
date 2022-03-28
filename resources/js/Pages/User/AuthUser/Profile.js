@@ -156,7 +156,7 @@ function Profile(props) {
                                             <div class="flex flex-wrap gap-2">
                                                 <div className="relative rounded-lg shadow-sm bg-gray-50">
                                                     <div onClick={() => setSelectedFiles(selectedFiles.filter((e) => e !== photo))} className="flex justify-center items-baseline absolute z-50 right-0 left-[4rem] -top-[1rem] text-sm border bg-slate-700 shadow-md cursor-pointer hover:bg-slate-900 border-slate-800 text-slate-50 text-center h-6 w-6 rounded-full">x</div>
-                                                    <img src={`https://suitable-app.herokuapp.com/${props.auth.user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} className="object-cover h-20 w-20 aspect-square"  />
+                                                    <img src={`http://localhost:3000/${props.auth.user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} className="object-cover h-20 w-20 aspect-square"  />
                                                     <p className="text-xs flex justify-center">Profile photo</p>
                                                 </div>
                                                 {renderPhotos(selectedFiles)}

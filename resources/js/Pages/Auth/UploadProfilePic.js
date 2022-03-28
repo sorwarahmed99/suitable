@@ -115,7 +115,7 @@ function UploadProfilePic({errors}) {
             </div>
       </form>
       
-        {link && <Link href={route('choosePlan')}  type="button" className="w-full text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">
+        {link && <Link href={route('uploaded')}  type="button" className="w-full text-white bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">
             Upload 
         </Link>}
 </Guest>;
