@@ -32,7 +32,7 @@
                             <div class="entry cursor-pointer p-2 transform hover:scale-105 duration-300 transition-transform bg-white flex shadow-md">
                                 <div class="flex-2">
                                     <div class="w-12 h-12 relative">
-                                        <img class="w-12 h-12 rounded-full mx-auto" src={`http://localhost:3000/uploads/user-profile-images/${props.auth.user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} alt="chat-user" />
+                                        <img class="w-12 h-12 rounded-full mx-auto" src={`https://suitable-app.herokuapp.com/${props.auth.user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} alt="chat-user" />
                                         <span class="absolute w-4 h-4 bg-green-400 rounded-full right-0 bottom-0 border-2 border-white"></span>
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                             <div class="entry cursor-pointer p-2 transform hover:scale-105 duration-300 transition-transform bg-white flex shadow-md">
                                 <div class="flex-2">
                                     <div class="w-12 h-12 relative">
-                                        <img class="w-12 h-12 rounded-full mx-auto" src={`http://localhost:3000/uploads/user-profile-images/${props.auth.user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} alt="chat-user" />
+                                        <img class="w-12 h-12 rounded-full mx-auto" src={`https://suitable-app.herokuapp.com/${props.auth.user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} alt="chat-user" />
                                         <span class="absolute w-4 h-4 bg-gray-400 rounded-full right-0 bottom-0 border-2 border-white"></span>
                                     </div>
                                 </div>

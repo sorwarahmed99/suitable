@@ -19,7 +19,7 @@ function UserProfile(props) {
         <div className="flex-row sm:flex sm:space-x-2">
             <div className="w-full sm:w-[300px] h-min bg-gray-50 p-10 sm:p-6 rounded-md shadow-sm">
                 <div className="flex items-center justify-center rounded-full ">
-                    <img src={`http://localhost:3000/uploads/user-profile-images/${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`}  className="w-[170px] h-[170px] border-2 border-red-400 p-1 rounded-full" />
+                    <img src={`https://suitable-app.herokuapp.com//${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`}  className="w-[170px] h-[170px] border-2 border-red-400 p-1 rounded-full" />
                 </div>
                 <div className="flex-none mt-4 text-center sm:text-left">
                     <div className="flex sm:hidden items-center justify-center"> 
@@ -43,27 +43,27 @@ function UserProfile(props) {
 
                     <div class="grid grid-flow-col grid-rows-1 sm:grid-rows-2 grid-cols-6 sm:grid-cols-3 gap-2">
                         <div>
-                        <img src={`http://localhost:3000/uploads/user-profile-images/${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} />
+                        <img src={`https://suitable-app.herokuapp.com/${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} />
 
                         </div>
                         <div class="col-start-3">
-                            <img src={`http://localhost:3000/uploads/user-profile-images/${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} />
+                            <img src={`https://suitable-app.herokuapp.com/${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} />
 
                         </div>
                         <div>
-                            <img src={`http://localhost:3000/uploads/user-profile-images/${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} />
+                            <img src={`https://suitable-app.herokuapp.com/${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} />
 
                         </div>
                         <div>
-                            <img src={`http://localhost:3000/uploads/user-profile-images/${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} />
+                            <img src={`https://suitable-app.herokuapp.com/${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} />
 
                         </div>
                         <div>
-                            <img src={`http://localhost:3000/uploads/user-profile-images/${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} />
+                            <img src={`https://suitable-app.herokuapp.com/${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} />
 
                         </div>
                         <div>
-                            <img src={`http://localhost:3000/uploads/user-profile-images/${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} />
+                            <img src={`https://suitable-app.herokuapp.com/${user.profile_image}`} alt={`${props.auth.user.firstname}'s Profile photo`} />
 
                         </div>
                     </div>

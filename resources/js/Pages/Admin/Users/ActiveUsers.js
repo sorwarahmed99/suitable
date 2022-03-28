@@ -34,7 +34,7 @@ function ActiveUsers(props) {
                                         <div className="w-10 h-10">
                                             {/* <img className="w-full h-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects.png" /> */}
                                             {profile_image && ( 
-                                            <img src={`http://localhost:3000/uploads/user-profile-images/${profile_image}`} alt={`${firstname}'s Profile photo`}  className="w-full h-full" />
+                                            <img src={`https://suitable-app.herokuapp.com/${profile_image}`} alt={`${firstname}'s Profile photo`}  className="w-full h-full" />
                                             )}
                                         </div>
                                         <div className="pl-4">

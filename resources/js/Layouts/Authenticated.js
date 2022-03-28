@@ -75,7 +75,7 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                                 type="button"
                                                 className="inline-flex items-center p-0.5 text-sm leading-4 font-medium rounded-full border-2 border-red-200 hover:border-red-400 text-gray-500 dark:text-gray-100 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                <img src={`http://localhost:3000/uploads/user-profile-images/${auth.user.profile_image}`} alt={`${auth.user.firstname}'s Profile photo`}  className="w-10 h-10 rounded-full" />
+                                                <img src={`https://suitable-app.herokuapp.com/${auth.user.profile_image}`} alt={`${auth.user.firstname}'s Profile photo`}  className="w-10 h-10 rounded-full" />
 
                                                 {/* <svg
                                                     className="ml-2 -mr-0.5 h-4 w-4"
