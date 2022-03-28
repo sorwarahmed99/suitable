@@ -52,7 +52,7 @@ function SetUpProfileStepThree() {
         {value: 'As soon as possible', label: 'As soon as possible'},
         {value: 'Between 1-3 Years', label: 'Between 1-3 Years'},
         {value: 'Not sure', label: 'Not sure'},
-        {value: 'Prefer not to say', label: 'Prefer not to say'},
+        {value: 'Hidden', label: 'Prefer not to say'},
     ];
 
 
@@ -63,7 +63,7 @@ function SetUpProfileStepThree() {
     }
 
     return <Guest
-                bgimage="bg-login-background"
+                bgimage="bg-family-background"
             >
                 <Head title="Suitable | Set up profile" />
                 
@@ -72,7 +72,7 @@ function SetUpProfileStepThree() {
                         <h2 className="mt-6 text-lg font-semibold text-gray-900">
                             Family | Future Plan
                         </h2>
-                        <p className="mt-6 text-xl font-bold text-gray-900">90%</p>
+                        <p className="mt-6 text-xl font-bold text-gray-900">70%</p>
                     </div>
                     <div className="h-2 w-full bg-slate-400 relative rounded-full">
                         <div className="h-2 w-[300px] sm:w-[350px] bg-slate-800 absolute z-50 rounded-full"></div>
@@ -93,7 +93,7 @@ function SetUpProfileStepThree() {
                             name="siblings" 
                             value={data.siblings} 
                         >
-                            <option>Select how many</option>
+                            <option value="">Select how many</option>
                             <option value="0">I am only child</option>
                             {
                                 nums.map((num) => <option value={num} key={num}>{num}</option>)
@@ -115,13 +115,13 @@ function SetUpProfileStepThree() {
                     </div>
 
                     <div className="mt-4">
-                        <Label forInput="get_married" value="Get married?" />
+                        <Label forInput="get_married" value="Preferred marriage time ?" />
                         <InputSelect 
                             defaultValue={data.get_married} 
                             onChange={onHandleChange} 
                             options={getMarriedOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder={`When are you planning to get married ?`} 
+                            placeholder='When are you planning to get married ?'
                             name={`get_married`}
                         />
                     </div>
@@ -133,7 +133,7 @@ function SetUpProfileStepThree() {
                             onChange={onHandleChange} 
                             options={continueWorkingOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder={`Select an option`} 
+                            placeholder='Select an option'
                             name={`continue_working`}
                         />
                     </div>
@@ -145,7 +145,7 @@ function SetUpProfileStepThree() {
                             onChange={onHandleChange} 
                             options={moveOutOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder={`Select an option`} 
+                            placeholder='Select an option'
                             name={`intend_to_move_out`}
                         />
                     </div>
@@ -157,7 +157,7 @@ function SetUpProfileStepThree() {
                             onChange={onHandleChange} 
                             options={moveOutOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder={`Select an option`} 
+                            placeholder='Select an option'
                             name={`issues_living_with_inlaws`}
                         />
                     </div>

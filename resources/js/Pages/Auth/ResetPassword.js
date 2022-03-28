@@ -31,7 +31,9 @@ export default function ResetPassword({ token, email }) {
     };
 
     return (
-        <Guest>
+        <Guest 
+            bgimage="bg-login-background"
+        >
             <Head title="Reset Password" />
 
             <ValidationErrors errors={errors} />

@@ -28,7 +28,9 @@ export default function ConfirmPassword() {
     };
 
     return (
-        <Guest>
+        <Guest 
+            bgimage="bg-login-background"
+        >
             <Head title="Confirm Password" />
 
             <div className="mb-4 text-sm text-gray-600">

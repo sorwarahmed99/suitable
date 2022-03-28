@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Interest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\UserFamilyInfo;
@@ -54,6 +56,7 @@ class SetUpProfileStepsController extends Controller
         return redirect()->route('setupprofilestep2');
     }
 
+
     public function setupprofilestep2create()
     {
         if(auth()->user()->profile_step >= 3) return redirect()->route('setupprofilestep3');
@@ -64,41 +67,31 @@ class SetUpProfileStepsController extends Controller
     }
 
     public function setupprofilestep2store(Request $request)
-    {   
-        $request->validate([
-            'religious_history' => 'required',
-            'prayer_frequency' => 'required',
-            'sect' => 'required',
-            'eat_halal' => 'required',
-            'smoke' => 'required',
-            'drink_alchohol' => 'required',
-        ],
-        [
-            'religious_history.required'=> 'Religious History is required!',
-            'prayer_frequency.required'=> 'Prayer frequency is required!', 
-            'sect.required'=> 'Please select your sect!',
-            'eat_halal.required'=> 'Please select if you eat halal food!',
-            'smoke.required'=> 'Please select if you smoke!',
-            'drink_alchohol.required'=> 'Please select if you drink alcohol!', 
-        ]
-        );
+    {
 
-        UserReligiousHistory::create([
-            'user_id' => auth()->id(),
-            'religious_history' => $request->religious_history,
-            'prayer_frequency' => $request->prayer_frequency,
-            'sect' => $request->sect,
-            'eat_halal' => $request->eat_halal,
-            'smoke' => $request->smoke,
-            'drink_alchohol' => $request->drink_alchohol,
-            'wear_hijab_keep_beard' => $request->wear_hijab_keep_beard,
+        $request->validate([
+            'marital_status' => 'required',
+            'living_with' => 'required',
+            'have_children' => 'required',
+            'like_to_have_children' => 'required',
+            'physical_disability' => 'required',
         ]);
 
+        UserProfileInfo::create([
+            'user_id' => auth()->id(),
+            'marital_status' => $request->marital_status,
+            'living_with' => $request->living_with,
+            'have_children' => $request->have_children,
+            'like_to_have_children' => $request->like_to_have_children,
+            'poligony' => $request->poligony,
+            'physical_disability' => $request->physical_disability,
+        ]);
         auth()->user()->update([
-            'profile_step' => 2,
+            'profile_step' => 3,
         ]);
 
         return redirect()->route('setupprofilestep3');
+
     }
 
     public function setupprofilestep3create()
@@ -111,33 +104,44 @@ class SetUpProfileStepsController extends Controller
     }
 
     public function setupprofilestep3store(Request $request)
-    {
-
+    {   
         $request->validate([
-            'marital_status' => 'required',
-            'living_with' => 'required',
-            'get_married' => 'required',
-            'have_children' => 'required',
-            'like_to_have_children' => 'required',
-            'physical_disability' => 'required',
+            'religious_history' => 'required',
+            'prayer_frequency' => 'required',
+            'sect' => 'required',
+            'eat_halal' => 'required',
+            'smoke' => 'required',
+            'drink_alchohol' => 'required',
+            'school_of_thoughts' => 'required',
+        ],
+        [
+            'religious_history.required'=> 'Religious History is required!',
+            'prayer_frequency.required'=> 'Prayer frequency is required!', 
+            'sect.required'=> 'Please select your sect!',
+            'eat_halal.required'=> 'Please select if you eat halal food!',
+            'smoke.required'=> 'Please select if you smoke!',
+            'drink_alchohol.required'=> 'Please select if you drink alcohol!', 
+            'school_of_thoughts.required' => 'Please select your school of thought',
+        ]
+        );
+
+        UserReligiousHistory::create([
+            'user_id' => auth()->id(),
+            'religious_history' => $request->religious_history,
+            'prayer_frequency' => $request->prayer_frequency,
+            'school_of_thoughts' => $request->school_of_thoughts,
+            'sect' => $request->sect,
+            'eat_halal' => $request->eat_halal,
+            'smoke' => $request->smoke,
+            'drink_alchohol' => $request->drink_alchohol,
+            'wear_hijab_keep_beard' => $request->wear_hijab_keep_beard,
         ]);
 
-        UserProfileInfo::create([
-            'user_id' => auth()->id(),
-            'marital_status' => $request->marital_status,
-            'living_with' => $request->living_with,
-            'get_married' => $request->get_married,
-            'have_children' => $request->have_children,
-            'like_to_have_children' => $request->like_to_have_children,
-            'poligony' => $request->poligony,
-            'physical_disability' => $request->physical_disability,
-        ]);
         auth()->user()->update([
             'profile_step' => 4,
         ]);
 
         return redirect()->route('setupprofilestep4');
-
     }
 
     public function setupprofilestep4create()
@@ -190,7 +194,6 @@ class SetUpProfileStepsController extends Controller
 
     public function setupprofilestep5store(Request $request)
     {
-       
         $request->validate([
             'siblings' => 'required',
             'a_day_living_with_family' => 'required',
@@ -221,40 +224,68 @@ class SetUpProfileStepsController extends Controller
         return redirect()->route('uploadProfilePic');
     }
 
+    public function setupprofilestep6create()
+    {
+        auth()->user()->update([
+            'profile_step' => 7,
+        ]);
+
+        if(auth()->user()->profile_step >= 8) return redirect()->route('choosePlan');
+        
+        return Inertia::render('Auth/SetUpProfileStepSix', [
+            'csrf_token' => csrf_token(),
+            'interests' => Interest::all(),
+         ]);
+    }
+
+    public function setupprofilestep6store(Request $request)
+    {   
+        $user = auth()->user()->id;
+        $input = $request->all();
+
+        auth()->user()->update([
+            'profile_step' => 8,
+        ]);
+
+        $about = UserProfileInfo::whereUserId($user)->first();
+        $about->update($input);
+
+        $interests = Interest::find($request->get('interests'));
+        foreach($interests as $interest){
+            $interest->users()->attach($user);
+        }
+        return redirect()->route('choosePlan');
+    }
+
+
     public function uploadProfilePicCreate()
     {
-        if(auth()->user()->profile_step >= 7) return redirect()->route('choosePlan');
-
-        return Inertia::render('Auth/UploadProfilePic'
-        , [
-            'csrf_token' => csrf_token()
-         ]
-        );
+        if(auth()->user()->profile_step >= 7) return redirect()->route('setupprofilestep6');
+        // auth()->user()->update([
+        //     'profile_step' => 7,
+        // ]);
+        return Inertia::render('Auth/UploadProfilePic', [
+                'csrf_token' => csrf_token()
+            ]);
     }
     
     public function uploadProfilePicStore(Request $request)
     {
-        // dd($request->all());
         $user = auth()->user();
         $request->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        
-        auth()->user()->update([
-            'profile_step' => 7,
-            'profile_image' => $request->file('photo')->getClientOriginalName() ?? null,
-        ]);
-       
-        // $user = auth()->user();
 
-        // $request->file('photo')->storePubliclyAs("uploads/user-images/{$user->id}", $request->file('photo')->getClientOriginalName(), 'public');
-        
         if ($image = $request->file('photo')) {
-            $destinationPath = 'uploads/user-images/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $destinationPath = 'uploads/user-profile-images/';
+            $profileImage = $user->id.date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
+
+            auth()->user()->update([
+                'profile_image' => $profileImage ?? null,
+            ]);
         }
-        return back();
+        return redirect()->back();
+
     }
 }

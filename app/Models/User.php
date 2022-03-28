@@ -22,6 +22,8 @@ class User extends Authenticatable
     protected $fillable = [
         'firstname',
         'lastname',
+        'username',
+        'nickname',
         'email',
         'password',
         'phone',
@@ -40,6 +42,8 @@ class User extends Authenticatable
         'profile_image',
     ];
 
+    
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -50,13 +54,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
+    
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'account_status' => 'boolean',
     ];
 
     public function qualification() {
@@ -65,6 +66,56 @@ class User extends Authenticatable
 
     public function religion() {
         return $this->hasOne(UserReligiousHistory::class);
+    }
+
+    public function family() {
+        return $this->hasOne(UserFamilyInfo::class);
+    }
+
+    public function profile() {
+        return $this->hasOne(UserProfileInfo::class);
+    }
+
+    public function interests()
+    {
+        return $this->belongsToMany(User::class, 'user_interests');
+    }
+
+
+    // public function savedUsers() {
+    //     return $this->belongsToMany(SavedUsers::class, 'saved_users', 'saved_by_user_id',  'saved_user_id')->withTimestamps();
+    // }
+
+    // saver_id saved_id
+
+    // public function followers() {
+    //     return $this->belongsToMany(User::class, 'saved_users', 'saved_user_id', 'saved_by_user_id');
+    // }
+
+
+    // public function followings() {
+    //     return $this->belongsToMany(User::class, 'saved_users', 'saved_by_user_id', 'saved_user_id');
+    // }
+
+
+    // public function followers() {
+    //     return $this->belongsToMany(User::class, 'followings', 'followed_id', 'follower_id')->withTimestamps();
+    // }
+
+
+    // public function followings() {
+    //     return $this->belongsToMany(User::class, 'followings', 'follower_id', 'followed_id')->withTimestamps();
+    // }
+
+    
+
+    
+    public function scopeWhereActive($query, $role)
+    {
+        switch ($role) {
+            case 'not_active': return $query->where('account_status', false);
+            case 'active': return $query->where('account_status', true);
+        }
     }
 
 
@@ -76,14 +127,141 @@ class User extends Authenticatable
                     ->orWhere('last_name', 'like', '%'.$search.'%')
                     ->orWhere('email', 'like', '%'.$search.'%');
             });
-        })->when($filters['role'] ?? null, function ($query, $role) {
-            $query->whereRole($role);
-        })->when($filters['trashed'] ?? null, function ($query, $trashed) {
-            if ($trashed === 'with') {
-                $query->withTrashed();
-            } elseif ($trashed === 'only') {
-                $query->onlyTrashed();
-            }
+        })->when($filters['account_status'] ?? null, function ($query, $account_status) {
+            $query->whereActive($account_status);
         });
     }
+
+
+    // Invited Users ----------------------------------------------------------------
+
+
+    public function acceptuser(User $user) {
+        if($this->amiInvited($user)) {
+            InvitedUser::where('invited_user_id', $user->id)->where('user_id', auth()->id())->update(['is_accepted' => 1]);
+        }
+    }
+
+    public function invite(User $user) {
+        if(!$this->isInvited($user)) {
+            InvitedUser::create([
+                'user_id' => auth()->id(),
+                'invited_user_id' => $user->id
+            ]);
+        }
+    }
+    
+    public function uninvite(User $user) {
+        InvitedUser::where('user_id', auth()->id())->where('invited_user_id', $user->id)->delete();
+    }
+    
+    public function isInvited(User $user) {
+        return $this->invitedusers()->where('users.id', $user->id)->exists();
+    }
+
+    public function amiInvited(User $user) {
+        return $this->inviters()->where('users.id', $user->id)->exists();
+    }
+
+    public function isAccepted(User $user) {
+        return $this->invitedusers()->where('users.id', $user->id)->where('is_accepted', 1)->exists();
+    }
+    
+    public function acceptedusers(User $user) {
+        return $this->invitedusers()->where('users.id', $user->id)->where('is_accepted', 1);
+    }
+    
+    public function invitedusers() {
+        return $this->hasManyThrough(User::class, InvitedUser::class, 'user_id', 'id', 'id', 'invited_user_id');
+    }
+    
+    public function inviters() {
+        return $this->hasManyThrough(User::class, InvitedUser::class, 'invited_user_id', 'id', 'id', 'user_id');
+    }
+
+
+    // Saved Users ----------------------------------------------------------------
+
+    public function saveuser(User $user) {
+        if(!$this->isSaved($user)) {
+            SavedUsers::create([
+                'user_id' => auth()->id(),
+                'saved_user_id' => $user->id
+            ]);
+        }
+    }
+    
+    public function unsaveuser(User $user) {
+        SavedUsers::where('user_id', auth()->id())->where('saved_user_id', $user->id)->delete();
+    }
+    
+    public function isSaved(User $user) {
+        return $this->savedusers()->where('users.id', $user->id)->exists();
+    }
+    
+    public function savedusers() {
+        return $this->hasManyThrough(User::class, SavedUsers::class, 'user_id', 'id', 'id', 'saved_user_id');
+    }
+    
+    public function savers() {
+        return $this->hasManyThrough(User::class, SavedUsers::class, 'saved_user_id', 'id', 'id', 'user_id');
+    }
+
+
+
+     // Passed Users ----------------------------------------------------------------
+
+     public function pass(User $user) {
+        if(!$this->isPassed($user)) {
+            PassUser::create([
+                'user_id' => auth()->id(),
+                'passed_id' => $user->id
+            ]);
+        }
+    }
+    
+    public function unpass(User $user) {
+        PassUser::where('user_id', auth()->id())->where('passed_id', $user->id)->delete();
+    }
+    
+    public function isPassed(User $user) {
+        return $this->passedusers()->where('users.id', $user->id)->exists();
+    }
+
+    public function passedusers() {
+        return $this->hasManyThrough(User::class, PassUser::class, 'user_id', 'id', 'id', 'passed_id');
+    }
+    
+    public function passers() {
+        return $this->hasManyThrough(User::class, PassUser::class, 'passed_id', 'id', 'id', 'user_id');
+    }
+
+
+    // Test Following ----------------------------------------------------------------
+
+    public function follow(User $user) {
+        if(!$this->isFollowing($user)) {
+            Following::create([
+                'user_id' => auth()->id(),
+                'following_id' => $user->id
+            ]);
+        }
+    }
+    
+    public function unfollow(User $user) {
+        Following::where('user_id', auth()->id())->where('following_id', $user->id)->delete();
+    }
+    
+    public function isFollowing(User $user) {
+        return $this->following()->where('users.id', $user->id)->exists();
+    }
+    
+    public function following() {
+        return $this->hasManyThrough(User::class, Following::class, 'user_id', 'id', 'id', 'following_id');
+    }
+    
+    public function followers() {
+        return $this->hasManyThrough(User::class, Following::class, 'following_id', 'id', 'id', 'user_id');
+    }
+
 }

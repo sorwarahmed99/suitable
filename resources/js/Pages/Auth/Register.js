@@ -42,8 +42,8 @@ export default function Register(props) {
 
             <div className="text-center">
                 <Link href="/">
-                    <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" />
-                    {/* <span className="hidden sm:block self-center text-xl font-semibold whitespace-nowrap dark:text-white">Suitable</span> */}
+                    {/* <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" /> */}
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-red-500 dark:text-white">Suitable</span>
                 </Link>
                 <h2 className="mt-6 text-md font-medium text-gray-900">
                     Start Your soulmate search with the world's most reliable match making site!
@@ -56,7 +56,7 @@ export default function Register(props) {
 
             <ValidationErrors errors={errors} />
 
-            <form className="px-12" onSubmit={submit}>
+            <form className="sm:px-12 px-2" onSubmit={submit}>
                 <div className="mt-4 mb-6 border-b border-slate-200 pb-3">
                     <h2 className="mt-6 text-md font-semibold text-gray-900">
                         Create new account

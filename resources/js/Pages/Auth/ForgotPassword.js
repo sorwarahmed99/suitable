@@ -21,7 +21,9 @@ export default function ForgotPassword({ status }) {
     };
 
     return (
-        <Guest>
+        <Guest 
+            bgimage="bg-login-background"
+        >
             <Head title="Forgot Password" />
 
             <div className="mb-4 text-sm text-gray-500 leading-normal">

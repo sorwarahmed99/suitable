@@ -49,7 +49,7 @@ export default function Login({ status, canResetPassword }) {
             <div className="min-h-screen flex items-center justify-center py-5 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-md w-full space-y-3">
                     <Link href="/" className="flex items-center justify-center">
-                        <img className="h-12 w-auto pr-2" src="../assets/images/logo.png" alt="Suitable Logo" />
+                        {/* <img className="h-12 w-auto pr-2" src="../assets/images/logo.png" alt="Suitable Logo" /> */}
                         <span className="hidden sm:block text-xl font-semibold whitespace-nowrap dark:text-white">Suitable</span>
                     </Link>
                     <div>

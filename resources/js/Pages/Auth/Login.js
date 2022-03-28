@@ -38,8 +38,9 @@ export default function Login({ status, canResetPassword }) {
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
             <div className="text-center mb-2">
-                <Link href="/register" className="flex items-center justify-center">
-                    <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" />
+                <Link href="/" className="flex items-center justify-center">
+                    {/* <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" /> */}
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-red-500 dark:text-red-500">Suitable</span>
                 </Link>
                 <h2 className="mt-6 text-md font-medium text-gray-900">
                     Start Your soulmate search with the world's most reliable match making site!
@@ -47,7 +48,7 @@ export default function Login({ status, canResetPassword }) {
             </div>
             <ValidationErrors errors={errors} />
 
-            <form className="px-12" onSubmit={submit}>
+            <form className="sm:px-12 px-2" onSubmit={submit}>
                 <div className="mt-4 mb-6 border-b border-slate-200 pb-3">
                     <h2 className="mt-6 text-md font-semibold text-gray-900">
                         Welcome Back

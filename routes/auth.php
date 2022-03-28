@@ -49,6 +49,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/upload-profile-pic', [SetUpProfileStepsController::class, 'uploadProfilePicCreate'])->name('uploadProfilePic');
     Route::post('/upload-profile-pic', [SetUpProfileStepsController::class, 'uploadProfilePicStore'])->name('uploadProfilePicStore');
     
+    // 7
+    Route::get('/set-up-profile-step-6', [SetUpProfileStepsController::class, 'setupprofilestep6create'])->name('setupprofilestep6');
+    Route::post('/set-up-profile-step-6', [SetUpProfileStepsController::class, 'setupprofilestep6store']);
+    
+    // ---- Left to work
+    // 8
+    Route::get('/set-up-profile-step-7', [SetUpProfileStepsController::class, 'setupprofilestep7create'])->name('setupprofilestep7');
+    Route::post('/set-up-profile-step-7', [SetUpProfileStepsController::class, 'setupprofilestep7store']);
     
     Route::get('/choose-a-plan', [UserSubscriptionController::class, 'index'])->name('choosePlan');
     Route::post('/choose-a-plan', [UserSubscriptionController::class, 'store'])->name('choosePlanStore');

@@ -10,18 +10,18 @@ export default () => {
   const [opened, setOpened] = useState(false);
 
   const [values, setValues] = useState({
-    role: filters.role || '', // role is used only on users page
+    account_status: filters.account_status || '', // role is used only on users page
     search: filters.search || '',
-    trashed: filters.trashed || ''
+    // trashed: filters.trashed || ''
   });
 
   const prevValues = usePrevious(values);
 
   function reset() {
     setValues({
-      role: '',
+      account_status: '',
       search: '',
-      trashed: ''
+      // trashed: ''
     });
   }
 
@@ -62,29 +62,20 @@ export default () => {
             className="fixed inset-0 z-20 bg-black opacity-25"
           ></div>
           <div className="relative z-30 w-64 px-4 py-6 mt-2 bg-white rounded shadow-lg">
-            {filters.hasOwnProperty('role') && (
+            {filters.hasOwnProperty('account_status') && (
               <SelectInput
                 className="mb-4"
                 label="Role"
                 name="role"
-                value={values.role}
+                value={values.account_status}
                 onChange={handleChange}
               >
                 <option value=""></option>
-                <option value="user">User</option>
-                <option value="owner">Owner</option>
+                <option value="not active">Not Active</option>
+                <option value="active">Active</option>
               </SelectInput>
             )}
-            <SelectInput
-              label="Trashed"
-              name="trashed"
-              value={values.trashed}
-              onChange={handleChange}
-            >
-              <option value=""></option>
-              <option value="with">With Trashed</option>
-              <option value="only">Only Trashed</option>
-            </SelectInput>
+            
           </div>
         </div>
         <button

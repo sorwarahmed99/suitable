@@ -1,19 +1,86 @@
 import '@themesberg/flowbite';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Head } from '@inertiajs/inertia-react';
 import Footer from '@/Layouts/Footer';
 import { ThemeContext } from '@/context/ThemeContext';
+import SyncLoader from "react-spinners/SyncLoader";
+import ClockLoader from "react-spinners/ClockLoader";
+import { css } from "@emotion/react";
+import Button from '@/Components/Button';
 
 export default function Welcome(props) {
     const { theme, setTheme } = React.useContext(ThemeContext);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isClick, setIsClick] = useState(3000);
 
-    return (
+    useEffect(() => {  
+        setTimeout(() => {
+          setIsLoading(false);
+        }, isClick);
+      }, []);
+      
+      function click () {
+          setIsLoading(false);
+          setIsClick(200);
+      }
+      
+      
+      const override = css`
+            display: flex;
+            border-color: red;
+            top:20%;
+            color: red;
+            `;
+              
+    return isLoading ? (
+        <div className="">
+            <div className="flex item-center justify-center mb-20 !top-[20%]">
+
+                <SyncLoader
+                    css= {override}
+                    className="top-20 dark:bg-white"
+                    ariaLabel="rotating-square"
+                    visible={true}
+                    color="#FB7A7A"
+                    strokeWidth="10"
+                />
+            </div>
+            <div className="dark:text-slate-50 mt-20 p-20">
+                    <h1 className="text-2xl">Welcome To <span className="self-center text-2xl font-semibold whitespace-nowrap text-red-500 dark:text-white">Suitable</span></h1>
+                    <p className="text-md mt-2 whitespace-wrap tracking-wide text-slate-700 leading-5">
+                        In today's busy world of professionals and executives, working or living we understand that is difficult to find and meet other like minded muslim individuals for the purpose of marriage. 
+                        Where time is of the essence, and keeping your faith and traditions in place, we understand that it is difficult finding the time to meet and vet individuals to find a suitable match. 
+                        <br/>
+                        <br/>
+                        This is why we do the hard work for you. Our approach is reassuringly traditional and islamic, being British but with a truly global perspective. 
+                        Our acceptance process is rigorous and we are certainly not right for everyone. We are as selective about who we accept to join our platform. 
+                        We vet everyone before accepting them and they must adhere to an islamic lifestyle and be from a professional working environment. 
+                        <br />
+                        <br />
+                        Compromise is simply not an option. for them, or us. clients who join us are introduced to people within our network who, like them, have been and vetted before being accepted. 
+                        This is therefore a selected and sophisticated group of people who understand completely the unspoken rule of only wanting to meet other people like them and who are comfortable with who they are and who they would ideally like to meet whilst maintaining islamic values and discretion.
+                    </p>
+                    <Link href={route('welcome')} onClick={click} className="inline-flex main-btn ml-0 mt-4 gradient-btn">
+                        <span>Continue to suitable</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </Link>
+            </div>
+        </div>
+    )
+        :
+    (
         <>
             <Head title="Suitable" />
-            <nav className="bg-white shadow-md px-5 sm:px-20 dark:bg-gray-800 mx-auto top-0 left-0 z-40 w-full py-2 duration-300 sticky">
+            {/* <nav className="bg-white shadow-md px-5 sm:px-20 dark:bg-gray-800 mx-auto top-0 left-0 z-40 w-full py-2 duration-300 sticky"> */}
+            <nav className="bg-white px-5 sm:px-20 py-2  dark:bg-slate-800 border-b border-gray-100 dark:border-slate-500 sticky top-0 z-40 backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
                 <div className="flex flex-wrap justify-between items-center">
-                    <Link href="/register" className="flex items-center justify-center">
-                        <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" />
+                    <Link as="a" href="/" className="flex items-center justify-center">
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap text-red-500 dark:text-white">Suitable</span>
+                        {/* <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" /> */}
                     </Link>
                     <div className="flex space-x-3">
                         {theme === 'dark' ? (
@@ -23,9 +90,7 @@ export default function Welcome(props) {
 
                                 ) : (
                                 <button id="theme-toggle" type="button" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className={`${theme === 'dark' ? 'hidden' : ''}text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5`}>
-
                                     <svg id="theme-toggle-light-icon" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fillRule="evenodd" clipRule="evenodd"></path></svg>
-
                                 </button>
                             )}
 
@@ -44,6 +109,7 @@ export default function Welcome(props) {
                                     // </Link> */}
                             )}
                         </div>
+                    </div>
                     </div>
                 </nav>
                 <section id="about" className="pt-20 about-area">

@@ -87,7 +87,7 @@ function Index({auth, errors}) {
                     {data.length === 0 && (
                     <tr>
                         <td className="px-6 py-4 border-t" colSpan="4">
-                        No contacts found.
+                            No subscription plans added.
                         </td>
                     </tr>
                     )}

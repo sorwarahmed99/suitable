@@ -9,15 +9,45 @@ import { Head, Link, useForm } from '@inertiajs/inertia-react';
 import RadioButton from '@/Components/RadioButton';
 import InputSelect from '@/Components/InputSelect';
 
-function SetUpProfileStepThree() {
+function SetUpProfileStepThree(props) {
+    
+    const regiousHistoryOptions = [
+        { value: "Convert", label: "Convert" },
+        { value: "Revert", label: "Revert" },
+        { value: "Not sure", label: "Not sure" },
+    ];
+
+    const sectOptions = [
+        { value: "Sunni", label: "Sunni" },
+        { value: "Shia", label: "Shia" },
+        { value: "Don't Follow", label: "Do not follow" },
+    ];
+
+    const prayerFrequencyOptions = [
+        { value: "Never Missed", label: "Never Missed" },
+        { value: "Sometimes Miss", label: "Sometimes Miss" },
+        { value: "Occasionally", label: "Occasionally" },
+        { value: "Hidden", label: "Prefer not to say" },
+    ];
+    
+    const schoolOfThougthsOptions = [
+        { value: "Hanafi", label: "Hanafi" },
+        { value: "Hanbali", label: "Hanbali" },
+        { value: "Maliki", label: "Maliki" },
+        { value: "Shafei", label: "Shafei" },
+        { value: "Hidden", label: "Prefer not to say" },
+    ];
+    
     const { data, setData, post, processing, errors, reset } = useForm({
-        marital_status: '',
-        living_with: '',
-        get_married: '',
-        have_children: '',
-        like_to_have_children: '',
-        poligony: '',
-        physical_disability: '',
+        religious_history:'',
+        prayer_frequency: '',
+        school_of_thoughts: '',
+        sect: '',
+        eat_halal: '',
+        smoke: '',
+        drink_alchohol: '',
+        wear_hijab_keep_beard: '',
+        _token: props.csrf_token,
     });
 
     useEffect(() => {
@@ -33,149 +63,135 @@ function SetUpProfileStepThree() {
     const submit = (e) => {
         e.preventDefault();
 
-        post('set-up-profile-step-3');
+        post(route('setupprofilestep3store'));
     };
-
-    const livingwithOptions = [
-        { value: "Parents", label: "Parents" },
-        { value: "Live by myself", label: "Live by myself" },
-        { value: "Hidden", label: "Prefer not say" },
-    ];
-
-    const maritalStatusOptions = [
-        { value: "Never married", label: "Never married" },
-        { value: "Divorced", label: "Divorced" },
-    ];
-
-    const getMarriedOptions = [
-        { value: "As soon as possible", label: "As soon as possible" },
-        { value: "Not now", label: "Not now" },
-        { value: "Not sure", label: "Not sure" },
-    ];
-
-    const haveChildrenOptions = [
-        { value: "None", label: "None" },
-        { value: "Prefer not to say", label: "Prefer not to say" },
-        { value: "1", label: "1" },
-        { value: "2", label: "2" },
-        { value: "3", label: "3" },
-        { value: "4", label: "4" },
-    ]
     return <Guest
-            bgimage="bg-login-background"
-            title="Help us find the perfect match for you"
-            subtitle="Tell us more about your lifestyle"
-            linktext="Need help ?"
-            href="/"
-            btnName="Contact support"
-        >
+                bgimage="bg-rel-background"
+            >
                 <Head title="Suitable | Set up profile" />
 
-                <div className="">
+                <div>
+                    {/* <Link href="/register" className="flex items-start justify-start">
+                        <img className="h-5 w-full" src="assets/images/logo.svg" alt="suitable-logo" />
+                    </Link> */}
                     <div className="flex mb-2 justify-between items-center">
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900">
-                            Your personal information
+                        <h2 className="mt-6 text-md sm:text-lg font-semibold text-gray-900">
+                            Religious view
                         </h2>
-                        <p className="mt-6 text-xl font-bold text-gray-900">40%</p>
+                        <p className="mt-6 text-lg sm:text-xl font-semibold text-slate-700">40%</p>
                     </div>
                     <div className="h-2 w-full bg-slate-400 relative rounded-full">
-                        <div className="h-2 w-[100px] bg-slate-800 absolute z-50 rounded-full"></div>
+                        <div className="h-2 w-[150px] bg-slate-700 absolute z-50 rounded-full"></div>
                     </div>
-                    <p className="text-xs sm:text-sm mt-4 p-2 font-black leading-snug tracking-normal">Be yourself, your match will be depending on your answers. 
-                        If you don't like to answer please select "Prefer not say option"</p>
                 </div>
 
                 <ValidationErrors errors={errors} />
 
                 <form onSubmit={submit}>
-                    <div className="mt-4">
-                        <Label forInput="marital_status" value="Marital Status" />
+                <div className="mt-4">
+                        <Label forInput="religious_history" value="Religious history" />
                         <InputSelect 
-                            defaultValue={data.marital_status} 
+                            value={data.religious_history} 
                             onChange={onHandleChange} 
-                            options={maritalStatusOptions} 
+                            options={regiousHistoryOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder={`Select your Marital Status`} 
-                            name={`marital_status`}
+                            placeholder='Select your religious history'
+                            name={`religious_history`}
                         />
-                   </div>
+                </div>
 
-                   <div className="mt-4">
-                        <Label forInput="living_with" value="Who do you live with ?" />
+                <div className="mt-4">
+                        <Label forInput="prayer_frequency" value="Do you pray" />
                         <InputSelect 
-                            defaultValue={data.living_with} 
+                            value={data.prayer_frequency} 
                             onChange={onHandleChange} 
-                            options={livingwithOptions} 
+                            options={prayerFrequencyOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder={`Please select ... `} 
-                            name={`living_with`}
+                            placeholder='Select your prayer frequency'
+                            name={`prayer_frequency`}
                         />
-                   </div>
-                
-                   <div className="mt-4">
-                        <Label forInput="get_married" value="Get married" />
-                        <InputSelect 
-                            defaultValue={data.get_married} 
-                            onChange={onHandleChange} 
-                            options={getMarriedOptions} 
-                            className={`block w-full sm:text-sm`} 
-                            placeholder={`When would you like to`} 
-                            name={`get_married`}
-                        />
-                   </div>
+                </div>
 
-                    <div className="mt-4">
-                        <Label forInput="have_children" value="Do you have children" />
+                <div className="mt-4">
+                        <Label forInput="sect" value="Sect" />
                         <InputSelect 
-                            defaultValue={data.have_children} 
+                            value={data.sect} 
                             onChange={onHandleChange} 
-                            options={haveChildrenOptions} 
+                            options={sectOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder={`Select how many`} 
-                            name={`have_children`}
+                            placeholder='What sect are you'
+                            name={`sect`}
+                            required={true}
                         />
+                </div>
+
+                <div className="mt-4">
+                        <Label forInput="school_of_thoughts" value="School of thoughts" />
+                        <InputSelect 
+                            value={data.school_of_thoughts} 
+                            onChange={onHandleChange} 
+                            options={schoolOfThougthsOptions} 
+                            className={`block w-full sm:text-sm`} 
+                            placeholder="What's your school of thoughts"
+                            name={`school_of_thoughts`}
+                            required={true}
+                        />
+                </div>
+
+                <div className="mt-4">
+                        <div className="flex items-baseline mb-2 pb-2 space-x-2">
+                            <div className="w-1/3">
+                                <Label forInput="eat_halal" value="Do you eat halal ?" />
+                            </div>
+                            <div className="w-2/3 flex justify-end space-x-1">
+                                <RadioButton name="eat_halal" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
+                                <RadioButton name="eat_halal" value={`No`} btnName="No" handleChange={onHandleChange} />
+                                <RadioButton name="eat_halal" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
+                            </div>
+                        </div>
                     </div>
 
                     <div className="mt-4">
                         <div className="flex items-baseline mb-2 pb-2 space-x-2">
                             <div className="w-1/3">
-                                <Label forInput="like_to_have_children" value="Like to have children" />
+                                <Label forInput="smoke" value="Do you smoke ?" />
                             </div>
                             <div className="w-2/3 flex justify-end space-x-1">
-                                <RadioButton name="like_to_have_children" value={`Yes`} btnName="Yes" handleChange={onHandleChange}  />
-                                <RadioButton name="like_to_have_children" value={`No`} btnName="No"  handleChange={onHandleChange} />
-                                <RadioButton name="like_to_have_children" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
+                                <RadioButton name="smoke" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
+                                <RadioButton name="smoke" value={`No`} btnName="No" handleChange={onHandleChange} />
+                                <RadioButton name="smoke" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
                             </div>
                         </div>
                     </div>
-
-                    {/* <div className="mt-4">
-                        <div className="flex items-baseline mb-2 pb-2 space-x-2">
-                            <div className="w-1/3">
-                                <Label forInput="poligony" value="Poligony" />
-                            </div>
-                            <div className="w-2/3 flex justify-end space-x-1">
-                                <RadioButton name="poligony" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
-                                <RadioButton name="poligony" value={`No`} btnName="No" handleChange={onHandleChange}  />
-                                <RadioButton name="poligony" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange}  />
-                            </div>
-                        </div>
-                    </div> */}
 
                     <div className="mt-4">
                         <div className="flex items-baseline mb-2 pb-2 space-x-2">
                             <div className="w-1/3">
-                                <Label forInput="physical_disability" value="Any Physical disability ?" />
+                                <Label forInput="drink_alchohol" value="Drink Alchohol ?" />
                             </div>
                             <div className="w-2/3 flex justify-end space-x-1">
-                                <RadioButton name="physical_disability" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
-                                <RadioButton name="physical_disability" value={`No`} btnName="No"  handleChange={onHandleChange} />
-                                <RadioButton name="physical_disability" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
+                                <RadioButton name="drink_alchohol" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
+                                <RadioButton name="drink_alchohol" value={`No`} btnName="No" handleChange={onHandleChange} />
+                                <RadioButton name="drink_alchohol" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
                             </div>
                         </div>
                     </div>
 
-                
+                    <div className="mt-4">
+                        <div className="flex items-baseline mb-2 pb-2 space-x-2">
+                            <div className="w-1/3">
+                                <Label forInput="wear_hijab_keep_beard" value={`${props.auth.user.gender == "Male" ? "Keep Beard" : "Wear Hijab ?" }`} />
+                            </div>
+                            <div className="w-2/3 flex justify-end space-x-1">
+                                <RadioButton name="wear_hijab_keep_beard" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
+                                <RadioButton name="wear_hijab_keep_beard" value={`No`} btnName="No" handleChange={onHandleChange} />
+                                <RadioButton name="wear_hijab_keep_beard" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     <div className="flex items-center justify-end mt-4">
                         <Button className="bg-gray-800 hover:bg-gray-900 text-gray-50 font-bold py-2 px-4 rounded inline-flex items-center" processing={processing}>
                             <span>Next</span>
@@ -185,7 +201,7 @@ function SetUpProfileStepThree() {
                         </Button>
                     </div>
                 </form>
-        </Guest>;
+            </Guest>;
 }
 
 export default SetUpProfileStepThree;

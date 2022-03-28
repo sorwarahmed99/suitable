@@ -19,6 +19,7 @@ class CreateUserReligiousHistoriesTable extends Migration
             $table->string('religious_history')->nullable();
             $table->string('prayer_frequency')->nullable();
             $table->string('sect')->nullable();
+            $table->string('school_of_thoughts')->nullable();
             $table->string('eat_halal')->nullable();
             $table->string('smoke')->nullable();
             $table->string('drink_alchohol')->nullable();

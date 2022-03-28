@@ -17,7 +17,6 @@ class UserSubscriptionController extends Controller
      */
     public function index(Request $request)
     {
-        
         $plans = SubscriptionPlan::all();
         $checkout = $request->user()
                     ->newSubscription('default', config('stripe.price_id'))
@@ -25,9 +24,11 @@ class UserSubscriptionController extends Controller
                         'success_url' => route('home'),
                         'cancel_url' => route('choosePlan'),
                     ]); 
+
         auth()->user()->update([
             'profile_step' => 8,
         ]);
+
         return Inertia::render('Auth/Subscription/ChooseAPlan', [
            'plans' => $plans,
            'stripeKey' => config('cashier.key'),
@@ -37,7 +38,6 @@ class UserSubscriptionController extends Controller
 
     public function subscription(Request $request)
     {
-        // dd($request->all());
         $checkout = $request->user()
                     ->newSubscription('default', config('stripe.price_id'))
                     ->checkout([

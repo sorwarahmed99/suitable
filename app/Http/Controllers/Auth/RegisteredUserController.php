@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -44,12 +45,13 @@ class RegisteredUserController extends Controller
             'gender' => 'required',
             'password' => ['required', Rules\Password::defaults()],
         ], [
-            'date_of_birth.date'=> 'Age must be 18 years or older!',
+            'date_of_birth.date|before:-18 years'=> 'You must be 18 years or older!',
         ]);
 
         $user = User::create([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
+            'username' => Str::lower($request->lastname."_".$request->firstname).rand(pow(10, 8 - 1), pow(10, 8) -1),
             'email' => $request->email,
             'date_of_birth' => $request->date_of_birth,
             'gender' => $request->gender,

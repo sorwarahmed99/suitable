@@ -14,6 +14,7 @@ class UserReligiousHistory extends Model
         'religious_history',
         'prayer_frequency',
         'sect',
+        'school_of_thoughts',
         'eat_halal',
         'smoke',
         'drink_alchohol',

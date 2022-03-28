@@ -17,5 +17,9 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             return route('login');
         }
+
+        if (auth()->user()->profile_step == 8){
+            return redirect()->route('home');
+        }
     }
 }

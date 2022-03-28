@@ -27,7 +27,7 @@ function InputSelect({
                 onChange={onChange}
                 value={value} //So I had to pass it here too
             >
-                <option value='' disabled>{placeholder}</option>
+                <option value={''}>{placeholder}</option>
                 {options.map((option, index) => {
                     return (
                         <option className='text-xs' key={index} value={option.value}>

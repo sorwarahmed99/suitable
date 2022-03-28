@@ -23,12 +23,10 @@ function ChooseAPlan() {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(e.target.value);
         post(route('choosePlanStore'));
     };
 
     const checkout = () => {
-        console.log(stripeKey);
         console.log(checkoutSessionId);
         return window.Stripe(stripeKey).redirectToCheckout({
           sessionId: checkoutSessionId

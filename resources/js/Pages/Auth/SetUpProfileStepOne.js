@@ -345,7 +345,7 @@ function SetUpProfileStepOne() {
                             onChange={onHandleChange}
                             value={data.country}
                         >
-                            <option disabled>Select your country</option>
+                            <option value={''}>Select your country</option>
                             {countries.map((country) => {
                                 return (
                                     <option key={country.code} value={country.name}>

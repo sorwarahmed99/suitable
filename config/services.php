@@ -34,4 +34,10 @@ return [
         'url' => env('POSTCODES_URL', 'https://api.postcodes.io/')
     ],
 
+    'stripe' => [
+        'model' => App\User::class,
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+    ],
+
 ];
