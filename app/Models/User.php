@@ -28,6 +28,7 @@ class User extends Authenticatable
         'password',
         'phone',
         'date_of_birth',
+        'age',
         'gender',
         'account_created_with',
         'account_status',
@@ -76,38 +77,36 @@ class User extends Authenticatable
         return $this->hasOne(UserProfileInfo::class);
     }
 
+
+    public function preference() {
+        return $this->hasOne(UserLookingFor::class);
+    }
+
+    // Filter Users ----------------------------------------------------------------
+
+    // public function filterUser(User $user) {
+
+    // }
+
+    // public function scopeFilter($query, array $filters)
+    // {
+    //     $query->when($filters['search'] ?? null, function ($query, $search) {
+    //         $query->where(function ($query) use ($search) {
+    //             $query->where('first_name', 'like', '%'.$search.'%')
+    //                 ->orWhere('last_name', 'like', '%'.$search.'%')
+    //                 ->orWhere('email', 'like', '%'.$search.'%');
+    //         });
+    //     })->when($filters['account_status'] ?? null, function ($query, $account_status) {
+    //         $query->whereActive($account_status);
+    //     });
+    // }
+
+
     public function interests()
     {
         return $this->belongsToMany(User::class, 'user_interests');
     }
 
-
-    // public function savedUsers() {
-    //     return $this->belongsToMany(SavedUsers::class, 'saved_users', 'saved_by_user_id',  'saved_user_id')->withTimestamps();
-    // }
-
-    // saver_id saved_id
-
-    // public function followers() {
-    //     return $this->belongsToMany(User::class, 'saved_users', 'saved_user_id', 'saved_by_user_id');
-    // }
-
-
-    // public function followings() {
-    //     return $this->belongsToMany(User::class, 'saved_users', 'saved_by_user_id', 'saved_user_id');
-    // }
-
-
-    // public function followers() {
-    //     return $this->belongsToMany(User::class, 'followings', 'followed_id', 'follower_id')->withTimestamps();
-    // }
-
-
-    // public function followings() {
-    //     return $this->belongsToMany(User::class, 'followings', 'follower_id', 'followed_id')->withTimestamps();
-    // }
-
-    
 
     
     public function scopeWhereActive($query, $role)
@@ -207,11 +206,36 @@ class User extends Authenticatable
         return $this->hasManyThrough(User::class, SavedUsers::class, 'saved_user_id', 'id', 'id', 'user_id');
     }
 
+    // Block Users ----------------------------------------------------------------
 
+    public function blockuser(User $user) {
+        if(!$this->isBlocked($user)) {
+            BlockUser::create([
+                'user_id' => auth()->id(),
+                'blocked_id' => $user->id
+            ]);
+        }
+    }
 
-     // Passed Users ----------------------------------------------------------------
+    public function unblockuser(User $user) {
+        BlockUser::where('user_id', auth()->id())->where('blocked_id', $user->id)->delete();
+    }
 
-     public function pass(User $user) {
+    public function isBlocked(User $user) {
+        return $this->blockedusers()->where('users.id', $user->id)->exists();
+    }
+
+    public function blockedusers() {
+        return $this->hasManyThrough(User::class, BlockUser::class, 'user_id', 'id', 'id', 'blocked_id');
+    }
+
+    public function blockers() {
+        return $this->hasManyThrough(User::class, BlockUser::class, 'blocked_id', 'id', 'id', 'user_id');
+    }
+
+    // Passed Users ----------------------------------------------------------------
+
+    public function pass(User $user) {
         if(!$this->isPassed($user)) {
             PassUser::create([
                 'user_id' => auth()->id(),
@@ -263,5 +287,35 @@ class User extends Authenticatable
     public function followers() {
         return $this->hasManyThrough(User::class, Following::class, 'following_id', 'id', 'id', 'user_id');
     }
+
+
+
+    // public function savedUsers() {
+    //     return $this->belongsToMany(SavedUsers::class, 'saved_users', 'saved_by_user_id',  'saved_user_id')->withTimestamps();
+    // }
+
+    // saver_id saved_id
+
+    // public function followers() {
+    //     return $this->belongsToMany(User::class, 'saved_users', 'saved_user_id', 'saved_by_user_id');
+    // }
+
+
+    // public function followings() {
+    //     return $this->belongsToMany(User::class, 'saved_users', 'saved_by_user_id', 'saved_user_id');
+    // }
+
+
+    // public function followers() {
+    //     return $this->belongsToMany(User::class, 'followings', 'followed_id', 'follower_id')->withTimestamps();
+    // }
+
+
+    // public function followings() {
+    //     return $this->belongsToMany(User::class, 'followings', 'follower_id', 'followed_id')->withTimestamps();
+    // }
+
+    
+
 
 }

@@ -156,24 +156,6 @@ function SetUpProfileStepThree() {
                         />
                     </div>
 
-                    {/* <div className="mt-4">
-                        <Label forInput="ethnic-origin" value="Height" />
-
-                        <InputSelect name="ethnic-origin">
-                            <option value="">Select your height</option>
-                            <option value="{value}">5ft 6in</option>
-                            <option value="{value}">6ft</option>
-                        </InputSelect>
-                    </div>
-                    <div className="mt-4">
-                        <Label forInput="ethnic-origin" value="Hair color" />
-                        <InputSelect name="ethnic-origin">
-                            <option value="">Select your hair color</option>
-                            <option value="{value}">Black</option>
-                            <option value="{value}">Blonde</option>
-                        </InputSelect>
-                    </div> */}
-
                     <div className="flex items-center justify-end mt-4">
                         <Button className="bg-gray-800 hover:bg-gray-900 text-gray-50 font-bold py-2 px-4 rounded inline-flex items-center" processing={processing}>
                             <span>Next</span>

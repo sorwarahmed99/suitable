@@ -20,7 +20,6 @@ class CreateUserProfileInfosTable extends Migration
             $table->string('living_with')->nullable();
             $table->string('have_children')->nullable();
             $table->string('like_to_have_children')->nullable();
-            $table->string('poligony')->nullable();
             $table->string('physical_disability')->nullable();
             $table->string('height')->nullable();
             $table->string('hair_color')->nullable();

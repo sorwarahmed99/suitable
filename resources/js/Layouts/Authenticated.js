@@ -6,6 +6,7 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
 import { ThemeContext } from '@/context/ThemeContext';
 import Button from '@/Components/Button';
+import FlashMessages from '@/Components/FlashMessages';
 
 export default function Authenticated({ auth, header, btnName, href, svg, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -14,6 +15,7 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-slate-900">
             <nav className="bg-white dark:bg-slate-800 border-b border-gray-100 dark:border-slate-500 sticky top-0 z-40 backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent">
+            
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
@@ -37,10 +39,13 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                     Interests
                                 </NavLink>
                             </div>
+                           
                         </div>
-                        
+                                <FlashMessages />
+
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
+                            
                             {theme === 'dark' ? (
                                 <button id="theme-toggle" type="button" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className={`${theme === 'light' ? 'hidden' : ''}text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5`}>
                                     <svg id="theme-toggle-dark-icon" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
@@ -75,7 +80,12 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                                 type="button"
                                                 className="inline-flex items-center p-0.5 text-sm leading-4 font-medium rounded-full border-2 border-red-200 hover:border-red-400 text-gray-500 dark:text-gray-100 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                <img src={`http://localhost:3000/${auth.user.profile_image}`} alt={`${auth.user.firstname}'s Profile photo`}  className="w-10 h-10 rounded-full" />
+                                                {!auth.user.profile_image ? (
+                                                    <img src="assets/images/man.svg" alt={`Man photo`}  className="w-10 h-10 rounded-full" />
+                                                ): 
+                                                
+                                                    <img src={`http://localhost:3000/${auth.user.profile_image}`} alt={`${auth.user.firstname}'s Profile photo`}  className="w-10 h-10 rounded-full" />
+                                                }
 
                                                 {/* <svg
                                                     className="ml-2 -mr-0.5 h-4 w-4"
@@ -168,7 +178,11 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                     type="button"
                                     className="inline-flex items-center p-0.5 text-sm leading-4 font-medium rounded-full border-2 border-red-200 hover:border-red-400 text-gray-500 dark:text-gray-100 focus:outline-none transition ease-in-out duration-150"
                                 >
-                                    <img src={`http://localhost:3000/uploads/user-profile-images/${auth.user.profile_image}`} alt={`${auth.user.firstname}'s Profile photo`}  className="w-10 h-10 rounded-full" />
+                                    {!auth.user.profile_image ? (
+                                            <img src="assets/images/man.svg" alt={`Man photo`}  className="w-10 h-10 rounded-full" />
+                                        ): 
+                                            <img src={`http://localhost:3000/${auth.user.profile_image}`} alt={`${auth.user.firstname}'s Profile photo`}  className="w-10 h-10 rounded-full" />
+                                        }
 
                                     {/* <svg
                                         className="ml-2 -mr-0.5 h-4 w-4"
@@ -200,9 +214,11 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                 </div>
             </nav>
 
+            
             {header && (
                 <header className="mt-4 ">
                     <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between">
+
                             <div >{header}</div>
                             <div className="hidden md:block prose prose-slate dark:prose-dark ml-5">
                                 <div class="px-5 py-4 bg-gray-50 shadow rounded-lg flex items-center justify-between">
@@ -238,11 +254,10 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
 
             <main>
                 <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
+                    
                     {children}
                 </div>
             </main>
-                
-
         </div>
     );
 }

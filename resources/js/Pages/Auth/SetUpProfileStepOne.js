@@ -5,14 +5,10 @@ import Input from '@/Components/Input';
 import Label from '@/Components/Label';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
-import RadioButton from '@/Components/RadioButton';
-import ReactFlagsSelect from 'react-flags-select';
 import InputSelect from '@/Components/InputSelect';
-import { DatabaseIcon } from '@heroicons/react/solid';
 
 function SetUpProfileStepOne() {
     const [selectedCountry, setSelectedCountry] = useState('');
-    const onSelect = (code) => setSelectedCountry(code);
     
     const relocateOptions = [
         { value: "Yes", label: "Yes" },

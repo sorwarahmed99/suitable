@@ -12,6 +12,7 @@ use App\Models\UserReligiousHistory;
 use App\Models\UserProfileInfo;
 use App\Models\UserQualification;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class SetUpProfileStepsController extends Controller
@@ -273,15 +274,18 @@ class SetUpProfileStepsController extends Controller
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         
-        if ($request->hasFile('photo')) {
-            $image_path = $request->file('image')->store('image', 'public');
-        }
+        // if ($request->hasFile('photo')) {
+        //     $image_path = $request->file('image')->store('image', 'public');
+        // }
 
         if ($image = $request->file('photo')) {
             $destinationPath = 'uploads/user-profile-images/';
             $profileImage = $user->id.date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             
+            // Storage::disk('uploads')->put('filename', $file_content);
+
+
             auth()->user()->update([
                 'profile_image' => $destinationPath.$profileImage ?? null,
             ]);

@@ -14,34 +14,43 @@ class InvitedUserController extends Controller
         $userToInvite = User::findOrFail($id);
         auth()->user()->invite($userToInvite);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Invited');
     }
     
     public function destroy($id) {
         $userToUnInvite = User::findOrFail($id);
         auth()->user()->uninvite($userToUnInvite);
         
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Canceled!');
     }
 
     public function accept($id) {
-        $user = auth()->user()->id;
-        $userToAccept = User::find($id);
-        // dd($userToAccept);
-        
-        // auth()->user()->acceptuser($userToAccept);
-        DB::table('invited_users')->where('invited_user_id', $userToAccept)->where('user_id', $user)->update(['is_accepted' => 1]);
-
-        return redirect()->back();
+        $user = auth()->id();
+        $userToAccept = User::where('id', $id)->first();
+        $a = InvitedUser::where('invited_user_id', $id)
+                ->when('user_id' == $user, function ($q) {
+                    return $q->where('invited_user_id', '=', $id);
+                })
+                ->first();
+        // dd($a);
+        $a->is_accepted = 1;
+        $a->save();
+        return redirect()->back()->with('success', 'Accepted');
     }
 
     public function reject($id) {
         $user = auth()->user()->id;
         $userToInvite = User::findOrFail($id);
-        DB::table('invited_users')->where('invited_user_id', $id)->where('user_id', $user)->where('is_accepted', 0)->update(['is_accepted' => 2]);
 
+        $a = InvitedUser::where('invited_user_id', $id)
+                ->when('user_id' == $user, function ($q) {
+                    return $q->where('invited_user_id', '=', $id);
+                })
+                ->first();
+        $a->is_accepted = 2;
+        $a->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Request deleted!');
     }
 
 }

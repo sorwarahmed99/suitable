@@ -4,14 +4,15 @@ import { Head, InertiaLink, Link, useForm, usePage } from '@inertiajs/inertia-re
 import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 import Dropdown from '@/Components/Dropdown';
+import EmptyState from '@/Components/EmptyState';
 
-function Home(props) {
+function Home({auth, errors}) {
     const [showInviteMessage,setShowInviteMessage] = useState(false);
     const { users } = usePage().props;
 
     return  <Authenticated
-                auth={props.auth}
-                errors={props.errors}
+                auth={auth}
+                errors={errors}
                 header={<h2 className="font-semibold text-xl text-gray-800 dark:text-slate-50 leading-tight ">Matches</h2>}
                 btnName="Filter"
                 svg={<svg xmlns="http://www.w3.org/2000/svg" className="fill-current text-center w-4 h-4 mr-0 sm:mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -25,10 +26,38 @@ function Home(props) {
                     <div className="max-w-3xl mx-auto sm:px-6 lg:px-8">
                         <div className="overflow-hidden ">
                             <div className="">
-                                {users.map(({ id, firstname, lastname, gender, age, country, recidency_status, ethnic_origin, profile_image, highest_education, current_profession, prayer_frequency, sect, saved, isFollowing, isSaved, isInvited, isAccepted }) => (
+                                {auth.user.account_status == 0 && (
+                                    <div className="mb-4 p-4 shadow-sm border border-red-500 bg-red-50/50 dark:bg-slate-800 rounded-md"> 
+                                        <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-4">Your account is under review!</h2>
+                                        <div className="flex items-start space-x-2 ">
+                                            
+                                            <div className="flex-none text-lg text-red-400 rounded-lg border border-red-400 shadow-md p-5 dark:text-red-400 font-bold">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <div className="min-w-0 relative flex-auto">
+                                                <div className="p-2 pt-0">
+                                                    <p className="text-sm leading-5 tracking-wide font-semibold text-gray-600 dark:text-gray-400">
+                                                        {auth.user.firstname}, your selfie is under validation right now. Once validated,
+                                                        you will receive a confirmation on your registered mail ID. 
+                                                        While you wait for activate account, we recommend you to set up your <Link href={route('auth.user.preferences')} className="text-red-500 text-lg font-semibold hover:border border-red-600 underline hover:text-red-600">preferences</Link>
+                                                    </p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    )
+                                }
+                                {users.map(({ id, firstname, lastname, username, gender, age, height, country, recidency_status, ethnic_origin, profile_image, highest_education, current_profession, prayer_frequency, sect, saved, isFollowing, isSaved, isInvited, isAccepted }) => (
                                     <div key={id} className="flex-none sm:flex bg-white dark:bg-slate-800 shadow-md sm:rounded-lg  space-y-2 mb-4">
                                         <div className="blur-[2px] overflow-hidden relative sm:min-h-full w-full sm:w-[19rem] sm:mb-0 mb-3">
-                                            <img src={`http://localhost:3000/${profile_image}`} alt={`${firstname}'s Profile photo`}  className="blur-[2px] w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg" />
+                                            {!profile_image ? (
+                                                    <img src="assets/images/man.svg" alt={`Man photo`}  className="blur-[2px] w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg" />
+                                                ): 
+                                                    <img src={`http://localhost:3000/${profile_image}`} alt={`${firstname}'s Profile photo`} onerror="this.onerror=null;this.src='https://picsum.photos/200';"  className="blur-[2px] w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg" />
+                                                }
                                         </div>
                                         <div className="flex-auto p-4 sm:ml-3 justify-evenly">
                                             <div className="flex items-center sm:mt-2">
@@ -61,7 +90,10 @@ function Home(props) {
                                                                 </Dropdown.Trigger>
 
                                                                 <Dropdown.Content className="w-10" >
-                                                                    <Dropdown.Link href={route('auth.user.profile')} method="get" as="button">
+                                                                    <Dropdown.Link href={route('user-profile', username)} method="get" as="button">
+                                                                        Demo view user
+                                                                    </Dropdown.Link>
+                                                                    <Dropdown.Link href={route('block-user', id)} method="post" as="button">
                                                                         Block
                                                                     </Dropdown.Link>
                                                                     <Dropdown.Link href={route('auth.user.profile')} method="get" as="button">
@@ -71,7 +103,7 @@ function Home(props) {
                                                             </Dropdown>
                                                         </div>
                                                         <div className="pl-3 text-lg font-semibold text-slate-500">
-                                                            {props.auth.user.account_status == 1 &&
+                                                            {auth.user.account_status == 1 &&
                                                                 <Link method="post" href={route('pass-user', id)} preserveScroll>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -85,7 +117,7 @@ function Home(props) {
                                                     </div>
                                                     
                                                     <div className='mb-6 pb-6 border-b border-slate-200'>
-                                                        <p className="text-sm text-slate-600 dark:text-slate-300">{highest_education != '' ? highest_education : ''  } - {current_profession} - 5ft 5in</p>
+                                                        <p className="text-sm text-slate-600 dark:text-slate-300">{highest_education != '' ? highest_education : ''  } - {current_profession} - {height}</p>
                                                         <p className="text-sm text-slate-600 dark:text-slate-300">Practicing Muslim - {sect}</p>
                                                     </div>
                                                     <div className="flex-auto text-gray-700 dark:text-gray-400 my-1">
@@ -95,7 +127,7 @@ function Home(props) {
 
                                             <div className="flex space-x-4 mt-3 text-sm font-medium">
                                                 <div className="flex-auto flex space-x-4">
-                                                    {isAccepted ? <Link href={route('user-profile', firstname)} className="h-10 bg-black dark:bg-slate-100 text-slate-50 dark:text-slate-500 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-800 dark:border-slate-50  focus:ring-2 dark:ring-slate-400 font-bold py-2 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
+                                                    {isAccepted ? <Link href={route('user-profile', username)} className="h-10 bg-black dark:bg-slate-100 text-slate-50 dark:text-slate-500 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-800 dark:border-slate-50  focus:ring-2 dark:ring-slate-400 font-bold py-2 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
                                                         <span className="text-xs sm:text-sm">View</span>
                                                     </Link> : (
                                                         <button disabled className="disabled:bg-slate-400 disabled:text-slate-200 disabled:border-slate-200 disabled:shadow-none h-10 bg-black dark:bg-slate-100 text-slate-50 dark:text-slate-500 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-800 dark:border-slate-50  focus:ring-2 dark:ring-slate-400 font-bold py-2 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
@@ -104,7 +136,7 @@ function Home(props) {
                                                         </button>
                                                     ) }
                                                     
-                                                    {props.auth.user.account_status == 0 ? ( 
+                                                    {auth.user.account_status == 0 ? ( 
                                                         <button disabled className="disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none bg-transparent text-slate-800 dark:text-slate-500 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-200 bg-slate-200 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 h-10 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
                                                             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -119,7 +151,7 @@ function Home(props) {
                                                             <span className="text-xs sm:text-sm">Invite</span>
                                                         </Link>
                                                      ) :
-                                                        <Link preserveScroll href={route('uninvite.user', id)} method="post" as="button"  className="bg-transparent text-slate-800 dark:text-slate-300 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 dark:hover:text-slate-500 border-2 border-slate-200 bg-slate-200 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 h-10 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
+                                                        <Link preserveScroll href={route('uninvite.user', id)} method="post" as="button"  className="bg-transparent text-indigo-500 dark:text-indigo-500 dark:bg-slate-800 hover:bg-slate-100 hover:text-indigo-600 dark:hover:bg-slate-50 dark:hover:text-slate-500 border-2 border-slate-200 bg-slate-200 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 h-10 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
                                                             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                                                             </svg>
@@ -156,16 +188,14 @@ function Home(props) {
                                                 )}
                                             </div>
                                             <p className="pt-4 text-sm text-yellow-700">
-                                                {props.auth.user.account_status == 0 ? 'You can send invitation to this user once your account is activated!' : (!isAccepted ? `You can view ${firstname}'s profile once ${gender == 'Male' ? 'he' : 'she'} accepts your request.` : `You can view ${firstname}'s full profile`) }
+                                                {auth.user.account_status == 0 ? 'You can send invitation to this user once your account is activated!' : (!isAccepted ? `You can view ${firstname}'s profile once ${gender == 'Male' ? 'he' : 'she'} accepts your request.` : `You can view ${firstname}'s full profile`) }
                                                 
                                             </p>
                                         </div>
                                     </div>
                                 ))}
 
-                                {users.length === 0 && (
-                                    <p className="text-2xl font-semibold text-slate-800 dark:text-slate-50">No users</p> 
-                                )}
+                                
                                 {users.length !== 0 && (
                                     <div className="flex justify-center items-center"> 
                                         <Button className="bg-transparent text-slate-800 dark:text-slate-500 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-200 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 h-10 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
@@ -177,6 +207,13 @@ function Home(props) {
                         </div>
                     </div>
                 </div>
+                {users.length === 0 && (
+
+                <div className=" ">
+                    <EmptyState bgimage="bg-empty-background" title="Looks like no one's here." subtitle="Please wait or come back later!" btnName="Read our faqs" linktext="Have any questions?" href={route('faq')} />
+                        {/* <p className="text-2xl font-semibold text-slate-800 dark:text-slate-50">Looks like you've reached to the end. Please come back later!</p>  */}
+                </div>
+                )}
             </Authenticated>;
     }
 

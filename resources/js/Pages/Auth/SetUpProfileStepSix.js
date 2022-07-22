@@ -60,17 +60,17 @@ const hairColorOptions = [
 ]
 const heightOptions = [
     {value: '4ft', label: '4ft'},
-    {value: '4ft 5inch', label: '4ft 5inch'},
+    {value: '4ft 5in', label: '4ft 5in'},
     {value: '5ft', label: '5ft'},
-    {value: '5ft 5inch', label: '5ft 5inch'},
-    {value: '5ft 6inch', label: '5ft 6inch'},
-    {value: '5ft 7inch', label: '5ft 7inch'},
-    {value: '5ft 8inch', label: '5ft 8inch'},
-    {value: '5ft 9inch', label: '5ft 9inch'},
+    {value: '5ft 5in', label: '5ft 5in'},
+    {value: '5ft 6in', label: '5ft 6in'},
+    {value: '5ft 7in', label: '5ft 7in'},
+    {value: '5ft 8in', label: '5ft 8in'},
+    {value: '5ft 9in', label: '5ft 9in'},
     {value: '6ft', label: '6ft'},
-    {value: '6ft 1inch', label: '6ft 1inch'},
-    {value: '6ft 2inch', label: '6ft 2inch'},
-    {value: '6ft 3inch', label: '6ft 3inch'},
+    {value: '6ft 1in', label: '6ft 1in'},
+    {value: '6ft 2in', label: '6ft 2in'},
+    {value: '6ft 3in', label: '6ft 3in'},
 ];
 
 

@@ -14,7 +14,6 @@ class CreateUserInterestsTable extends Migration
     public function up()
     {
         Schema::create('user_interests', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('interest_id')->constrained();
             $table->foreignId('user_id')->constrained();
             });

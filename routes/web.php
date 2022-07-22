@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\SubscriptionPlanController;
 use App\Http\Controllers\Auth\UserSubscriptionController;
+use App\Http\Controllers\BlockUserController;
 use App\Http\Controllers\FollowingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvitedUserController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\PassUserController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SavedUsersController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserLookingForController;
 use App\Http\Controllers\UserNotificationController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -77,7 +79,7 @@ Route::group(['middleware' => ['auth', 'verified', 'registered_user']], function
     // })->name('home');
     
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/matched-profile/{user:firstname}', [HomeController::class, 'show'])->name('user-profile');
+    Route::get('/matched-profile/{user:username}', [HomeController::class, 'show'])->name('user-profile');
 
     Route::post('/matched-profile/save/{id}', [SavedUsersController::class, 'store'])->name('save.user');
     Route::post('/matched-profile/unsave/{id}', [SavedUsersController::class, 'destroy'])->name('unsave.user');
@@ -94,8 +96,15 @@ Route::group(['middleware' => ['auth', 'verified', 'registered_user']], function
     Route::post('/matched-profile/pass-user/{id}', [PassUserController::class, 'store'])->name('pass-user');
     Route::post('/matched-profile/undo-pass-user/{id}', [PassUserController::class, 'destroy'])->name('undo-pass-user');
 
-    Route::post('/matched-profile/block-user/{id}', [PassUserController::class, 'blockUser'])->name('block-user');
-    Route::post('/matched-profile/report-user/{id}', [PassUserController::class, 'reportUser'])->name('report-user');
+    // Block users routes ----------------------------------------------------------------
+
+    Route::post('/matched-profile/block-user/{id}', [BlockUserController::class, 'store'])->name('block-user');
+    
+    Route::get('/settings/blocked-users', [BlockUserController::class, 'index'])->name('block-users');
+    Route::post('/settings/unblock-user/{id}', [BlockUserController::class, 'destroy'])->name('unblock-user');
+    // Report users routes ----------------------------------------------------------------
+    
+    Route::post('/matched-profile/report-user/{id}', [BlockUserController::class, 'reportUser'])->name('report-user');
     
     // Mutual matches routes ----------------------------------------------------------------
     Route::get('/mutual-matches', [HomeController::class, 'mutualMatches'])->name('mutualMatches');
@@ -113,7 +122,10 @@ Route::group(['middleware' => ['auth', 'verified', 'registered_user']], function
     
     // Auth user routes ----------------------------------------------------------------
     Route::get('/profile', [UserController::class, 'index'])->name('auth.user.profile');
-    Route::get('/preferences', [HomeController::class, 'preferences'])->name('auth.user.preferences');
+    
+    Route::get('/preferences', [UserLookingForController::class, 'index'])->name('auth.user.preferences');
+    Route::post('/preferences/set', [UserLookingForController::class, 'store'])->name('auth.user.preferences.store');
+    
     Route::get('/settings', [UserController::class, 'settings'])->name('auth.user.settings');
 
 

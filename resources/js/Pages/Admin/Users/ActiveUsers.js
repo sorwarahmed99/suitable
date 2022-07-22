@@ -33,9 +33,12 @@ function ActiveUsers(props) {
                                     <div className="flex items-center">
                                         <div className="w-10 h-10">
                                             {/* <img className="w-full h-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects.png" /> */}
-                                            {profile_image && ( 
-                                            <img src={`http://localhost:3000/${profile_image}`} alt={`${firstname}'s Profile photo`}  className="w-full h-full" />
-                                            )}
+                                           
+                                            {!profile_image ? (
+                                            <img src="assets/images/man.svg" alt={`Man photo`}  className="w-full h-full" />
+                                                ): 
+                                                    <img src={`http://localhost:3000/${profile_image}`} alt={`${firstname}'s Profile photo`}  className="w-full h-full" />
+                                                }
                                         </div>
                                         <div className="pl-4">
                                             <p className="font-medium">{firstname}  {lastname} , {age}</p>

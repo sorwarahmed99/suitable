@@ -12,7 +12,7 @@ class PassUserController extends Controller
         $userToPass = User::findOrFail($id);
         auth()->user()->pass($userToPass);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Passed!');
     }
 
 
@@ -20,6 +20,6 @@ class PassUserController extends Controller
         $userToUnpass = User::findOrFail($id);
         $f =  auth()->user()->unpass($userToUnpass);
         
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Restored!');
     }
 }

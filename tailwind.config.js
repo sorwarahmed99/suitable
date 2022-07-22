@@ -31,6 +31,8 @@ module.exports = {
                     "linear-gradient(rgba(255, 182, 182, 0.30), rgba(255, 182, 182, 0.30)), url('/assets/images/familu.svg')",
                 'plan-background':
                     "linear-gradient(rgba(0,0,0, 0.10), rgba(0,0,0, 0.10)), url('/assets/images/plan.svg')",
+                'empty-background':
+                    "linear-gradient(rgba(0,0,0, 0.10), rgba(0,0,0, 0.10)), url('/assets/images/empty.svg')",
                 'landing-background':
                     'linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url(https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80)',
                 'profile-background':

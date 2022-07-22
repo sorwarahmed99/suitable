@@ -56,9 +56,9 @@ export default () => {
   }, [flash, errors]);
 
   return (
-    <div>
+    <div className="">
       {flash.success && visible && (
-        <div className="mb-8 flex items-center justify-between bg-green-500 rounded max-w-3xl">
+        <div className="mb-2 mt-2 flex items-center justify-between bg-green-500 rounded max-w-3xl">
           <div className="flex items-center">
             <IconSuccess />
             <div className="py-4 text-white text-sm font-medium">

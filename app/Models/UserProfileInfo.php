@@ -15,7 +15,6 @@ class UserProfileInfo extends Model
         'living_with',
         'have_children',
         'like_to_have_children',
-        'poligony',
         'physical_disability',
         'height',
         'hair_color',

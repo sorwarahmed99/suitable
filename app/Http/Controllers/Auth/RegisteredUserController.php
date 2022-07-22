@@ -51,9 +51,10 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
-            'username' => Str::lower($request->lastname."_".$request->firstname).rand(pow(10, 8 - 1), pow(10, 8) -1),
+            'username' => Str::lower($request->firstname."_".$request->lastname).rand(pow(10, 8 - 1), pow(10, 8) -1),
             'email' => $request->email,
             'date_of_birth' => $request->date_of_birth,
+            'age' => \Carbon\Carbon::parse($request->date_of_birth)->age,
             'gender' => $request->gender,
             'password' => Hash::make($request->password),
             'account_status' => 0,

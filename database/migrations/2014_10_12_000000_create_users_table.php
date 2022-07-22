@@ -20,13 +20,12 @@ class CreateUsersTable extends Migration
             $table->string('nickname')->nullable();
             $table->string('username')->nullable();
             $table->string('email')->unique();
-            $table->integer('phone')->unique()->nullable();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone')->unique()->nullable();
             $table->string('password');
             $table->string('date_of_birth')->nullable();
+            $table->string('age')->nullable();
             $table->string('gender')->nullable();
             $table->string('profile_image')->nullable();
-            $table->string('account_created_with')->nullable();
             $table->string('ethnic_origin')->nullable();
             $table->string('country')->nullable();
             $table->string('recidency_status')->nullable();
@@ -34,6 +33,9 @@ class CreateUsersTable extends Migration
             $table->string('postcode')->nullable();
             $table->integer('profile_step')->nullable();
             $table->boolean('account_status')->default(0)->nullable();
+            $table->string('last_login')->nullable();
+            $table->string('account_created_with')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->unsignedBigInteger('account_verified_by')->nullable();
             $table->rememberToken();
             $table->timestamps();

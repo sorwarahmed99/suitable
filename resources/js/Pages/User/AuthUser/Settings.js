@@ -2,6 +2,7 @@ import ResponsiveSidenav from '@/Components/ResponsiveSidenav'
 import UserSideNav from '@/Components/UserSideNav'
 import Authenticated from '@/Layouts/Authenticated'
 import React from 'react'
+import { Head, InertiaLink, Link, useForm, usePage } from '@inertiajs/inertia-react';
 
 function Settings(props) {
   return (
@@ -36,7 +37,26 @@ function Settings(props) {
                           </div>
                       </div>
                       <div className="container mx-auto pb-6">
-                          <div className="flex items-center pb-4 border-b border-gray-300 dark:border-gray-700 px-8 text-gray-800 dark:text-gray-100">
+                        <div className="pb-4 border-b border-gray-300 dark:border-gray-700 px-8">
+                            <div className="flex items-center text-gray-800 dark:text-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                </svg>
+                                <p className="text-sm font-bold ml-2 text-gray-800 dark:text-gray-100">Blocked users</p>
+                            </div>
+                        </div>
+                        <div className="px-8">
+                            <div className="flex justify-between items-center mb-8 mt-4">
+                                <div className="w-9/12">
+                                    <p className="text-sm text-gray-800 dark:text-gray-100 pb-1">Blocked users</p>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400">Manage all users you blocked from here.</p>
+                                </div>
+                                <div className="cursor-pointer relative">
+                                    <Link className="text-indigo-500 text-xs sm:text-sm hover:underline" href={route('block-users')} method="get">See all</Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex items-center pb-4 border-b border-gray-300 dark:border-gray-700 px-8 text-gray-800 dark:text-gray-100">
                               <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-mail" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                   <path stroke="none" d="M0 0h24v24H0z" />
                                   <rect x={3} y={5} width={18} height={14} rx={2} />

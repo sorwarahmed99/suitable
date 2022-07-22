@@ -1,3 +1,4 @@
+import EmptyState from '@/Components/EmptyState'
 import ResponsiveSidenav from '@/Components/ResponsiveSidenav'
 import UserSideNav from '@/Components/UserSideNav'
 import Authenticated from '@/Layouts/Authenticated'
@@ -23,7 +24,14 @@ function MutualMatches(props) {
                 </div>
                 
                 <div className="mt-2 sm:mt-0 sm:w-2/3 bg-gray-50 p-6 sm:p-10 rounded-md shadow-sm">
-                
+                <EmptyState bgimage="bg-empty-background" title="Looks like its empty in here." subtitle="Please browse for more users..." btnName="Read our faqs" linktext="Have any questions?" href={route('faq')} />
+
+                {/* {passedusers.length === 0 && (
+
+                    <div className="p-0 m-0 w-full h-auto">
+                        <EmptyState bgimage="bg-empty-background" title="Looks like its empty in here." subtitle="Please browse for more users..." btnName="Read our faqs" linktext="Have any questions?" href={route('faq')} />
+                    </div>
+                )} */}
                 </div>
             </div>
         </div> 

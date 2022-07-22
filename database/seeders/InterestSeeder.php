@@ -57,5 +57,7 @@ class InterestSeeder extends Seeder
                         </svg>'
         ]);
 
+        
+
     }
 }

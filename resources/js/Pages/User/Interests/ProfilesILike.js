@@ -1,5 +1,6 @@
 import Button from '@/Components/Button'
 import Dropdown from '@/Components/Dropdown'
+import EmptyState from '@/Components/EmptyState'
 import MatchedSideNav from '@/Components/MatchedSideNav'
 import Authenticated from '@/Layouts/Authenticated'
 import { Link, usePage } from '@inertiajs/inertia-react'
@@ -18,7 +19,7 @@ function ProfilesILike(props) {
         href={route('home')}
         >
 
-            <div className="max-w-9xl mx-auto px-4 sm:px-6 md:px-8">
+            <div className="max-w-9xl mx-auto sm:px-6 md:px-8">
                 <div className="flex-row sm:flex sm:space-x-2">
                     <div className="sm:w-[250px] h-min ">
                         
@@ -26,12 +27,12 @@ function ProfilesILike(props) {
                         
                     </div>
                     
-                    <div className="mt-2 sm:mt-0 sm:w-2/3 bg-gray-50 dark:bg-slate-700 p-6 sm:p-10 rounded-md shadow-sm">
-                        <div className="py-2">
+                    <div className="mt-2 sm:mt-0 sm:w-2/3 bg-gray-50 dark:bg-slate-700 sm:p-10 rounded-md shadow-sm">
+                        <div className="">
                             <div className="max-w-3xl mx-auto sm:px-6 lg:px-8">
                                 <div className="overflow-hidden ">
                                     <div className="">
-                                        {invitedusers.map(({ id, firstname, lastname, gender, age, country, recidency_status, ethnic_origin, profile_image, highest_education, current_profession, prayer_frequency, sect, saved, isFollowing, isSaved, isInvited, isAccepted }) => (
+                                        {invitedusers.map(({ id, firstname, lastname, username, gender, age, country, recidency_status, ethnic_origin, profile_image, highest_education, current_profession, prayer_frequency, sect, saved, isFollowing, isSaved, isInvited, isAccepted }) => (
                                             <div key={id} className="flex-none sm:flex bg-white dark:bg-slate-800 shadow-md sm:rounded-lg  space-y-2 mb-4">
                                                 <div className="blur-[2px] overflow-hidden relative sm:min-h-full w-full sm:w-[19rem] sm:mb-0 mb-3">
                                                     <img src={`http://localhost:3000/${profile_image}`} alt={`${firstname}'s Profile photo`}  className="blur-[2px] w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg" />
@@ -172,16 +173,19 @@ function ProfilesILike(props) {
                                                 </div>
                                             </div>
                                         ))}
-
-                                        {invitedusers.length === 0 && (
-                                            <p className="text-2xl font-semibold text-slate-800 dark:text-slate-50">You haven't liked any profile</p> 
-                                        )}
                                         {invitedusers.length !== 0 && (
                                             <div className="flex justify-center items-center"> 
                                                 <Button className="bg-transparent text-slate-800 dark:text-slate-500 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-200 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 h-10 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
                                                     Load more
                                                 </Button>
                                             </div>
+                                        )}
+                                        {invitedusers.length === 0 && (
+
+                                        <div className=" ">
+                                            <EmptyState bgimage="bg-empty-background" title="Looks like its empty in here." subtitle="Please browse for more users..." btnName="Read our faqs" linktext="Have any questions?" href={route('faq')} />
+                                                {/* <p className="text-2xl font-semibold text-slate-800 dark:text-slate-50">Looks like you've reached to the end. Please come back later!</p>  */}
+                                        </div>
                                         )}
                                     </div>
                                 </div>
@@ -191,7 +195,6 @@ function ProfilesILike(props) {
                     </div>
                 </div>
             </div> 
-
         </Authenticated>
   )
 }

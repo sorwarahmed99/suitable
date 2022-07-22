@@ -143,6 +143,7 @@ function SetUpProfileStepThree(props) {
                             <div className="w-1/3">
                                 <Label forInput="eat_halal" value="Do you eat halal ?" />
                             </div>
+                            
                             <div className="w-2/3 flex justify-end space-x-1">
                                 <RadioButton name="eat_halal" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
                                 <RadioButton name="eat_halal" value={`No`} btnName="No" handleChange={onHandleChange} />

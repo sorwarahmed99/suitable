@@ -14,14 +14,14 @@ class SavedUsersController extends Controller
         $userToSave = User::findOrFail($id);
         auth()->user()->saveuser($userToSave);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Saved!');
     }
 
     public function destroy($id) {
         $userToUnsave = User::findOrFail($id);
         auth()->user()->unsaveuser($userToUnsave);
         
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Removed!');
     }
 
 

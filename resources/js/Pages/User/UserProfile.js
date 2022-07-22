@@ -72,7 +72,7 @@ function UserProfile(props) {
             <div className="mt-2 sm:mt-0 sm:w-2/3 bg-gray-50 p-6 sm:p-10 rounded-md shadow-sm">
                 <div>
                     <div className="hidden sm:flex items-center">
-                        <h1 className="text-2xl font-bold">{user.firstname} {user.lastname}, <span className="text-slate-600">{user.age} - {user.id} </span></h1>
+                        <h1 className="text-2xl font-bold">{user.firstname} {user.lastname}, <span className="text-slate-600">{user.age} </span></h1>
                         
                         <div className="ml-2"> 
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -80,7 +80,7 @@ function UserProfile(props) {
                             </svg>
                         </div>
                     </div>
-                    <p className="hidden sm:block text-slate-500">{user.ethnic_origin} From {user.country} - {user.marital_status} 5.6ft </p>
+                    <p className="hidden sm:block text-slate-500">{user.ethnic_origin} From {user.country} - {user.marital_status} - {user.height} </p>
                 </div>
                 <div >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8"> 
@@ -104,7 +104,6 @@ function UserProfile(props) {
                                                 : 'Doesn\'t Like to wear Hijab'))
                                         ) : ''
                                     }
-                                    
                             </p>
                             <p>{user.eat_halal == 'Hidden' && '' } {user.eat_halal == 'Yes' ? 'Always eats halal' : 'Never eats halal'}</p>
                         </div>
@@ -165,21 +164,7 @@ function UserProfile(props) {
                     <div className="col-span-2 mt-4">
                         <h1>About {user.firstname}</h1>
                         <p className="whitespace-normal align-baseline text-justify leading-5 tracking-wide">
-                        In today's challenging real estate climate, having an experienced real estate professional
-                        by your side is more important than ever. As your real estate professional, I will listen to
-                        and work hard to understand your objectives and will provide you with the highest level
-                        of personal service and attention every step of the way. I am 100% committed to
-                        making your home selling experience as rewarding as possible both personally and
-                        professionally. <br/>
-                        I coordinate a tech savvy strategy tailored to the unique aspects of marketing your
-                        home and will use my professional skills and experience to aggressively market your
-                        property, negotiate on your behalf and expertly manage every aspect of selling your
-                        home from start to finish. 
-                        
-                        You can expect continuous, proactive communication to keep
-                        you apprised of all pertinent information.
-                        As an "Accredited Buyer Representative (ABR)" I am committed to making your home
-                        buying experience as rewarding as possible both personally and financially.
+                            {user.bio}
                         </p>
                     </div>
                 </div>
