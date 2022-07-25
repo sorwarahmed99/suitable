@@ -1682,6 +1682,10 @@ input[type='date']:after {
   width: 75%;
 }
 
+.w-1\/5{
+  width: 20%;
+}
+
 .min-w-full{
   min-width: 100%;
 }
@@ -2364,6 +2368,11 @@ input[type='date']:after {
 .border-slate-500{
   --tw-border-opacity: 1;
   border-color: rgb(100 116 139 / var(--tw-border-opacity));
+}
+
+.border-gray-600{
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
 }
 
 .bg-white{
@@ -3399,6 +3408,14 @@ input[type='date']:after {
 .no-underline{
   -webkit-text-decoration-line: none;
           text-decoration-line: none;
+}
+
+.underline-offset-4{
+  text-underline-offset: 4px;
+}
+
+.underline-offset-8{
+  text-underline-offset: 8px;
 }
 
 .antialiased{

@@ -41,11 +41,7 @@ class RegisteredUserController extends Controller
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'date_of_birth' => 'required|string|date|before:-18 years',
-            'gender' => 'required',
             'password' => ['required', Rules\Password::defaults()],
-        ], [
-            'date_of_birth.date|before:-18 years'=> 'You must be 18 years or older!',
         ]);
 
         $user = User::create([
@@ -53,13 +49,12 @@ class RegisteredUserController extends Controller
             'lastname' => $request->lastname,
             'username' => Str::lower($request->firstname."_".$request->lastname).rand(pow(10, 8 - 1), pow(10, 8) -1),
             'email' => $request->email,
-            'date_of_birth' => $request->date_of_birth,
-            'age' => \Carbon\Carbon::parse($request->date_of_birth)->age,
-            'gender' => $request->gender,
             'password' => Hash::make($request->password),
             'account_status' => 0,
             'profile_step' => 1,
         ]);
+
+        
 
         event(new Registered($user));
 

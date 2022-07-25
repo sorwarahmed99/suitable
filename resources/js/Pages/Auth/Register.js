@@ -6,6 +6,7 @@ import Label from '@/Components/Label';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
 import RadioButton from '@/Components/RadioButton';
+import InputSelect from '@/Components/InputSelect';
 
 export default function Register(props) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -13,8 +14,6 @@ export default function Register(props) {
         lastname: '',
         email: '',
         password: '',
-        date_of_birth: '',
-        gender: '',
         _token: props.csrf_token,
     });
 
@@ -111,26 +110,6 @@ export default function Register(props) {
                         autoComplete="password"
                         handleChange={onHandleChange}
                     />
-                </div>
-
-                <div className="mt-4">
-                    <Label forInput="date_of_birth" value="Date of Birth" />
-
-                    <Input
-                        type="date"
-                        name="date_of_birth"
-                        value={data.date_of_birth}
-                        className="mt-1 block w-full"
-                        handleChange={onHandleChange}
-                    />
-                </div>
-
-                <div className="mt-4 border-b border-slate-200">
-                    <Label forInput="gender" value="Gender" />
-                    <div className="flex items-baseline mb-2 pb-2 space-x-2">
-                        <RadioButton name="gender" value={ `Male` } btnName="Male" handleChange={onHandleChange} />
-                        <RadioButton name="gender" value={`Female`} btnName="Female" handleChange={onHandleChange} />
-                    </div>
                 </div>
 
                 <div className="flex items-center pt-5">

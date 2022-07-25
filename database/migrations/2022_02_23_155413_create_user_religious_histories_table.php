@@ -16,7 +16,11 @@ class CreateUserReligiousHistoriesTable extends Migration
         Schema::create('user_religious_histories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+
             $table->string('religious_history')->nullable();
+            
+            $table->string('read_quran')->nullable();
+            
             $table->string('prayer_frequency')->nullable();
             $table->string('sect')->nullable();
             $table->string('school_of_thoughts')->nullable();

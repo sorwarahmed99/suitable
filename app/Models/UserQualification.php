@@ -12,7 +12,13 @@ class UserQualification extends Model
     protected $fillable = [
         'user_id',
         'highest_education',
-        'graduation_year',
+
+        'university',
+        'university_graduation_year',
+        'college',
+        'college_graduation_year',
+
+        
         'current_profession',
         'for_how_long',
         'company_name',

@@ -557,7 +557,7 @@ function Profile({auth}) {
                         <form id="login" className="dark:bg-slate-800" onSubmit={handleSubmit}>
                             <div className="dark:bg-gray-800">
                                 <div className="p-4 shadow-sm bg-slate-100 dark:bg-slate-700 rounded-md"> 
-                                    <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-4">Your selfie is under validation!</h2>
+                                    <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-4">Your profile is under validation!</h2>
                                     <div className="flex items-start space-x-2 ">
                                         
                                         <div className="flex-none text-lg text-red-400 rounded-lg border border-red-400 shadow-md p-5 dark:text-red-400 font-bold">
@@ -567,7 +567,7 @@ function Profile({auth}) {
                                         <div className="min-w-0 relative flex-auto">
                                             <div className="p-2">
                                                 <p className="text-sm font-semibold  text-gray-600 dark:text-gray-400">
-                                                    {user.firstname}, your selfie is under validation right now. Once validated,
+                                                    {user.firstname}, your profile is under validation right now. Once validated,
                                                     you will receive a confirmation on your registered mail ID.
                                                 </p>
                                             </div>

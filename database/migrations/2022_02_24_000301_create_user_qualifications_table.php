@@ -17,7 +17,13 @@ class CreateUserQualificationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('highest_education')->nullable();
-            $table->string('graduation_year')->nullable();
+
+            $table->string('university')->nullable();
+            $table->string('university_graduation_year')->nullable();
+            $table->string('college')->nullable();
+            $table->string('college_graduation_year')->nullable();
+
+
             $table->string('current_profession')->nullable();
             $table->string('for_how_long')->nullable();
             $table->string('company_name')->nullable();

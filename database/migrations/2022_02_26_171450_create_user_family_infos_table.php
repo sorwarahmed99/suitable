@@ -17,6 +17,7 @@ class CreateUserFamilyInfosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->integer('siblings')->nullable();
+            $table->integer('how_many_brothers_and_sisters')->nullable();
             $table->string('a_day_living_with_family')->nullable();
             $table->string('get_married')->nullable();
             $table->string('continue_working')->nullable();

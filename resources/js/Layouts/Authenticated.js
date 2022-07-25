@@ -46,6 +46,11 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
                             
+                        <Link href={route('auth.user.profile')} type="button" className="ml-2 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                                <div className="h-15 w-15 rounded-full border-2 border-red-400 px-2 py-1">
+                                    <h4 className="text-md font-medium text-red-400">Profile - 50%</h4>
+                                </div>
+                            </Link>
                             {theme === 'dark' ? (
                                 <button id="theme-toggle" type="button" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className={`${theme === 'light' ? 'hidden' : ''}text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5`}>
                                     <svg id="theme-toggle-dark-icon" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
@@ -72,6 +77,9 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                 </svg>
                                 <span className="ml-2">Inbox</span>
                             </Link>
+
+                            
+
                             <div className="ml-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -219,8 +227,10 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                 <header className="mt-4 ">
                     <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between">
 
-                            <div >{header}</div>
-                            <div className="hidden md:block prose prose-slate dark:prose-dark ml-5">
+                            <div>
+                                {header}
+                            </div>
+                            {/* <div className="hidden md:block prose prose-slate dark:prose-dark ml-5">
                                 <div class="px-5 py-4 bg-gray-50 shadow rounded-lg flex items-center justify-between">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0">
@@ -240,13 +250,12 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                         </svg>
                                     </button>
                                 </div>
-                            </div>
-                            <div>
-                                <Link href={href} className="bg-transparent text-slate-700 dark:text-slate-50 dark:bg-slate-700 hover:bg-slate-800 hover:text-slate-500 dark:hover:bg-slate-900 border-2 border-slate-800 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-medium py-2 px-3 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
-                                    {svg}
-                                    <span className="hidden sm:block">{btnName}</span>
-                                </Link>
-                            </div>
+                            </div> */}
+                                    <Link href={href} className="bg-transparent text-slate-700 dark:text-slate-50 dark:bg-slate-700 hover:bg-slate-800 hover:text-slate-500 dark:hover:bg-slate-900 border-2 border-slate-800 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-medium py-2 px-3 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
+                                        {svg}
+                                        <span className="hidden sm:block">{btnName}</span>
+                                    </Link>
+                                
                         </div>
 
                 </header>

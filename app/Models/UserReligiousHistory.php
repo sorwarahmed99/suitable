@@ -19,5 +19,6 @@ class UserReligiousHistory extends Model
         'smoke',
         'drink_alchohol',
         'wear_hijab_keep_beard',
+        'read_quran',
     ];
 }

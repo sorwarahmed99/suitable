@@ -37,6 +37,12 @@ class User extends Authenticatable
         'profile_step',
         'ethnic_origin',
         'country',
+        'city',
+
+        'back_home_country',
+        'back_home_city',
+        'back_home_area',
+        
         'recidency_status',
         'relocate',
         'postcode',

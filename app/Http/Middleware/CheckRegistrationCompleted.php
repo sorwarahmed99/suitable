@@ -22,15 +22,19 @@ class CheckRegistrationCompleted
             return redirect()->route('setupprofilestep2');
         } else if (auth()->user()->profile_step == 3){
             return redirect()->route('setupprofilestep3');
-        } else if (auth()->user()->profile_step == 4){
-            return redirect()->route('setupprofilestep4');
-        } else if (auth()->user()->profile_step == 5){
-            return redirect()->route('setupprofilestep5');
-        } else if (auth()->user()->profile_step == 6){
-            return redirect()->route('uploadProfilePic');
-        }  else if (auth()->user()->profile_step == 7){
-            return redirect()->route('setupprofilestep6');
         } 
+        else if (auth()->user()->profile_step == 4){
+            return redirect()->route('setupprofilestep4');
+        } 
+        else if (auth()->user()->profile_step == 5){
+            return redirect()->route('uploadProfilePic');
+        }
+        else if (auth()->user()->profile_step == 6){
+            return redirect()->route('uploadProfilePic');
+        }  
+        // else if (auth()->user()->profile_step == 7){
+        //     return redirect()->route('setupprofilestep6');
+        // } 
         // else if (auth()->user()->profile_step == 8){
         //     return redirect()->route('setupprofilestep7');
         // }

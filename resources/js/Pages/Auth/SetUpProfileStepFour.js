@@ -9,21 +9,61 @@ import ReactFlagsSelect from 'react-flags-select';
 import InputSelect from '@/Components/InputSelect';
 import RadioButton from '@/Components/RadioButton';
 
-function SetUpProfileStepThree() {
+function SetUpProfileStepFour(props) {
+    const [nextStep, setNextStep] = useState(true);
+
     const { data, setData, post, processing, errors, reset } = useForm({
-        highest_education: '',
-        graduation_year: '',
-        current_profession: '',
-        for_how_long: '',
-        company_name: '',
-        yearly_income: '',
+        religious_history:'',
+        prayer_frequency: '',
+        read_quran: '',
+        sect: '',
+        eat_halal: '',
+        drink_alchohol: '',
+        wear_hijab_keep_beard: '',
+        _token: props.csrf_token,
     });
 
-    useEffect(() => {
-        return () => {
-            reset('password', 'password_confirmation');
-        };
-    }, []);
+
+    const regiousHistoryOptions = [
+        { value: "Convert", label: "Convert" },
+        { value: "Revert", label: "Revert" },
+        { value: "Not sure", label: "Not sure" },
+    ];
+
+    const readQuranOptions = [
+        { value: "Yes, I have completed", label: "Yes, I have completed" },
+        { value: "Yes, but I’m still learning", label: "Yes, but I’m still learning" },
+        { value: "Still learning Arabic", label: "Still learning Arabic" },
+        { value: "No, I can’t read ", label: "No, I can’t read " },
+    ];
+
+    const sectOptions = [
+        { value: "Sunni", label: "Sunni" },
+        { value: "Shia", label: "Shia" },
+        { value: "Other", label: "Other" },
+        { value: "Don't Follow", label: "Do not follow" },
+    ];
+
+    const prayerFrequencyOptions = [
+        { value: "Never Missed", label: "Never Missed" },
+        { value: "Sometimes Miss", label: "Sometimes Miss" },
+        { value: "Occasionally", label: "Occasionally" },
+        { value: "Hidden", label: "Prefer not to say" },
+    ];
+
+    const drinkAlchoholOptions = [
+        { value: "Yes", label: "Yes, doesn’t matter to me" },
+        { value: "No", label: "No" },
+        { value: "Occasionally", label: "Occasionally" },
+        { value: "Hidden", label: "Prefer not to say" },
+    ];
+
+    const eatHalalOptions = [
+        { value: "Yes", label: "Yes, always" },
+        { value: "No, doesn’t matter to me", label: "No, doesn’t matter to me" },
+        { value: "Sometimes", label: "Sometimes" },
+        { value: "Hidden", label: "Prefer not to say" },
+    ];
 
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
@@ -34,40 +74,15 @@ function SetUpProfileStepThree() {
         post('set-up-profile-step-4');
     };
 
-    const educationOptions = [
-        {value: 'Masters', label: 'Masters'},
-        {value: 'Bachelor', label: 'Bachelor'},
-        {value: 'PHD', label: 'PHD'},
-    ];
-
-    const yearsOptions = [
-        {value: 'Newly Joined', label: 'Newly Joined'},
-        {value: '1-3 Years', label: '1-3 Years'},
-        {value: '3-5 Years', label: '3-5 Years'},
-        {value: '5+ Years', label: '5+ Years'},
-    ];
-
-    let minOffset = 0, maxOffset = 60;
-    let thisYear = (new Date()).getFullYear();
-    let allYears = [];
-    for(let x = 0; x <= maxOffset; x++) {
-        allYears.push(thisYear - x)
-    }
-
     return <Guest
-                bgimage="bg-career-background"
-                title="Help us find the perfect match for you"
-                subtitle="Tell us more about your lifestyle"
-                linktext="Need help ?"
-                href="/"
-                btnName="Contact support"
+                bgimage="bg-rel-background"
             >
                 <Head title="Suitable | Set up profile" />
                 
                 <div className="text-center">
                     <div className="flex mb-2 justify-between items-center">
                         <h2 className="mt-6 text-lg font-semibold text-gray-900">
-                            Education | Carrier
+                            Religious view
                         </h2>
                         <p className="mt-6 text-xl font-bold text-gray-900">50%</p>
                     </div>
@@ -77,95 +92,109 @@ function SetUpProfileStepThree() {
                 </div>
 
                 <ValidationErrors errors={errors} />
-
                 <form onSubmit={submit}>
                     <div className="mt-4">
-                        <Label forInput="highest_education" value="Highest Education" />
+                            <Label forInput="religious_history" value="Religious history" />
+                            <InputSelect 
+                                value={data.religious_history} 
+                                onChange={onHandleChange} 
+                                options={regiousHistoryOptions} 
+                                className={`block w-full sm:text-sm`} 
+                                placeholder='Select your religious history'
+                                name={`religious_history`}
+                            />
+                    </div>
+
+                    <div className="mt-4">
+                            <Label forInput="prayer_frequency" value="Do you pray" />
+                            <InputSelect 
+                                value={data.prayer_frequency} 
+                                onChange={onHandleChange} 
+                                options={prayerFrequencyOptions} 
+                                className={`block w-full sm:text-sm`} 
+                                placeholder='Select your prayer frequency'
+                                name={`prayer_frequency`}
+                            />
+                    </div>
+
+                    <div className="mt-4">
+                        <Label forInput="sect" value="Sect" />
                         <InputSelect 
-                            defaultValue={data.highest_education} 
+                            value={data.sect} 
                             onChange={onHandleChange} 
-                            options={educationOptions} 
+                            options={sectOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder='Your educational qualification'
-                            name={`highest_education`}
+                            placeholder='What sect are you?'
+                            name={`sect`}
+                            required={true}
+                        />
+                    </div>
+
+                    <div className="mt-4">
+                        <Label forInput="read_quran" value="Read Quran" />
+                        <InputSelect 
+                            value={data.read_quran} 
+                            onChange={onHandleChange} 
+                            options={readQuranOptions} 
+                            className={`block w-full sm:text-sm`} 
+                            placeholder='Can you read Quran?'
+                            name={`read_quran`}
+                        />
+                    </div>
+
+                    <div className="mt-4">
+                        <Label forInput="eat_halal" value="Eating Halal" />
+                        <InputSelect 
+                            value={data.eat_halal} 
+                            onChange={onHandleChange} 
+                            options={eatHalalOptions} 
+                            className={`block w-full sm:text-sm`} 
+                            placeholder='Do you eat halal?'
+                            name={`eat_halal`}
+                            required={true}
+                        />
+                    </div>
+
+                    <div className="mt-4">
+                        <Label forInput="drink_alchohol" value="Drink" />
+                        <InputSelect 
+                            value={data.drink_alchohol} 
+                            onChange={onHandleChange} 
+                            options={drinkAlchoholOptions} 
+                            className={`block w-full sm:text-sm`} 
+                            placeholder='Do you drink alchohol ?'
+                            name={`drink_alchohol`}
+                            required={true}
                         />
                     </div>
                     
-                    <div className="mt-4">
-                        <Label forInput="graduation_year" value="Graduation Year" />
-                        <select 
-                            className={
-                                `mt-1 border-gray-300 rounded-xl shadow-sm`
-                            }
-                            onChange={onHandleChange}
-                            name="graduation_year" 
-                            value={data.graduation_year} 
-                        >
-                            <option selected>Select graduation year</option>
-                            {
-                                allYears.map((year) => <option value={year} key={year}>{year}</option>)
-                            }
-                        </select>
-                    </div>
 
-                    <div className="mt-4">
-                        <Label forInput="current_profession" value="Profession" />
-                        <Input
-                            type="text"
-                            name="current_profession"
-                            value={data.current_profession}
-                            className="mt-1 block w-full"
-                            handleChange={onHandleChange}
-                            required
-                        />
-                    </div>
-                    
-                    <div className="mt-4">
-                        <Label forInput="for_how_long" value="Years" />
-                        <InputSelect 
-                            defaultValue={data.for_how_long} 
-                            onChange={onHandleChange} 
-                            options={yearsOptions} 
-                            className={`block w-full sm:text-sm`} 
-                            placeholder='How long have you been in this position?'
-                            name={`for_how_long`}
-                        />
-                    </div>
+                        <div className="mt-4">
+                            <div className="flex items-baseline mb-2 pb-2 space-x-2">
+                                <div className="w-1/3">
+                                    <Label forInput="wear_hijab_keep_beard" value={`${props.auth.user.gender == "Male" ? "Keep Beard" : "Wear Hijab ?" }`} />
+                                </div>
+                                <div className="w-2/3 flex justify-end space-x-1">
+                                    <RadioButton name="wear_hijab_keep_beard" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
+                                    <RadioButton name="wear_hijab_keep_beard" value={`No`} btnName="No" handleChange={onHandleChange} />
+                                    <RadioButton name="wear_hijab_keep_beard" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
+                                </div>
+                            </div>
+                        </div>
 
-                    <div className="mt-4">
-                        <Label forInput="company_name" value="Company Name" />
-                        <Input
-                            type="text"
-                            name="company_name"
-                            value={data.company_name}
-                            className="mt-1 block w-full"
-                            handleChange={onHandleChange}
-                            required
-                        />
-                    </div>
 
-                    <div className="mt-4">
-                        <Label forInput="yearly_income" value="Yearly Income" />
-                        <Input
-                            type="number"
-                            name="yearly_income"
-                            value={data.yearly_income}
-                            className="mt-1 block w-full"
-                            handleChange={onHandleChange}
-                            required
-                        />
-                    </div>
 
-                    <div className="flex items-center justify-end mt-4">
-                        <Button className="bg-gray-800 hover:bg-gray-900 text-gray-50 font-bold py-2 px-4 rounded inline-flex items-center" processing={processing}>
-                            <span>Next</span>
-                            <svg className="fill-current w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                            </svg>
-                        </Button>
-                    </div>
-                </form>
+                        <div className="flex items-center justify-end mt-4">
+                            <Button className="bg-gray-800 hover:bg-gray-900 text-gray-50 font-bold py-2 px-4 rounded inline-flex items-center" processing={processing}>
+                                <span>Next</span>
+                                <svg className="fill-current w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                </svg>
+                            </Button>
+                        </div>
+                    </form>
+
         </Guest>;
 }
 
-export default SetUpProfileStepThree;
+export default SetUpProfileStepFour;

@@ -10,51 +10,39 @@ import RadioButton from '@/Components/RadioButton';
 import InputSelect from '@/Components/InputSelect';
 
 function SetUpProfileStepThree(props) {
-    
-    const regiousHistoryOptions = [
-        { value: "Convert", label: "Convert" },
-        { value: "Revert", label: "Revert" },
-        { value: "Not sure", label: "Not sure" },
-    ];
-
-    const sectOptions = [
-        { value: "Sunni", label: "Sunni" },
-        { value: "Shia", label: "Shia" },
-        { value: "Don't Follow", label: "Do not follow" },
-    ];
-
-    const prayerFrequencyOptions = [
-        { value: "Never Missed", label: "Never Missed" },
-        { value: "Sometimes Miss", label: "Sometimes Miss" },
-        { value: "Occasionally", label: "Occasionally" },
-        { value: "Hidden", label: "Prefer not to say" },
-    ];
-    
-    const schoolOfThougthsOptions = [
-        { value: "Hanafi", label: "Hanafi" },
-        { value: "Hanbali", label: "Hanbali" },
-        { value: "Maliki", label: "Maliki" },
-        { value: "Shafei", label: "Shafei" },
-        { value: "Hidden", label: "Prefer not to say" },
-    ];
-    
     const { data, setData, post, processing, errors, reset } = useForm({
-        religious_history:'',
-        prayer_frequency: '',
-        school_of_thoughts: '',
-        sect: '',
-        eat_halal: '',
-        smoke: '',
-        drink_alchohol: '',
-        wear_hijab_keep_beard: '',
-        _token: props.csrf_token,
+        
+        highest_education: '',
+        university: '',
+        university_graduation_year: '',
+        college: '',
+        college_graduation_year: '',
+
+        current_profession: '',
+        company_name: '',
     });
 
-    useEffect(() => {
-        return () => {
-            reset('password', 'password_confirmation');
-        };
-    }, []);
+
+    const educationOptions = [
+        {value: 'Masters', label: 'Masters'},
+        {value: 'Bachelor', label: 'Bachelor'},
+        {value: 'PHD', label: 'PHD'},
+    ];
+
+    const yearsOptions = [
+        {value: 'Newly Joined', label: 'Newly Joined'},
+        {value: '1-3 Years', label: '1-3 Years'},
+        {value: '3-5 Years', label: '3-5 Years'},
+        {value: '5+ Years', label: '5+ Years'},
+    ];
+
+    let minOffset = 0, maxOffset = 60;
+    let thisYear = (new Date()).getFullYear();
+    let allYears = [];
+    for(let x = 0; x <= maxOffset; x++) {
+        allYears.push(thisYear - x)
+    }
+
 
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
@@ -66,7 +54,7 @@ function SetUpProfileStepThree(props) {
         post(route('setupprofilestep3store'));
     };
     return <Guest
-                bgimage="bg-rel-background"
+                bgimage="bg-career-background"
             >
                 <Head title="Suitable | Set up profile" />
 
@@ -76,7 +64,7 @@ function SetUpProfileStepThree(props) {
                     </Link> */}
                     <div className="flex mb-2 justify-between items-center">
                         <h2 className="mt-6 text-md sm:text-lg font-semibold text-gray-900">
-                            Religious view
+                            Career | Education
                         </h2>
                         <p className="mt-6 text-lg sm:text-xl font-semibold text-slate-700">40%</p>
                     </div>
@@ -86,112 +74,103 @@ function SetUpProfileStepThree(props) {
                 </div>
 
                 <ValidationErrors errors={errors} />
-
                 <form onSubmit={submit}>
-                <div className="mt-4">
-                        <Label forInput="religious_history" value="Religious history" />
+                    <div className="mt-4">
+                        <Label forInput="highest_education" value="Highghest Education" />
                         <InputSelect 
-                            value={data.religious_history} 
+                            defaultValue={data.highest_education} 
                             onChange={onHandleChange} 
-                            options={regiousHistoryOptions} 
+                            options={educationOptions} 
                             className={`block w-full sm:text-sm`} 
-                            placeholder='Select your religious history'
-                            name={`religious_history`}
+                            placeholder='Select your most recent university or college qualification'
+                            name={`highest_education`}
                         />
-                </div>
+                    </div>
 
-                <div className="mt-4">
-                        <Label forInput="prayer_frequency" value="Do you pray" />
-                        <InputSelect 
-                            value={data.prayer_frequency} 
-                            onChange={onHandleChange} 
-                            options={prayerFrequencyOptions} 
-                            className={`block w-full sm:text-sm`} 
-                            placeholder='Select your prayer frequency'
-                            name={`prayer_frequency`}
+                    <div className="flex mt-4">
+                        <div className="w-2/3 pr-2">
+                            <Label forInput="university" value="University Name" />
+                            <Input
+                                type="text"
+                                name="university"
+                                value={data.university}
+                                className="mt-1 block w-full"
+                                handleChange={onHandleChange}
+                                placeholder="Enter university name"
+                            />
+                        </div>
+
+                        <div className="w-1/2">
+                            <Label forInput="university_graduation_year" value="Graduation Year" />
+                            <select 
+                                className={
+                                    `mt-1 border-gray-300 rounded-xl shadow-sm`
+                                }
+                                onChange={onHandleChange}
+                                name="university_graduation_year" 
+                                value={data.university_graduation_year} 
+                            >
+                                <option selected>Select year</option>
+                                {
+                                    allYears.map((year) => <option value={year} key={year}>{year}</option>)
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="flex mt-4">
+                        <div className="w-2/3 pr-2">
+                            <Label forInput="college" value="College" />
+                            <Input
+                                type="text"
+                                name="college"
+                                value={data.college}
+                                className="mt-1 block w-full"
+                                handleChange={onHandleChange}
+                                placeholder="Enter college name"
+                            />
+                        </div>
+
+                        <div className="w-1/2">
+                            <Label forInput="college_graduation_year" value="Graduation Year" />
+                            <select 
+                                className={
+                                    `mt-1 border-gray-300 rounded-xl shadow-sm`
+                                }
+                                onChange={onHandleChange}
+                                name="college_graduation_year" 
+                                value={data.college_graduation_year} 
+                            >
+                                <option selected>Select year</option>
+                                {
+                                    allYears.map((year) => <option value={year} key={year}>{year}</option>)
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="mt-4">
+                        <Label forInput="current_profession" value="Current profession" />
+                        <Input
+                            type="text"
+                            name="current_profession"
+                            value={data.current_profession}
+                            className="mt-1 block w-full"
+                            handleChange={onHandleChange}
                         />
-                </div>
+                    </div>
 
-                <div className="mt-4">
-                        <Label forInput="sect" value="Sect" />
-                        <InputSelect 
-                            value={data.sect} 
-                            onChange={onHandleChange} 
-                            options={sectOptions} 
-                            className={`block w-full sm:text-sm`} 
-                            placeholder='What sect are you'
-                            name={`sect`}
-                            required={true}
-                        />
-                </div>
-
-                <div className="mt-4">
-                        <Label forInput="school_of_thoughts" value="School of thoughts" />
-                        <InputSelect 
-                            value={data.school_of_thoughts} 
-                            onChange={onHandleChange} 
-                            options={schoolOfThougthsOptions} 
-                            className={`block w-full sm:text-sm`} 
-                            placeholder="What's your school of thoughts"
-                            name={`school_of_thoughts`}
-                            required={true}
-                        />
-                </div>
-
-                <div className="mt-4">
-                        <div className="flex items-baseline mb-2 pb-2 space-x-2">
-                            <div className="w-1/3">
-                                <Label forInput="eat_halal" value="Do you eat halal ?" />
-                            </div>
+                    <div className="mt-4">
+                        <Label forInput="company_name" value="Company Name" />
+                        <Input
+                            type="text"
+                            name="company_name"
+                            value={data.company_name}
+                            className="mt-1 block w-full"
+                            handleChange={onHandleChange}
                             
-                            <div className="w-2/3 flex justify-end space-x-1">
-                                <RadioButton name="eat_halal" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
-                                <RadioButton name="eat_halal" value={`No`} btnName="No" handleChange={onHandleChange} />
-                                <RadioButton name="eat_halal" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
-                            </div>
-                        </div>
+                        />
                     </div>
-
-                    <div className="mt-4">
-                        <div className="flex items-baseline mb-2 pb-2 space-x-2">
-                            <div className="w-1/3">
-                                <Label forInput="smoke" value="Do you smoke ?" />
-                            </div>
-                            <div className="w-2/3 flex justify-end space-x-1">
-                                <RadioButton name="smoke" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
-                                <RadioButton name="smoke" value={`No`} btnName="No" handleChange={onHandleChange} />
-                                <RadioButton name="smoke" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="mt-4">
-                        <div className="flex items-baseline mb-2 pb-2 space-x-2">
-                            <div className="w-1/3">
-                                <Label forInput="drink_alchohol" value="Drink Alchohol ?" />
-                            </div>
-                            <div className="w-2/3 flex justify-end space-x-1">
-                                <RadioButton name="drink_alchohol" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
-                                <RadioButton name="drink_alchohol" value={`No`} btnName="No" handleChange={onHandleChange} />
-                                <RadioButton name="drink_alchohol" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="mt-4">
-                        <div className="flex items-baseline mb-2 pb-2 space-x-2">
-                            <div className="w-1/3">
-                                <Label forInput="wear_hijab_keep_beard" value={`${props.auth.user.gender == "Male" ? "Keep Beard" : "Wear Hijab ?" }`} />
-                            </div>
-                            <div className="w-2/3 flex justify-end space-x-1">
-                                <RadioButton name="wear_hijab_keep_beard" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
-                                <RadioButton name="wear_hijab_keep_beard" value={`No`} btnName="No" handleChange={onHandleChange} />
-                                <RadioButton name="wear_hijab_keep_beard" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
-                            </div>
-                        </div>
-                    </div>
-
-
 
                     <div className="flex items-center justify-end mt-4">
                         <Button className="bg-gray-800 hover:bg-gray-900 text-gray-50 font-bold py-2 px-4 rounded inline-flex items-center" processing={processing}>
@@ -202,6 +181,9 @@ function SetUpProfileStepThree(props) {
                         </Button>
                     </div>
                 </form>
+
+
+               
             </Guest>;
 }
 
