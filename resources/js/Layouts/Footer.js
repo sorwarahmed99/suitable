@@ -4,36 +4,15 @@ import React from 'react';
 function Footer() {
     return <>
         <footer className="relative z-10 mt-10 pt-10 bg-white shadow-sm dark:bg-slate-800">
-            {/* <div className="bg-[url('/img/footer-texture.svg')]"></div> */}
             <div className="container">
-                <div className="px-6 pb-10 mb-20 bg-white dark:bg-slate-800 rounded-lg shadow-xl md:px-12 subscribe-area">
-                    <div className="row">
-                        <div className="w-full lg:w-1/2">
-                            <div className="lg:mt-12 subscribe-content">
-                                <h2 className="text-2xl font-semibold sm:text-3xl subscribe-title text-slate-800 dark:text-slate-100">
-                                    Subscribe Our Newsletter
-                                    <span className="block font-normal">to get reguler updates</span>
-                                </h2>
-                            </div>
-                        </div>
-                        <div className="w-full lg:w-1/2">
-                            <div className="mt-12 subscribe-form">
-                                <form action="#" className="relative focus:outline-none">
-                                    <input type="email" placeholder="Enter eamil" className="w-full py-4 pl-6 pr-40 duration-300 rounded focus:ring-2 focus:ring-red-400 focus:border-none focus:outline-none" />
-                                    <button className="main-btn gradient-btn">Subscribe</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                     <div className="flex flex-wrap -mx-4 footer-widget px-4 pb-5 bg-white dark:bg-slate-800">
                         <div className="w-full sm:w-2/3 lg:w-3/12 px-4">
                             <div className="w-full mb-10">
-                                <Link href="/" className="flex">
-                                    <img className="mr-3 h-10 w-10" src="assets/images/logo.png" alt="shape" />
-                                    <span className="self-center text-xl font-semibold whitespace-nowrap text-slate-800 dark:text-slate-50">Suitable</span>
+                                <Link as="a" href="/" className="flex items-start justify-start">
+                                    {/* <img className="h-7 w-full" src="assets/images/s.svg" alt="shape" /> */}
+                                    <span className="self-center text-3xl whitespace-nowrap pl-[0.5px] text-purple-800 font-bold dark:text-white">Suitable</span>
                                 </Link>
-                                <p className="text-base text-slate-800 dark:text-white mb-7 p-4">
+                                <p className="text-base text-slate-800 dark:text-white mb-7 p-4 pl-0">
                                     Suitable is a trusted muslim match
                                     making platform performing all over the world. We are working to
                                     connect you with your partner without the exception of race, color, and ethnicity

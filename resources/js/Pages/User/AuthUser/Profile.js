@@ -545,7 +545,7 @@ function Profile({auth}) {
                 <div className="">
                         {/* <header id="header" className="relative z-20">
                             <div>
-                                <p className="mb-2 text-sm leading-6 font-semibold text-red-500 dark:text-red-400">{auth.user.firstname}</p>
+                                <p className="mb-2 text-sm leading-6 font-semibold text-purple-500 dark:text-red-400">{auth.user.firstname}</p>
                                 <div className="flex items-center">
                                     <h1 className="inline-block text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">Your information</h1>
                                 </div>
@@ -567,7 +567,7 @@ function Profile({auth}) {
                                         <div className="min-w-0 relative flex-auto">
                                             <div className="p-2">
                                                 <p className="text-sm font-semibold  text-gray-600 dark:text-gray-400">
-                                                    {user.firstname}, your profile is under validation right now. Once validated,
+                                                    {user.username}, your profile is under validation right now. Once validated,
                                                     you will receive a confirmation on your registered mail ID.
                                                 </p>
                                             </div>

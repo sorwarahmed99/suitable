@@ -25,9 +25,9 @@ function SetUpProfileStepFour(props) {
 
 
     const regiousHistoryOptions = [
-        { value: "Convert", label: "Convert" },
+        { value: "From birth", label: "From birth" },
         { value: "Revert", label: "Revert" },
-        { value: "Not sure", label: "Not sure" },
+        { value: "Other", label: "Other" },
     ];
 
     const readQuranOptions = [
@@ -40,8 +40,10 @@ function SetUpProfileStepFour(props) {
     const sectOptions = [
         { value: "Sunni", label: "Sunni" },
         { value: "Shia", label: "Shia" },
+        { value: "Ahmadi", label: "Ahmadi" },
+        { value: "Ibadi", label: "Ibadi" },
+        { value: "Ismaili", label: "Ismaili" },
         { value: "Other", label: "Other" },
-        { value: "Don't Follow", label: "Do not follow" },
     ];
 
     const prayerFrequencyOptions = [
@@ -84,7 +86,7 @@ function SetUpProfileStepFour(props) {
                         <h2 className="mt-6 text-lg font-semibold text-gray-900">
                             Religious view
                         </h2>
-                        <p className="mt-6 text-xl font-bold text-gray-900">50%</p>
+                        <p className="mt-6 text-xl font-bold text-purple-600">50%</p>
                     </div>
                     <div className="h-2 w-full bg-slate-400 relative rounded-full">
                         <div className="h-2 w-[280px] bg-slate-800 absolute z-50 rounded-full"></div>

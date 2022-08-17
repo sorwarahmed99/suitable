@@ -37,13 +37,13 @@ class SetUpProfileStepsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'date_of_birth' => 'required|string|date|before:-18 years',
+            'date_of_birth' => 'required|string|date|before:18 years ago',
             'gender' => 'required',
             'marital_status' => 'required',
             'ethnic_origin' => 'required',
-
+            'height' => 'required',
         ],[
-            'date_of_birth.date|before:-18 years'=> 'You must be 18 years or older!',
+            'before' => 'You must be 18 years or older!',
         ]);
 
         DB::beginTransaction();
@@ -58,6 +58,7 @@ class SetUpProfileStepsController extends Controller
 
         UserProfileInfo::create([
             'user_id' => auth()->id(),
+            'height' => $request->height,
             'marital_status' => $request->marital_status,
         ]);
 
@@ -134,9 +135,11 @@ class SetUpProfileStepsController extends Controller
             'highest_education' => $request->highest_education,
 
             'university' => $request->university,
+            'course_name' => $request->course_name,
             'university_graduation_year' => $request->university_graduation_year,
             'college' => $request->college,
             'college_graduation_year' => $request->college_graduation_year,
+            'college_course_name' => $request->college_course_name,
 
             'current_profession' => $request->current_profession,
             'company_name' => $request->company_name,

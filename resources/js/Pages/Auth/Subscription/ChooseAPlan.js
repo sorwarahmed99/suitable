@@ -88,7 +88,7 @@ function ChooseAPlan() {
                     </p>
                     <button
                         onClick={checkout} 
-                        className="mt-5 w-full bg-gray-700 hover:bg-gray-900 focus:outline-none transition duration-150 ease-in-out rounded text-slate-50 px-8 text-base font-semibold py-3">
+                        className="mt-5 w-full bg-purple-700 hover:bg-purple-900 focus:outline-none transition duration-150 ease-in-out rounded text-slate-50 px-8 text-base font-semibold py-3">
                             Start your free week
                     </button>
                     {/* <form onSubmit={submit}>

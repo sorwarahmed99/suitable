@@ -16,7 +16,7 @@
 // University - qualification
 // College - qualification 
 
-// Occupation:
+// Occupation:ß
 
 // Religion:
 // Sect: Sunni, Shia, other 
@@ -25,6 +25,24 @@
 // Can you read Quran: yes I have completed, yes but I’m still learning, still learning Arabic, no I can’t read 
 // Do eat halal: yes always, sometimes, no doesn’t matter to me
 // Do you drink: no, occasionally, yes doesn’t matter to me
+
+
+// ----------------------------------------------------------------
+
+// 1. Change color to dark purple. Done
+// 2. Change the message from first to Hero section. Done
+// 3. newsletter remove. Done
+// 4. Update Social link 
+// 5. Height added done
+// 6. Username added done
+// 7. residency status done
+// 8. university course name add year delete done
+// 9. religious story done
+// 10. ethnicity done
+// 
+// 
+// 
+// 
 
 
 // ------FROM STEP 2----------------------------------------

@@ -31,28 +31,28 @@ function BlockedUsers(props) {
                           <div className="max-w-3xl mx-auto sm:px-6 lg:px-8">
                               <div className="overflow-hidden ">
                                   <div className="p-4">
-                                      {blockedusers.map(({ id, firstname, lastname, age, country, recidency_status, ethnic_origin, profile_image }) => (
-                                          <div className="" key={id}>
-                                            <div class="relative flex flex-col-reverse bg-slate-50 rounded-lg p-6 dark:bg-slate-800 dark:highlight-white/5 shadow-md mb-2">
-                                                
-                                                <div class="flex items-center space-x-4">
-                                                    <img src={`http://localhost:3000/${profile_image}`} alt={`${firstname}'s Profile photo`} class="flex-none w-14 h-14 rounded-full object-cover" loading="lazy"/>
-                                                    <div class="flex-auto">
-                                                        <div class="text-base text-slate-900 font-semibold dark:text-slate-300">
-                                                                {firstname} {lastname}, {age}
+                                      {blockedusers.map(({ id, firstname, lastname, username, age, country, recidency_status, ethnic_origin, profile_image }) => (
+                                            <div className="" key={id}>
+                                                <div class="relative flex flex-col-reverse bg-slate-50 rounded-lg p-6 dark:bg-slate-800 dark:highlight-white/5 shadow-md mb-2">
+                                                    
+                                                    <div class="flex items-center space-x-4">
+                                                        <img src={`http://localhost:3000/${profile_image}`} alt={`${firstname}'s Profile photo`} class="flex-none w-14 h-14 rounded-full object-cover" loading="lazy"/>
+                                                        <div class="flex-auto">
+                                                            <div class="text-base text-slate-900 font-semibold dark:text-slate-300">
+                                                                {username}, {age}
+                                                            </div>
+                                                            <div className="mt-0.5 text-sm font-medium text-slate-600 dark:text-slate-200">{ethnic_origin} From {country}  - <span className="text-slate-600 dark:text-slate-200">{recidency_status}</span> </div>
                                                         </div>
-                                                        <div className="mt-0.5 text-sm font-medium text-slate-600 dark:text-slate-200">{ethnic_origin} From {country}  - <span className="text-slate-600 dark:text-slate-200">{recidency_status}</span> </div>
-                                                    </div>
-                                                    <div class="text-slate-700 dark:text-slate-300">
-                                                        <div className="mt-2"> 
-                                                            <Link className="h-10 border border-slate-500 text-slate-500 dark:text-slate-500 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 dark:border-slate-50  focus:ring-2 dark:ring-slate-400 font-semibold py-2 px-4 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out" href={route('unblock-user', id)} method="post" as="button">
-                                                                Unblock
-                                                            </Link>
+                                                        <div class="text-slate-700 dark:text-slate-300">
+                                                            <div className="mt-2"> 
+                                                                <Link className="h-10 border border-slate-500 text-slate-500 dark:text-slate-500 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 dark:border-slate-50  focus:ring-2 dark:ring-slate-400 font-semibold py-2 px-4 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out" href={route('unblock-user', id)} method="post" as="button">
+                                                                    Unblock
+                                                                </Link>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                          </div>
                                       ))}
   
                                       {blockedusers.length === 0 && (

@@ -47,7 +47,7 @@ function Interests(props) {
                                                         <div className="flex flex-wrap">
                                                             <div className="flex items-center">
                                                                 <h1 className="text-lg font-semibold text-slate-900 dark:text-slate-50">
-                                                                    {firstname} {lastname}, {age}
+                                                                    {username}, {age}
                                                                 </h1>
                                                                 <div className="m-1 ml-2 rounded-full bg-green-600 h-2 w-2"></div>
                                                             </div>
@@ -72,9 +72,6 @@ function Interests(props) {
                                                                     </Dropdown.Trigger>
 
                                                                     <Dropdown.Content className="w-10" >
-                                                                        <Dropdown.Link href={route('user-profile', username)} method="get" as="button">
-                                                                            Demo view user
-                                                                        </Dropdown.Link>
                                                                         <Dropdown.Link href={route('block-user', id)} method="post" as="button">
                                                                             Block
                                                                         </Dropdown.Link>
@@ -109,14 +106,9 @@ function Interests(props) {
 
                                                 <div className="flex space-x-4 mt-3 text-sm font-medium">
                                                     <div className="flex-auto flex space-x-4">
-                                                        {isAccepted ? <Link href={route('user-profile', firstname)} className="h-10 bg-black dark:bg-slate-100 text-slate-50 dark:text-slate-500 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-800 dark:border-slate-50  focus:ring-2 dark:ring-slate-400 font-bold py-2 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
+                                                        <Link href={route('user-profile', username)} className="h-10 bg-black dark:bg-slate-100 text-slate-50 dark:text-slate-500 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-800 dark:border-slate-50  focus:ring-2 dark:ring-slate-400 font-bold py-2 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
                                                             <span className="text-xs sm:text-sm">View</span>
-                                                        </Link> : (
-                                                            <button disabled className="disabled:bg-slate-400 disabled:text-slate-200 disabled:border-slate-200 disabled:shadow-none h-10 bg-black dark:bg-slate-100 text-slate-50 dark:text-slate-500 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-800 dark:border-slate-50  focus:ring-2 dark:ring-slate-400 font-bold py-2 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
-                                                                
-                                                                <span className="text-xs sm:text-sm">View</span>
-                                                            </button>
-                                                        ) }
+                                                        </Link>
                                                         
                                                         {props.auth.user.account_status == 0 ? ( 
                                                             <button disabled className="disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none bg-transparent text-slate-800 dark:text-slate-500 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-200 bg-slate-200 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 h-10 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">

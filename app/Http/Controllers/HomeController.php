@@ -108,6 +108,11 @@ class HomeController extends Controller
                         'hair_color' => $user->profile->hair_color ?? '',
                         'fitness' => $user->profile->fitness ?? '',
                         'bio' => $user->profile->bio ?? '',
+
+                        'isFollowing' => auth()->user()->isFollowing($user) ?? '',
+                        'isSaved' => auth()->user()->isSaved($user) ?? '',
+                        'isInvited' => auth()->user()->isInvited($user) ?? '',
+                        'isAccepted' => auth()->user()->isAccepted($user) ?? '',
                 ]
             ]
         );

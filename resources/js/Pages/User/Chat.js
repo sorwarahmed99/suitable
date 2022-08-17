@@ -43,7 +43,7 @@
                                 <div class="flex-2 text-right">
                                     <div><small class="text-gray-500 text-xs">15 April</small></div>
                                     {/* <div>
-                                        <small class="text-xs bg-red-500 text-white rounded-full h-6 w-6 leading-6 text-center inline-block">
+                                        <small class="text-xs bg-purple-500 text-white rounded-full h-6 w-6 leading-6 text-center inline-block">
                                             23
                                         </small>
                                     </div> */}
@@ -65,7 +65,7 @@
                                 <div class="flex-2 text-right">
                                     <div><small class="text-gray-500">15 April</small></div>
                                     <div>
-                                        <small class="text-xs bg-red-500 text-white rounded-full h-2 w-2 leading-6 text-center inline-block">
+                                        <small class="text-xs bg-purple-500 text-white rounded-full h-2 w-2 leading-6 text-center inline-block">
                                             
                                         </small>
                                     </div>

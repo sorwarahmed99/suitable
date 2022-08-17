@@ -27,10 +27,22 @@ function SetUpProfileStepOne() {
         {value: '5ft 7in', label: '5ft 7in'},
         {value: '5ft 8in', label: '5ft 8in'},
         {value: '5ft 9in', label: '5ft 9in'},
+        {value: '5ft 10in', label: '5ft 10in'},
+        {value: '5ft 11in', label: '5ft 11in'},
         {value: '6ft', label: '6ft'},
         {value: '6ft 1in', label: '6ft 1in'},
         {value: '6ft 2in', label: '6ft 2in'},
         {value: '6ft 3in', label: '6ft 3in'},
+        {value: '6ft 4in', label: '6ft 4in'},
+        {value: '6ft 5in', label: '6ft 5in'},
+        {value: '6ft 6in', label: '6ft 6in'},
+        {value: '6ft 7in', label: '6ft 7in'},
+        {value: '6ft 8in', label: '6ft 8in'},
+        {value: '6ft 9in', label: '6ft 9in'},
+        
+        // {value: '6ft 10in', label: '6ft 10in'},
+        // {value: '6ft 11in', label: '6ft 11in'},
+
     ];
 
     const maritalStatusOptions = [
@@ -41,10 +53,37 @@ function SetUpProfileStepOne() {
     ];
 
     const ethnicOriginOptions = [
+        { value: "Mixed Heritage", label: "Mixed Heritage"},
+        { value: "Nigerian", label: "Nigerian"},
+        { value: "Pakistani", label: "Pakistani"},
+        { value: "Persian", label: "Persian"},
+        { value: "Somali", label: "Somali"},
+        { value: "Sudanese", label: "Sudanese"},
+        { value: "Turkish", label: "Turkish"},
+        { value: "Other", label: "Other"},
+        { value: "Caribbean", label: "Caribbean"},
+        { value: "Egyptian", label: "Egyptian"},
+        { value: "Indian", label: "Indian"},
         { value: "Asian", label: "Asian"},
-        { value: "African", label: "African"},
-        { value: "Asian-British", label: "Asian-British"},
-        { value: "Asian-Bangladeshi", label: "Asian-Bangladeshi"},
+        { value: "Indonesian", label: "Indonesian"},
+        { value: "Iraqi", label: "Iraqi"},
+        { value: "Kurdish", label: "Kurdish"},
+        { value: "Latino", label: "Latino"},
+        { value: "Malay", label: "Malay"},
+        { value: "West African", label: "West African"},
+        { value: "African American", label: "African American"},
+        { value: "North American", label: "North American"},
+        { value: "European", label: "European"},
+        { value: "Far East Asian", label: "Far East Asian"},
+        { value: "Afghan", label: "Afghan"},
+        { value: "Bangladeshi", label: "Bangladeshi"},
+        { value: "Berber", label: "Berber"},
+        { value: "Arab", label: "Arab"},
+        { value: "Central African", label: "Central AfricanBerber"},
+        { value: "East African", label: "East African"},
+        { value: "North African", label: "North African"},
+        { value: "South African", label: "South African"},
+        { value: "West African", label: "West African"},
     ];
 
     let nums = [];
@@ -74,7 +113,7 @@ function SetUpProfileStepOne() {
                         <h2 className="mt-6 text-lg font-semibold text-gray-900">
                             Your personal information
                         </h2>
-                        <p className="mt-6 text-xl font-bold text-gray-900">20%</p>
+                        <p className="mt-6 text-xl font-bold text-purple-600">20%</p>
                     </div>
                     <div className="h-2 w-full bg-slate-400 relative rounded-full">
                         <div className="h-2 w-[100px] bg-slate-800 absolute z-50 rounded-full"></div>

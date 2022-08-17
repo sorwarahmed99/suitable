@@ -38,6 +38,7 @@ export default function Input({
                 autoComplete={autoComplete}
                 required={required}
                 onChange={handleChange}
+                autocomplete="off"
             />
         </div>
         </>

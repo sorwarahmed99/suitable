@@ -19,10 +19,12 @@ class CreateUserQualificationsTable extends Migration
             $table->string('highest_education')->nullable();
 
             $table->string('university')->nullable();
+            $table->string('course_name')->nullable();
             $table->string('university_graduation_year')->nullable();
+            
             $table->string('college')->nullable();
+            $table->string('college_course_name')->nullable();
             $table->string('college_graduation_year')->nullable();
-
 
             $table->string('current_profession')->nullable();
             $table->string('for_how_long')->nullable();

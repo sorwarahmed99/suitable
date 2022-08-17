@@ -7,10 +7,8 @@ export default function Guest({ children, bgimage}) {
         <>
         <div className="relative min-h-screen flex ">
             <div className="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">
-                <div className={`${bgimage} sm:w-1/2 xl:w-1/2 min-h-full hidden md:flex flex-auto items-center justify-center p-10 overflow-hidden text-white bg-no-repeat bg-center relative`}
-                    >
-                    <div className="absolute bg-gradient-to-b from-red-600 to-pink-500 opacity-10 inset-0 z-0"></div>
-                    
+                <div className={`${bgimage} sm:w-1/2 xl:w-1/2 min-h-full hidden md:flex flex-auto items-center justify-center p-10 overflow-hidden text-white bg-no-repeat bg-center relative`}>
+                    <div className="absolute bg-gradient-to-b from-purple-400 to-violet-300 opacity-30 inset-0 z-auto"></div>
 
                     {/* <div className="w-full  max-w-md z-10">
                         <div className="sm:text-xl xl:text-4xl font-bold leading-tight mb-4">
@@ -30,10 +28,10 @@ export default function Guest({ children, bgimage}) {
 
                     </div>
                 </div>
-                <div className="hidden md:block bg-gray-800 text-white py-3 px-4 text-center fixed left-0 bottom-0 right-0 z-40">
-                    Copyright &copy; www.suitable.com | All right reserved
+                {/* <div className="hidden md:block bg-gray-800 text-white py-3 px-4 text-center fixed left-0 bottom-0 right-0 z-40"> */}
+                    {/* Copyright &copy; www.suitable.com | All right reserved */}
                     {/* <Link className="underline text-gray-200 ml-5" href="/">Home</Link> */}
-                </div>
+                {/* </div> */}
             </div>
         </div>
 

@@ -10,6 +10,8 @@ class UserLookingFor extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'radius',
         'ethnic_origin',
         'country',
         'recidency_status',
@@ -35,6 +37,5 @@ class UserLookingFor extends Model
         'intend_to_move_out',
         'issues_living_with_inlaws',
         'bio',
-        'user_id',
     ];
 }

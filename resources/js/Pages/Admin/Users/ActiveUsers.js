@@ -90,7 +90,7 @@ function ActiveUsers(props) {
                                             </Link>
                                         </div>
                                         
-                                        <div className="text-xs bg-red-500 text-slate-50 w-full hover:bg-red-700 py-2 px-4 cursor-pointer hover:text-white">
+                                        <div className="text-xs bg-purple-500 text-slate-50 w-full hover:bg-red-700 py-2 px-4 cursor-pointer hover:text-white">
                                             <p>Block {id}</p>
                                         </div>
                                     </div>}

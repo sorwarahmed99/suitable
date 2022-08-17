@@ -88,7 +88,7 @@ export default function Login({ status, canResetPassword }) {
                                     autoComplete="current-password"
                                     handleChange={onHandleChange}
                                     required
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 dark:placeholder-gray-200 text-gray-900 dark:text-slate-200 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    // className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 dark:placeholder-gray-200 text-gray-900 dark:text-slate-200 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Password"
                                 />
                                 <p onClick={showPassword} className="flex items-center justify-end cursor-pointer text-xs font-semibold text-slate-500 dark:text-slate-50">Show</p>

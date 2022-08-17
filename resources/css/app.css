@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 @layer base {
+    
     body {
         font-family: "Poppins", sans-serif;
     }
@@ -49,14 +50,14 @@
     .gradient-btn {
         background-image: linear-gradient(
             to right,
-            #fe8464 0%,
-            #fe6e9a 50%,
-            #fe8464 100%
+            #a855f7 0%,
+            #6b21a8 50%,
+            #a855f7 100%
         );
         background-size: 200% auto;
         overflow: hidden;
 
-        @apply hover:bg-red-400 focus:ring-4 focus:ring-red-300 focus:outline-none px-6 py-3 font-medium text-white;
+        /* @apply hover:bg-purple-400 focus:ring-4 focus:ring-purple-300 focus:outline-none px-6 py-3 font-medium text-white; */
     }
     .gradient-btn-2 {
         background-image: linear-gradient(
@@ -77,6 +78,8 @@
     .main-btn:hover {
         @apply bg-blue-400;
     }
+    .gradient-outline-btn{}
+    
     .about-shape-1 {
         z-index: -1;
         width: 35%;
@@ -132,7 +135,7 @@
         @apply mr-6 inline-block text-lg text-slate-800 dark:text-slate-50;
     }
     .footer-social li a:hover {
-        @apply text-red-400;
+        @apply text-purple-400;
     }
 
     .contact li {
@@ -143,7 +146,7 @@
     }
 
     .link li a:hover {
-        @apply text-red-400;
+        @apply text-purple-400;
     }
 
     input[type='date']:after {
@@ -206,4 +209,13 @@
     transform: rotate(360deg);
   }
 }
+
+.bg-hero-signal-blue-dark-100 {
+    background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='...' fill='%23000044' fill-opacity='1.0' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+  
+  .bg-hero-polka-dots {
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  
 }

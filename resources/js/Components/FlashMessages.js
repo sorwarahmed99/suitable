@@ -69,7 +69,7 @@ export default () => {
         </div>
       )}
       {(flash.error || numOfErrors > 0) && visible && (
-        <div className="mb-8 flex items-center justify-between bg-red-500 rounded max-w-3xl">
+        <div className="mb-8 flex items-center justify-between bg-purple-500 rounded max-w-3xl">
           <div className="flex items-center">
             <IconDanger />
             <div className="py-4 text-white text-sm font-medium">

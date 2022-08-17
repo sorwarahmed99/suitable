@@ -16,9 +16,9 @@ module.exports = {
             // },
             backgroundImage: () => ({
                 'login-background':
-                    "linear-gradient(rgba(230,91,90, 0.20), rgba(230,91,90, 0.20)), url('/assets/images/login.svg')",
+                    "linear-gradient(rgba(230,91,90, 0.2), rgba(230,91,90, 0.1)), url('/assets/images/login.svg')",
                 'register-background':
-                    "linear-gradient(rgba(230,91,90, 0.20), rgba(230,91,90, 0.20)), url('/assets/images/register.svg')",
+                    "linear-gradient(rgba(230,91,90, 0.2), rgba(230,91,90, 0.1)), url('/assets/images/register.svg')",
                 'onboarding-background':
                     "linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('https://images.unsplash.com/photo-1614287893397-67d3e6137c56?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80')",
                 'location-background':
@@ -41,5 +41,29 @@ module.exports = {
         },
     },
 
-    plugins: [require('@tailwindcss/forms')],
+    plugins: 
+    [require('@tailwindcss/forms')],
+    
 };
+
+require("tailwind-heropatterns")({
+    // as per tailwind docs you can pass variants
+    variants: [],
+  
+    // the list of patterns you want to generate a class for
+    // the names must be in kebab-case
+    // an empty array will generate all 87 patterns
+    patterns: ["polka-dots", "signal"],
+  
+    // The foreground colors of the pattern
+    colors: {
+      default: "#9C92AC",
+      "blue-dark": "#000044" //also works with rgb(0,0,205)
+    },
+  
+    // The foreground opacity
+    opacity: {
+      default: "0.4",
+      "100": "1.0"
+    }
+  });

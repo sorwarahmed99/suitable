@@ -15,14 +15,13 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-slate-900">
             <nav className="bg-white dark:bg-slate-800 border-b border-gray-100 dark:border-slate-500 sticky top-0 z-40 backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent">
-            
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
                                 <Link href={route('home')} className="flex">
                                     {/* <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" /> */}
-                                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-red-400 ">Suitable</span>
+                                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-purple-800 dark:text-slate-50 ">Suitable</span>
                                 </Link>
                             </div>
 
@@ -41,7 +40,6 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                             </div>
                            
                         </div>
-                                <FlashMessages />
 
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
@@ -86,13 +84,13 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center p-0.5 text-sm leading-4 font-medium rounded-full border-2 border-red-200 hover:border-red-400 text-gray-500 dark:text-gray-100 focus:outline-none transition ease-in-out duration-150"
+                                                className="inline-flex items-center p-0.5 text-sm leading-4 font-medium rounded-full border-2 border-purple-200 hover:border-purple-400 text-gray-500 dark:text-gray-100 focus:outline-none transition ease-in-out duration-150"
                                             >
                                                 {!auth.user.profile_image ? (
                                                     <img src="assets/images/man.svg" alt={`Man photo`}  className="w-10 h-10 rounded-full" />
                                                 ): 
                                                 
-                                                    <img src={`http://localhost:3000/${auth.user.profile_image}`} alt={`${auth.user.firstname}'s Profile photo`}  className="w-10 h-10 rounded-full" />
+                                                    <img src={`http://localhost:3000/${auth.user.profile_image}`} alt={`Profile photo`}  className="w-10 h-10 rounded-full" />
                                                 }
 
                                                 {/* <svg
@@ -175,8 +173,6 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                             Chat
                         </ResponsiveNavLink>
                     </div>
-                    
-
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
                         <div className="px-4 flex items-center space-x-2">
@@ -184,12 +180,12 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                 <Link
                                     href={route('auth.user.profile')}
                                     type="button"
-                                    className="inline-flex items-center p-0.5 text-sm leading-4 font-medium rounded-full border-2 border-red-200 hover:border-red-400 text-gray-500 dark:text-gray-100 focus:outline-none transition ease-in-out duration-150"
+                                    className="inline-flex items-center p-0.5 text-sm leading-4 font-medium rounded-full border-2 border-purple-200 hover:border-purple-400 text-gray-500 dark:text-gray-100 focus:outline-none transition ease-in-out duration-150"
                                 >
                                     {!auth.user.profile_image ? (
                                             <img src="assets/images/man.svg" alt={`Man photo`}  className="w-10 h-10 rounded-full" />
                                         ): 
-                                            <img src={`http://localhost:3000/${auth.user.profile_image}`} alt={`${auth.user.firstname}'s Profile photo`}  className="w-10 h-10 rounded-full" />
+                                            <img src={`http://localhost:3000/${auth.user.profile_image}`} alt={`Profile photo`}  className="w-10 h-10 rounded-full" />
                                         }
 
                                     {/* <svg
@@ -207,7 +203,7 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                 </Link>
                             </div>
                             <div>
-                                <div className="font-medium text-base text-gray-800 dark:text-slate-50">{auth.user.firstname}</div>
+                                <div className="font-medium text-base text-gray-800 dark:text-slate-50">{auth.user.username}</div>
                                 <div className="font-medium text-sm text-gray-500 dark:text-slate-50">{auth.user.email}</div>
                             </div>
                             
@@ -230,6 +226,8 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                             <div>
                                 {header}
                             </div>
+                            <FlashMessages />
+
                             {/* <div className="hidden md:block prose prose-slate dark:prose-dark ml-5">
                                 <div class="px-5 py-4 bg-gray-50 shadow rounded-lg flex items-center justify-between">
                                     <div class="flex items-center">
@@ -251,10 +249,12 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                     </button>
                                 </div>
                             </div> */}
-                                    <Link href={href} className="bg-transparent text-slate-700 dark:text-slate-50 dark:bg-slate-700 hover:bg-slate-800 hover:text-slate-500 dark:hover:bg-slate-900 border-2 border-slate-800 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-medium py-2 px-3 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
-                                        {svg}
-                                        <span className="hidden sm:block">{btnName}</span>
-                                    </Link>
+                            <div>
+                                <Link as="button" href={href} className="bg-transparent text-slate-700 dark:text-slate-50 dark:bg-slate-700 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-900 border-2 px-3 py-2 border-slate-800 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-medium rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
+                                    {svg}
+                                    <span className="hidden sm:block">{btnName}</span>
+                                </Link>
+                            </div>
                                 
                         </div>
 

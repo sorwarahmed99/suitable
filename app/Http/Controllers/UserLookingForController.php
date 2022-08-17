@@ -21,6 +21,7 @@ class UserLookingForController extends Controller
         return Inertia::render('User/Preferences', [
             'user' => [
                 'id' => $user->preference->user_id ?? '',
+                'radius' => $user->preference->radius ?? '',
                 'ethnic_origin' => $user->preference->ethnic_origin ?? '',
                 'country' => $user->preference->country ?? '',
                 'recidency_status' => $user->preference->recidency_status ?? '',
@@ -47,10 +48,7 @@ class UserLookingForController extends Controller
                 'continue_working' => $user->preference->continue_working ?? '',
                 'intend_to_move_out' => $user->preference->intend_to_move_out ?? '',
                 'issue_living_with_inlaws' => $user->preference->issue_living_with_inlaws ?? '',
-                
                 'bio' => $user->preference->bio ?? '',
-
-                
             ],
         ]);
     }
@@ -102,6 +100,7 @@ class UserLookingForController extends Controller
                 'user_id' => auth()->id(),
             ], [
             "user_id" => auth()->id(),
+            "radius" => $request->radius,
             "ethnic_origin" => $request->ethnic_origin,
             "country" => $request->country,
             "recidency_status" => $request->recidency_status,

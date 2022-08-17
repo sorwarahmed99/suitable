@@ -40,10 +40,10 @@ export default function Login({ status, canResetPassword }) {
             <div className="text-center mb-2">
                 <Link href="/" className="flex items-center justify-center">
                     {/* <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" /> */}
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-red-500 dark:text-red-500">Suitable</span>
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-purple-800 dark:text-purple-500">Suitable</span>
                 </Link>
                 <h2 className="mt-6 text-md font-medium text-gray-900">
-                    Start Your soulmate search with the world's most reliable match making site!
+                    Start your soulmate search with the world's most reliable match making site!
                 </h2>
             </div>
             <ValidationErrors errors={errors} />
@@ -106,7 +106,7 @@ export default function Login({ status, canResetPassword }) {
                 </div>
                 <p className="mt-4 text-center text-sm text-gray-600 max-w">
                     Don't have an account ? {` `}
-                    <Link href="/register" className="text-indigo-400 hover:text-blue-500 no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign up</Link>
+                    <Link href="/register" className="text-purple-700 font-bold hover:text-purple-900 no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign up</Link>
                 </p>
             </form>
             

@@ -24,8 +24,8 @@ function Settings(props) {
                     
                 </div>
                 
-                <div className="mt-2 sm:mt-0 sm:w-2/3 bg-gray-50 p-6 sm:p-10 rounded-md shadow-sm">
-                  <div className="container mx-auto mt-10 rounded bg-gray-100 dark:bg-gray-700 w-11/12 xl:w-full">
+                <div className="mt-2 sm:mt-0 sm:w-2/3 bg-gray-50 dark:bg-slate-800 p-6 sm:p-10 rounded-md shadow-sm">
+                  <div className="container mx-auto mt-10 rounded w-11/12 xl:w-full">
                       <div className="xl:w-full py-5 px-8">
                           <div className="flex items-center mx-auto">
                               <div className="container mx-auto">

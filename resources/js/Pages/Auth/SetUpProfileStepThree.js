@@ -10,22 +10,28 @@ import RadioButton from '@/Components/RadioButton';
 import InputSelect from '@/Components/InputSelect';
 
 function SetUpProfileStepThree(props) {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        
+    const [add, setAdd] = useState(false);
+
+    const toggle = () => {
+        setAdd(!add);
+    }
+
+    const { data, setData, post, processing, errors, reset } = useForm({    
         highest_education: '',
         university: '',
         university_graduation_year: '',
+        course_name: '',
         college: '',
+        college_course_name: '',
         college_graduation_year: '',
-
         current_profession: '',
         company_name: '',
     });
 
 
     const educationOptions = [
-        {value: 'Masters', label: 'Masters'},
         {value: 'Bachelor', label: 'Bachelor'},
+        {value: 'Masters', label: 'Masters'},
         {value: 'PHD', label: 'PHD'},
     ];
 
@@ -66,7 +72,7 @@ function SetUpProfileStepThree(props) {
                         <h2 className="mt-6 text-md sm:text-lg font-semibold text-gray-900">
                             Career | Education
                         </h2>
-                        <p className="mt-6 text-lg sm:text-xl font-semibold text-slate-700">40%</p>
+                        <p className="mt-6 text-lg sm:text-xl font-semibold text-purple-600">40%</p>
                     </div>
                     <div className="h-2 w-full bg-slate-400 relative rounded-full">
                         <div className="h-2 w-[150px] bg-slate-700 absolute z-50 rounded-full"></div>
@@ -76,7 +82,7 @@ function SetUpProfileStepThree(props) {
                 <ValidationErrors errors={errors} />
                 <form onSubmit={submit}>
                     <div className="mt-4">
-                        <Label forInput="highest_education" value="Highghest Education" />
+                        <Label forInput="highest_education" value="Highest Education" />
                         <InputSelect 
                             defaultValue={data.highest_education} 
                             onChange={onHandleChange} 
@@ -101,53 +107,51 @@ function SetUpProfileStepThree(props) {
                         </div>
 
                         <div className="w-1/2">
-                            <Label forInput="university_graduation_year" value="Graduation Year" />
-                            <select 
-                                className={
-                                    `mt-1 border-gray-300 rounded-xl shadow-sm`
-                                }
-                                onChange={onHandleChange}
-                                name="university_graduation_year" 
-                                value={data.university_graduation_year} 
-                            >
-                                <option selected>Select year</option>
-                                {
-                                    allYears.map((year) => <option value={year} key={year}>{year}</option>)
-                                }
-                            </select>
-                        </div>
-                    </div>
-
-                    <div className="flex mt-4">
-                        <div className="w-2/3 pr-2">
-                            <Label forInput="college" value="College" />
+                            <Label forInput="course_name" value="Course Name" />
                             <Input
                                 type="text"
-                                name="college"
-                                value={data.college}
+                                name="course_name"
+                                value={data.course_name}
                                 className="mt-1 block w-full"
                                 handleChange={onHandleChange}
-                                placeholder="Enter college name"
+                                placeholder="Enter course name"
                             />
-                        </div>
-
-                        <div className="w-1/2">
-                            <Label forInput="college_graduation_year" value="Graduation Year" />
-                            <select 
-                                className={
-                                    `mt-1 border-gray-300 rounded-xl shadow-sm`
-                                }
-                                onChange={onHandleChange}
-                                name="college_graduation_year" 
-                                value={data.college_graduation_year} 
-                            >
-                                <option selected>Select year</option>
-                                {
-                                    allYears.map((year) => <option value={year} key={year}>{year}</option>)
-                                }
-                            </select>
+                            
                         </div>
                     </div>
+                    
+                    {/* <p onClick={setAdd(true)} >Add more </p> */}
+                    <p className="mb-0 pb-0 flex item-right justify-end text-sm font-semibold cursor-pointer text-purple-600" onClick={() => toggle()}>
+                        {add ? "-" : "Add more education"}
+                    </p>
+
+                    {add ? (
+                        <div className="flex mt-2">
+                            <div className="w-2/3 pr-2">
+                                <Label forInput="college" value="College" />
+                                <Input
+                                    type="text"
+                                    name="college"
+                                    value={data.college}
+                                    className="mt-1 block w-full"
+                                    handleChange={onHandleChange}
+                                    placeholder="Enter college name"
+                                />
+                            </div>
+
+                            <div className="w-1/2">
+                                <Label forInput="college_course_name" value="Course name" />
+                                <Input
+                                    type="text"
+                                    name="college_course_name"
+                                    value={data.college}
+                                    className="mt-1 block w-full"
+                                    handleChange={onHandleChange}
+                                    placeholder="Enter course name"
+                                />
+                            </div>
+                        </div>
+                    ) : ''}
 
                     <div className="mt-4">
                         <Label forInput="current_profession" value="Current profession" />
@@ -168,8 +172,8 @@ function SetUpProfileStepThree(props) {
                             value={data.company_name}
                             className="mt-1 block w-full"
                             handleChange={onHandleChange}
-                            
                         />
+                        <p className="text-slate-500 text-xs font-medium">This will not show in on your profile</p>
                     </div>
 
                     <div className="flex items-center justify-end mt-4">
@@ -181,10 +185,20 @@ function SetUpProfileStepThree(props) {
                         </Button>
                     </div>
                 </form>
-
-
-               
             </Guest>;
 }
 
 export default SetUpProfileStepThree;
+{/* <select 
+    className={
+        `mt-1 border-gray-300 rounded-xl shadow-sm`
+    }
+    onChange={onHandleChange}
+    name="university_graduation_year" 
+    value={data.university_graduation_year} 
+>
+    <option selected>Select year</option>
+    {
+        allYears.map((year) => <option value={year} key={year}>{year}</option>)
+    }
+</select> */}

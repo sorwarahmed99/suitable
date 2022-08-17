@@ -518,6 +518,8 @@ function SetUpProfileStepTwo(props) {
         { value: "Student visa", label: "Student visa"},
         { value: "Work permit", label: "Work permit"},
         { value: "Citizen", label: "Citizen"},
+        { value: "Just Visiting", label: "Just Visiting"},
+        { value: "Other", label: "Other"},
     ];
 
     const onHandleChange = (event) => {
@@ -530,7 +532,7 @@ function SetUpProfileStepTwo(props) {
     };
 
     return <Guest
-                bgimage="bg-login-background"
+                bgimage="bg-location-background"
             >
         <Head title="Suitable | Set up profile" />
 
@@ -539,7 +541,7 @@ function SetUpProfileStepTwo(props) {
                 <h2 className="mt-6 text-lg font-semibold text-gray-900">
                     Your personal information
                 </h2>
-                <p className="mt-6 text-xl font-bold text-gray-900">30%</p>
+                <p className="mt-6 text-xl font-bold text-purple-600">30%</p>
             </div>
             <div className="h-2 w-full bg-slate-400 relative rounded-full">
                 <div className="h-2 w-[100px] bg-slate-800 absolute z-50 rounded-full"></div>

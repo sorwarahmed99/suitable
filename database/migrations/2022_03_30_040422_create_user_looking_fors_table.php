@@ -17,6 +17,7 @@ class CreateUserLookingForsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
 
+            $table->string('radius')->nullable();
             $table->string('ethnic_origin')->nullable();
             $table->string('country')->nullable();
             $table->string('recidency_status')->nullable();

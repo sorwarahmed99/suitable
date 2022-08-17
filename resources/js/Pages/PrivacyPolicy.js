@@ -9,7 +9,7 @@ function PrivacyPolicy() {
                 <div className="relative">
                     <div className="absolute">
                         <div className>
-                            <h1 className="my-2 text-gray-800 dark:text-red-500 dark:text-shadow-sm font-bold text-2xl">
+                            <h1 className="my-2 text-gray-800 dark:text-purple-500 dark:text-shadow-sm font-bold text-2xl">
                                 Looks like you've found the
                                 doorway to the great nothing
                             </h1>
