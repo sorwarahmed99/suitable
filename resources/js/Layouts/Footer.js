@@ -15,7 +15,7 @@ function Footer() {
                                 <p className="text-base text-slate-800 dark:text-white mb-7 p-4 pl-0">
                                     Suitable is a trusted muslim match
                                     making platform performing all over the world. We are working to
-                                    connect you with your partner without the exception of race, color, and ethnicity
+                                    connect you with your partner.
                                 </p>
 
                             </div>
@@ -214,10 +214,10 @@ function Footer() {
                                 <h4 className="text-lg font-semibold mb-9 text-slate-800 dark:text-slate-50">Contact Us</h4>
                                 <div className="flex items-center mb-6">
                                     <ul className="link">
-                                        <li><a href="#"><i className="lni lni-envelope"></i>info@suitable.com</a></li>
-                                        <li><a href="#"><i className="lni lni-facebook"></i>fb.com/suitable</a></li>
-                                        <li><a href="#"><i className="lni lni-twitter"></i>@suitable</a></li>
-                                        <li><i className="lni lni-instagram"></i><a href="#">@suitable</a></li>
+                                        <li><a href="#"><i className="lni lni-envelope"></i>hello@suitable.one</a></li>
+                                        {/* <li><a href="#"><i className="lni lni-facebook"></i>fb.com/suitable</a></li> */}
+                                        <li><i className="lni lni-instagram"></i><a href="#">suitableone</a></li>
+                                        <li><a href="#"><i className="lni lni-snapchat"></i>suitable.one</a></li>
                                     </ul>
                                 </div>
                             </div>

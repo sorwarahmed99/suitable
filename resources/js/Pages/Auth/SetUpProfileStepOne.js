@@ -14,14 +14,31 @@ function SetUpProfileStepOne() {
         gender: '',
         height: '',
         marital_status: '',
+        have_children: '',
         siblings: '',
         ethnic_origin: '',
     });
 
     const heightOptions = [
         {value: '4ft', label: '4ft'},
+        
+        {value: '4ft 1in', label: '4ft 1in'},
+        {value: '4ft 2in', label: '4ft 2in'},
+        {value: '4ft 3in', label: '4ft 3in'},
+        {value: '4ft 4in', label: '4ft 4in'},
         {value: '4ft 5in', label: '4ft 5in'},
+        {value: '4ft 6in', label: '4ft 6in'},
+        {value: '4ft 7in', label: '4ft 7in'},
+        {value: '4ft 8in', label: '4ft 8in'},
+        {value: '4ft 9in', label: '4ft 9in'},
+        {value: '4ft 10in', label: '4ft 10in'},
+        {value: '4ft 11in', label: '4ft 11in'},
+
         {value: '5ft', label: '5ft'},
+        {value: '5ft 1in', label: '5ft 1in'},
+        {value: '5ft 2in', label: '5ft 2in'},
+        {value: '5ft 3in', label: '5ft 3in'},
+        {value: '5ft 4in', label: '5ft 4in'},
         {value: '5ft 5in', label: '5ft 5in'},
         {value: '5ft 6in', label: '5ft 6in'},
         {value: '5ft 7in', label: '5ft 7in'},
@@ -29,19 +46,12 @@ function SetUpProfileStepOne() {
         {value: '5ft 9in', label: '5ft 9in'},
         {value: '5ft 10in', label: '5ft 10in'},
         {value: '5ft 11in', label: '5ft 11in'},
+
         {value: '6ft', label: '6ft'},
         {value: '6ft 1in', label: '6ft 1in'},
         {value: '6ft 2in', label: '6ft 2in'},
         {value: '6ft 3in', label: '6ft 3in'},
-        {value: '6ft 4in', label: '6ft 4in'},
-        {value: '6ft 5in', label: '6ft 5in'},
-        {value: '6ft 6in', label: '6ft 6in'},
-        {value: '6ft 7in', label: '6ft 7in'},
-        {value: '6ft 8in', label: '6ft 8in'},
-        {value: '6ft 9in', label: '6ft 9in'},
         
-        // {value: '6ft 10in', label: '6ft 10in'},
-        // {value: '6ft 11in', label: '6ft 11in'},
 
     ];
 
@@ -52,38 +62,42 @@ function SetUpProfileStepOne() {
         { value: "Hidden", label: "Prefer not to say" },
     ];
 
+    const childrenOptions = [
+        { value: "Yes", label: "Yes" },
+        { value: "No", label: "No" },
+    ];
+
     const ethnicOriginOptions = [
-        { value: "Mixed Heritage", label: "Mixed Heritage"},
-        { value: "Nigerian", label: "Nigerian"},
-        { value: "Pakistani", label: "Pakistani"},
-        { value: "Persian", label: "Persian"},
-        { value: "Somali", label: "Somali"},
-        { value: "Sudanese", label: "Sudanese"},
-        { value: "Turkish", label: "Turkish"},
-        { value: "Other", label: "Other"},
-        { value: "Caribbean", label: "Caribbean"},
-        { value: "Egyptian", label: "Egyptian"},
-        { value: "Indian", label: "Indian"},
+        { value: "Afghan", label: "Afghan"},
+        { value: "African American", label: "African American"},
+        { value: "Arab", label: "Arab"},
         { value: "Asian", label: "Asian"},
+        { value: "Bangladeshi", label: "Bangladeshi"},
+        { value: "Berber", label: "Berber"},
+        { value: "Caribbean", label: "Caribbean"},
+        { value: "Central African", label: "Central AfricanBerber"},
+        { value: "East African", label: "East African"},
+        { value: "Egyptian", label: "Egyptian"},
+        { value: "European", label: "European"},
+        { value: "Far East Asian", label: "Far East Asian"},
+        { value: "Indian", label: "Indian"},
         { value: "Indonesian", label: "Indonesian"},
         { value: "Iraqi", label: "Iraqi"},
         { value: "Kurdish", label: "Kurdish"},
         { value: "Latino", label: "Latino"},
         { value: "Malay", label: "Malay"},
-        { value: "West African", label: "West African"},
-        { value: "African American", label: "African American"},
-        { value: "North American", label: "North American"},
-        { value: "European", label: "European"},
-        { value: "Far East Asian", label: "Far East Asian"},
-        { value: "Afghan", label: "Afghan"},
-        { value: "Bangladeshi", label: "Bangladeshi"},
-        { value: "Berber", label: "Berber"},
-        { value: "Arab", label: "Arab"},
-        { value: "Central African", label: "Central AfricanBerber"},
-        { value: "East African", label: "East African"},
+        { value: "Mixed Heritage", label: "Mixed Heritage"},
+        { value: "Nigerian", label: "Nigerian"},
         { value: "North African", label: "North African"},
+        { value: "North American", label: "North American"},
+        { value: "Other", label: "Other"},
+        { value: "Pakistani", label: "Pakistani"},
+        { value: "Persian", label: "Persian"},
+        { value: "Somali", label: "Somali"},
         { value: "South African", label: "South African"},
-        { value: "West African", label: "West African"},
+        { value: "Sudanese", label: "Sudanese"},
+        { value: "Turkish", label: "Turkish"},
+        { value: "West African", label: "West African"},        
     ];
 
     let nums = [];
@@ -110,13 +124,13 @@ function SetUpProfileStepOne() {
                 <Head title="Suitable | Set up profile" />
                 <div className="text-center">
                     <div className="flex mb-2 justify-between items-center">
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900">
+                        <h2 className="mt-6 text-lg font-semibold text-gray-900 dark:text-slate-50">
                             Your personal information
                         </h2>
-                        <p className="mt-6 text-xl font-bold text-purple-600">20%</p>
+                        <p className="mt-6 text-xl font-bold text-purple-600 dark:text-purple-50">20%</p>
                     </div>
-                    <div className="h-2 w-full bg-slate-400 relative rounded-full">
-                        <div className="h-2 w-[100px] bg-slate-800 absolute z-50 rounded-full"></div>
+                    <div className="h-2 w-full bg-slate-400  dark:bg-slate-600 relative rounded-full">
+                        <div className="h-2 w-[100px] bg-slate-800  dark:bg-slate-50 absolute z-50 rounded-full"></div>
                     </div>
                 </div>
 
@@ -169,35 +183,35 @@ function SetUpProfileStepOne() {
                     </div>
 
                     <div className="mt-4">
+                        <Label forInput="have_children" value="Children?" />
+                        <InputSelect 
+                            defaultValue={data.have_children} 
+                            onChange={onHandleChange} 
+                            options={childrenOptions} 
+                            className={`block w-full sm:text-sm`} 
+                            placeholder='Do you have any children?'
+                            name={`have_children`}
+                        />
+                    </div>
+
+                    <div className="mt-4">
                         <Label forInput="siblings" value="Number of siblings" />
                         <select 
                             className={
-                                `mt-1 border-gray-300 rounded-xl shadow-sm`
+                                `mt-1 border-gray-300 rounded-xl shadow-sm text-slate-500 dark:text-slate-200`
                             }
                             onChange={onHandleChange}
                             name="siblings" 
                             value={data.siblings} 
                         >
-                            <option value="">Select how many</option>
-                            <option value="0">I am only child</option>
+                            <option className="text-slate-500 dark:text-slate-200" value="">Select how many</option>
+                            <option className="text-slate-500 dark:text-slate-200" value="0">I am only child</option>
                             {
-                                nums.map((num) => <option value={num} key={num}>{num}</option>)
+                                nums.map((num) => <option className="text-slate-500 dark:text-slate-200" value={num} key={num}>{num}</option>)
                             }
                         </select>
                     </div>
-
-                    {/* <div className="mt-4">
-                        <Label forInput="how_many_brothers_and_sisters" value="Description of brothers and sisters" />
-                        <Input
-                            type="text"
-                            name="how_many_brothers_and_sisters"
-                            value={data.how_many_brothers_and_sisters}
-                            placeholder={`Write in short.. `}
-                            className="mt-1 block w-full"
-                            handleChange={onHandleChange}
-                        />
-                    </div> */}
-
+                    
                     <div className="mt-4">
                         <Label forInput="ethnic-origin" value="Ethnic origin" />
                         <InputSelect 

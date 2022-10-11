@@ -16,7 +16,7 @@ class UserQualification extends Model
         'course_name',
         'university_graduation_year',
         'college',
-        'collge_course_name',
+        'college_course_name',
         'college_graduation_year',
         'current_profession',
         'for_how_long',

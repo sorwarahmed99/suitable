@@ -83,6 +83,10 @@ class User extends Authenticatable
         return $this->hasOne(UserProfileInfo::class);
     }
 
+    public function loginInfo() {
+        return $this->hasOne(UserLoginInfo::class);
+    }
+
 
     public function preference() {
         return $this->hasOne(UserLookingFor::class);
@@ -240,7 +244,7 @@ class User extends Authenticatable
     }
 
     // Passed Users ----------------------------------------------------------------
-
+    // 1911936 
     public function pass(User $user) {
         if(!$this->isPassed($user)) {
             PassUser::create([
@@ -294,6 +298,30 @@ class User extends Authenticatable
         return $this->hasManyThrough(User::class, Following::class, 'following_id', 'id', 'id', 'user_id');
     }
 
+    // -----------------------M E S S A G E S-----------------------------------------
+
+    public function messages(){
+        return $this->hasMany(Message::class);
+    }
+
+    public function lastmessages(){
+        return $this->hasMany(Message::class, 'recipient_id')->orderBy('created_at','ASC');
+    }
+
+    // ---------------------REPORT USER-------------------------------------------
+    public function isReported(User $user) {
+        return $this->reportedusers()->where('users.id', $user->id)->exists();
+    }
+
+    public function reportedusers() {
+        return $this->hasManyThrough(User::class, Report::class, 'user_id', 'id', 'id', 'reported_id');
+    }
+
+    public function reporter() {
+        return $this->hasManyThrough(User::class, Report::class, 'reported_id', 'id', 'id', 'user_id');
+    }
+
+
 
 
     // public function savedUsers() {
@@ -320,8 +348,5 @@ class User extends Authenticatable
     // public function followings() {
     //     return $this->belongsToMany(User::class, 'followings', 'follower_id', 'followed_id')->withTimestamps();
     // }
-
-    
-
 
 }

@@ -71,10 +71,10 @@ export default function Register(props) {
             <div className="text-center">
                 <Link href="/">
                     {/* <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" /> */}
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-purple-800 ">Suitable</span>
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-purple-800 dark:text-purple-500 ">Suitable</span>
                 </Link>
                 <h2 className="mt-6 text-md font-medium text-gray-900">
-                    Start Your soulmate search with the world's most reliable match making site!
+                    {/* Start Your soulmate search with the world's most reliable match making site! */}
                 </h2>
                 {/* <p className="mt-2 text-center text-sm text-gray-600 max-w">
                     Need Help
@@ -86,7 +86,7 @@ export default function Register(props) {
 
             <form className="sm:px-12 px-2" onSubmit={submit} autocomplete="off">
                 <div className="mt-4 mb-6 border-b border-slate-200 pb-3">
-                    <h2 className="mt-6 text-md font-semibold text-gray-900">
+                    <h2 className="mt-6 text-md font-semibold text-gray-900 dark:text-slate-50">
                         Create new account
                     </h2>
                 </div>
@@ -102,7 +102,7 @@ export default function Register(props) {
                         handleChange={onHandleChange}
                         placeholder="jhon09"
                     />
-                    <p className="text-xs font-semibold text-slate-700">{message}</p>
+                    <p className="text-xs font-semibold text-slate-700  dark:text-slate-400">{message}</p>
                 </div>
 
                 <div className="mt-4">
@@ -137,8 +137,8 @@ export default function Register(props) {
                 </div>
 
                 <div className="flex items-center pt-5">
-                    <Input id="terms-and-privacy" name="terms-and-privacy" type="checkbox" className="" required />
-                    <label htmlFor="terms-and-privacy" className="ml-2 block text-sm text-gray-900"
+                    <Input id="terms-and-privacy" name="terms-and-privacy" type="checkbox" className="dark:bg-indigo-500" required />
+                    <label htmlFor="terms-and-privacy" className="ml-2 block text-sm text-gray-900 dark:text-slate-200"
                         >I agree to the
                         <a href="#" className="text-indigo-600 font-medium hover:text-indigo-500"> Terms </a>
                           and
@@ -152,9 +152,9 @@ export default function Register(props) {
                     </Button>
                 </div>
             </form>
-            <p className="text-center text-sm text-gray-600">
+            <p className="text-center text-sm text-gray-600 dark:text-slate-200">
                 Already registered ? {` `}
-                <Link href="/login" className="text-purple-700 font-bold hover:text-purple-900 no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign in here</Link>
+                <Link href="/login" className="text-purple-700 dark:text-purple-100 font-bold hover:text-purple-900 dark:hover:text-purple-200 no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign in here</Link>
             </p>
         </Guest>
     );

@@ -7,19 +7,19 @@ function UserProfile(props) {
 
   return (
     <Authenticated 
-                  auth={props.auth}
-                  errors={props.errors}
-                  header={<h2 className="font-semibold text-xl text-gray-800 dark:text-slate-50 leading-tight ">{user.username} <br/> <span className="text-sm font-medium"> {user.ethnic_origin} </span></h2>}
-                  btnName="Back"
-                  svg={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>}
-                  href={route('home')}
+        auth={props.auth}
+        errors={props.errors}
+        header={<h2 className="font-semibold text-xl text-gray-800 dark:text-slate-50 leading-tight ">{user.username} <br/> <span className="text-sm font-medium"> {user.ethnic_origin} </span></h2>}
+        btnName="Back"
+        svg={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>}
+        href={route('home')}
     >
 
     <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex-row sm:flex sm:space-x-2">
             <div className="w-full sm:w-[300px] h-min bg-gray-50 p-10 sm:p-6 rounded-md shadow-sm">
                 <div className="flex items-center justify-center rounded-full ">
-                    <img src={`http://localhost:3000//${user.profile_image}`} alt={`${props.auth.user.username}'s Profile photo`}  className="w-[170px] h-[170px] border-2 border-red-400 p-1 rounded-full" />
+                    <img src={`http://localhost:3000/${user.profile_image}`} alt={`${props.auth.user.username}'s Profile photo`}  className="w-[170px] h-[170px] border-2 border-red-400 p-1 rounded-full" />
                 </div>
                 <div className="flex-none mt-4 text-center sm:text-left">
                     <div className="flex sm:hidden items-center justify-center"> 
@@ -70,24 +70,19 @@ function UserProfile(props) {
 
                     <div class="grid grid-flow-col grid-rows-1 sm:grid-rows-2 grid-cols-6 sm:grid-cols-3 gap-2">
                         <div>
-                        <img src={`http://localhost:3000/${user.profile_image}`} alt={`${props.auth.user.username}'s Profile photo`} />
-
+                            <img src={`http://localhost:3000/${user.profile_image}`} alt={`${props.auth.user.username}'s Profile photo`} />
                         </div>
                         <div class="col-start-3">
                             <img src={`http://localhost:3000/${user.profile_image}`} alt={`${props.auth.user.username}'s Profile photo`} />
-
                         </div>
                         <div>
                             <img src={`http://localhost:3000/${user.profile_image}`} alt={`${props.auth.user.username}'s Profile photo`} />
-
                         </div>
                         <div>
                             <img src={`http://localhost:3000/${user.profile_image}`} alt={`${props.auth.user.username}'s Profile photo`} />
-
                         </div>
                         <div>
                             <img src={`http://localhost:3000/${user.profile_image}`} alt={`${props.auth.user.username}'s Profile photo`} />
-
                         </div>
                         <div>
                             <img src={`http://localhost:3000/${user.profile_image}`} alt={`${props.auth.user.username}'s Profile photo`} />
@@ -115,7 +110,7 @@ function UserProfile(props) {
                             <div className="inline-flex items-center justify-center p-2 mb-2 bg-slate-50 shadow rounded-full"> 
                                 <img src="../assets/images/mosque.svg" className="h-10 w-10 object-center" />
                             </div>
-                            <p>{user.religious_history == 'Not sure' ? 'Not sure about my religious history' : user.religious_history + 'ed'} Muslim - {user.sect == 'Do not Follow' ? 'Dosen\'t follow any sect' : user.sect}</p>
+                            <p>{user.religious_history == 'Other' ? 'Religious history other or not specified' : user.religious_history} Muslim - {user.sect == 'Other' ? 'Other sect or not specified' : user.sect}</p>
                             <p>{user.prayer_frequency == 'Hidden' ? '' : user.prayer_frequency + ' Prays'} </p>
                             <p>
                                 {
@@ -139,10 +134,11 @@ function UserProfile(props) {
                             <div className="inline-flex items-center justify-center p-2 mb-2 bg-slate-50 shadow rounded-full"> 
                                 <img src="../assets/images/ring.svg" className="h-10 w-10" />
                             </div>
-                            <p>Preffered marriage time - {user.get_married} </p>
-                            <p>{user.marital_status} {user.have_children == 'Hidden' ? '' : '- Has ' + user.have_children + ' children'} </p>
-                            <p>{user.like_to_have_children != 'Hidden' ? 'Will like to have children in future' : ''}</p>
-                            <p>Intened to move out after marriage - {user.intend_to_move_out}</p>
+                            
+                            {user.get_married !== '' && '<p>Preffered marriage time - </p>' + user.get_married}
+                            <p>{user.marital_status}  </p>
+                            <p>{user.like_to_have_children != '' ? 'Will like to have children in future' : ''}</p>
+                            <p> {user.intend_to_move_out != '' && 'Intened to move out after marriage'}</p>
                         </div>
                         <div className="rounded-lg ">
                             <div className="inline-flex items-center justify-center p-2 mb-2 bg-slate-50 shadow rounded-full"> 
@@ -175,16 +171,12 @@ function UserProfile(props) {
                             </p> 
                             <p>
                                 {user.issues_living_with_inlaws == 'Not sure' && 'Not sure to have issue living with in-laws after marriage' } {user.issues_living_with_inlaws == 'Yes' ? 'Have issue living with in-laws after marriage' : 'No issues living with in-laws after marriage'}
-
                             </p>
                             <p>Intened to continue working after marriage - {user.continue_working}</p>
-
                         </div>
                     </div>
 
                     <div className="col-span-2 mt-2">
-
-                        
                         <hr className="bg-slate-100" />
                     </div>
 

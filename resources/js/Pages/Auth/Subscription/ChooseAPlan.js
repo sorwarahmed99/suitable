@@ -39,52 +39,52 @@ function ChooseAPlan() {
         >
             <Head title="Suitable | Choose a plan" />
             <div className="flex flex-col lg:items-center justify-center w-full">
-                <h1 className="font-semibold text-gray-800 text-xl md:text-3xl">Choose your plan</h1>
-                <p className="mt-2.5 lg:w-2/3 lg:text-center text-xs md:text-sm text-gray-600">Choose a plan to enjoy all premium features of suitable. Get everything you need</p>
+                <h1 className="font-semibold text-gray-800 dark:text-slate-50 text-xl md:text-3xl">Choose your plan</h1>
+                <p className="mt-2.5 lg:w-2/3 lg:text-center text-xs md:text-sm text-gray-600 dark:text-slate-300">Choose a plan to enjoy all premium features of suitable. Get everything you need</p>
             </div>
             <div className="container mx-auto w-auto">
-                <div className="py-5 px-4 bg-white border border-gray-200shadow rounded-lg text-left">
-                    <h4 className="text-2xl text-slate-700 font-medium pb-6">14 days free trial</h4>
+                <div className="py-5 px-4 bg-white dark:bg-slate-700 border border-gray-200shadow rounded-lg text-left">
+                    <h4 className="text-2xl text-slate-700 dark:text-purple-50 font-medium pb-6">7 days free trial</h4>
                     <ul className="flex flex-col mb-6">
                         <li className="flex items-center mb-2.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-4" viewBox="0 0 20 20" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-4 dark:text-slate-50" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
-                            <p className="text-gray-800 text-base font-normal">Unlimited profile browsing</p>
+                            <p className="text-gray-800 dark:text-purple-50 text-base font-normal">Unlimited profile browsing</p>
                         </li>
                         <li className="flex items-center mb-2.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-4" viewBox="0 0 20 20" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-4 dark:text-slate-50" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
-                            <p className="text-gray-800 text-base font-normal">Unlimited Profile Request</p>
+                            <p className="text-gray-800 dark:text-purple-50 text-base font-normal">Unlimited Profile Request</p>
                         </li>
                         <li className="flex items-center mb-2.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-4" viewBox="0 0 20 20" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-4 dark:text-slate-50" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
-                            <p className="text-gray-800 text-base font-normal">£20 per month to continue after trial ends</p>
+                            <p className="text-gray-800 dark:text-purple-50 text-base font-normal">£20 per month to continue after trial ends</p>
+                        </li>
+                        <li className="flex items-center mb-2.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-4 text-slate-400 dark:text-slate-50" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                            <p className="text-gray-400 dark:text-slate-200 text-base font-normal">Unlimited Chat</p>
+                        </li>
+                        <li className="flex items-center mb-2.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-4 text-slate-400 dark:text-slate-50" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                            <p className="text-gray-400 dark:text-slate-200 text-base font-normal">24/7 Special Admin Support</p>
                         </li>
                         <li className="flex items-center mb-2.5">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-4 text-slate-400" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
-                            <p className="text-gray-400 text-base font-normal">Unlimited Chat</p>
-                        </li>
-                        <li className="flex items-center mb-2.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-4 text-slate-400" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                            <p className="text-gray-400 text-base font-normal">24/7 Special Admin Support</p>
-                        </li>
-                        <li className="flex items-center mb-2.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-4 text-slate-400" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                            <p className="text-gray-400 text-base font-normal">Cancel Anytime</p>
+                            <p className="text-gray-400 dark:text-slate-200 text-base font-normal">Cancel Anytime</p>
                         </li>
                     </ul>
                     <p className="text-base text-slate-700 relative pl-3">
-                        <span className="text-md font-semibold text-slate-500">You will not charge today!</span>
+                        <span className="text-md font-semibold text-slate-500 dark:text-slate-200">You will not charge today!</span>
                     </p>
                     <button
                         onClick={checkout} 

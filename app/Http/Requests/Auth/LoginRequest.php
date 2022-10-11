@@ -43,6 +43,16 @@ class LoginRequest extends FormRequest
      */
     public function authenticate()
     {
+        // if ($user->status_id == 1) {
+        //     $message = 'This user account has yet to be unverified, Please verify this account.';
+        // } elseif ($user->status_id == 3) {
+        //     $message = 'This user account is inactive.';
+        // } elseif ($user->status_id == 4) {
+        //     $message = 'This user account has been suspended.';
+        // } elseif ($user->status_id == 5) {
+        //     $message = 'This user account has been banned from logging in.';
+        // }
+        
         $this->ensureIsNotRateLimited();
 
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {

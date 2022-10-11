@@ -69,13 +69,14 @@ function SetUpProfileStepThree(props) {
                         <img className="h-5 w-full" src="assets/images/logo.svg" alt="suitable-logo" />
                     </Link> */}
                     <div className="flex mb-2 justify-between items-center">
-                        <h2 className="mt-6 text-md sm:text-lg font-semibold text-gray-900">
+                        <h2 className="mt-6 text-md sm:text-lg font-semibold text-gray-900  dark:text-slate-50">
                             Career | Education
                         </h2>
-                        <p className="mt-6 text-lg sm:text-xl font-semibold text-purple-600">40%</p>
+                        <p className="mt-6 text-lg sm:text-xl font-semibold text-purple-600 dark:text-purple-50">40%</p>
                     </div>
-                    <div className="h-2 w-full bg-slate-400 relative rounded-full">
-                        <div className="h-2 w-[150px] bg-slate-700 absolute z-50 rounded-full"></div>
+                   
+                    <div className="h-2 w-full bg-slate-400  dark:bg-slate-600 relative rounded-full">
+                        <div className="h-2 w-[150px] bg-slate-800 dark:bg-slate-50 absolute z-50 rounded-full"></div>
                     </div>
                 </div>
 
@@ -83,13 +84,21 @@ function SetUpProfileStepThree(props) {
                 <form onSubmit={submit}>
                     <div className="mt-4">
                         <Label forInput="highest_education" value="Highest Education" />
-                        <InputSelect 
+                        {/* <InputSelect 
                             defaultValue={data.highest_education} 
                             onChange={onHandleChange} 
                             options={educationOptions} 
                             className={`block w-full sm:text-sm`} 
                             placeholder='Select your most recent university or college qualification'
                             name={`highest_education`}
+                        /> */}
+                        <Input
+                            type="text"
+                            name="highest_education"
+                            value={data.highest_education}
+                            className="mt-1 block w-full"
+                            handleChange={onHandleChange}
+                            placeholder="Your most recent university or college qualification"
                         />
                     </div>
 
@@ -144,7 +153,7 @@ function SetUpProfileStepThree(props) {
                                 <Input
                                     type="text"
                                     name="college_course_name"
-                                    value={data.college}
+                                    value={data.college_course_name}
                                     className="mt-1 block w-full"
                                     handleChange={onHandleChange}
                                     placeholder="Enter course name"

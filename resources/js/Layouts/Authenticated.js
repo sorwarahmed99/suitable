@@ -8,6 +8,8 @@ import { ThemeContext } from '@/context/ThemeContext';
 import Button from '@/Components/Button';
 import FlashMessages from '@/Components/FlashMessages';
 
+import Img from '../../../public/assets/images/user-avatar.png';
+
 export default function Authenticated({ auth, header, btnName, href, svg, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
     const { theme, setTheme } = React.useContext(ThemeContext);
@@ -45,8 +47,8 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
                             
                         <Link href={route('auth.user.profile')} type="button" className="ml-2 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
-                                <div className="h-15 w-15 rounded-full border-2 border-red-400 px-2 py-1">
-                                    <h4 className="text-md font-medium text-red-400">Profile - 50%</h4>
+                                <div className="h-15 w-15 rounded-full border border-red-400 px-2 py-1">
+                                    <h4 className="text-xs font-semibold text-red-400">Profile - 50%</h4>
                                 </div>
                             </Link>
                             {theme === 'dark' ? (
@@ -86,25 +88,8 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                                 type="button"
                                                 className="inline-flex items-center p-0.5 text-sm leading-4 font-medium rounded-full border-2 border-purple-200 hover:border-purple-400 text-gray-500 dark:text-gray-100 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                {!auth.user.profile_image ? (
-                                                    <img src="assets/images/man.svg" alt={`Man photo`}  className="w-10 h-10 rounded-full" />
-                                                ): 
+                                                    <img src={`http://localhost:3000/${auth.user.profile_image || Img}`} alt={`Profile photo`}  className="w-10 h-10 rounded-full" />
                                                 
-                                                    <img src={`http://localhost:3000/${auth.user.profile_image}`} alt={`Profile photo`}  className="w-10 h-10 rounded-full" />
-                                                }
-
-                                                {/* <svg
-                                                    className="ml-2 -mr-0.5 h-4 w-4"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                </svg> */}
                                             </button>
                                         </span>
                                     </Dropdown.Trigger>
@@ -182,11 +167,8 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                     type="button"
                                     className="inline-flex items-center p-0.5 text-sm leading-4 font-medium rounded-full border-2 border-purple-200 hover:border-purple-400 text-gray-500 dark:text-gray-100 focus:outline-none transition ease-in-out duration-150"
                                 >
-                                    {!auth.user.profile_image ? (
-                                            <img src="assets/images/man.svg" alt={`Man photo`}  className="w-10 h-10 rounded-full" />
-                                        ): 
-                                            <img src={`http://localhost:3000/${auth.user.profile_image}`} alt={`Profile photo`}  className="w-10 h-10 rounded-full" />
-                                        }
+                                            <img src={auth.user.profile_image || Img} alt={`Profile photo`}  className="w-10 h-10 rounded-full" />
+                                        
 
                                     {/* <svg
                                         className="ml-2 -mr-0.5 h-4 w-4"
@@ -250,20 +232,17 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                 </div>
                             </div> */}
                             <div>
-                                <Link as="button" href={href} className="bg-transparent text-slate-700 dark:text-slate-50 dark:bg-slate-700 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-900 border-2 px-3 py-2 border-slate-800 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-medium rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
+                                <Link as="button" href={href} className="bg-transparent text-slate-700 dark:text-slate-50 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-900 px-2 py-2 border border-slate-800 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-medium rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
                                     {svg}
                                     <span className="hidden sm:block">{btnName}</span>
                                 </Link>
                             </div>
-                                
                         </div>
-
                 </header>
             )}
 
             <main>
                 <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-8">
-                    
                     {children}
                 </div>
             </main>

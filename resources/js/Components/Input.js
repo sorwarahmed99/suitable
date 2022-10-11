@@ -10,7 +10,8 @@ export default function Input({
     isFocused,
     handleChange,
     defaultValue,
-    placeholder
+    placeholder,
+    disabled
 }) {
     const input = useRef();
 
@@ -31,7 +32,7 @@ export default function Input({
                 placeholder={placeholder}
                 defaultValue={defaultValue}
                 className={
-                    `` +
+                    `text-slate-500 dark:text-slate-200` +
                     className
                 }
                 ref={input}
@@ -39,6 +40,7 @@ export default function Input({
                 required={required}
                 onChange={handleChange}
                 autocomplete="off"
+                disabled={disabled}
             />
         </div>
         </>

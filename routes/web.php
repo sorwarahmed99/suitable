@@ -7,8 +7,10 @@ use App\Http\Controllers\BlockUserController;
 use App\Http\Controllers\FollowingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvitedUserController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PassUserController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SavedUsersController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserLookingForController;
@@ -56,6 +58,7 @@ Route::namespace('Admin')->prefix('admin/')->name('admin.')->group(function () {
 
     // User Routes
     Route::get('/users', [AdminController::class, 'users'])->name('users');
+    Route::get('/users/profile', [AdminController::class, 'show'])->name('userProfile');
     Route::get('/users/active-users', [AdminController::class, 'activeUsers'])->name('activeUsers');
     Route::post('activate-user/{user}', [AdminController::class, 'activateUser'])->name('activate_user');
     Route::post('suspend-user/{user}', [AdminController::class, 'suspendUser'])->name('suspendUser');
@@ -117,7 +120,12 @@ Route::group(['middleware' => ['auth', 'verified', 'registered_user']], function
     Route::get('/interests/people-i-passed', [HomeController::class, 'profilesIPassed'])->name('profilesIPassed');
 
     // Chat and notifications routes ----------------------------------------------------------------
-    Route::get('/chat', [HomeController::class, 'chat'])->name('chat');
+    Route::get('/chat', [MessageController::class, 'index'])->name('chat');
+    Route::get('/chat/{user:username}', [MessageController::class, 'show'])->name('chatwithuser');
+    Route::post('/store-chat/{user}', [MessageController::class, 'store'])->name('storechat');
+    Route::post('/get-recipient/{user}', [MessageController::class, 'recipient'])->name('getRecipient');
+
+    
     Route::get('/notification', [UserNotificationController::class, 'index'])->name('notification');
     
     // Auth user routes ----------------------------------------------------------------
@@ -144,7 +152,8 @@ Route::group(['middleware' => ['auth', 'verified', 'registered_user']], function
     Route::post("follow/{id}", [FollowingController::class, 'follow'])->name('user.follow');
     Route::post("unfollow/{id}", [FollowingController::class, 'unfollow'])->name('user.unfollow');
     
-
+    
+    Route::get("report/{id}", [ReportController::class, 'index'])->name('report');
 
 
 });

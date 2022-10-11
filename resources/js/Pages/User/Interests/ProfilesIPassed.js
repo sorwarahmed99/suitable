@@ -5,13 +5,16 @@ import MatchedSideNav from '@/Components/MatchedSideNav'
 import Authenticated from '@/Layouts/Authenticated'
 import { Link, usePage } from '@inertiajs/inertia-react'
 import React from 'react'
-function ProfilesIPassed(props) {
+import Img from '../../../../../public/images/user-avatar.png'
+
+
+function ProfilesIPassed({auth}) {
     const { passedusers, savers, user } = usePage().props;
 
     return (
     <Authenticated 
-      auth={props.auth}
-      errors={props.errors}
+      auth={auth}
+    //   errors={errors}
       header={<h2 className="font-semibold text-xl text-gray-800 dark:text-slate-50 leading-tight ">Profiles I passed</h2>}
       btnName="Back"
       svg={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>}
@@ -37,7 +40,7 @@ function ProfilesIPassed(props) {
                                                 {!profile_image ? (
                                                     <img src="assets/images/man.svg" alt={`Man photo`}  className="blur-[2px] w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg" />
                                                 ):                                                 
-                                                    <img src={`http://localhost:3000/${profile_image}`} alt={`${firstname}'s Profile photo`}  className="blur-[2px] w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg"  />
+                                                    <img src={profile_image || Img} alt={`${firstname}'s Profile photo`}  className="blur-[2px] w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg"  />
                                                 }
                                             </div>
                                             <div className="flex-auto p-4 sm:ml-3 justify-evenly">
@@ -84,7 +87,7 @@ function ProfilesIPassed(props) {
                                                                 </Dropdown>
                                                             </div>
                                                             <div className="pl-3 text-lg font-semibold text-slate-500 hidden sm:block">
-                                                                {props.auth.user.account_status == 1 &&
+                                                                {auth.user.account_status == 1 &&
                                                                     <Link className="inline-flex items-center justify-center bg-slate-100 text-slate-700 dark:text-slate-100 dark:bg-slate-600 px-2 py-1 rounded-md hover:bg-indigo-500 hover:text-white" method="post" href={route('undo-pass-user', id)} preserveScroll>
                                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
@@ -118,7 +121,7 @@ function ProfilesIPassed(props) {
                                                             </button>
                                                         ) }
                                                         
-                                                        {props.auth.user.account_status == 0 ? ( 
+                                                        {auth.user.account_status == 0 ? ( 
                                                             <button disabled className="disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none bg-transparent text-slate-800 dark:text-slate-500 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-200 bg-slate-200 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 h-10 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -173,7 +176,7 @@ function ProfilesIPassed(props) {
                                                     )}
                                                 </div>
                                                 <p className="pt-4 text-sm text-yellow-700">
-                                                    {props.auth.user.account_status == 0 && 'You can send invitation to this user once your account is activated!' }
+                                                    {auth.user.account_status == 0 && 'You can send invitation to this user once your account is activated!' }
                                                     {!isAccepted ? `You can view ${firstname}'s profile once ${gender == 'Male' ? 'he' : 'she'} accepts your request.` : `You can view ${firstname}'s full profile`  }
                                                 </p>
                                             </div>

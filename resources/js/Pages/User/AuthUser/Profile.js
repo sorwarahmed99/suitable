@@ -17,29 +17,38 @@ function Profile({auth}) {
     const {user, interests} = usePage().props;
 
     const { data, setData, post, processing, errors, reset } = useForm({
-        ethnic_origin: user.ethnic_origin ||'',
-        country: user.country ||'',
-        recidency_status: user.recidency_status || '',
-        relocate: user.relocate || '',
-        postcode: user.postcode || '',
-        min_height: user.height || '',
+        username: user.username || '',
+        email: user.email || '',
+        age: user.age || '',
+        date_of_birth: user.date_of_birth || '',
+        
+        height: user.height || '',
         marital_status: user.marital_status || '',
         have_children: user.have_children || '',
-        like_to_have_children: user.like_to_have_children || '',
+        siblings: user.siblings || '',
+        ethnic_origin: user.ethnic_origin || '',
+        relocate: user.relocate || '',
+        country: user.country || '',
+        recidency_status: user.recidency_status || '',
+        city: user.city || '',
+        postcode: user.postcode || '',
+        back_home_country: user.back_home_country || '',
+        back_home_city: user.back_home_city || '',
+        back_home_area: user.back_home_area || '',
+        highest_education: user.highest_education || '',
+        university: user.university || '',
+        course_name: user.course_name || '',
+        college: user.college || '',
+        college_course_name: user.college_course_name || '',
+        current_profession: user.current_profession || '',
+        company_name: user.company_name || '',
         religious_history: user.religious_history || '',
         prayer_frequency: user.prayer_frequency || '',
         sect: user.sect || '',
-        school_of_thoughts: user.school_of_thoughts || '',
+        read_quran: user.read_quran || '',
         eat_halal: user.eat_halal || '',
-        smoke: user.smoke || '',
         drink_alchohol: user.drink_alchohol || '',
         wear_hijab_keep_beard: user.wear_hijab_keep_beard || '',
-        highest_education: user.highest_education || '',
-        get_married: user.get_married || '',
-        continue_working: user.continue_working || '',
-        intend_to_move_out: user.intend_to_move_out || '',
-        issues_living_with_inlaws: user.issues_living_with_inlaws || '',
-        bio: user.bio || '',
     });
     const photoRef = useRef();
 
@@ -119,9 +128,159 @@ function Profile({auth}) {
         // Place your API call here to submit your payload.
     };
 
+    const countries = [{
+        "name": "Andorra",
+        "code": "Andorra"
+      }, {
+        "name": "Albania",
+        "code": "Albania"
+      }, {
+        "name": "Austria",
+        "code": "Austria"
+      }, {
+        "name": "Åland Islands",
+        "code": "Åland Islands"
+      }, {
+        "name": "Bosnia and Herzegovina",
+        "code": "Bosnia and Herzegovina"
+      }, {
+        "name": "Belgium",
+        "code": "Belgium"
+      }, {
+        "name": "Bulgaria",
+        "code": "Bulgaria"
+      }, {
+        "name": "Belarus",
+        "code": "Belarus"
+      }, {
+        "name": "Switzerland",
+        "code": "Switzerland"
+      }, {
+        "name": "Cyprus",
+        "code": "Cyprus"
+      }, {
+        "name": "Czech Republic",
+        "code": "Czech Republic"
+      }, {
+        "name": "Germany",
+        "code": "Germany"
+      }, {
+        "name": "Denmark",
+        "code": "Denmark"
+      }, {
+        "name": "Estonia",
+        "code": "Estonia"
+      }, {
+        "name": "Spain",
+        "code": "Spain"
+      }, {
+        "name": "Finland",
+        "code": "Finland"
+      }, {
+        "name": "Faroe Islands",
+        "code": "Faroe Islands"
+      }, {
+        "name": "France",
+        "code": "France"
+      }, {
+        "name": "United Kingdom",
+        "code": "United Kingdom"
+      }, {
+        "name": "Guernsey",
+        "code": "Guernsey"
+      }, {
+        "name": "Greece",
+        "code": "Greece"
+      }, {
+        "name": "Croatia",
+        "code": "Croatia"
+      }, {
+        "name": "Hungary",
+        "code": "Hungary"
+      }, {
+        "name": "Ireland",
+        "code": "Ireland"
+      }, {
+        "name": "Isle of Man",
+        "code": "Isle of Man"
+      }, {
+        "name": "Iceland",
+        "code": "Iceland"
+      }, {
+        "name": "Italy",
+        "code": "Italy"
+      }, {
+        "name": "Jersey",
+        "code": "Jersey"
+      }, {
+        "name": "Liechtenstein",
+        "code": "Liechtenstein"
+      }, {
+        "name": "Lithuania",
+        "code": "Lithuania"
+      }, {
+        "name": "Luxembourg",
+        "code": "Luxembourg"
+      }, {
+        "name": "Latvia",
+        "code": "Latvia"
+      }, {
+        "name": "Monaco",
+        "code": "Monaco"
+      }, {
+        "name": "Moldova",
+        "code": "Moldova"
+      }, {
+        "name": "Macedonia, The Former Yugoslav Republic of",
+        "code": "Macedonia, The Former Yugoslav Republic of"
+      }, {
+        "name": "Malta",
+        "code": "Malta"
+      }, {
+        "name": "Netherlands",
+        "code": "Netherlands"
+      }, {
+        "name": "Norway",
+        "code": "Norway"
+      }, {
+        "name": "Poland",
+        "code": "Poland"
+      }, {
+        "name": "Portugal",
+        "code": "Portugal"
+      }, {
+        "name": "Romania",
+        "code": "Romania"
+      }, {
+        "name": "Russian Federation",
+        "code": "Russian Federation"
+      }, {
+        "name": "Sweden",
+        "code": "Sweden"
+      }, {
+        "name": "Slovenia",
+        "code": "Slovenia"
+      }, {
+        "name": "Svalbard and Jan Mayen",
+        "code": "Svalbard and Jan Mayen"
+      }, {
+        "name": "Slovakia",
+        "code": "Slovakia"
+      }, {
+        "name": "San Marino",
+        "code": "San Marino"
+      }, {
+        "name": "Ukraine",
+        "code": "Ukraine"
+      }, {
+        "name": "Holy See (Vatican City State)",
+        "code": "Holy See (Vatican City State)"
+      }];
 
+    const sortedcs = countries.sort((a,b) => a.name.localeCompare(b.name));
+    
 
-    const countries = [ 
+    const backhomecountries = [ 
         {name: 'Afghanistan', code: 'AF'}, 
         {name: 'Åland Islands', code: 'AX'}, 
         {name: 'Albania', code: 'AL'}, 
@@ -366,16 +525,19 @@ function Profile({auth}) {
         {name: 'Zambia', code: 'ZM'}, 
         {name: 'Zimbabwe', code: 'ZW'} 
     ];
-    const relocateOptions = [
-        { value: "Yes", label: "Yes" },
-        { value: "No", label: "No" },
-        { value: "Not sure", label: "Not sure" },
-    ];
-
+ 
     const residencystatusOptions = [
         { value: "Student visa", label: "Student visa"},
         { value: "Work permit", label: "Work permit"},
         { value: "Citizen", label: "Citizen"},
+        { value: "Just Visiting", label: "Just Visiting"},
+        { value: "Other", label: "Other"},
+    ];
+
+    const relocateOptions = [
+        { value: "Yes", label: "Yes" },
+        { value: "No", label: "No" },
+        { value: "Not sure", label: "Not sure" },
     ];
 
     const ethnicOriginOptions = [
@@ -385,19 +547,40 @@ function Profile({auth}) {
         { value: "Asian-Bangladeshi", label: "Asian-Bangladeshi"},
     ];
 
-    const multipleOptions = [
-        { value: "Prefer not to say", label: "Prefer not to say"},
-        { value: "Yes", label: "Yes" },
-        { value: "No", label: "No" },
-    ];
+    const heightOptions = [
+        {value: '4ft', label: '4ft'},
+        
+        {value: '4ft 1in', label: '4ft 1in'},
+        {value: '4ft 2in', label: '4ft 2in'},
+        {value: '4ft 3in', label: '4ft 3in'},
+        {value: '4ft 4in', label: '4ft 4in'},
+        {value: '4ft 5in', label: '4ft 5in'},
+        {value: '4ft 6in', label: '4ft 6in'},
+        {value: '4ft 7in', label: '4ft 7in'},
+        {value: '4ft 8in', label: '4ft 8in'},
+        {value: '4ft 9in', label: '4ft 9in'},
+        {value: '4ft 10in', label: '4ft 10in'},
+        {value: '4ft 11in', label: '4ft 11in'},
 
-    
-    
+        {value: '5ft', label: '5ft'},
+        {value: '5ft 1in', label: '5ft 1in'},
+        {value: '5ft 2in', label: '5ft 2in'},
+        {value: '5ft 3in', label: '5ft 3in'},
+        {value: '5ft 4in', label: '5ft 4in'},
+        {value: '5ft 5in', label: '5ft 5in'},
+        {value: '5ft 6in', label: '5ft 6in'},
+        {value: '5ft 7in', label: '5ft 7in'},
+        {value: '5ft 8in', label: '5ft 8in'},
+        {value: '5ft 9in', label: '5ft 9in'},
+        {value: '5ft 10in', label: '5ft 10in'},
+        {value: '5ft 11in', label: '5ft 11in'},
 
-    const livingwithOptions = [
-        { value: "Parents", label: "Parents" },
-        { value: "Live by myself", label: "Live by myself" },
-        { value: "Hidden", label: "Prefer not say" },
+        {value: '6ft', label: '6ft'},
+        {value: '6ft 1in', label: '6ft 1in'},
+        {value: '6ft 2in', label: '6ft 2in'},
+        {value: '6ft 3in', label: '6ft 3in'},
+        
+
     ];
 
     const maritalStatusOptions = [
@@ -407,46 +590,24 @@ function Profile({auth}) {
         { value: "Hidden", label: "Prefer not to say" },
     ];
 
-    const haveChildrenOptions = [
-        { value: "None", label: "None" },
-        { value: "Hidden", label: "Prefer not to say" },
-        { value: "1", label: "1" },
-        { value: "2", label: "2" },
-        { value: "3", label: "3" },
-        { value: "4", label: "4" },
+
+    const childrenOptions = [
+        { value: "Yes", label: "Yes" },
+        { value: "No", label: "No" },
     ];
 
-    const regiousHistoryOptions = [
-        { value: "Convert", label: "Convert" },
-        { value: "Revert", label: "Revert" },
-        { value: "Not sure", label: "Not sure" },
-    ];
+    // Siblings
+    let nums = [];
+    let min = 1, max = 20;
+    for(let i = min; i <= max; i++){
+        nums.push(i);
+    }
 
-    const sectOptions = [
-        { value: "Sunni", label: "Sunni" },
-        { value: "Shia", label: "Shia" },
-        { value: "Don't Follow", label: "Do not follow" },
-    ];
 
-    const prayerFrequencyOptions = [
-        { value: "Never Missed", label: "Never Missed" },
-        { value: "Sometimes Miss", label: "Sometimes Miss" },
-        { value: "Occasionally", label: "Occasionally" },
-        { value: "Hidden", label: "Prefer not to say" },
-    ];
-    
-    const schoolOfThougthsOptions = [
-        { value: "Hanafi", label: "Hanafi" },
-        { value: "Hanbali", label: "Hanbali" },
-        { value: "Maliki", label: "Maliki" },
-        { value: "Shafei", label: "Shafei" },
-        { value: "Hidden", label: "Prefer not to say" },
-    ];
-
-    
+    // Education
     const educationOptions = [
-        {value: 'Masters', label: 'Masters'},
         {value: 'Bachelor', label: 'Bachelor'},
+        {value: 'Masters', label: 'Masters'},
         {value: 'PHD', label: 'PHD'},
     ];
 
@@ -463,63 +624,63 @@ function Profile({auth}) {
     for(let x = 0; x <= maxOffset; x++) {
         allYears.push(thisYear - x)
     }
-    
-    
-    const continueWorkingOptions =  [
-        { value: "Yes", label: "Yes" },
-        { value: "No", label: "No" },
-        { value: "Not sure", label: "Not sure" },
-    ];
 
-    const moveOutOptions = [
-        { value: "Yes", label: "Yes" },
-        { value: "No", label: "No" },
-        { value: "Not sure", label: "Not sure" },
-    ];
+    const [add, setAdd] = useState(false);
 
-    const getMarriedOptions = [
-        {value: 'As soon as possible', label: 'As soon as possible'},
-        {value: 'Between 1-3 Years', label: 'Between 1-3 Years'},
-        {value: 'Not sure', label: 'Not sure'},
-        {value: 'Hidden', label: 'Prefer not to say'},
-    ];
-
-
-    let nums = [];
-    let min = 1, max = 20;
-    for(let i = min; i <= max; i++){
-        nums.push(i);
+    const toggle = () => {
+        setAdd(!add);
     }
 
-    const fitnessOptions = [
-        { value: "Yes", label: "Yes" },
+    // Religious
+    const regiousHistoryOptions = [
+        { value: "From birth", label: "From birth" },
+        { value: "Revert", label: "Revert" },
+        { value: "Other", label: "Other" },
+    ];
+
+    const readQuranOptions = [
+        { value: "Yes, I have completed", label: "Yes, I have completed" },
+        { value: "Yes, but I’m still learning", label: "Yes, but I’m still learning" },
+        { value: "Still learning Arabic", label: "Still learning Arabic" },
+        { value: "No, I can’t read ", label: "No, I can’t read " },
+    ];
+
+    const sectOptions = [
+        { value: "Sunni", label: "Sunni" },
+        { value: "Shia", label: "Shia" },
+        { value: "Ahmadi", label: "Ahmadi" },
+        { value: "Ibadi", label: "Ibadi" },
+        { value: "Ismaili", label: "Ismaili" },
+        { value: "Other", label: "Other" },
+    ];
+
+    const prayerFrequencyOptions = [
+        { value: "Never Missed", label: "Never Missed" },
+        { value: "Sometimes Miss", label: "Sometimes Miss" },
+        { value: "Occasionally", label: "Occasionally" },
+        { value: "Hidden", label: "Prefer not to say" },
+    ];
+
+    const drinkAlchoholOptions = [
+        { value: "Yes", label: "Yes, doesn’t matter to me" },
         { value: "No", label: "No" },
+        { value: "Occasionally", label: "Occasionally" },
         { value: "Hidden", label: "Prefer not to say" },
     ];
-    const hairColorOptions = [
-        { value: "Brown", label: "Brown" },
-        { value: "Black", label: "Black" },
+
+    const eatHalalOptions = [
+        { value: "Yes", label: "Yes, always" },
+        { value: "No, doesn’t matter to me", label: "No, doesn’t matter to me" },
+        { value: "Sometimes", label: "Sometimes" },
         { value: "Hidden", label: "Prefer not to say" },
-    ]
-    const heightOptions = [
-        {value: '4ft', label: '4ft'},
-        {value: '4ft 5in', label: '4ft 5in'},
-        {value: '5ft', label: '5ft'},
-        {value: '5ft 5in', label: '5ft 5in'},
-        {value: '5ft 6in', label: '5ft 6in'},
-        {value: '5ft 7in', label: '5ft 7in'},
-        {value: '5ft 8in', label: '5ft 8in'},
-        {value: '5ft 9in', label: '5ft 9in'},
-        {value: '6ft', label: '6ft'},
-        {value: '6ft 1in', label: '6ft 1in'},
-        {value: '6ft 2in', label: '6ft 2in'},
-        {value: '6ft 3in', label: '6ft 3in'},
     ];
+
 
     const submit = (e) => {
         e.preventDefault();
         post('set-up-profile-step-1');
     };
+
     return (
         <Authenticated 
         auth={auth}
@@ -535,209 +696,259 @@ function Profile({auth}) {
     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div className="flex-row sm:flex sm:space-x-2">
             <div className="hidden sm:block sm:w-[250px] h-min ">
-                
                <UserSideNav/>
-
-                
             </div>
             
             <div className="mt-2 sm:mt-0 sm:w-full md:w-2/3 bg-gray-50 dark:bg-slate-800 p-4 sm:p-10 rounded-md shadow-sm">
                 <div className="">
-                        {/* <header id="header" className="relative z-20">
-                            <div>
-                                <p className="mb-2 text-sm leading-6 font-semibold text-purple-500 dark:text-red-400">{auth.user.firstname}</p>
-                                <div className="flex items-center">
-                                    <h1 className="inline-block text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">Your information</h1>
-                                </div>
-                            </div>
-                            <p className="mt-2 text-lg text-slate-700 dark:text-slate-400">You can update your information from here.</p>
-                        </header> */}
-                        
+                    <form id="login" className="dark:bg-slate-800" onSubmit={handleSubmit}>
+                        <div className="dark:bg-gray-800">
+                            <div className="p-4 shadow-sm bg-slate-100 dark:bg-slate-700 rounded-md"> 
+                                <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-4">Your profile is under validation!</h2>
+                                <div className="flex items-start space-x-2 ">
+                                    
+                                    <div className="flex-none text-lg text-red-400 rounded-lg border border-red-400 shadow-md p-5 dark:text-red-400 font-bold">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="text-red-400" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                                    </div>
 
-                        <form id="login" className="dark:bg-slate-800" onSubmit={handleSubmit}>
-                            <div className="dark:bg-gray-800">
-                                <div className="p-4 shadow-sm bg-slate-100 dark:bg-slate-700 rounded-md"> 
-                                    <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-4">Your profile is under validation!</h2>
-                                    <div className="flex items-start space-x-2 ">
+                                    <div className="min-w-0 relative flex-auto">
+                                        <div className="p-2">
+                                            <p className="text-sm font-semibold  text-gray-600 dark:text-gray-400">
+                                                {user.username}, your profile is under validation right now. Once validated,
+                                                you will receive a confirmation on your registered mail ID.
+                                            </p>
+                                        </div>
                                         
-                                        <div className="flex-none text-lg text-red-400 rounded-lg border border-red-400 shadow-md p-5 dark:text-red-400 font-bold">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="text-red-400" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                                        </div>
-
-                                        <div className="min-w-0 relative flex-auto">
-                                            <div className="p-2">
-                                                <p className="text-sm font-semibold  text-gray-600 dark:text-gray-400">
-                                                    {user.username}, your profile is under validation right now. Once validated,
-                                                    you will receive a confirmation on your registered mail ID.
-                                                </p>
-                                            </div>
-                                            
-                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div className="py-8">
-                                    <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-50">Photos</h2>
-                                    <p className="text-slate-500 mb-2">Upload or remove photos</p>
-                                    <form className="flex items-start justify-start space-x-2 mt-4">
-                                        <div className="flex justify-center space-x-2">
-                                            <div className="rounded-lg shadow-md bg-gray-50">
-                                                <div className="p-2">
-                                                    <div className="flex items-center justify-center w-full">
-                                                        <label className="relative flex flex-col w-20 h-20 border-3 bg-gray-50 border-slate-300 border-dashed hover:bg-gray-100 hover:border-gray-300">
-                                                            <div className="flex flex-col items-center justify-center pt-10">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-gray-400 group-hover:text-gray-600"
-                                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                                                </svg>
-                                                            </div>
-                                                            <input ref={photoRef} type="file" value={values.photo} className="opacity-0" multiple onChange={handleImageChange} />
-                                                        </label>
-                                                    </div>
+                            {/* Multiple image start */}
+                            <div className="py-8">
+                                <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-50">Photos</h2>
+                                <p className="text-slate-500 mb-2">Upload or remove photos</p>
+                                <form className="flex items-start justify-start space-x-2 mt-4">
+                                    <div className="flex justify-center space-x-2">
+                                        <div className="rounded-lg shadow-md bg-gray-50">
+                                            <div className="p-2">
+                                                <div className="flex items-center justify-center w-full">
+                                                    <label className="relative flex flex-col w-20 h-20 border-3 bg-gray-50 border-slate-300 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                                                        <div className="flex flex-col items-center justify-center pt-10">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-gray-400 group-hover:text-gray-600"
+                                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                                            </svg>
+                                                        </div>
+                                                        <input ref={photoRef} type="file" value={values.photo} className="opacity-0" multiple onChange={handleImageChange} />
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
-                                        {selectedFiles && 
-                                            <div class="flex flex-wrap gap-2">
-                                                <div className="relative rounded-lg shadow-sm bg-gray-50">
-                                                    <div onClick={() => setSelectedFiles(selectedFiles.filter((e) => e !== photo))} className="flex justify-center items-baseline absolute z-50 right-0 left-[4rem] -top-[1rem] text-sm border bg-slate-700 shadow-md cursor-pointer hover:bg-slate-900 border-slate-800 text-slate-50 text-center h-6 w-6 rounded-full">x</div>
-                                                    <img src={`http://localhost:3000/${auth.user.profile_image}`} alt={`${auth.user.firstname}'s Profile photo`} className="object-cover h-20 w-20 aspect-square"  />
-                                                    <p className="text-xs flex justify-center">Profile photo</p>
-                                                </div>
-                                                {renderPhotos(selectedFiles)}
+                                    </div>
+                                    {selectedFiles && 
+                                        <div class="flex flex-wrap gap-2">
+                                            <div className="relative rounded-lg shadow-sm bg-gray-50">
+                                                <div onClick={() => setSelectedFiles(selectedFiles.filter((e) => e !== photo))} className="flex justify-center items-baseline absolute z-50 right-0 left-[4rem] -top-[1rem] text-sm border bg-slate-700 shadow-md cursor-pointer hover:bg-slate-900 border-slate-800 text-slate-50 text-center h-6 w-6 rounded-full">x</div>
+                                                <img src={`http://localhost:3000/${auth.user.profile_image}`} alt={`${auth.user.username}'s Profile photo`} className="object-cover h-20 w-20 aspect-square"  />
+                                                <p className="text-xs flex justify-center">Profile photo</p>
                                             </div>
-                                        }
-                                    </form>
+                                            {renderPhotos(selectedFiles)}
+                                        </div>
+                                    }
+                                </form>
+                            </div>
+                            {/* Multiple image end */}
+                            
+                            {/* BASIC information start */}
+                            <div className="py-4">
+                                <div className="flex items-start space-x-6 border-b pb-2 border-gray-300 dark:border-gray-700 dark:bg-gray-800">
+                                    <p className="flex-none text-lg font-semibold text-gray-800 dark:text-gray-100">Basic information</p>
+                                    <div className="min-w-0 relative flex-auto">
+                                        <div className="p-2 cursor-pointer text-gray-600 dark:text-gray-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16}>
+                                                <path className="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor" />
+                                            </svg>
+                                        </div>
+                                        <dl className="mt-2 flex flex-wrap text-sm leading-6 font-medium">
+                                            <div className="absolute top-0 right-0 flex items-center space-x-1">
+                                                <Button className="bg-transparent border-2 border-purple-600 text-purple-600 hover:text-white hover:bg-purple-600 dark:border-slate-200 dark:text-slate-200 dark:hover:text-slate-700 dark:hover:bg-slate-50 focus:ring-0 dark:focus:ring-0">Save <span className="hidden sm:flex ml-1">changes</span></Button>
+                                            </div>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <p className="mt-3 text-slate-500 mb-3">You can't update basic information once it's public. To update your basic information please contact authority !</p>
+                                
+                                <div className="relative py-2">
+                                    <input disabled type="text" className="py-3 disabled:bg-transparent disabled:text-slate-300 disabled:border-slate-200 disabled:shadow-none dark:text-slate-200" placeholder="Username" />
+                                    <div className="absolute flex items-center justify-end px-3 py-3.1 mt-4 mr-1 right-0 top-0 z-20 text-center text-slate-700 dark:text-slate-200">{user.username}</div>
                                 </div>
 
-                                <div className="py-4">
+                                <div className="relative py-2">
+                                    <input disabled type="text" className="py-3 disabled:bg-transparent disabled:text-slate-300 disabled:border-slate-200 disabled:shadow-none dark:text-slate-200" placeholder="Email" />
+                                    <div className="absolute flex items-center justify-end px-3 py-3.1 mt-4 mr-1 right-0 top-0 z-20 text-center text-slate-700 dark:text-slate-200">{user.email}</div>
+                                </div>
+
+                                <div className="relative py-2">
+                                    <input disabled type="text" placeholder="Date of birth" className="py-3 disabled:bg-transparent disabled:text-slate-300 disabled:border-slate-200 disabled:shadow-none dark:text-slate-200" />
+                                    <div className="absolute flex items-center justify-end px-3 py-3.1 mt-4 mr-1 right-0 top-0 z-20 text-center text-slate-700 dark:text-slate-200">{user.date_of_birth} <span className="ml-2">{user.age} years</span></div>
+                                </div>
+
+                                <div className="relative py-2">
+                                    <input disabled type="text" className="py-3 disabled:bg-transparent disabled:text-slate-300 disabled:border-slate-200 disabled:shadow-none dark:text-slate-200" placeholder="Gender" />
+                                    <div className="absolute flex items-center justify-end px-4 py-3.1 mt-4 mr-1 right-0 top-0 z-20 text-center text-slate-700 dark:text-slate-200">{user.gender}</div>
+                                </div>
+                            </div>
+                            {/* BASIC information end */}
+
+
+                            
+                            <div id="filterSection" className="relative md:py-10 lg:px-2 md:px-6 py-5 px-2 bg-gray-50 dark:bg-slate-800 mt-2 w-full block">
+                                {/* PERSONAL information start */}
+                                <div> 
                                     <div className="flex items-start space-x-6 border-b pb-2 border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                                        <p className="flex-none text-lg font-semibold text-gray-800 dark:text-gray-100">Basic information</p>
+                                        <p className="flex-none text-lg font-semibold text-gray-800 dark:text-gray-100">Personal information</p>
                                         <div className="min-w-0 relative flex-auto">
                                             <div className="p-2 cursor-pointer text-gray-600 dark:text-gray-400">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16}>
                                                     <path className="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor" />
                                                 </svg>
                                             </div>
-                                            <dl className="mt-2 flex flex-wrap text-sm leading-6 font-medium">
-                                                <div className="absolute top-0 right-0 flex items-center space-x-1">
-                                                    <Button className="bg-indigo-700">Save <span className="hidden sm:flex ml-1">changes</span></Button>
-                                                </div>
-                                            </dl>
                                         </div>
                                     </div>
-                                    <p className="mt-3 text-slate-500 mb-3">You can't update basic information once it's public. To update your basic information please contact authority !</p>
+                                    <div className="mt-4">
+                                        <Label forInput="height" value="Height" />
+                                        <InputSelect 
+                                            defaultValue={data.height} 
+                                            onChange={onHandleChange} 
+                                            options={heightOptions} 
+                                            className={`block w-full sm:text-sm`} 
+                                            placeholder='Select your height'
+                                            name={`height`}
+                                        />
+                                    </div>
+
+                                    <div className="mt-4">
+                                        <Label forInput="marital_status" value="Marital Status" />
+                                        <InputSelect 
+                                            defaultValue={data.marital_status} 
+                                            onChange={onHandleChange} 
+                                            options={maritalStatusOptions} 
+                                            className={`block w-full sm:text-sm`} 
+                                            placeholder='Select your Marital Status'
+                                            name={`marital_status`}
+                                        />
+                                    </div>
+
+                                    <div className="mt-4">
+                                        <Label forInput="have_children" value="Children?" />
+                                        <InputSelect 
+                                            defaultValue={data.have_children} 
+                                            onChange={onHandleChange} 
+                                            options={childrenOptions} 
+                                            className={`block w-full sm:text-sm`} 
+                                            placeholder='Do you have any children?'
+                                            name={`have_children`}
+                                        />
+                                    </div>
+
+                                    <div className="mt-4">
+                                        <Label forInput="siblings" value="Number of siblings" />
+                                        <select 
+                                            className={
+                                                `mt-1 border-gray-300 rounded-xl shadow-sm text-slate-500 dark:text-slate-200`
+                                            }
+                                            onChange={onHandleChange}
+                                            name="siblings" 
+                                            value={data.siblings} 
+                                        >
+                                            <option value="" className="text-slate-500 dark:text-slate-200">Select how many</option>
+                                            <option value="0" className="text-slate-500 dark:text-slate-200">I am only child</option>
+                                            {
+                                                nums.map((num) => <option className="text-slate-500 dark:text-slate-200" value={num} key={num}>{num}</option>)
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <div className="mt-4">
+                                        <Label forInput="ethnic-origin" value="Ethnic origin" />
+                                        <InputSelect 
+                                            defaultValue={data.ethnic_origin} 
+                                            onChange={onHandleChange} 
+                                            options={ethnicOriginOptions} 
+                                            className={`block w-full sm:text-sm`} 
+                                            placeholder='Select your ethnic origin'
+                                            name={`ethnic_origin`}
+                                        />
+                                    </div>
+
+                                    <div className="mt-4">
+                                        <Label forInput="relocate" value="Move abroad" />
+
+                                        <InputSelect 
+                                            value={data.relocate} 
+                                            onChange={onHandleChange} 
+                                            options={relocateOptions} 
+                                            className={`block w-full sm:text-sm`} 
+                                            placeholder='Are you willing to relocate?'
+                                            name={`relocate`}
+                                        />
+                                    </div>
                                     
-                                    <div className="relative py-2">
-                                        <input disabled type="text" className="py-3" placeholder="Firstname" />
-                                        <div className="absolute flex items-center justify-end px-3 py-3.1 mt-4 mr-1 right-0 top-0 z-20 text-center text-slate-500">{auth.user.firstname}</div>
-                                    </div>
-
-                                    <div className="relative py-2">
-                                        <input disabled type="text" className="py-3" placeholder="Lastname" />
-                                        <div className="absolute flex items-center justify-end px-3 py-3.1 mt-4 mr-1 right-0 top-0 z-20 text-center text-slate-500">{auth.user.lastname}</div>
-                                    </div>
-
-                                    <div className="relative py-2">
-                                        <input type="text" className="py-3" placeholder="username" readOnly disabled/>
-                                        <div className="absolute flex items-center justify-end px-3 py-3.1 mt-4 mr-1 right-0 top-0 z-20 text-center text-slate-500">{auth.user.firstname}_{auth.user.username}</div>
-                                    </div>
-
-                                    <div className="relative py-2">
-                                        <Input type="text" className="py-3" placeholder="Choose a nickname" />
-                                        {/* <div className="absolute flex items-center justify-end px-3 py-3.1 mt-4 mr-1 right-0 top-0 z-20 text-center text-slate-500">{auth.user.lastname}</div> */}
-                                    </div>
-
-                                    <div className="relative py-2">
-                                        <input disabled type="text" className="py-3" placeholder="Email" />
-                                        <div className="absolute flex items-center justify-end px-3 py-3.1 mt-4 mr-1 right-0 top-0 z-20 text-center text-slate-500">{auth.user.email}</div>
-                                    </div>
-
-                                    <div className="relative py-2">
-                                        <input disabled type="text" placeholder="Date of birth" className="py-3" />
-                                        <div className="absolute flex items-center justify-end px-3 py-3.1 mt-4 mr-1 right-0 top-0 z-20 text-center text-slate-500">{auth.user.date_of_birth} <span className="ml-2">{auth.user.age} years</span></div>
-                                    </div>
-
-                                    <div className="relative py-2">
-                                        <input disabled type="text" className="py-3" placeholder="Gender" />
-                                        <div className="absolute flex items-center justify-end px-4 py-3.1 mt-4 mr-1 right-0 top-0 z-20 text-center text-slate-500">{auth.user.gender}</div>
-                                    </div>
                                 </div>
+                                {/* PERSONAL information end */}
 
+                                {/* LOCATION information START */}
                                 
+                                <div>
+                                    <div className="mt-4">
+                                        <Label forInput="country" value="Country" />
+                                        <select
+                                            className={
+                                                `border-gray-300 rounded-xl shadow-sm text-slate-500 dark:text-slate-200`
+                                            }
+                                            name="country"
+                                            onChange={onHandleChange}
+                                            value={data.country}
+                                        >
+                                            <option value={''}>Select your country</option>
+                                            {sortedcs.map((country) => {
+                                                return (
+                                                    <option key={country.code} value={country.name}>
+                                                        {country.name}
+                                                    </option>
+                                                );
+                                            })}
+                                        </select>
+                                    </div>
 
-                        
-                                <div id="filterSection" className={"relative py-5 px-2 bg-gray-50 dark:bg-slate-800 mt-2 w-full block"}>
-                                    <div> 
-                                        <div className="flex items-start space-x-6 border-b pb-2 border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                                            <p className="flex-none text-lg font-semibold text-gray-800 dark:text-gray-100">Personal information</p>
-                                            <div className="min-w-0 relative flex-auto">
-                                                <div className="p-2 cursor-pointer text-gray-600 dark:text-gray-400">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16}>
-                                                        <path className="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor" />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="mt-4">
-                                            <Label forInput="country" value="Country" />
-                                            <select
-                                                className={
-                                                    `mt-2 border-gray-300 rounded-xl shadow-sm`
-                                                }
-                                                name="country"
-                                                onChange={onHandleChange}
-                                                value={data.country}
-                                            >
-                                                <option value={''}>Select a country</option>
-                                                {countries.map((country) => {
-                                                    return (
-                                                        <option key={country.code} value={country.name}>
-                                                            {country.name}
-                                                        </option>
-                                                    );
-                                                })}
-                                            </select>
-                                        </div>
+                                    <div className="mt-4">
+                                        <Label forInput="recidency_status" value="Recidency status" />
+                                        <InputSelect 
+                                            defaultValue={data.recidency_status} 
+                                            onChange={onHandleChange} 
+                                            options={residencystatusOptions} 
+                                            className={`block w-full sm:text-sm`} 
+                                            placeholder='Select your residency status'
+                                            name={`recidency_status`}
+                                        />
+                                    </div>
 
-                                        <div className="mt-4">
-                                            <Label forInput="ethnic-origin" value="Ethnic Origin" />
-                                            <InputSelect 
-                                                value={data.ethnic_origin} 
-                                                onChange={onHandleChange} 
-                                                options={ethnicOriginOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='Select ethnic origin'
-                                                name={`ethnic_origin`}
+                                    <div className="flex mt-4">
+                                        <div className="w-1/2 pr-2">
+                                            <Label forInput="city" value="City" />
+                                            <Input
+                                                type="text"
+                                                name="city"
+                                                value={data.city}
+                                                className="mt-1 block w-full"
+                                                handleChange={onHandleChange}
+                                                required
+                                                placeholder="eg: London"
                                             />
                                         </div>
 
-                                        <div className="mt-4">
-                                            <Label forInput="recidency_status" value="Recidency status" />
-                                            <InputSelect 
-                                                value={data.recidency_status} 
-                                                onChange={onHandleChange} 
-                                                options={residencystatusOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='Select residency status'
-                                                name={`recidency_status`}
-                                            />
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="relocate" value="Move abroad" />
-
-                                            <InputSelect 
-                                                value={data.relocate} 
-                                                onChange={onHandleChange} 
-                                                options={relocateOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='Are you willing to relocate?'
-                                                name={`relocate`}
-                                            />
-                                        </div>
-                                        <div className="mt-4">
+                                        <div className="w-1/2">
                                             <Label forInput="postcode" value="Postcode" />
                                             <Input
                                                 type="text"
@@ -746,160 +957,195 @@ function Profile({auth}) {
                                                 className="mt-1 block w-full"
                                                 handleChange={onHandleChange}
                                                 required
+                                                placeholder="First part of postcode.."
                                             />
                                         </div>
-                                        <div className="mt-4">
-                                            <Label forInput="marital_status" value="Marital Status" />
-                                            <InputSelect 
-                                                defaultValue={data.marital_status} 
-                                                onChange={onHandleChange} 
-                                                options={maritalStatusOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='Select your Marital Status'
-                                                name={`marital_status`}
+                                    </div>
+
+                                    <h3 className="mt-4 px-2 font-medium text-base text-slate-500 dark:text-slate-200 border-b border-gray-200">Back home address</h3>
+
+                                    <div className="mt-4">
+                                        <Label forInput="backhomecountry" value="Country" />
+                                        <select
+                                            className={
+                                                `border-gray-300 rounded-xl shadow-sm text-slate-500 dark:text-slate-200`
+                                            }
+                                            name="back_home_country"
+                                            onChange={onHandleChange}
+                                            value={data.back_home_country}
+                                        >
+                                            <option value={''}>Select your country</option>
+                                            {backhomecountries.map((backhomecountry) => {
+                                                return (
+                                                    <option key={backhomecountry.code} value={backhomecountry.name}>
+                                                        {backhomecountry.name}
+                                                    </option>
+                                                );
+                                            })}
+                                        </select>
+                                    </div>
+                                    
+                                    <div className="flex mt-4">
+                                        <div className="w-1/2 pr-2"> 
+                                            <Label forInput="back_home_city" value="City" />
+                                            <Input
+                                                type="text"
+                                                name="back_home_city"
+                                                value={data.back_home_city}
+                                                className="mt-1 block w-full"
+                                                handleChange={onHandleChange}
+                                                required
+                                                placeholder="eg: Sylhet"
                                             />
                                         </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="living_with" value="Who do you live with ?" />
-                                            <InputSelect 
-                                                defaultValue={data.living_with} 
-                                                onChange={onHandleChange} 
-                                                options={livingwithOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='Please select one option'
-                                                name={`living_with`}
+                                        <div className="w-1/2"> 
+                                            <Label forInput="back_home_area" value="Area" />
+                                            <Input
+                                                type="text"
+                                                name="back_home_area"
+                                                value={data.back_home_area}
+                                                className="mt-1 block w-full"
+                                                handleChange={onHandleChange}
+                                                required
+                                                placeholder=""
                                             />
                                         </div>
+                                    </div>
+                                </div>
+                                {/* location information ends */}
 
-                                        <div className="mt-4">
-                                            <Label forInput="have_children" value="Do you have children" />
-                                            <InputSelect 
-                                                defaultValue={data.have_children} 
-                                                onChange={onHandleChange} 
-                                                options={haveChildrenOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='Select how many'
-                                                name={`have_children`}
-                                            />
-                                        </div>
 
-                                        <div className="mt-4">
-                                            <div className="flex items-baseline mb-2 pb-2 space-x-2">
-                                                <div className="w-1/3">
-                                                    <Label forInput="like_to_have_children" value="Like to have children" />
-                                                </div>
-                                                <div className="w-2/3 flex justify-end space-x-1">
-                                                    <RadioButton name="like_to_have_children" value={`Yes`} btnName="Yes" handleChange={onHandleChange}  />
-                                                    <RadioButton name="like_to_have_children" value={`No`} btnName="No"  handleChange={onHandleChange} />
-                                                    <RadioButton name="like_to_have_children" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <div className="flex items-baseline mb-2 pb-2 space-x-2">
-                                                <div className="w-1/3">
-                                                    <Label forInput="physical_disability" value="Any Physical disability ?" />
-                                                </div>
-                                                <div className="w-2/3 flex justify-end space-x-1">
-                                                    <RadioButton name="physical_disability" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
-                                                    <RadioButton name="physical_disability" value={`No`} btnName="No"  handleChange={onHandleChange} />
-                                                    <RadioButton name="physical_disability" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
-                                                </div>
+                                {/* EDUCATION information START */}
+                                <div>
+                                    <div className="flex items-start space-x-6 border-b pb-2 pt-4 border-gray-300 dark:border-gray-700 dark:bg-gray-800">
+                                        <p className="flex-none text-lg font-semibold text-gray-800 dark:text-gray-100">Career | Education</p>
+                                        <div className="min-w-0 relative flex-auto">
+                                            <div className="p-2 cursor-pointer text-gray-600 dark:text-gray-400">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16}>
+                                                    <path className="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor" />
+                                                </svg>
                                             </div>
                                         </div>
                                     </div>
-                                        <div className="mt-4">
-                                            <Label forInput="highest_education" value="Highest Education" />
-                                            <InputSelect 
-                                                defaultValue={data.highest_education} 
-                                                onChange={onHandleChange} 
-                                                options={educationOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='Your educational qualification'
-                                                name={`highest_education`}
-                                            />
-                                        </div>
-                                        
-                                        <div className="mt-4">
-                                            <Label forInput="graduation_year" value="Graduation Year" />
-                                            <select 
-                                                className={
-                                                    `mt-1 border-gray-300 rounded-xl shadow-sm`
-                                                }
-                                                onChange={onHandleChange}
-                                                name="graduation_year" 
-                                                value={data.graduation_year} 
-                                            >
-                                                <option selected>Select graduation year</option>
-                                                {
-                                                    allYears.map((year) => <option value={year} key={year}>{year}</option>)
-                                                }
-                                            </select>
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="current_profession" value="Profession" />
-                                            <Input
-                                                type="text"
-                                                name="current_profession"
-                                                value={data.current_profession}
-                                                className="mt-1 block w-full"
-                                                handleChange={onHandleChange}
-                                                required
-                                            />
-                                        </div>
-                                        
-                                        <div className="mt-4">
-                                            <Label forInput="for_how_long" value="Years" />
-                                            <InputSelect 
-                                                defaultValue={data.for_how_long} 
-                                                onChange={onHandleChange} 
-                                                options={yearsOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='How long have you been in this position?'
-                                                name={`for_how_long`}
-                                            />
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="company_name" value="Company Name" />
-                                            <Input
-                                                type="text"
-                                                name="company_name"
-                                                value={data.company_name}
-                                                className="mt-1 block w-full"
-                                                handleChange={onHandleChange}
-                                                required
-                                            />
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="yearly_income" value="Yearly Income" />
-                                            <Input
-                                                type="number"
-                                                name="yearly_income"
-                                                value={data.yearly_income}
-                                                className="mt-1 block w-full"
-                                                handleChange={onHandleChange}
-                                                required
-                                            />
-                                        </div>
-                                    <div>
-                                    
                                     <div className="mt-4">
-                                        <div className="flex items-start space-x-6 border-b pb-2 border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                                            <p className="flex-none text-lg font-semibold text-gray-800 dark:text-gray-100">Religious Practice</p>
-                                            <div className="min-w-0 relative flex-auto">
-                                                <div className="p-2 cursor-pointer text-gray-600 dark:text-gray-400">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16}>
-                                                        <path className="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor" />
-                                                    </svg>
-                                                </div>
+                                        <Label forInput="highest_education" value="Highest Education" />
+                                        {/* <InputSelect 
+                                            defaultValue={data.highest_education} 
+                                            onChange={onHandleChange} 
+                                            options={educationOptions} 
+                                            className={`block w-full sm:text-sm`} 
+                                            placeholder='Select your most recent university or college qualification'
+                                            name={`highest_education`}
+                                        /> */}
+                                        <Input
+                                            type="text"
+                                            name="highest_education"
+                                            value={data.highest_education}
+                                            className="mt-1 block w-full"
+                                            handleChange={onHandleChange}
+                                            placeholder="Your most recent university or college qualification"
+                                        />
+                                    </div>
+
+                                    <div className="flex mt-4">
+                                        <div className="w-2/3 pr-2">
+                                            <Label forInput="university" value="University Name" />
+                                            <Input
+                                                type="text"
+                                                name="university"
+                                                value={data.university}
+                                                className="mt-1 block w-full"
+                                                handleChange={onHandleChange}
+                                                placeholder="Enter university name"
+                                            />
+                                        </div>
+
+                                        <div className="w-1/2">
+                                            <Label forInput="course_name" value="Course Name" />
+                                            <Input
+                                                type="text"
+                                                name="course_name"
+                                                value={data.course_name}
+                                                className="mt-1 block w-full"
+                                                handleChange={onHandleChange}
+                                                placeholder="Enter course name"
+                                            />
+                                        </div>
+                                    </div>
+                                    
+                                    <p className="mb-0 pb-0 flex item-right justify-end text-sm font-semibold cursor-pointer text-purple-600 dark:text-slate-50" onClick={() => toggle()}>
+                                        {add ? "-" : "Add more education"}
+                                    </p>
+
+                                    {add ? (
+                                        <div className="flex mt-2">
+                                            <div className="w-2/3 pr-2">
+                                                <Label forInput="college" value="College" />
+                                                <Input
+                                                    type="text"
+                                                    name="college"
+                                                    value={data.college}
+                                                    className="mt-1 block w-full"
+                                                    handleChange={onHandleChange}
+                                                    placeholder="Enter college name"
+                                                />
+                                            </div>
+
+                                            <div className="w-1/2">
+                                                <Label forInput="college_course_name" value="Course name" />
+                                                <Input
+                                                    type="text"
+                                                    name="college_course_name"
+                                                    value={data.college}
+                                                    className="mt-1 block w-full"
+                                                    handleChange={onHandleChange}
+                                                    placeholder="Enter course name"
+                                                />
                                             </div>
                                         </div>
-                                        <div className="mt-4">
+                                    ) : ''}
+
+                                    <div className="mt-4">
+                                        <Label forInput="current_profession" value="Current profession" />
+                                        <Input
+                                            type="text"
+                                            name="current_profession"
+                                            value={data.current_profession}
+                                            className="mt-1 block w-full"
+                                            handleChange={onHandleChange}
+                                        />
+                                    </div>
+
+                                    <div className="mt-4">
+                                        <Label forInput="company_name" value="Company Name" />
+                                        <Input
+                                            type="text"
+                                            name="company_name"
+                                            value={data.company_name}
+                                            className="mt-1 block w-full"
+                                            handleChange={onHandleChange}
+                                        />
+                                        <p className="text-slate-500 text-xs font-medium">This will not show in on your profile</p>
+                                    </div>
+
+
+                                </div>
+                                {/* EDUCATION information END */}
+                                
+                                {/* Religious information START */}
+
+                                <div className="mt-4">
+                                    <div className="flex items-start space-x-6 border-b pb-2 border-gray-300 dark:border-gray-700 dark:bg-gray-800">
+                                        <p className="flex-none text-lg font-semibold text-gray-800 dark:text-gray-100">Religious Practice</p>
+                                        <div className="min-w-0 relative flex-auto">
+                                            <div className="p-2 cursor-pointer text-gray-600 dark:text-gray-400">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16}>
+                                                    <path className="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="mt-4">
                                             <Label forInput="religious_history" value="Religious history" />
                                             <InputSelect 
                                                 value={data.religious_history} 
@@ -909,9 +1155,9 @@ function Profile({auth}) {
                                                 placeholder='Select your religious history'
                                                 name={`religious_history`}
                                             />
-                                        </div>
+                                    </div>
 
-                                        <div className="mt-4">
+                                    <div className="mt-4">
                                             <Label forInput="prayer_frequency" value="Do you pray" />
                                             <InputSelect 
                                                 value={data.prayer_frequency} 
@@ -921,381 +1167,93 @@ function Profile({auth}) {
                                                 placeholder='Select your prayer frequency'
                                                 name={`prayer_frequency`}
                                             />
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="sect" value="Sect" />
-                                            <InputSelect 
-                                                value={data.sect} 
-                                                onChange={onHandleChange} 
-                                                options={sectOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='What sect are you'
-                                                name={`sect`}
-                                                required={true}
-                                            />
-                                        </div>
-
-                                        <div className="mt-4">
-                                                <Label forInput="school_of_thoughts" value="School of thoughts" />
-                                                <InputSelect 
-                                                    value={data.school_of_thoughts} 
-                                                    onChange={onHandleChange} 
-                                                    options={schoolOfThougthsOptions} 
-                                                    className={`block w-full sm:text-sm`} 
-                                                    placeholder="What's your school of thoughts"
-                                                    name={`school_of_thoughts`}
-                                                    required={true}
-                                                />
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="eat_halal" value="Eat halal ?" />
-                                            <InputSelect 
-                                                value={data.eat_halal} 
-                                                onChange={onHandleChange} 
-                                                options={multipleOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder="Do you eat halal?"
-                                                name={`eat_halal`}
-                                            />
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="smoke" value="Smoke ?" />
-                                            <InputSelect 
-                                                value={data.smoke} 
-                                                onChange={onHandleChange} 
-                                                options={multipleOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder="Do you smoke?"
-                                                name={`smoke`}
-                                            />
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="drink_alchohol" value="Drink Alchohol ?" />
-                                            <InputSelect 
-                                                value={data.drink_alchohol} 
-                                                onChange={onHandleChange} 
-                                                options={multipleOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder="Do you Drink Alchohol?"
-                                                name={`drink_alchohol`}
-                                            />
-                                        </div>
-
-
-                                        <div className="mt-4">
-                                            <Label forInput="wear_hijab_keep_beard" value={`${auth.user.gender == "Male" ? "Keep Beard" : "Wear Hijab ?" }`} />
-                                            <InputSelect 
-                                                value={data.wear_hijab_keep_beard}
-                                                onChange={onHandleChange} 
-                                                options={multipleOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder="Do you Drink Alchohol?"
-                                                name={`wear_hijab_keep_beard`}
-                                            />
-                                        </div>
                                     </div>
 
                                     <div className="mt-4">
-                                        <div className="flex items-start space-x-6 border-b pb-2 border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                                            <p className="flex-none text-lg font-semibold text-gray-800 dark:text-gray-100">Family | Future Plan</p>
-                                            <div className="min-w-0 relative flex-auto">
-                                                <div className="p-2 cursor-pointer text-gray-600 dark:text-gray-400">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16}>
-                                                        <path className="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor" />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="mt-4">
-                                            <Label forInput="siblings" value="Number of siblings" />
-                                            <select 
-                                                className={
-                                                    `mt-1 border-gray-300 rounded-xl shadow-sm`
-                                                }
-                                                onChange={onHandleChange}
-                                                name="siblings" 
-                                                value={data.siblings} 
-                                            >
-                                                <option value="">Select how many</option>
-                                                <option value="0">I am only child</option>
-                                                {
-                                                    nums.map((num) => <option value={num} key={num}>{num}</option>)
-                                                }
-                                            </select>
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="a_day_living_with_family" value="What will a day living with your family consist of? Any specific duties? " />
-                                            <Input
-                                                type="text"
-                                                name="a_day_living_with_family"
-                                                value={data.a_day_living_with_family}
-                                                placeholder={`Write in short.. `}
-                                                className="mt-1 block w-full"
-                                                handleChange={onHandleChange}
-                                                required
-                                            />
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="get_married" value="Preferred marriage time ?" />
-                                            <InputSelect 
-                                                defaultValue={data.get_married} 
-                                                onChange={onHandleChange} 
-                                                options={getMarriedOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='When are you planning to get married ?'
-                                                name={`get_married`}
-                                            />
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="continue_working" value="Do you intend to continue working when married?" />
-                                            <InputSelect 
-                                                defaultValue={data.continue_working} 
-                                                onChange={onHandleChange} 
-                                                options={continueWorkingOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='Select an option'
-                                                name={`continue_working`}
-                                            />
-                                        </div>
-                                        
-                                        <div className="mt-4">
-                                            <Label forInput="intend_to_move_out" value="Do you intend to move out?" />
-                                            <InputSelect 
-                                                defaultValue={data.intend_to_move_out} 
-                                                onChange={onHandleChange} 
-                                                options={moveOutOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='Select an option'
-                                                name={`intend_to_move_out`}
-                                            />
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="issues_living_with_inlaws" value="Do you have issues living with in laws?" />
-                                            <InputSelect 
-                                                defaultValue={data.issues_living_with_inlaws} 
-                                                onChange={onHandleChange} 
-                                                options={moveOutOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='Select an option'
-                                                name={`issues_living_with_inlaws`}
-                                            />
-                                        </div>
-
-                                        <div className="mt-4">
-                                            <Label forInput="future_plan" value="Where do you see yourself in 5 years" />
-                                            <Input
-                                                type="text"
-                                                name="future_plan"
-                                                placeholder={`Write in short.. `}
-                                                value={data.future_plan}
-                                                className="mt-1 block w-full"
-                                                handleChange={onHandleChange}
-                                                required
-                                            />
-                                        </div>
-
+                                        <Label forInput="sect" value="Sect" />
+                                        <InputSelect 
+                                            value={data.sect} 
+                                            onChange={onHandleChange} 
+                                            options={sectOptions} 
+                                            className={`block w-full sm:text-sm`} 
+                                            placeholder='What sect are you?'
+                                            name={`sect`}
+                                            required={true}
+                                        />
                                     </div>
 
-                                    <div>
-                                        <div className="mt-4">
-                                            <Label forInput="height" value="Height" />
-                                            <InputSelect 
-                                                defaultValue={data.height} 
-                                                onChange={onHandleChange} 
-                                                options={heightOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='Select your height'
-                                                name={`height`}
-                                            />
-                                        </div>
+                                    <div className="mt-4">
+                                        <Label forInput="read_quran" value="Read Quran" />
+                                        <InputSelect 
+                                            value={data.read_quran} 
+                                            onChange={onHandleChange} 
+                                            options={readQuranOptions} 
+                                            className={`block w-full sm:text-sm`} 
+                                            placeholder='Can you read Quran?'
+                                            name={`read_quran`}
+                                        />
+                                    </div>
 
-                                        <div className="mt-4">
-                                            <Label forInput="hair_color" value="Hair Color" />
-                                            <InputSelect 
-                                                defaultValue={data.hair_color} 
-                                                onChange={onHandleChange} 
-                                                options={hairColorOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='Select your hair color'
-                                                name={`hair_color`}
-                                            />
-                                        </div>
+                                    <div className="mt-4">
+                                        <Label forInput="eat_halal" value="Eating Halal" />
+                                        <InputSelect 
+                                            value={data.eat_halal} 
+                                            onChange={onHandleChange} 
+                                            options={eatHalalOptions} 
+                                            className={`block w-full sm:text-sm`} 
+                                            placeholder='Do you eat halal?'
+                                            name={`eat_halal`}
+                                            required={true}
+                                        />
+                                    </div>
 
-                                        <div className="mt-4">
-                                            <Label forInput="fitness" value="Fitness" />
-                                            <InputSelect 
-                                                defaultValue={data.fitness} 
-                                                onChange={onHandleChange} 
-                                                options={fitnessOptions} 
-                                                className={`block w-full sm:text-sm`} 
-                                                placeholder='Select if you like work out ?'
-                                                name={`fitness`}
-                                            />
-                                        </div>
+                                    <div className="mt-4">
+                                        <Label forInput="drink_alchohol" value="Drink" />
+                                        <InputSelect 
+                                            value={data.drink_alchohol} 
+                                            onChange={onHandleChange} 
+                                            options={drinkAlchoholOptions} 
+                                            className={`block w-full sm:text-sm`} 
+                                            placeholder='Do you drink alchohol ?'
+                                            name={`drink_alchohol`}
+                                            required={true}
+                                        />
+                                    </div>
+                                    
 
-                                        <div className="mt-4">
-                                            <Label forInput="bio" value="About you" />
-                                            <textarea id="about" name="bio" onChange={onHandleChange} className="bg-transparent border mt-1 border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded-lg text-sm focus:outline-none focus:border-indigo-700 resize-none placeholder-gray-500 text-gray-700 dark:text-gray-700" placeholder="Share something nice about you ..." rows={5} defaultValue={data.bio} />
-                                            <p className="w-full text-right text-xs pt-1 text-gray-500 dark:text-gray-400">Character Limit: 1000</p>
-                                        </div>
-
-                                        <div className="mt-4 border-b border-slate-200">
-                                            <Label forInput="interests" value="Interests" />
-
-                                            <div className="flex flex-wrap items-baseline mt-2 pb-2 space-x-2">
-                                                {interests.map(({ name, id, svg }) => (
-                                                    <div key={name}>
-                                                        <label class="inline-flex items-center mt-2">
-                                                            <input type="checkbox" name="interests[]" class="sr-only peer" onChange={handleChecked} value={id} />
-                                                            <span class="px-4 py-2 text-xs cursor-pointer font-semibold rounded-full border border-slate-300 flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-indigo-50  peer-checked:border-red-400 peer-checked:text-red-400">
-                                                            <span className="font-normal mr-2 h-5 w-5"><div dangerouslySetInnerHTML={{ __html: svg}} /></span>    {name}
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                ))}
+                                    <div className="mt-4">
+                                        <div className="flex items-baseline mb-2 pb-2 space-x-2">
+                                            <div className="w-1/3">
+                                                <Label forInput="wear_hijab_keep_beard" value={`${auth.user.gender == "Male" ? "Keep Beard" : "Wear Hijab ?" }`} />
+                                            </div>
+                                            <div className="w-2/3 flex justify-end space-x-1">
+                                                <RadioButton name="wear_hijab_keep_beard" value={`Yes`} btnName="Yes" handleChange={onHandleChange} />
+                                                <RadioButton name="wear_hijab_keep_beard" value={`No`} btnName="No" handleChange={onHandleChange} />
+                                                <RadioButton name="wear_hijab_keep_beard" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
                                             </div>
                                         </div>
                                     </div>
-                                        
+
+                                    
+
                                 </div>
+                                {/* Religious information END */}
+                                <div className="pt-4">
+                                    <hr className="mt-4 bg-gray-200/50 dark:bg-gray-50/50 w-full md:my-10 md:mb-5 my-8" />
 
-                                <hr className=" bg-gray-200/50 dark:bg-gray-50  w-full md:my-10 my-8" />
-
-                            </div>
-                                
-                                {/* <div className="container mx-auto bg-white dark:bg-gray-800 mt-10 rounded px-4">
-                                    <div className="xl:w-full border-b border-gray-300 dark:border-gray-700 py-5">
-                                        <div className="flex w-11/12 mx-auto xl:w-full xl:mx-0 items-center">
-                                            <p className="text-lg text-gray-800 dark:text-gray-100 font-bold">Personal Information</p>
-                                            <div className="ml-2 cursor-pointer text-gray-600 dark:text-gray-400">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16}>
-                                                    <path className="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor" />
-                                                </svg>
-                                            </div>
-                                        </div>
+                                    <div className="px-0 mt-10 w-full md:w-auto md:mt-4 md:absolute md:right-0 md:bottom-0 md:py-10 lg:px-2 md:px-6">
+                                        <button className="w-full bg-purple-600 text-slate-50 hover:text-white hover:bg-purple-700 focus:ring focus:ring-offset-2 focus:ring-gray-800 text-base leading-4 font-medium py-4 px-10 rounded-md">
+                                            Save Changes
+                                        </button>
                                     </div>
-                                    <div className="mx-auto pt-4">
-                                        <div className="container mx-auto">
-                                            <div className="xl:w-1/4 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
-                                                <label htmlFor="FirstName" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
-                                                    First Name
-                                                </label>
-                                                <input type="text" id="FirstName" name="firstName" required className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400" placeholder />
-                                            </div>
-                                            <div className="xl:w-1/4 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
-                                                <label htmlFor="LastName" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
-                                                    Last Name
-                                                </label>
-                                                <input type="text" id="LastName" name="lastName" required className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400" placeholder />
-                                            </div>
-                                            <div className="xl:w-1/4 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
-                                                <label htmlFor="Email" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
-                                                    Email
-                                                </label>
-                                                <div className="border border-green-400 shadow-sm rounded flex">
-                                                    <div className="px-4 py-3 dark:text-gray-100 flex items-center border-r border-green-400">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-mail" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                                            <rect x={3} y={5} width={18} height={14} rx={2} />
-                                                            <polyline points="3 7 12 13 21 7" />
-                                                        </svg>
-                                                    </div>
-                                                    <input type="text" id="Email" name="email" required className="pl-3 py-3 w-full text-sm focus:outline-none placeholder-gray-500 rounded bg-transparent text-gray-500 dark:text-gray-400" placeholder="example@gmail.com" />
-                                                </div>
-                                                <div className="flex justify-between items-center pt-1 text-green-400">
-                                                    <p className="text-xs">Email submission success!</p>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16}>
-                                                        <path
-                                                            className="heroicon-ui"
-                                                            d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-2.3-8.7l1.3 1.29 3.3-3.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0
-                                            0 1-1.4 0l-2-2a1 1 0 0 1 1.4-1.42z"
-                                                            stroke="currentColor"
-                                                            strokeWidth="0.25"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            fill="currentColor"
-                                                        />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div className="xl:w-1/4 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
-                                                <label htmlFor="StreetAddress" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
-                                                    Street Address
-                                                </label>
-                                                <input type="text" id="StreetAddress" name="streetAddress" required className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded bg-transparent text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400" placeholder />
-                                            </div>
-                                            <div className="xl:w-1/4 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
-                                                <label htmlFor="City" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
-                                                    City
-                                                </label>
-                                                <div className="border border-gray-300 dark:border-gray-700 shadow-sm rounded flex">
-                                                    <input type="text" id="City" name="city" required className="pl-3 py-3 w-full text-sm focus:outline-none border border-transparent focus:border-indigo-700 bg-transparent rounded placeholder-gray-500 text-gray-500 dark:text-gray-400" placeholder="Los Angeles" />
-                                                    <div className="px-4 flex items-center border-l border-gray-300 dark:border-gray-700 flex-col justify-center text-gray-500 dark:text-gray-400">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-up" width={16} height={16} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                                            <polyline points="6 15 12 9 18 15" />
-                                                        </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-down" width={16} height={16} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                                            <polyline points="6 9 12 15 18 9" />
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="xl:w-1/4 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
-                                                <label htmlFor="State/Province" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
-                                                    State/Province
-                                                </label>
-                                                <input type="text" id="State/Province" name="state" required className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400" placeholder="California" />
-                                            </div>
-                                            <div className="xl:w-1/4 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
-                                                <label htmlFor="Country" className="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">
-                                                    Country
-                                                </label>
-                                                <input type="text" id="Country" name="country" required className="border bg-transparent border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400" placeholder="United States" />
-                                            </div>
-                                            <div className="xl:w-1/4 lg:w-1/2 md:w-1/2 flex flex-col mb-6">
-                                                <div className="flex items-center pb-2">
-                                                    <label htmlFor="ZIP" className="text-sm font-bold text-gray-800 dark:text-gray-100">
-                                                        ZIP/Postal Code
-                                                    </label>
-                                                    <div className="ml-2 cursor-pointer text-gray-600 dark:text-gray-400">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16}>
-                                                            <path className="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor" />
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                                <input type="text" name="zip" required id="ZIP" className="bg-transparent border border-red-400 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 placeholder-gray-500 text-gray-500 dark:text-gray-400" placeholder={86745} />
-                                                <div className="flex justify-between items-center pt-1 text-red-400">
-                                                    <p className="text-xs">Incorrect Zip Code</p>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x-circle">
-                                                        <circle cx={12} cy={12} r={10} />
-                                                        <line x1={15} y1={9} x2={9} y2={15} />
-                                                        <line x1={9} y1={9} x2={15} y2={15} />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> */}
-                                
+                                </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>        
-                                                                        
-                            
+    </div>
     </Authenticated>
   )
 }

@@ -5,6 +5,7 @@ import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 import Dropdown from '@/Components/Dropdown';
 import EmptyState from '@/Components/EmptyState';
+import Img from '../../../../public/assets/images/user-avatar.png'
 
 function Home({auth, errors}) {
     const [showInviteMessage,setShowInviteMessage] = useState(false);
@@ -53,7 +54,7 @@ function Home({auth, errors}) {
                                         <div className=" bg-slate-50 rounded-lg p-6 dark:bg-slate-800 dark:highlight-white/5 shadow-md mb-2" key={id}>
                                             <div class="flex flex-col-reverse ">
                                                 <div class="flex items-center space-x-4">
-                                                    <img src={`http://localhost:3000/${profile_image}`} alt={`${username}'s Profile photo`} class="flex-none w-14 h-14 rounded-full object-cover" loading="lazy"/>
+                                                    <img src={profile_image || Img} alt={`${username}'s Profile photo`} class="flex-none w-14 h-14 rounded-full object-cover" loading="lazy"/>
                                                     <div class="flex-auto">
                                                         <div class="text-lg font-semibold text-slate-900 dark:text-slate-50">
                                                             {username}, {`${age}`}
@@ -92,7 +93,7 @@ function Home({auth, errors}) {
                                                                     <Dropdown.Link href={route('block-user', id)} method="post" as="button">
                                                                         Block
                                                                     </Dropdown.Link>
-                                                                    <Dropdown.Link href={route('auth.user.profile')} method="get" as="button">
+                                                                    <Dropdown.Link href={route('report', id)} method="post" as="button">
                                                                         Report
                                                                     </Dropdown.Link>
                                                                 </Dropdown.Content>

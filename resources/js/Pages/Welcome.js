@@ -44,30 +44,34 @@ export default function Welcome(props) {
                         </div>
                     </div>
                 </nav>
-                <section>
-                    <div class="relative max-w-5xl mx-auto pt-10 sm:pt-15 lg:pt-15">
+                <section className="h-screen">
+                    <div class="relative max-w-5xl mx-auto pt-10 sm:pt-15 lg:pt-20">
                         <img className="mr-2 lg:mr-12 mt-2 lg:mt-12 absolute right-0 top-0" src="assets/images/hero-dots.svg" alt="bg" />
                         <img className="ml-2 lg:ml-12 mb-2 lg:mb-12 absolute bottom-0 left-0" src="assets/images/hero-love.svg" alt="bg" />
                         <div className="p-5">
                             <h3 className="text-slate-900 lg:font-bold font-bold text-4xl sm:text-4xl lg:text-4xl tracking-tight text-center dark:text-white">Welcome to <span className="text-purple-600 font-bold">Suitable</span> </h3>
-                            <p class="mt-6 text-center text-sm uppercase tracking-wide text-slate-500  max-w-3xl mx-auto dark:text-slate-400">
-                                In today's busy world of professionals and executives, working or living we understand that is difficult to find and meet other like minded muslim individuals for the purpose of marriage. 
-                                Where time is of the essence, and keeping your faith and traditions in place, we understand that it is difficult finding the time to meet and vet individuals to find a suitable match. 
-                                <br/>
-                                <br/>
-                                This is why we do the hard work for you. Our approach is reassuringly traditional and islamic, being British but with a truly global perspective. 
-                                Our acceptance process is rigorous and we are certainly not right for everyone. We are as selective about who we accept to join our platform. 
-                                We vet everyone before accepting them and they must adhere to an islamic lifestyle and be from a professional working environment. 
-                                <br />
-                                <br />
-                                Compromise is simply not an option. for them, or us. clients who join us are introduced to people within our network who, like them, have been and vetted before being accepted. 
-                                This is therefore a selected and sophisticated group of people who understand completely the unspoken rule of only wanting to meet other people like them and who are comfortable with who they are and who they would ideally like to meet whilst maintaining islamic values and discretion.
+                            <p class="mt-6 text-justify	 text-md tracking-wide text-slate-600 max-w-3xl mx-auto dark:text-slate-300">
+                                    In today’s busy world of working professionals we understand that is difficult to find and meet other like minded Muslim individuals for the purpose of marriage. 
+
+                                    Where time is of the essence, and keeping your faith and traditions in place, we understand that it is difficult finding the time to find a suitable match. 
+                                    
+                                    This is why we do the hard work for you.
+                                    <br/>
+                                    <br/>
+                                    Our approach is reassuringly traditional and Islamic, being british but with a global reach. 
+
+                                    We are selective about who we accept to join our platform, we are certainly not right for everyone. 
+                                    
+                                    COMPROMISE IS SIMPLY NOT AN OPTION. FOR THEM, OR US. 
+
+                                    <br/>
+                                    <span className="font-semibold">Made for professionals by professionals.</span>
                             </p>
                             <div class="mt-6 sm:mt-10 flex justify-center space-x-2">
                                 <Link href={route('register')} className="main-btn gradient-btn font-semibold">
                                     Find your pair
                                 </Link>
-                                <Link href={route('login')} className="hidden sm:flex bg-purple-50 dark:bg-slate-800 text-purple-600 hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 dark:text-purple-50 font-semibold h-12 px-6 rounded-lg w-full  items-center justify-center sm:w-auto dark:hover:bg-purple-100">
+                                <Link href={route('login')} className="hidden sm:flex bg-purple-50 dark:bg-slate-800 text-purple-600 hover:bg-purple-100 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 dark:text-purple-50 font-semibold h-12 px-6 rounded-lg w-full  items-center justify-center sm:w-auto dark:hover:bg-purple-100 dark:hover:text-purple-800">
                                     Access your account
                                 </Link>
                                 {/* <a class="bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 text-white font-semibold h-12 px-6 rounded-lg w-full flex items-center justify-center sm:w-auto dark:bg-sky-500 dark:highlight-white/20 dark:hover:bg-sky-400" href="/docs/installation">Get started</a> */}

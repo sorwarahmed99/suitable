@@ -4,7 +4,7 @@ import { createInertiaApp } from '@inertiajs/inertia-react';
 import { InertiaProgress } from '@inertiajs/progress';
 import { ThemeProvider } from './context/ThemeContext';
 
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || '';
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Suitable';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

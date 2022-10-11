@@ -18,7 +18,7 @@ function InputSelect({
             
             <select
                 className={
-                    `border-gray-300 rounded-xl shadow-sm text-xs` +
+                    `border-gray-300 rounded-xl shadow-sm text-xs text-slate-500 dark:text-slate-200` +
                     className
                 }
                 name={name}
@@ -30,7 +30,7 @@ function InputSelect({
                 <option value={''}>{placeholder}</option>
                 {options.map((option, index) => {
                     return (
-                        <option className='text-xs' key={index} value={option.value}>
+                        <option className='text-xs text-slate-500 dark:text-slate-200' key={index} value={option.value}>
                             {option.label}
                         </option>
                     );

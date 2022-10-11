@@ -43,27 +43,27 @@ export default function Login({ status, canResetPassword }) {
                     <span className="self-center text-2xl font-semibold whitespace-nowrap text-purple-800 dark:text-purple-500">Suitable</span>
                 </Link>
                 <h2 className="mt-6 text-md font-medium text-gray-900">
-                    Start your soulmate search with the world's most reliable match making site!
+                    
                 </h2>
             </div>
             <ValidationErrors errors={errors} />
 
             <form className="sm:px-12 px-2" onSubmit={submit}>
                 <div className="mt-4 mb-6 border-b border-slate-200 pb-3">
-                    <h2 className="mt-6 text-md font-semibold text-gray-900">
+                    <h2 className="mt-6 text-md font-semibold text-gray-900 dark:text-slate-50">
                         Welcome Back
                     </h2>
-                    <p className="text-sm">Enter your login credentials</p>
+                    <p className="text-sm text-gray-600 dark:text-slate-300">Enter your login credentials</p>
                 </div>
                 <div >
-                    <Label forInput="email" value="Email" className="block text-sm font-medium text-gray-700" />
+                    <Label forInput="email" value="Email"/>
 
                     <Input
                         type="text"
                         name="email"
                         value={data.email}
                         className="mt-1 block w-full"
-                        autoComplete="username"
+                        autoComplete="email"
                         isFocused={true}
                         handleChange={onHandleChange}
                     />
@@ -104,9 +104,9 @@ export default function Login({ status, canResetPassword }) {
                         Log in
                     </Button>
                 </div>
-                <p className="mt-4 text-center text-sm text-gray-600 max-w">
+                <p className="mt-4 text-center text-sm text-gray-600 dark:text-slate-300 max-w">
                     Don't have an account ? {` `}
-                    <Link href="/register" className="text-purple-700 font-bold hover:text-purple-900 no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign up</Link>
+                    <Link href="/register" className="text-purple-700 dark:text-purple-200 font-bold hover:text-purple-900 no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign up</Link>
                 </p>
             </form>
             

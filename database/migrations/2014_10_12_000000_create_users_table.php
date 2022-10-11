@@ -31,8 +31,6 @@ class CreateUsersTable extends Migration
             $table->string('age')->nullable();
             $table->string('gender')->nullable();
             $table->string('ethnic_origin')->nullable();
-            // $table->integer('siblings')->nullable();
-            // $table->integer('height')->nullable();
             
             $table->string('country')->nullable();
             $table->string('city')->nullable();
@@ -44,7 +42,7 @@ class CreateUsersTable extends Migration
             $table->string('back_home_area')->nullable();
 
             $table->integer('profile_step')->nullable();
-            $table->boolean('account_status')->default(0)->nullable();
+            $table->integer('account_status')->nullable();
             $table->string('last_login')->nullable();
             $table->string('account_created_with')->nullable();
             $table->timestamp('email_verified_at')->nullable();

@@ -8,6 +8,9 @@ import { ThemeContext } from '@/context/ThemeContext';
 import Button from '@/Components/Button';
 import FlashMessages from '@/Components/FlashMessages';
 
+import Img from '../../../../public/assets/images/user-avatar.png';
+
+
 export default function Authenticated({ auth, header, href, btnName, children }) {
     const [open, setOpen] = useState(false);
     const { theme, setTheme } = React.useContext(ThemeContext);
@@ -31,7 +34,7 @@ export default function Authenticated({ auth, header, href, btnName, children })
                         <div className="h-16 w-full flex items-center px-8">
                             <Link href={route('admin.dashboard')} className="flex">
                                 {/* <img className="h-6 w-full" src="../../../assets/images/logo.svg" alt="shape" /> */}
-                                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Suitable</span>
+                                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-purple-400 text-purple-500">Suitable</span>
                             </Link>
                         </div>
                         <ul aria-orientation="vertical" className=" py-6">
@@ -76,6 +79,11 @@ export default function Authenticated({ auth, header, href, btnName, children })
                                                     <span className="ml-2">All Users</span>
                                                </Link>
                                             </li>
+                                            {/* <li className="pl-3 cursor-pointer text-gray-600 dark:text-slate-50 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                                <Link href={route('admin.userProfile')}>
+                                                    <span className="ml-2">Profile</span>
+                                               </Link>
+                                            </li> */}
                                         </ul>
                                     }
                                 </div>
@@ -433,7 +441,8 @@ export default function Authenticated({ auth, header, href, btnName, children })
                                                     ""
                                                 )}
                                                 <div className="relative">
-                                                    <img className="rounded-full h-10 w-10 object-cover" src="https://tuk-cdn.s3.amazonaws.com/assets/components/sidebar_layout/sl_1.png" alt="avatar" />
+                                                    <img src={auth.user.profile_image || Img} alt={`Profile photo`}  className="rounded-full h-8 w-8 ml-1 object-cover" />
+
                                                     <div className="w-2 h-2 rounded-full bg-green-400 border border-white absolute inset-0 mb-0 mr-0 m-auto" />
                                                 </div>
                                             </div>

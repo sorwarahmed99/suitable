@@ -57,10 +57,10 @@ function UploadProfilePic({errors}) {
 
         <div className="">
             <div className=" mb-2 items-baseline">
-                <h2 className="mt-6 text-lg font-semibold text-gray-900">
+                <h2 className="mt-6 text-lg font-semibold text-slate-900 dark:text-purple-50">
                     Add a photo of yourself
                 </h2>
-                <p className="mt-1 text-sm font-normal text-gray-500">Your profile will be only visible to other members, when you add a photo.</p>
+                <p className="mt-1 text-sm font-normal text-gray-500 dark:text-slate-200">Your profile will be only visible to other members, when you add a photo.</p>
             </div>
         </div>
 
@@ -105,8 +105,8 @@ function UploadProfilePic({errors}) {
             </div>
 
             <div className="mt-6">
-                <p>Instruction</p>
-                <ul className="list-inside list-disc text-sm text-slate-400">
+                <p className="text-slate-700 dark:text-purple-50">Instruction</p>
+                <ul className="list-inside list-disc text-sm text-slate-400 dark:text-purple-200">
                     <li>Upload clear photos</li>
                     <li>It is better to avoid group photos</li>
                     <li>Please upload your photos only.</li>

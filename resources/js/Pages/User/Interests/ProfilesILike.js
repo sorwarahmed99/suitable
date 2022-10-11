@@ -5,14 +5,15 @@ import MatchedSideNav from '@/Components/MatchedSideNav'
 import Authenticated from '@/Layouts/Authenticated'
 import { Link, usePage } from '@inertiajs/inertia-react'
 import React from 'react'
+import Img from '../../../../../public/images/user-avatar.png'
 
-function ProfilesILike(props) {
+function ProfilesILike({auth}) {
         const { invitedusers } = usePage().props;
 
         return (
         <Authenticated 
-        auth={props.auth}
-        errors={props.errors}
+        auth={auth}
+        // errors={errors}
         header={<h2 className="font-semibold text-xl text-gray-800 dark:text-slate-50 leading-tight ">Profiles I Liked</h2>}
         btnName="Back"
         svg={<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>}
@@ -35,7 +36,7 @@ function ProfilesILike(props) {
                                         {invitedusers.map(({ id, firstname, lastname, username, gender, age, country, recidency_status, ethnic_origin, profile_image, highest_education, current_profession, prayer_frequency, sect, saved, isFollowing, isSaved, isInvited, isAccepted }) => (
                                             <div key={id} className="flex-none sm:flex bg-white dark:bg-slate-800 shadow-md sm:rounded-lg  space-y-2 mb-4">
                                                 <div className="blur-[2px] overflow-hidden relative sm:min-h-full w-full sm:w-[19rem] sm:mb-0 mb-3">
-                                                    <img src={`http://localhost:3000/${profile_image}`} alt={`${firstname}'s Profile photo`}  className="blur-[2px] w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg" />
+                                                    <img src={profile_image || Img} alt={`${firstname}'s Profile photo`}  className="blur-[2px] w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg" />
                                                 </div>
                                                 <div className="flex-auto p-6 sm:ml-3 justify-evenly">
                                                     <div className="flex items-center sm:mt-2">
@@ -107,7 +108,7 @@ function ProfilesILike(props) {
                                                                 </button>
                                                             ) }
                                                             
-                                                            {props.auth.user.account_status == 0 ? ( 
+                                                            {auth.user.account_status == 0 ? ( 
                                                                 <button disabled className="disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none bg-transparent text-slate-800 dark:text-slate-500 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-200 bg-slate-200 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 h-10 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -167,7 +168,7 @@ function ProfilesILike(props) {
                                                         )}
                                                     </div>
                                                     <p className="pt-4 text-sm text-yellow-700">
-                                                        {props.auth.user.account_status == 0 && 'You can send invitation to this user once your account is activated!' }
+                                                        {auth.user.account_status == 0 && 'You can send invitation to this user once your account is activated!' }
                                                         {!isAccepted ? `You can view ${firstname}'s profile once ${gender == 'Male' ? 'he' : 'she'} accepts your request.` : `You can view ${firstname}'s full profile`  }
                                                     </p>
                                                 </div>

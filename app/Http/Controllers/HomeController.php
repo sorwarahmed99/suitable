@@ -257,9 +257,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function chat (User $user) {
-        return Inertia::render('User/Chat', ['user' => $user]);
-    }
+    
 
 
     

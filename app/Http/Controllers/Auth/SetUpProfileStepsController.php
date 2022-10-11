@@ -40,6 +40,7 @@ class SetUpProfileStepsController extends Controller
             'date_of_birth' => 'required|string|date|before:18 years ago',
             'gender' => 'required',
             'marital_status' => 'required',
+            'have_children' => 'required',
             'ethnic_origin' => 'required',
             'height' => 'required',
         ],[
@@ -60,6 +61,7 @@ class SetUpProfileStepsController extends Controller
             'user_id' => auth()->id(),
             'height' => $request->height,
             'marital_status' => $request->marital_status,
+            'have_children' => $request->have_children,
         ]);
 
         UserFamilyInfo::create([
@@ -88,9 +90,11 @@ class SetUpProfileStepsController extends Controller
         $request->validate([
             'country' => 'required',
             'recidency_status' => 'required',
-            'city' => 'required',
-            'postcode' => 'required', Rule::postcode(),
+            'city' => 'required | max:255',
+            'postcode' => 'required | max:10', Rule::postcode(),
             'back_home_country' => 'required',
+            'back_home_city' => 'max:255',
+            'back_home_area' => 'max:255',
         ]);
 
         auth()->user()->update([
@@ -124,8 +128,12 @@ class SetUpProfileStepsController extends Controller
     {   
 
         $request->validate([
-            'highest_education' => 'required',
-            'current_profession' => 'required',
+            'highest_education' => 'required | max:255',
+            'current_profession' => 'required | max:255',
+            'college' => 'max:255',
+            'college_course_name' => 'max:255',
+            'current_profession' => 'max:255',
+            'company_name' => 'max:255',
         ]);
 
         DB::beginTransaction();

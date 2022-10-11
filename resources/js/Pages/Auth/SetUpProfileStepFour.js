@@ -27,7 +27,7 @@ function SetUpProfileStepFour(props) {
     const regiousHistoryOptions = [
         { value: "From birth", label: "From birth" },
         { value: "Revert", label: "Revert" },
-        { value: "Other", label: "Other" },
+        // { value: "Other", label: "Other" },
     ];
 
     const readQuranOptions = [
@@ -43,28 +43,28 @@ function SetUpProfileStepFour(props) {
         { value: "Ahmadi", label: "Ahmadi" },
         { value: "Ibadi", label: "Ibadi" },
         { value: "Ismaili", label: "Ismaili" },
-        { value: "Other", label: "Other" },
+        // { value: "Other", label: "Other" },
     ];
 
     const prayerFrequencyOptions = [
         { value: "Never Missed", label: "Never Missed" },
         { value: "Sometimes Miss", label: "Sometimes Miss" },
         { value: "Occasionally", label: "Occasionally" },
-        { value: "Hidden", label: "Prefer not to say" },
+        // { value: "Hidden", label: "Prefer not to say" },
     ];
 
     const drinkAlchoholOptions = [
         { value: "Yes", label: "Yes, doesn’t matter to me" },
         { value: "No", label: "No" },
         { value: "Occasionally", label: "Occasionally" },
-        { value: "Hidden", label: "Prefer not to say" },
+        // { value: "Hidden", label: "Prefer not to say" },
     ];
 
     const eatHalalOptions = [
         { value: "Yes", label: "Yes, always" },
         { value: "No, doesn’t matter to me", label: "No, doesn’t matter to me" },
         { value: "Sometimes", label: "Sometimes" },
-        { value: "Hidden", label: "Prefer not to say" },
+        // { value: "Hidden", label: "Prefer not to say" },
     ];
 
     const onHandleChange = (event) => {
@@ -83,13 +83,14 @@ function SetUpProfileStepFour(props) {
                 
                 <div className="text-center">
                     <div className="flex mb-2 justify-between items-center">
-                        <h2 className="mt-6 text-lg font-semibold text-gray-900">
+                        <h2 className="mt-6 text-lg font-semibold text-gray-900 dark:text-slate-50">
                             Religious view
                         </h2>
-                        <p className="mt-6 text-xl font-bold text-purple-600">50%</p>
+                        <p className="mt-6 text-xl font-bold text-purple-600 dark:text-purple-50">50%</p>
                     </div>
-                    <div className="h-2 w-full bg-slate-400 relative rounded-full">
-                        <div className="h-2 w-[280px] bg-slate-800 absolute z-50 rounded-full"></div>
+                    
+                    <div className="h-2 w-full bg-slate-400  dark:bg-slate-600 relative rounded-full">
+                        <div className="h-2 w-[280px] bg-slate-800 dark:bg-slate-50 absolute z-50 rounded-full"></div>
                     </div>
                 </div>
 
