@@ -63,9 +63,6 @@ Route::namespace('Admin')->prefix('admin/')->name('admin.')->group(function () {
     Route::post('activate-user/{user}', [AdminController::class, 'activateUser'])->name('activate_user');
     Route::post('suspend-user/{user}', [AdminController::class, 'suspendUser'])->name('suspendUser');
 
-    
-
-    
     Route::get('/plans', [SubscriptionPlanController::class, 'index'])->name('plans');
     Route::get('/plans/add-new-plan', [SubscriptionPlanController::class, 'create'])->name('plan.create');
     Route::post('/plans/add-plan', [SubscriptionPlanController::class, 'store'])->name('plan.store');

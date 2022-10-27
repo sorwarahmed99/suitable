@@ -77,13 +77,14 @@ function Chat({ auth }) {
                             {users.map(user => (
                                 <ChatUser key={user.id} user={user} active={user}/>
                             ))}
-                            
-                            <a class="block py-4 px-12 border-l-4 border-gray-800 dark:border-indigo-300 bg-gray-300 dark:bg-blue-900 dark:text-white text-black hover:bg-gray-300 hover:text-black dark:hover:text-slate-300" href="javascript:return false;">
-                                <span class="inline-block align-text-bottom mr-2">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-4 h-4"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-                                </span>
-                                Chat
-                            </a>
+                            {(users.length == 0 &&
+                                <a class="block py-4 px-12 border-l-4 border-gray-800 dark:border-indigo-300 bg-gray-300 dark:bg-blue-900 dark:text-white text-black hover:bg-gray-300 hover:text-black dark:hover:text-slate-300" href="javascript:return false;">
+                                    <span class="inline-block align-text-bottom mr-2">
+                                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-4 h-4"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                    </span>
+                                    Empty Chat
+                                </a>
+                            )}
                         </div>
                     </div>
 

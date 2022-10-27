@@ -127,7 +127,7 @@ class HomeController extends Controller
         $user = Auth::user();
         $savedusers = $user->savedusers()->get()->toArray();
 
-        return Inertia::render('User/Interests', [
+        return Inertia::render('User/Interests/Interests', [
             'savedusers' => $user->savedusers()
             ->with('religion')->with('qualification')
             ->paginate(5)

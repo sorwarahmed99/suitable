@@ -88,7 +88,7 @@ export default function Authenticated({ auth, header, btnName, href, svg, childr
                                                 type="button"
                                                 className="inline-flex items-center p-0.5 text-sm leading-4 font-medium rounded-full border-2 border-purple-200 hover:border-purple-400 text-gray-500 dark:text-gray-100 focus:outline-none transition ease-in-out duration-150"
                                             >
-                                                    <img src={`http://localhost:3000/${auth.user.profile_image || Img}`} alt={`Profile photo`}  className="w-10 h-10 rounded-full" />
+                                                    <img src={`${auth.user.profile_image || Img}`} alt={`Profile photo`}  className="w-10 h-10 rounded-full" />
                                                 
                                             </button>
                                         </span>

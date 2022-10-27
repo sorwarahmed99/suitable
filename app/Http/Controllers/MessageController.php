@@ -149,7 +149,7 @@ class MessageController extends Controller
                 'recidency_status' => $user->recidency_status,
                 'postcode' => $user->postcode,
                 'last_login' => $user->last_login,
-                
+
                 'last_message' => $user->lastmessages->last()->message ?? '',
                 'time' => $user->lastmessages->last()->created_at ?? '',
 
@@ -195,6 +195,7 @@ class MessageController extends Controller
                         'isSaved' => auth()->user()->isSaved($u) ?? '',
                         'isInvited' => auth()->user()->isInvited($u) ?? '',
                         'isAccepted' => auth()->user()->isAccepted($u) ?? '',
+                        
                         'last_message' => $u->lastmessages->last()->message ?? '',
                         'time' => $u->lastmessages->last()->created_at ?? '',
                     ];

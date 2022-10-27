@@ -29,7 +29,7 @@ function ChatUser({user, active}) {
                 <div className={`entry cursor-pointer p-2 border-l-4 hover:border-red-400 transform hover:scale-105 duration-300 transition-transform bg-white dark:bg-slate-700 dark:text-slate-50 flex shadow-md rounded-md ${active && 'cursor-pointer p-2 border-l-4 hover:border-red-400 transform hover:scale-105 duration-300 transition-transform bg-white flex shadow-md rounded-md' }`}>
                     <div className="flex-2">
                         <div className="w-12 h-12 relative">
-                            <img className="w-12 h-12 rounded-full mx-auto" src={`http://localhost:3000/${user.profile_image || Img}`} alt={`${user.username}'s Profile photo`} />
+                            <img className="w-12 h-12 rounded-full mx-auto" src={`${user.profile_image || Img}`} alt={`${user.username}'s Profile photo`} />
                             <span className={`absolute w-4 h-4  rounded-full right-0 bottom-0 border-2 border-white ${user.isOnline ? 'bg-green-400' : 'bg-slate-400'}`}></span>
                         </div>
                     </div>

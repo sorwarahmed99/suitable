@@ -224,7 +224,7 @@ class SetUpProfileStepsController extends Controller
         // }
 
         if ($image = $request->file('photo')) {
-            $destinationPath = 'uploads/user-profile-images/';
+            $destinationPath = 'public/uploads/user-profile-images/';
             $profileImage = $user->id.date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             
