@@ -5,19 +5,22 @@ import Footer from '@/Layouts/Footer';
 import { ThemeContext } from '@/context/ThemeContext';
 
 
+import LogoPurple from '../../../public/assets/images/logo-purple.svg';
+import LogoLight from '../../../public/assets/images/logo-light.svg';
+
 export default function Welcome(props) {
     const { theme, setTheme } = React.useContext(ThemeContext);
 
-    return (
+    return ( 
         <>
-            <Head title="Suitable" />
+            {/* <Head title="Suitable" /> */}
             {/* <nav className="bg-white shadow-md px-5 sm:px-20 dark:bg-gray-800 mx-auto top-0 left-0 z-40 w-full py-2 duration-300 sticky"> */}
                 <nav className="bg-white px-5 sm:px-20 py-2  dark:bg-slate-800 border-b border-gray-100 dark:border-slate-500 sticky top-0 z-40 backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex flex-wrap justify-between items-center">
                             <Link as="a" href="/" className="flex items-center justify-center">
-                                {/* <img className="h-7 w-full" src="assets/images/s.svg" alt="shape" /> */}
-                                <span className="self-center text-3xl whitespace-nowrap pl-[0.5px] text-purple-800 font-bold dark:text-white">Suitable</span>
+                                <img className="w-full h-7 block dark:hidden" src={LogoPurple} alt="shape" />
+                                <img className="w-full h-7 hidden dark:block" src={LogoLight} alt="shape" />
                             </Link>
                             <div className="flex space-x-3">
                                 {theme === 'dark' ? (
@@ -49,8 +52,8 @@ export default function Welcome(props) {
                         <img className="mr-2 lg:mr-12 mt-2 lg:mt-12 absolute right-0 top-0" src="assets/images/hero-dots.svg" alt="bg" />
                         <img className="ml-2 lg:ml-12 mb-2 lg:mb-12 absolute bottom-0 left-0" src="assets/images/hero-love.svg" alt="bg" />
                         <div className="p-5">
-                            <h3 className="text-slate-900 lg:font-bold font-bold text-4xl sm:text-4xl lg:text-4xl tracking-tight text-center dark:text-white">Welcome to <span className="text-purple-600 font-bold">Suitable</span> </h3>
-                            <p class="mt-6 text-justify	 text-md tracking-wide text-slate-600 max-w-3xl mx-auto dark:text-slate-300">
+                            <h3 className="text-slate-900 lg:font-bold font-bold text-2xl sm:text-4xl lg:text-4xl tracking-tight text-center dark:text-white">And we created you in pairs <span className="text-purple-600 text-lg font-semibold">(Al-Quran)</span> </h3>
+                            <p class="mt-6 text-justify text-md tracking-wide text-slate-600 max-w-3xl mx-auto dark:text-slate-300">
                                     In today’s busy world of working professionals we understand that is difficult to find and meet other like minded Muslim individuals for the purpose of marriage. 
 
                                     Where time is of the essence, and keeping your faith and traditions in place, we understand that it is difficult finding the time to find a suitable match. 
@@ -80,7 +83,6 @@ export default function Welcome(props) {
                     </div>
                 </section>
                 
-                
                 <div className="pt-5" style={{ fontFamily: '"Lato", sans-serif' }}>
                     {/* Code block starts */}
                     <dh-component>
@@ -102,7 +104,7 @@ export default function Welcome(props) {
                                         </div>
                                     </div>
                                     <div className="w-10/12">
-                                        <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-tight text-gray-800 dark:text-slate-50">Create A new account</h2>
+                                        <h2 tabIndex={0} className="focus:outline-none text-lg font-bold leading-tight text-gray-800 dark:text-slate-50">Create a new account</h2>
                                         <p tabIndex={0} className="focus:outline-none text-base text-gray-600 leading-normal pt-2 dark:text-slate-400">We provided a very simple start, no need to write a lot. Simply add your basic information. </p>
                                     </div>
                                 </div>

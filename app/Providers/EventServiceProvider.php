@@ -23,6 +23,10 @@ class EventServiceProvider extends ServiceProvider
         Login::class => [
             LoginListener::class,
         ],
+
+        WelcomeEmail::class => [
+            SendWelcomeEmail::class,
+        ],
         
         App\Events\NewInviteCreated::class => [
             App\Listeners\CreateInviteActivity::class,

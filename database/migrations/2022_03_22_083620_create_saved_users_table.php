@@ -15,12 +15,13 @@ class CreateSavedUsersTable extends Migration
     {
         Schema::create('saved_users', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('saved_user_id');
-            // $table->unsignedBigInteger('saved_by_user_id');
-            
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
 	        $table->foreignId('saved_user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
+           
+            // $table->unsignedBigInteger('saved_user_id');
+            // $table->unsignedBigInteger('saved_by_user_id');
+            
         });
     }
 

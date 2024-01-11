@@ -7,6 +7,9 @@ import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
 import RadioButton from '@/Components/RadioButton';
 
+import LogoPurple from '../../../public/assets/images/logo-purple.svg';
+import LogoLight from '../../../public/assets/images/logo-light.svg';
+
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         firstname: '',

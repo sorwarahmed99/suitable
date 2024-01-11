@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Cashier\Billable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, Billable;
 
@@ -30,14 +30,17 @@ class User extends Authenticatable
         'date_of_birth',
         'age',
         'gender',
+
         'account_created_with',
         'account_status',
         'last_login',
         'account_verified_by',
         'profile_step',
+
         'ethnic_origin',
         'country',
         'city',
+        'area',
 
         'back_home_country',
         'back_home_city',
@@ -45,8 +48,9 @@ class User extends Authenticatable
         
         'recidency_status',
         'relocate',
-        'postcode',
         'profile_image',
+
+        'deactivated',
     ];
 
     
@@ -148,6 +152,12 @@ class User extends Authenticatable
     public function acceptuser(User $user) {
         if($this->amiInvited($user)) {
             InvitedUser::where('invited_user_id', $user->id)->where('user_id', auth()->id())->update(['is_accepted' => 1]);
+        }
+    }
+
+    public function rejecttuser(User $user) {
+        if($this->amiInvited($user)) {
+            InvitedUser::where('invited_user_id', $user->id)->where('user_id', auth()->id())->update(['is_accepted' => 2]);
         }
     }
 
@@ -348,5 +358,18 @@ class User extends Authenticatable
     // public function followings() {
     //     return $this->belongsToMany(User::class, 'followings', 'follower_id', 'followed_id')->withTimestamps();
     // }
+
+
+    public function userImages()
+    {
+        return $this->hasMany(UserImage::class);
+    }
+
+
+    public function deactivate(){
+        $this->update([
+            'deactivated' => true,
+        ]);
+    }
 
 }

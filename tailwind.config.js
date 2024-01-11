@@ -8,6 +8,7 @@ module.exports = {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.js',
     ],
+    variants: { extend: { display: ['dark'], } },
 
     theme: {
         extend: {
@@ -31,6 +32,8 @@ module.exports = {
                     "linear-gradient(rgba(255, 182, 182, 0.30), rgba(255, 182, 182, 0.30)), url('/assets/images/familu.svg')",
                 'plan-background':
                     "linear-gradient(rgba(0,0,0, 0.10), rgba(0,0,0, 0.10)), url('/assets/images/plan.svg')",
+                'upload-background':
+                    "linear-gradient(rgba(0,0,0, 0.10), rgba(0,0,0, 0.10)), url('/assets/images/upload.svg')",
                 'empty-background':
                     "linear-gradient(rgba(0,0,0, 0.10), rgba(0,0,0, 0.10)), url('/assets/images/empty.svg')",
                 'empty-chat-background':
@@ -39,6 +42,8 @@ module.exports = {
                     'linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url(https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80)',
                 'profile-background':
                     "linear-gradient(rgba(0,0,0, 0.75), rgba(0,0,0, 0.75)), url('/src/assets/img/background-1920x1080.jpg')",
+                'email-background':
+                    "linear-gradient(rgba(0,0,0, 0.0), rgba(0,0,0, 0.10)), url('/assets/images/email.svg')",
             }),
         },
     },

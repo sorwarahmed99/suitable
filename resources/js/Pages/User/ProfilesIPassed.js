@@ -5,7 +5,7 @@ import MatchedSideNav from '@/Components/MatchedSideNav'
 import Authenticated from '@/Layouts/Authenticated'
 import { Link, usePage } from '@inertiajs/inertia-react'
 import React from 'react'
-import Img from '../../../../../public/images/user-avatar.png'
+import Img from '../../../../public/images/user-avatar.png'
 
 
 function ProfilesIPassed({auth}) {
@@ -40,7 +40,7 @@ function ProfilesIPassed({auth}) {
                                                 {!profile_image ? (
                                                     <img src="assets/images/man.svg" alt={`Man photo`}  className="blur-[2px] w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg" />
                                                 ):                                                 
-                                                    <img src={profile_image || Img} alt={`${firstname}'s Profile photo`}  className="blur-[2px] w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg"  />
+                                                    <img src={profile_image} alt={`${username}'s Profile photo`}  className="blur-[2px] w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg"  />
                                                 }
                                             </div>
                                             <div className="flex-auto p-4 sm:ml-3 justify-evenly">
@@ -49,7 +49,7 @@ function ProfilesIPassed({auth}) {
                                                         <div className="flex flex-wrap">
                                                             <div className="flex items-center">
                                                                 <h1 className="text-lg font-semibold text-slate-900 dark:text-slate-50">
-                                                                    {firstname} {lastname}, {age}
+                                                                    {username}, {age}
                                                                 </h1>
                                                                 <div className="m-1 ml-2 rounded-full bg-green-600 h-2 w-2"></div>
                                                             </div>

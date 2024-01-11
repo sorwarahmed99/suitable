@@ -19,7 +19,7 @@ function SetUpProfileStepFour(props) {
         sect: '',
         eat_halal: '',
         drink_alchohol: '',
-        wear_hijab_keep_beard: '',
+        bio: '',
         _token: props.csrf_token,
     });
 
@@ -49,14 +49,14 @@ function SetUpProfileStepFour(props) {
     const prayerFrequencyOptions = [
         { value: "Never Missed", label: "Never Missed" },
         { value: "Sometimes Miss", label: "Sometimes Miss" },
-        { value: "Occasionally", label: "Occasionally" },
-        // { value: "Hidden", label: "Prefer not to say" },
+        { value: "Occasionally Pray", label: "Occasionally Pray" },
+        { value: "Don't Pray", label: "Don't Pray" },
     ];
 
     const drinkAlchoholOptions = [
-        { value: "Yes", label: "Yes, doesn’t matter to me" },
+        { value: "Yes", label: "Yes, it doesn’t matter to me" },
         { value: "No", label: "No" },
-        { value: "Occasionally", label: "Occasionally" },
+        // { value: "Occasionally", label: "Occasionally" },
         // { value: "Hidden", label: "Prefer not to say" },
     ];
 
@@ -172,7 +172,7 @@ function SetUpProfileStepFour(props) {
                     </div>
                     
 
-                        <div className="mt-4">
+                        {/* <div className="mt-4">
                             <div className="flex items-baseline mb-2 pb-2 space-x-2">
                                 <div className="w-1/3">
                                     <Label forInput="wear_hijab_keep_beard" value={`${props.auth.user.gender == "Male" ? "Keep Beard" : "Wear Hijab ?" }`} />
@@ -183,6 +183,12 @@ function SetUpProfileStepFour(props) {
                                     <RadioButton name="wear_hijab_keep_beard" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
                                 </div>
                             </div>
+                        </div> */}
+
+                        <div className="mt-4">
+                            <Label forInput="bio" value="About you" />
+                            <textarea id="about" name="bio" onChange={onHandleChange} className="bg-transparent border mt-1 border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded-lg text-sm focus:outline-none focus:border-indigo-700 resize-none placeholder-gray-500 text-gray-700 dark:text-gray-300" placeholder="Share something nice about you ..." rows={5} defaultValue={data.bio} />
+                            <p className="w-full text-right text-xs pt-1 text-gray-500 dark:text-gray-400">Character Limit: 2000</p>
                         </div>
 
 

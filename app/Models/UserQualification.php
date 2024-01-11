@@ -14,14 +14,14 @@ class UserQualification extends Model
         'highest_education',
         'university',
         'course_name',
-        'university_graduation_year',
+        // 'university_graduation_year',
         'college',
         'college_course_name',
-        'college_graduation_year',
+        // 'college_graduation_year',
         'current_profession',
-        'for_how_long',
+        // 'for_how_long',
         'company_name',
-        'yearly_income',
+        // 'yearly_income',
     ];
 
     public function users()

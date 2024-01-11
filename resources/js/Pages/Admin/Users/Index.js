@@ -5,7 +5,8 @@ import React, { useState } from 'react'
 
 function Index(props) {
   const [show, setShow] = useState(null)
-  const [showFilters, setShowfilters] = useState(false);
+  const [showUserDetails, setShowUserDetails] = useState(null);
+
   const [userId, setUserId] = useState(null);
 
   const { users, active_users } = usePage().props;
@@ -40,7 +41,7 @@ function Index(props) {
                                                 ethnic_origin, 
                                                 country, 
                                                 city, 
-                                                postcode, 
+                                                area, 
                                                 recidency_status, 
                                                 relocate, 
                                                 back_home_country, 
@@ -62,7 +63,8 @@ function Index(props) {
                                                 sect,
                                                 eat_halal,
                                                 drink_alchohol,
-                                                wear_hijab_keep_beard,
+                                                bio,
+                                                userImages,
                                                 read_quran,
                                                 siblings,
                                                 ip, 
@@ -79,16 +81,20 @@ function Index(props) {
                                                 <div className="w-10 h-10">
                                                     {/* <img className="w-full h-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects.png" /> */}
                                                     {profile_image && (
-                                                        <img src={`http://localhost:3000/${profile_image}`} alt={`${username}'s Profile photo`} className="w-full h-full" />
+                                                        <img src={profile_image} alt={`${username}'s Profile photo`} className="w-full h-full" />
                                                     )}
                                                 </div>
-                                                <div className="pl-4 cursor-pointer" onClick={() => {
-                                                    setUserId(id);
-                                                    setShowfilters(!showFilters);
-                                                } }>
-                                                    <p className="font-medium">{username}, {age}</p>
+                                                {showUserDetails === id ? (
+                                                    <div onClick={() => setShowUserDetails(null)} className="pl-4 cursor-pointer">
+                                                        <p className="font-medium">{username}, {age}</p>
+                                                        <p className="text-xs leading-3 text-gray-600 pt-2">{email}</p>
+                                                    </div>
+                                                ) : (
+                                                    <div onClick={() => setShowUserDetails(id)} className="pl-4 cursor-pointer">
+                                                        <p className="font-medium">{username}, {age}</p>
                                                     <p className="text-xs leading-3 text-gray-600 pt-2">{email}</p>
-                                                </div>
+                                                    </div>
+                                                )}
                                             </div>
                                         </td>
                                         <td className="pl-12">
@@ -132,20 +138,23 @@ function Index(props) {
                                                     </Link>
                                                 </div>
 
-                                                <div className="text-xs bg-purple-500 text-slate-50 w-full hover:bg-red-700 py-2 px-4 cursor-pointer hover:text-white">
-                                                    <p>Block {id}</p>
+                                                <div className="text-xs w-full bg-red-500 text-white hover:bg-red-700 py-2 px-4 cursor-pointer hover:text-white">
+                                                    {/* <p>Activate {id}</p> */}
+                                                    <Link href={route('admin.activate_user', id)} method="post" as="button">
+                                                        Block
+                                                    </Link>
                                                 </div>
                                             </div>}
                                         </td>
-                                        {showFilters && (
-                                            <div className={`w-full absolute z-50 top-0 right-0 bottom-0 left-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-1000${!showFilters && "translate-hide"}`}>
+                                        {showUserDetails === id && (
+                                            <div className={`w-full absolute z-50 top-0 right-0 bottom-0 left-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-1000${!showUserDetails && "translate-hide"}`}>
                                                 <div className="2xl:w-6/12 lg:w-6/12 bg-gray-50 h-screen overflow-y-auto p-8 absolute right-0">
                                                     <div className="flex items-center justify-between">
                                                         <div className="flex items-center">
                                                             <div className="w-12 h-12">
                                                                 {/* <img className="w-full h-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects.png" /> */}
                                                                 {profile_image && (
-                                                                    <img src={`http://localhost:3000/${profile_image}`} alt={`${username}'s Profile photo`} className="w-full h-full border-2 border-purple-300 rounded-full" />
+                                                                    <img src={profile_image} alt={`${username}'s Profile photo`} className="w-full h-full border-2 border-purple-300 rounded-full" />
                                                                 )}
                                                             </div>
                                                             <div className="pl-4">
@@ -164,7 +173,7 @@ function Index(props) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className="cursor-pointer" onClick={() => setShowfilters(!showFilters)}>
+                                                        <div className="cursor-pointer" onClick={() => setShowUserDetails(!showUserDetails)}>
                                                             <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M18 6L6 18" stroke="#4B5563" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
                                                                 <path d="M6 6L18 18" stroke="#4B5563" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
@@ -184,7 +193,7 @@ function Index(props) {
                                                                     <p>Email - {email}</p>
                                                                     <p>Date of birth - {date_of_birth}</p>
                                                                     <p>Height - {height}</p>
-                                                                    <p>Start date {created_at}</p>
+                                                                    <p>Start date - {created_at}</p>
 
                                                                     <p className="mt-2 text-sm font-medium leading-none text-gray-800">
                                                                         {profile_step == 2 && '20'} {profile_step == 3 && '30'} {profile_step == 4 && '40'} {profile_step == 5 && '50'} {profile_step == 6 && '60'} {profile_step == 7 && '70'} {profile_step == 8 && '100'}% Profile</p>
@@ -199,7 +208,7 @@ function Index(props) {
                                                                         <img src="../assets/images/globe.svg" className="h-10 w-10" />
                                                                     </div>
                                                                     <p>{ethnic_origin} From {country} - ({recidency_status})</p>
-                                                                    <p>{city} - {postcode}</p>
+                                                                    <p>{city} - {area}</p>
                                                                     <p>
                                                                         {relocate == 'Not sure' && 'Not sure to relocate after marriage'} {relocate == 'Yes' ? 'Will relocate after marriage' : 'No intention to relocate after marriage'}
                                                                     </p>
@@ -215,19 +224,7 @@ function Index(props) {
                                                                     </div>
                                                                     <p>Religious history - {religious_history} - Sect {sect == 'Other' ? 'Other sect or not specified' : sect}</p>
                                                                     <p>Prayer frequency - {prayer_frequency == 'Hidden' ? 'Not specified' : prayer_frequency + ' Prays'} </p>
-                                                                    <p>
-                                                                        {wear_hijab_keep_beard != 'Hidden' ? (
-                                                                            gender == 'Male' ? (
-                                                                                wear_hijab_keep_beard == 'Yes' ?
-                                                                                    'Likes to Keep Beard'
-                                                                                    : 'Doesn\'t Like to keep beard'
-                                                                            ) :
-                                                                                (gender == 'Female' && (
-                                                                                    wear_hijab_keep_beard == 'Yes' ?
-                                                                                        'Likes to wear Hijab'
-                                                                                        : 'Doesn\'t Like to wear Hijab'))
-                                                                        ) : ''}
-                                                                    </p>
+                                                                    
                                                                     <p>Read Quran - {read_quran}</p>
                                                                 </div>
 
@@ -293,6 +290,25 @@ function Index(props) {
                                                                         </li>
                                                                     </ul>
                                                                 </div>
+
+
+
+                                                                <p className="whitespace-normal align-baseline text-justify leading-5 tracking-wide">
+                                                                    {bio}
+                                                                </p>
+
+
+                                                                <div className="mt-4"> 
+                                                                    <p className="sm:block hidden text-sm font-semibold mb-2">{username}'s Photos</p>
+                                                                    <div class="grid grid-flow-col grid-rows-1 sm:grid-rows-2 grid-cols-6 sm:grid-cols-3 gap-2">
+                                                                        {userImages && userImages.map(({image, id}) => (
+                                                                            <div key={id}>
+                                                                                <img src={image} alt={`${username}'s Profile photo`} />
+                                                                            </div>
+                                                                        ))}
+                                                                    </div>
+                                                                </div>
+
                                                             </div>
                                                             <div className="col-span-2 mt-2">
                                                                 <hr className="bg-slate-100" />
@@ -300,7 +316,9 @@ function Index(props) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>)}
+                                            </div>
+                                            
+                                        )}
                                     </tr>
                                 );
                             })}

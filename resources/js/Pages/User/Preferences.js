@@ -6,7 +6,7 @@ import RadioButton from '@/Components/RadioButton';
 import ResponsiveSidenav from '@/Components/ResponsiveSidenav';
 import UserSideNav from '@/Components/UserSideNav';
 import Authenticated from '@/Layouts/Authenticated'
-import { useForm, usePage } from '@inertiajs/inertia-react';
+import { Link, useForm, usePage } from '@inertiajs/inertia-react';
 
 import React, { useState } from 'react';
 import ValidationErrors from '@/Components/ValidationErrors';
@@ -486,16 +486,6 @@ function Preferences({auth}) {
         { value: "All", label: "All"},
     ];
 
-    const fitnessOptions = [
-        { value: "Don't mind", label: "Don't mind"},
-        { value: "Yes", label: "Yes" },
-        { value: "No", label: "No" },
-    ];
-    const hairColorOptions = [
-        { value: "Don't mind", label: "Don't mind"},
-        { value: "Brown", label: "Brown" },
-        { value: "Black", label: "Black" },
-    ];
 
     const heightOptions = [
         {value: '4ft', label: '4ft'},
@@ -531,12 +521,6 @@ function Preferences({auth}) {
         {value: '6ft 3in', label: '6ft 3in'},
         
 
-    ];
-
-    const livingwithOptions = [
-        { value: "Don't mind", label: "Don't mind"},
-        { value: "Parents", label: "Parents" },
-        { value: "Live by myself", label: "Live by myself" },
     ];
 
     const maritalStatusOptions = [
@@ -603,40 +587,6 @@ function Preferences({auth}) {
         { value: "Occasionally", label: "Occasionally" },
     ];
     
-    const schoolOfThougthsOptions = [
-        { value: "Don't mind", label: "Don't mind"},
-        { value: "Hanafi", label: "Hanafi" },
-        { value: "Hanbali", label: "Hanbali" },
-        { value: "Maliki", label: "Maliki" },
-        { value: "Shafei", label: "Shafei" },
-    ];
-
-    const educationOptions = [
-        {value: "Don't mind", label: "Don't mind"},
-        {value: 'Masters', label: 'Masters'},
-        {value: 'Bachelor', label: 'Bachelor'},
-        {value: 'PHD', label: 'PHD'},
-    ];
-
-    const continueWorkingOptions =  [
-        { value: "Don't mind", label: "Don't mind"},
-        { value: "Yes", label: "Yes" },
-        { value: "No", label: "No" },
-    ];
-
-    const moveOutOptions = [
-        { value: "Don't mind", label: "Don't mind"},
-        { value: "Yes", label: "Yes" },
-        { value: "No", label: "No" },
-    ];
-
-    const getMarriedOptions = [
-        {value: "Don't mind", label: "Don't mind"},
-        {value: 'As soon as possible', label: 'As soon as possible'},
-        {value: 'Between 1-3 Years', label: 'Between 1-3 Years'},
-        {value: 'Not sure', label: 'Not sure'},
-    
-    ];
 
     const radiusOptions = [
         { value: "2mi", label: "2mi"},
@@ -717,7 +667,7 @@ function Preferences({auth}) {
                             <div>
                                 {/* <p className="mb-1 text-sm leading-6 font-semibold text-purple-500 dark:text-red-400">Matches - Preferences</p> */}
                                 <div className="">
-                                    <h1 className="inline-block text-2xl sm:text-xl font-medium text-slate-900 tracking-tight dark:text-slate-200">Preferences</h1>
+                                    <h1 className="inline-block text-2xl sm:text-xl font-semibold text-slate-900 tracking-tight dark:text-slate-200">Preferences</h1>
                                     <p className="mb-1 text-sm leading-6 font-semibold text-slate-500 dark:text-slate-300">Please set your preference by filling out all information below. We will only recommend you profiles matched with your preferences.</p>
                                 </div>
                             </div>
@@ -737,7 +687,8 @@ function Preferences({auth}) {
                                                 </div>
                                                 <dl className="mt-2 flex flex-wrap text-sm leading-6 font-medium">
                                                     <div className="absolute top-0 right-0 flex items-center space-x-1">
-                                                        <Button type="submit" className="bg-transparent border-2 border-purple-600 text-purple-600 hover:text-white hover:bg-purple-600 dark:border-slate-200 dark:text-slate-200 dark:hover:text-slate-700 dark:hover:bg-slate-50 focus:ring-0 dark:focus:ring-0">Apply <span className="hidden sm:flex ml-1">Filter</span></Button>
+                                                        <Link href="/preferences/clear" className="text-md font-semibold text-red-400 mr-3">Clear Filter</Link>
+                                                        <Button type="submit" >Apply <span className="hidden sm:flex ml-1">Filter</span></Button>
                                                     </div>
                                                 </dl>
                                             </div>
@@ -893,130 +844,7 @@ function Preferences({auth}) {
                                                 </div>
                                             </div>
                                         
-                                            {/* <div className="mt-4">
-                                                <div className="flex items-start space-x-6 border-b pb-2 border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                                                    <p className="flex-none text-lg font-semibold text-gray-800 dark:text-gray-100">Religious Practice</p>
-                                                    <div className="min-w-0 relative flex-auto">
-                                                        <div className="p-2 cursor-pointer text-gray-600 dark:text-gray-400">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={16} height={16}>
-                                                                <path className="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor" />
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="mt-4">
-                                                    <Label forInput="religious_history" value="Religious history" />
-                                                    <InputSelect 
-                                                        value={data.religious_history} 
-                                                        onChange={onHandleChange} 
-                                                        options={regiousHistoryOptions} 
-                                                        className={`block w-full sm:text-sm dark:text-slate-50`} 
-                                                        placeholder='Select your preference'
-                                                        name={`religious_history`}
-                                                    />
-                                                </div>
-
-                                                <div className="mt-4">
-                                                    <Label forInput="prayer_frequency" value="Prayer frequency" />
-                                                    <InputSelect 
-                                                        value={data.prayer_frequency} 
-                                                        onChange={onHandleChange} 
-                                                        options={prayerFrequencyOptions} 
-                                                        className={`block w-full sm:text-sm dark:text-slate-50`} 
-                                                        placeholder='Select a preference'
-                                                        name={`prayer_frequency`}
-                                                    />
-                                                </div>
-
-                                                <div className="mt-4">
-                                                    <Label forInput="sect" value="Sect" />
-                                                    <InputSelect 
-                                                        value={data.sect} 
-                                                        onChange={onHandleChange} 
-                                                        options={sectOptions} 
-                                                        className={`block w-full sm:text-sm dark:text-slate-50`} 
-                                                        placeholder='What sect your partner should be?'
-                                                        name={`sect`}
-                                                        required={true}
-                                                    />
-                                                </div>
-
-
-                                                <div className="mt-4">
-                                                    <Label forInput="read_quran" value="Read Quran" />
-                                                    <InputSelect 
-                                                        value={data.read_quran} 
-                                                        onChange={onHandleChange} 
-                                                        options={readQuranOptions} 
-                                                        className={`block w-full sm:text-sm`} 
-                                                        placeholder='Can you read Quran?'
-                                                        name={`read_quran`}
-                                                    />
-                                                </div>
-
-                                                <div className="mt-4">
-                                                    <Label forInput="eat_halal" value="Eating Halal" />
-                                                    <InputSelect 
-                                                        value={data.eat_halal} 
-                                                        onChange={onHandleChange} 
-                                                        options={eatHalalOptions} 
-                                                        className={`block w-full sm:text-sm`} 
-                                                        placeholder='Select your preference'
-                                                        name={`eat_halal`}
-                                                        required={true}
-                                                    />
-                                                </div>
-
-                                                <div className="mt-4">
-                                                    <Label forInput="smoke" value="Smoke?" />
-                                                    <InputSelect 
-                                                        value={data.smoke} 
-                                                        onChange={onHandleChange} 
-                                                        options={smokeOptions} 
-                                                        className={`block w-full sm:text-sm`} 
-                                                        placeholder='Select your preference'
-                                                        name={`smoke`}
-                                                        required={true}
-                                                    />
-                                                </div>
-
-                                                <div className="mt-4">
-                                                    <Label forInput="drink_alchohol" value="Drink Alchohol?" />
-                                                    <InputSelect 
-                                                        value={data.drink_alchohol} 
-                                                        onChange={onHandleChange} 
-                                                        options={drinkAlchoholOptions} 
-                                                        className={`block w-full sm:text-sm`} 
-                                                        placeholder='Select your preference'
-                                                        name={`drink_alchohol`}
-                                                        required={true}
-                                                    />
-                                                </div>
-
-                                                <div className="mt-4">
-                                                    <div className="">
-                                                        <div className="w-1/3">
-                                                            <Label forInput="wear_hijab_keep_beard" value={`${auth.user.gender == "Male" ? "Keep Beard" : "Wear Hijab ?" }`} />
-                                                        </div>
-                                                        <InputSelect 
-                                                            value={data.wear_hijab_keep_beard} 
-                                                            onChange={onHandleChange} 
-                                                            options={beardOptions} 
-                                                            className={`block w-full sm:text-sm`} 
-                                                            placeholder='Select your preference'
-                                                            name={`wear_hijab_keep_beard`}
-                                                            required={true}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div> */}
-                                        
-                                            {/* <div className="mt-4">
-                                                <Label className="dark:text-white" forInput="issues_living_with_inlaws" value="About your ideal partner" />
-                                                <textarea id="bio" name="bio" onChange={onHandleChange}  value={data.bio}  className="mt-1 bg-transparent border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded-lg text-sm focus:outline-none focus:border-indigo-700 resize-none placeholder-gray-500 text-gray-500 dark:text-gray-400" placeholder="How would you describe your ideal partner..." rows={5} />
-
-                                                <p className="w-full text-right text-xs pt-1 text-gray-500 dark:text-gray-400">Character Limit: 1000</p>
-                                            </div> */}
+                                            
                                             <hr className=" bg-gray-200/50 dark:bg-gray-50/50 w-full md:my-10 md:mb-5 my-8" />
 
                                             <div className="px-0 mt-10 w-full md:w-auto md:mt-4 md:absolute md:right-0 md:bottom-0 md:py-10 lg:px-20 md:px-6">

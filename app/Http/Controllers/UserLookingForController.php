@@ -171,8 +171,12 @@ class UserLookingForController extends Controller
      * @param  \App\Models\UserLookingFor  $userLookingFor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserLookingFor $userLookingFor)
+    public function clear()
     {
-        //
+        $d = auth()->user()->id;
+        // dd($d);
+        UserLookingFor::where('user_id', $d)->delete();
+        // $userLookingFor->delete();
+        return redirect()->back()->with('success', 'Preferences cleared');
     }
 }

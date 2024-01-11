@@ -70,7 +70,7 @@ function SetUpProfileStepThree(props) {
                     </Link> */}
                     <div className="flex mb-2 justify-between items-center">
                         <h2 className="mt-6 text-md sm:text-lg font-semibold text-gray-900  dark:text-slate-50">
-                            Career | Education
+                            Education | Career
                         </h2>
                         <p className="mt-6 text-lg sm:text-xl font-semibold text-purple-600 dark:text-purple-50">40%</p>
                     </div>
@@ -98,20 +98,20 @@ function SetUpProfileStepThree(props) {
                             value={data.highest_education}
                             className="mt-1 block w-full"
                             handleChange={onHandleChange}
-                            placeholder="Your most recent university or college qualification"
+                            placeholder="Your most recent degree"
                         />
                     </div>
 
                     <div className="flex mt-4">
                         <div className="w-2/3 pr-2">
-                            <Label forInput="university" value="University Name" />
+                            <Label forInput="university" value="University/College Name" />
                             <Input
                                 type="text"
                                 name="university"
                                 value={data.university}
                                 className="mt-1 block w-full"
                                 handleChange={onHandleChange}
-                                placeholder="Enter university name"
+                                placeholder="Enter university/college name"
                             />
                         </div>
 
@@ -125,26 +125,25 @@ function SetUpProfileStepThree(props) {
                                 handleChange={onHandleChange}
                                 placeholder="Enter course name"
                             />
-                            
                         </div>
                     </div>
                     
                     {/* <p onClick={setAdd(true)} >Add more </p> */}
                     <p className="mb-0 pb-0 flex item-right justify-end text-sm font-semibold cursor-pointer text-purple-600" onClick={() => toggle()}>
-                        {add ? "-" : "Add more education"}
+                        {add ? <span className="text-lg font-semibold">x</span> : "Add more education"}
                     </p>
 
                     {add ? (
                         <div className="flex mt-2">
                             <div className="w-2/3 pr-2">
-                                <Label forInput="college" value="College" />
+                                <Label forInput="college" value="University/College Name" />
                                 <Input
                                     type="text"
                                     name="college"
                                     value={data.college}
                                     className="mt-1 block w-full"
                                     handleChange={onHandleChange}
-                                    placeholder="Enter college name"
+                                    placeholder="Enter university/college name"
                                 />
                             </div>
 

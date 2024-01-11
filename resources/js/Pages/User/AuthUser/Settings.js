@@ -1,11 +1,67 @@
 import ResponsiveSidenav from '@/Components/ResponsiveSidenav'
 import UserSideNav from '@/Components/UserSideNav'
 import Authenticated from '@/Layouts/Authenticated'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Head, InertiaLink, Link, useForm, usePage } from '@inertiajs/inertia-react';
 import Button from '@/Components/Button';
+import Input from '@/Components/Input';
+import Label from '@/Components/Label';
+import ValidationErrors from '@/Components/ValidationErrors';
+import PopUpModal from '@/Components/PopUpModal';
+import { Inertia } from '@inertiajs/inertia';
 
 function Settings(props) {
+
+    const { data, setData, post, processing, errors, reset } = useForm({
+        old_password:'',
+        password: '',
+        password_confirmation: '',
+    });
+
+    useEffect(() => {
+        return () => {
+            reset('password', 'password_confirmation', 'old_password');
+        };
+    }, []);
+
+    const onHandleChange = (event) => {
+        setData(event.target.name, event.target.value);
+    };
+
+    const submit = (e) => {
+        e.preventDefault();
+
+        post(route('auth.user.settings.reset.password'));
+    };
+
+    const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
+    const [action, setAction] = useState(null);
+
+    const handleOpenModal = (actionType) => {
+        // Set the action (e.g., 'delete' or 'deactivate') and open the modal
+        setAction(actionType);
+        setConfirmationModalOpen(true);
+    };
+
+    const handleConfirmAction = () => {
+        // Handle the action based on the current value of 'action'
+        if (action === 'delete') {
+            // Perform delete account logic
+            Inertia.post('/settings/delete');
+        } else if (action === 'deactivate') {
+            // Perform deactivate account logic
+            Inertia.post('/settings/deactivate');
+        }
+
+        // Close the confirmation modal
+        setConfirmationModalOpen(false);
+    };
+
+    const handleCancelAction = () => {
+        // Close the confirmation modal without performing any action
+        setConfirmationModalOpen(false);
+    };
+
   return (
     <Authenticated 
       auth={props.auth}
@@ -71,7 +127,22 @@ function Settings(props) {
                             <div className="flex justify-between items-center mb-8 mt-4">
                                 <div className="w-full">
                                     <p className="text-sm font-medium text-gray-500 dark:text-gray-400 pb-1">Take a break ? By deactivating your account you will automatically signout. Don't worry, you can come back by signing-in again.</p>
-                                    <Button className="bg-transparent border-2 border-red-400 text-red-400 hover:bg-red-400 hover:text-white">Deactivate</Button>
+                                    {/* <Button onClick={handleDeactivateAccount} className="bg-red-400 border-2 mt-2 border-red-400 text-red-400 hover:bg-red-400 hover:text-white">Deactivate</Button> */}
+                                    <button onClick={() => handleOpenModal('deactivate')} className="flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 ">
+                                        Deactivate
+                                    </button>
+
+                                    <PopUpModal
+                                        isOpen={isConfirmationModalOpen}
+                                        onCancel={handleCancelAction}
+                                        onConfirm={handleConfirmAction}
+                                        title={action === 'delete' ? 'Delete Account' : 'Deactivate Account'}
+                                        message={
+                                          action === 'delete'
+                                            ? 'Are you sure you want to delete your account? This action cannot be undone.'
+                                            : 'Are you sure you want to deactivate your account? This action cannot be undone.'
+                                        }   
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -88,9 +159,74 @@ function Settings(props) {
                         <div className="px-8">
                             <div className="flex justify-between items-center mb-8 mt-4">
                                 <div className="w-9/12">
-                                    <Button className="bg-transparent border-2 border-red-400 text-red-400 hover:bg-red-400 hover:text-white">Delete Account</Button>
+                                    {/* <Button className="bg-red-400 border-2 border-red-400 text-red-400 hover:bg-red-400 hover:text-white">Delete Account</Button> */}
+                                    <button onClick={() => handleOpenModal('delete')} className="flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 ">
+                                        Delete
+                                    </button>
+                                   
                                 </div>
                             </div>
+                        </div>
+
+                        {/* CHANGE PASSWORD */}
+                        <div className="pb-4 border-b border-gray-300 dark:border-gray-700 px-8">
+                            <div className="flex items-center text-gray-800 dark:text-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                                </svg>
+                                <p className="text-sm font-bold ml-2 text-gray-800 dark:text-gray-100">Change Password</p>
+                            </div>
+                        </div>
+                        <div className="px-8">
+                            
+                            <ValidationErrors errors={errors} />
+
+                            <form onSubmit={submit}>
+                                <div className="mt-4">
+                                    <Label forInput="old_password" value="Old Password" />
+                                    <Input
+                                        type="password"
+                                        name="old_password"
+                                        value={data.old_password}
+                                        className="mt-1 block w-full"
+                                        autoComplete="old_password"
+                                        isFocused={true}
+                                        handleChange={onHandleChange}
+                                    />
+                                </div>
+                                <div className="mt-4">
+                                    <Label forInput="new_password" value="Password" />
+
+                                    <Input
+                                        type="password"
+                                        name="new_password"
+                                        value={data.new_password}
+                                        className="mt-1 block w-full"
+                                        autoComplete="new_password"
+                                        isFocused={true}
+                                        handleChange={onHandleChange}
+                                    />
+                                </div>
+
+                                <div className="mt-4">
+                                    <Label forInput="new_password_confirmation" value="Confirm Password" />
+
+                                    <Input
+                                        type="password"
+                                        name="new_password_confirmation"
+                                        value={data.new_password_confirmation}
+                                        className="mt-1 block w-full"
+                                        autoComplete="new-password-confirmation"
+                                        handleChange={onHandleChange}
+                                    />
+                                </div>
+
+                                <div className="flex items-center justify-start mt-4">
+                                    <Button className="" processing={processing}>
+                                        Reset Password
+                                    </Button>
+                                </div>
+                            </form>
                         </div>
                         {/* <div className="flex items-center pb-4 border-b border-gray-300 dark:border-gray-700 px-8 text-gray-800 dark:text-gray-100">
                               <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-mail" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -143,7 +279,7 @@ function Settings(props) {
                               </div>
                           </div> */}
                           <div className="px-8">
-                                {/* <div className="flex justify-between items-center mb-8 mt-4">
+                                <div className="flex justify-between items-center mb-8 mt-4">
                                     <div className="w-9/12">
                                         <p className="text-sm text-gray-800 dark:text-gray-100 pb-1">Invite request</p>
                                         <p className="text-sm text-gray-500 dark:text-gray-400">Get notified when an invite request is made</p>
@@ -152,7 +288,7 @@ function Settings(props) {
                                         <input type="checkbox" name="notification_comment" id="toggle4" className="focus:outline-none checkbox w-6 h-6 rounded-full bg-white dark:bg-gray-400 absolute shadow-sm appearance-none cursor-pointer border border-transparent top-0 bottom-0 m-auto" />
                                         <label htmlFor="toggle4" className="toggle-label block w-12 h-4 overflow-hidden rounded-full bg-gray-300 dark:bg-gray-800 cursor-pointer" />
                                     </div>
-                                </div> */}
+                                </div>
                               {/* <div className="flex justify-between items-center mb-8">
                                   <div className="w-9/12">
                                       <p className="text-sm text-gray-800 dark:text-gray-100 pb-1">Job Applications</p>
@@ -173,17 +309,19 @@ function Settings(props) {
                                       <label htmlFor="toggle6" className="toggle-label block w-12 h-4 overflow-hidden rounded-full bg-gray-300 dark:bg-gray-800 cursor-pointer" />
                                   </div>
                               </div> */}
+
+                                
                           </div>
                       </div>
                   </div>
-                  <div className="container mx-auto w-11/12 xl:w-full">
+                  {/* <div className="container mx-auto w-11/12 xl:w-full">
                       <div className="w-full py-4 sm:px-0 bg-white dark:bg-gray-800 flex justify-end">
                           <button className="bg-gray-200 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300 dark:bg-gray-700 rounded text-indigo-600 dark:text-indigo-600 px-6 py-2 text-xs mr-4">Cancel</button>
                           <button className="bg-indigo-700 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 text-sm" type="submit">
                               Save
                           </button>
                       </div>
-                  </div>
+                  </div> */}
                 </div>
             </div>
         </div> 

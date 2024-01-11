@@ -23,11 +23,11 @@ class CreateUserReligiousHistoriesTable extends Migration
             
             $table->string('prayer_frequency')->nullable();
             $table->string('sect')->nullable();
-            $table->string('school_of_thoughts')->nullable();
+            // $table->string('school_of_thoughts')->nullable();
             $table->string('eat_halal')->nullable();
             $table->string('smoke')->nullable();
             $table->string('drink_alchohol')->nullable();
-            $table->string('wear_hijab_keep_beard')->nullable();
+            // $table->string('wear_hijab_keep_beard')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

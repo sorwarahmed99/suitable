@@ -14,7 +14,7 @@ function SetUpProfileStepTwo(props) {
         country: '',
         recidency_status: '',
         city: '',
-        postcode: '',
+        area: '',
         relocate: '',
         back_home_country: '',
         back_home_city: '',
@@ -26,49 +26,32 @@ function SetUpProfileStepTwo(props) {
         { value: "No", label: "No" },
         // { value: "Not sure", label: "Not sure" },
     ];
+   
 
     const countries = [{
         "name": "Andorra",
         "code": "Andorra"
       }, {
-        "name": "Albania",
-        "code": "Albania"
-      }, {
         "name": "Austria",
         "code": "Austria"
       }, {
-        "name": "Åland Islands",
-        "code": "Åland Islands"
-      }, {
-        "name": "Bosnia and Herzegovina",
-        "code": "Bosnia and Herzegovina"
+        "name": "Australia",
+        "code": "Australia"
       }, {
         "name": "Belgium",
         "code": "Belgium"
       }, {
-        "name": "Bulgaria",
-        "code": "Bulgaria"
-      }, {
-        "name": "Belarus",
-        "code": "Belarus"
+        "name": "Canada",
+        "code": "Canada"
       }, {
         "name": "Switzerland",
         "code": "Switzerland"
       }, {
-        "name": "Cyprus",
-        "code": "Cyprus"
-      }, {
-        "name": "Czech Republic",
-        "code": "Czech Republic"
-      }, {
-        "name": "Germany",
-        "code": "Germany"
+        "name": "Gibraltar",
+        "code": "Gibraltar"
       }, {
         "name": "Denmark",
         "code": "Denmark"
-      }, {
-        "name": "Estonia",
-        "code": "Estonia"
       }, {
         "name": "Spain",
         "code": "Spain"
@@ -85,14 +68,11 @@ function SetUpProfileStepTwo(props) {
         "name": "United Kingdom",
         "code": "United Kingdom"
       }, {
-        "name": "Guernsey",
-        "code": "Guernsey"
-      }, {
         "name": "Greece",
         "code": "Greece"
       }, {
-        "name": "Croatia",
-        "code": "Croatia"
+        "name": "Qatar",
+        "code": "Qatar"
       }, {
         "name": "Hungary",
         "code": "Hungary"
@@ -100,8 +80,8 @@ function SetUpProfileStepTwo(props) {
         "name": "Ireland",
         "code": "Ireland"
       }, {
-        "name": "Isle of Man",
-        "code": "Isle of Man"
+        "name": "Kuwait",
+        "code": "Kuwait"
       }, {
         "name": "Iceland",
         "code": "Iceland"
@@ -109,29 +89,23 @@ function SetUpProfileStepTwo(props) {
         "name": "Italy",
         "code": "Italy"
       }, {
-        "name": "Jersey",
-        "code": "Jersey"
+        "name": "Saudi Arabia",
+        "code": "Saudi Arabia"
       }, {
         "name": "Liechtenstein",
         "code": "Liechtenstein"
       }, {
-        "name": "Lithuania",
-        "code": "Lithuania"
-      }, {
         "name": "Luxembourg",
         "code": "Luxembourg"
       }, {
-        "name": "Latvia",
-        "code": "Latvia"
+        "name": "United States",
+        "code": "United States"
       }, {
         "name": "Monaco",
         "code": "Monaco"
       }, {
-        "name": "Moldova",
-        "code": "Moldova"
-      }, {
-        "name": "Macedonia, The Former Yugoslav Republic of",
-        "code": "Macedonia, The Former Yugoslav Republic of"
+        "name": "New Zealand ",
+        "code": "New Zealand "
       }, {
         "name": "Malta",
         "code": "Malta"
@@ -142,38 +116,17 @@ function SetUpProfileStepTwo(props) {
         "name": "Norway",
         "code": "Norway"
       }, {
-        "name": "Poland",
-        "code": "Poland"
+        "name": "Oman",
+        "code": "Oman"
       }, {
         "name": "Portugal",
         "code": "Portugal"
       }, {
-        "name": "Romania",
-        "code": "Romania"
-      }, {
-        "name": "Russian Federation",
-        "code": "Russian Federation"
+        "name": "United Arab Emirates ",
+        "code": "United Arab Emirates "
       }, {
         "name": "Sweden",
         "code": "Sweden"
-      }, {
-        "name": "Slovenia",
-        "code": "Slovenia"
-      }, {
-        "name": "Svalbard and Jan Mayen",
-        "code": "Svalbard and Jan Mayen"
-      }, {
-        "name": "Slovakia",
-        "code": "Slovakia"
-      }, {
-        "name": "San Marino",
-        "code": "San Marino"
-      }, {
-        "name": "Ukraine",
-        "code": "Ukraine"
-      }, {
-        "name": "Holy See (Vatican City State)",
-        "code": "Holy See (Vatican City State)"
       }];
 
       const sortedcs = countries.sort((a,b) => a.name.localeCompare(b.name));
@@ -441,9 +394,7 @@ function SetUpProfileStepTwo(props) {
         post('set-up-profile-step-2');
     };
 
-    return <Guest
-                bgimage="bg-location-background"
-            >
+    return <Guest bgimage="bg-location-background">
         <Head title="Suitable | Set up profile" />
 
         <div className="">
@@ -487,7 +438,7 @@ function SetUpProfileStepTwo(props) {
             </div>
 
             <div className="mt-4">
-                <Label forInput="recidency_status" value="Recidency status" />
+                <Label forInput="recidency_status" value="Nationality" />
                 <InputSelect 
                     defaultValue={data.recidency_status} 
                     onChange={onHandleChange} 
@@ -514,15 +465,15 @@ function SetUpProfileStepTwo(props) {
                     </div>
 
                     <div className="w-1/2">
-                        <Label forInput="postcode" value="Postcode" />
+                        <Label forInput="area" value="Postcode" />
                         <Input
                             type="text"
-                            name="postcode"
-                            value={data.postcode}
+                            name="area"
+                            value={data.area}
                             className="mt-1 block w-full"
                             handleChange={onHandleChange}
                             required
-                            placeholder="First part of postcode.."
+                            placeholder="Enter your postcode"
                         />
                     </div>
             </div>

@@ -5,12 +5,12 @@ import MatchedSideNav from '@/Components/MatchedSideNav'
 import Authenticated from '@/Layouts/Authenticated'
 import { Link, usePage } from '@inertiajs/inertia-react'
 import React from 'react'
-import Img from '../../../../../public/images/user-avatar.png'
+import Img from '../../../../public/images/user-avatar.png'
 
 function ProfilesILike({auth}) {
-        const { invitedusers } = usePage().props;
-
-        return (
+    const { invitedusers } = usePage().props;
+    
+    return (
         <Authenticated 
         auth={auth}
         // errors={errors}
@@ -35,8 +35,8 @@ function ProfilesILike({auth}) {
                                     <div className="">
                                         {invitedusers.map(({ id, firstname, lastname, username, gender, age, country, recidency_status, ethnic_origin, profile_image, highest_education, current_profession, prayer_frequency, sect, saved, isFollowing, isSaved, isInvited, isAccepted }) => (
                                             <div key={id} className="flex-none sm:flex bg-white dark:bg-slate-800 shadow-md sm:rounded-lg  space-y-2 mb-4">
-                                                <div className="blur-[2px] overflow-hidden relative sm:min-h-full w-full sm:w-[19rem] sm:mb-0 mb-3">
-                                                    <img src={profile_image || Img} alt={`${firstname}'s Profile photo`}  className="blur-[2px] w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg" />
+                                                <div className="overflow-hidden relative sm:min-h-full w-full sm:w-[19rem] sm:mb-0 mb-3">
+                                                    <img src={profile_image} alt={`${username}'s Profile photo`}  className="w-full sm:w-[19rem] h-auto sm:min-h-full inset-0 object-cover aspect-square sm:rounded-l-lg" />
                                                 </div>
                                                 <div className="flex-auto p-6 sm:ml-3 justify-evenly">
                                                     <div className="flex items-center sm:mt-2">
@@ -44,7 +44,7 @@ function ProfilesILike({auth}) {
                                                             <div className="flex flex-wrap">
                                                                 <div className="flex items-center">
                                                                     <h1 className="text-lg font-semibold text-slate-900 dark:text-slate-50">
-                                                                        {firstname} {lastname}, {age}
+                                                                        {username}, {age}
                                                                     </h1>
                                                                     <div className="m-1 ml-2 rounded-full bg-green-600 h-2 w-2"></div>
                                                                 </div>
@@ -88,7 +88,7 @@ function ProfilesILike({auth}) {
                                                                 </div>
                                                             </div>
                                                             
-                                                            <div className='mb-6 pb-6 border-b border-slate-200'>
+                                                            <div className='mb-2 pb-2'>
                                                                 <p className="text-sm text-slate-600 dark:text-slate-300">{highest_education != '' ? highest_education : ''  } - {current_profession} - 5ft 5in</p>
                                                                 <p className="text-sm text-slate-600 dark:text-slate-300">Practicing Muslim - {sect}</p>
                                                             </div>
@@ -99,14 +99,9 @@ function ProfilesILike({auth}) {
 
                                                     <div className="flex space-x-4 mt-3 text-sm font-medium">
                                                         <div className="flex-auto flex space-x-4">
-                                                            {isAccepted ? <Link href={route('user-profile', firstname)} className="h-10 bg-black dark:bg-slate-100 text-slate-50 dark:text-slate-500 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-800 dark:border-slate-50  focus:ring-2 dark:ring-slate-400 font-bold py-2 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
+                                                            <Link href={route('user-profile', username)} className="h-10 bg-black dark:bg-slate-100 text-slate-50 dark:text-slate-500 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-800 dark:border-slate-50  focus:ring-2 dark:ring-slate-400 font-bold py-2 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
                                                                 <span className="text-xs sm:text-sm">View</span>
-                                                            </Link> : (
-                                                                <button disabled className="disabled:bg-slate-400 disabled:text-slate-200 disabled:border-slate-200 disabled:shadow-none h-10 bg-black dark:bg-slate-100 text-slate-50 dark:text-slate-500 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-800 dark:border-slate-50  focus:ring-2 dark:ring-slate-400 font-bold py-2 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
-                                                                    
-                                                                    <span className="text-xs sm:text-sm">View</span>
-                                                                </button>
-                                                            ) }
+                                                            </Link> 
                                                             
                                                             {auth.user.account_status == 0 ? ( 
                                                                 <button disabled className="disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none bg-transparent text-slate-800 dark:text-slate-500 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-200 bg-slate-200 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 h-10 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
@@ -138,17 +133,7 @@ function ProfilesILike({auth}) {
                                                                 )
                                                             )}
 
-                                                        {/* 
-                                                            {isFollowing ? ( 
-                                                                <Link preserveScroll href={route('user.unfollow', id)} method="post" as="button" className="h-10 bg-black dark:bg-slate-100 text-slate-50 dark:text-slate-500 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-800 dark:border-slate-50  focus:ring-2 dark:ring-slate-400 font-bold py-2 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
-                                                                    <span className="text-xs sm:text-sm">Unfollow</span>
-                                                                </Link> 
-                                                            ) : (
-                                                                <Link preserveScroll href={route('user.follow', id)} method="post" as="button"className="h-10 bg-black dark:bg-slate-100 text-slate-50 dark:text-slate-500 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-800 dark:border-slate-50  focus:ring-2 dark:ring-slate-400 font-bold py-2 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
-                                                                    <span className="text-xs sm:text-sm">Follow</span>
-                                                                </Link> 
-                                                            )}
-                                                        */}
+                                                       
                                                         </div>
 
                                                         {/* Save button */}
@@ -169,16 +154,16 @@ function ProfilesILike({auth}) {
                                                     </div>
                                                     <p className="pt-4 text-sm text-yellow-700">
                                                         {auth.user.account_status == 0 && 'You can send invitation to this user once your account is activated!' }
-                                                        {!isAccepted ? `You can view ${firstname}'s profile once ${gender == 'Male' ? 'he' : 'she'} accepts your request.` : `You can view ${firstname}'s full profile`  }
+                                                        {/* {!isAccepted ? `You can view ${firstname}'s profile once ${gender == 'Male' ? 'he' : 'she'} accepts your request.` : `You can view ${firstname}'s full profile`  } */}
                                                     </p>
                                                 </div>
                                             </div>
                                         ))}
                                         {invitedusers.length !== 0 && (
                                             <div className="flex justify-center items-center"> 
-                                                <Button className="bg-transparent text-slate-800 dark:text-slate-500 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-200 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 h-10 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
+                                                {/* <Button className="bg-transparent text-slate-800 dark:text-slate-500 dark:bg-slate-800 hover:bg-slate-800 hover:text-slate-50 dark:hover:bg-slate-50 border-1 border-slate-200 dark:border-slate-50 focus:ring-2 dark:ring-slate-400 font-bold py-2 h-10 px-6 rounded-md inline-flex items-center focus:outline-none transition duration-150 ease-in-out">
                                                     Load more
-                                                </Button>
+                                                </Button> */}
                                             </div>
                                         )}
                                         {invitedusers.length === 0 && (

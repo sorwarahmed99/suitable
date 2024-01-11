@@ -13,23 +13,31 @@ export default function VerifyEmail({ status }) {
     };
 
     return (
-        <Guest>
-            <Head title="Email Verification" />
-
+        <Guest bgimage="bg-email-background">
+            <Head title="Suitable - Email Verification" />
+            <div className="text-center">
+                <Link href="/">
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-purple-800 dark:text-purple-500 ">Suitable</span>
+                </Link>
+                <h2 className="mt-6 text-md font-medium text-gray-900">
+                </h2>
+            </div>
             <div className="mb-4 text-sm text-gray-600">
                 Thanks for signing up! Before getting started, could you verify your email address by clicking on the
-                link we just emailed to you? If you didn't receive the email, we will gladly send you another.
+                link we just emailed to you? If you do not see the email in your inbox, please check your junk mail folder. <br/>
+                If you didn't receive the email, we will gladly send you another. 
             </div>
 
             {status === 'verification-link-sent' && (
                 <div className="mb-4 font-medium text-sm text-green-600">
-                    A new verification link has been sent to the email address you provided during registration.
+                    A new verification link has been sent to the email address you provided during registration. 
+                    Please check junk email incase it's not sent to your inbox.
                 </div>
             )}
 
             <form onSubmit={submit}>
                 <div className="mt-4 flex items-center justify-between">
-                    <Button processing={processing}>Resend Verification Email</Button>
+                    <Button className='bg-purple-500 text-white hover:bg-purple-600' processing={processing}>Resend Verification Email</Button>
 
                     <Link
                         href={route('logout')}

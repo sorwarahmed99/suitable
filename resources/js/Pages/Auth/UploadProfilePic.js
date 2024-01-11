@@ -43,10 +43,8 @@ function UploadProfilePic({errors}) {
         //   });
     };
 
-    
-
   return <Guest
-            bgimage="bg-login-background"
+            bgimage="bg-upload-background"
             title="Help us find the perfect match for you"
             subtitle="Upload your photos here"
             linktext="Need help ?"
@@ -87,10 +85,10 @@ function UploadProfilePic({errors}) {
                                 <input ref={photoRef} type="file" value={values.photo} className="opacity-0" onChange={onHandleChange} />
                                     
                             </label>
-                              : <div className="h-40 w-40">
+                              : <div className="h-40 w-40 ">
                                   <img src={selectedFile} layout="fill" className="object-cover aspect-square" />
 
-                                  <label className="mt- 2 flex flex-col w-full h-8 p-1 border-4 border-slate-100 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                                  <label className="mt-5 cursor-pointer flex flex-col w-full h-8 p-1 border-b-2 hover:bg-gray-100 hover:border-gray-300">
                                   <p className="text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                                         Click here to change</p>
                                     <input ref={photoRef} type="file" value={values.photo} className="opacity-0" onChange={onHandleChange} />

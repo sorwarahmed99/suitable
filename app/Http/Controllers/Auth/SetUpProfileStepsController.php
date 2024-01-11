@@ -91,7 +91,7 @@ class SetUpProfileStepsController extends Controller
             'country' => 'required',
             'recidency_status' => 'required',
             'city' => 'required | max:255',
-            'postcode' => 'required | max:10', Rule::postcode(),
+            'area' => 'required | max:255',
             'back_home_country' => 'required',
             'back_home_city' => 'max:255',
             'back_home_area' => 'max:255',
@@ -101,12 +101,12 @@ class SetUpProfileStepsController extends Controller
             'country' => $request->country,
             'recidency_status' => $request->recidency_status,
             'city' => $request->city,
-            'postcode' => $request->postcode,
+            'area' => $request->area,
             
             'back_home_country' => $request->back_home_country,
             'back_home_city' => $request->back_home_city,
             'back_home_area' => $request->back_home_area,
-
+            'relocate' => $request->relocate,
             'profile_step' => 3,
 
         ]);
@@ -144,7 +144,7 @@ class SetUpProfileStepsController extends Controller
 
             'university' => $request->university,
             'course_name' => $request->course_name,
-            'university_graduation_year' => $request->university_graduation_year,
+            // 'university_graduation_year' => $request->university_graduation_year,
             'college' => $request->college,
             'college_graduation_year' => $request->college_graduation_year,
             'college_course_name' => $request->college_course_name,
@@ -177,6 +177,7 @@ class SetUpProfileStepsController extends Controller
             'religious_history' => 'required',
             'prayer_frequency' => 'required',
             'read_quran' => 'required',
+            'bio' => 'required | max:2000',
         ]);
         
         DB::beginTransaction();
@@ -189,11 +190,16 @@ class SetUpProfileStepsController extends Controller
             'sect' => $request->sect,
             'eat_halal' => $request->eat_halal,
             'drink_alchohol' => $request->drink_alchohol,
-            'wear_hijab_keep_beard' => $request->wear_hijab_keep_beard,
         ]);
      
         auth()->user()->update([
             'profile_step' => 5, 
+        ]);
+
+        $profileinfo = UserProfileInfo::where('user_id', '=', auth()->user()->id)->first();
+        $profileinfo->update([
+
+            'bio' => $request->bio,
         ]);
         DB::commit();
 
@@ -202,10 +208,9 @@ class SetUpProfileStepsController extends Controller
 
     }
 
-  
     public function uploadProfilePicCreate()
     {
-        // if(auth()->user()->profile_step >= 7) return redirect()->route('setupprofilestep6');
+        if(auth()->user()->profile_step >= 7) return redirect()->route('setupprofilestep6');
         
         return Inertia::render('Auth/UploadProfilePic', [
                 'csrf_token' => csrf_token()
@@ -218,26 +223,20 @@ class SetUpProfileStepsController extends Controller
         $request->validate([
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        
-        // if ($request->hasFile('photo')) {
-        //     $image_path = $request->file('image')->store('image', 'public');
-        // }
 
         if ($image = $request->file('photo')) {
-            $destinationPath = 'public/uploads/user-profile-images/';
-            $profileImage = $user->id.date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
             
-            // Storage::disk('uploads')->put('filename', $file_content);
+            $imagePaths = [];
+            $imageName = $user->id.time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName); // Store images in storage/app/public/images
 
+            $imagePaths = asset('storage/images/' . $imageName); // Get the public URL of the uploaded image
 
             auth()->user()->update([
-                'profile_image' => $destinationPath.$profileImage ?? null,
+                'profile_image' => $imagePaths,
             ]);
         }
-        
         return redirect()->back();
-
     }
 
 

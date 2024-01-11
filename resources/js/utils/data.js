@@ -1,5 +1,124 @@
 
-    const countries = [ 
+    const countries = [{
+        "name": "Andorra",
+        "code": "Andorra"
+      }, {
+        "name": "Austria",
+        "code": "Austria"
+      }, {
+        "name": "Australia",
+        "code": "Australia"
+      }, {
+        "name": "Belgium",
+        "code": "Belgium"
+      }, {
+        "name": "Canada",
+        "code": "Canada"
+      }, {
+        "name": "Switzerland",
+        "code": "Switzerland"
+      }, {
+        "name": "Gibraltar",
+        "code": "Gibraltar"
+      }, {
+        "name": "Czech Republic",
+        "code": "Czech Republic"
+      }, {
+        "name": "Germany",
+        "code": "Germany"
+      }, {
+        "name": "Denmark",
+        "code": "Denmark"
+      }, {
+        "name": "Estonia",
+        "code": "Estonia"
+      }, {
+        "name": "Spain",
+        "code": "Spain"
+      }, {
+        "name": "Finland",
+        "code": "Finland"
+      }, {
+        "name": "Faroe Islands",
+        "code": "Faroe Islands"
+      }, {
+        "name": "France",
+        "code": "France"
+      }, {
+        "name": "United Kingdom",
+        "code": "United Kingdom"
+      }, {
+        "name": "Guernsey",
+        "code": "Guernsey"
+      }, {
+        "name": "Greece",
+        "code": "Greece"
+      }, {
+        "name": "Qatar",
+        "code": "Qatar"
+      }, {
+        "name": "Hungary",
+        "code": "Hungary"
+      }, {
+        "name": "Ireland",
+        "code": "Ireland"
+      }, {
+        "name": "Kuwait",
+        "code": "Kuwait"
+      }, {
+        "name": "Iceland",
+        "code": "Iceland"
+      }, {
+        "name": "Italy",
+        "code": "Italy"
+      }, {
+        "name": "Saudi Arabia",
+        "code": "Saudi Arabia"
+      }, {
+        "name": "Liechtenstein",
+        "code": "Liechtenstein"
+      }, {
+        "name": "Lithuania",
+        "code": "Lithuania"
+      }, {
+        "name": "Luxembourg",
+        "code": "Luxembourg"
+      }, {
+        "name": "United States",
+        "code": "United States"
+      }, {
+        "name": "Monaco",
+        "code": "Monaco"
+      }, {
+        "name": "New Zealand ",
+        "code": "New Zealand "
+      }, {
+        "name": "Malta",
+        "code": "Malta"
+      }, {
+        "name": "Netherlands",
+        "code": "Netherlands"
+      }, {
+        "name": "Norway",
+        "code": "Norway"
+      }, {
+        "name": "Oman",
+        "code": "Oman"
+      }, {
+        "name": "Portugal",
+        "code": "Portugal"
+      }, {
+        "name": "United Arab Emirates ",
+        "code": "United Arab Emirates "
+      }, {
+        "name": "Sweden",
+        "code": "Sweden"
+      }];
+
+    const sortedcs = countries.sort((a,b) => a.name.localeCompare(b.name));
+    
+
+    const backhomecountries = [ 
         {name: 'Afghanistan', code: 'AF'}, 
         {name: 'Åland Islands', code: 'AX'}, 
         {name: 'Albania', code: 'AL'}, 
@@ -244,129 +363,153 @@
         {name: 'Zambia', code: 'ZM'}, 
         {name: 'Zimbabwe', code: 'ZW'} 
     ];
+ 
+    const residencystatusOptions = [
+        { value: "Student visa", label: "Student visa"},
+        { value: "Work permit", label: "Work permit"},
+        { value: "Citizen", label: "Citizen"},
+        { value: "Just Visiting", label: "Just Visiting"},
+        { value: "Other", label: "Other"},
+    ];
+
+    const relocateOptions = [
+        { value: "Yes", label: "Yes" },
+        { value: "No", label: "No" },
+        { value: "Not sure", label: "Not sure" },
+    ];
+
     const ethnicOriginOptions = [
-        { value: "Don't mind", label: "Don't mind"},
         { value: "Asian", label: "Asian"},
         { value: "African", label: "African"},
         { value: "Asian-British", label: "Asian-British"},
         { value: "Asian-Bangladeshi", label: "Asian-Bangladeshi"},
     ];
-    const relocateOptions = [
-        { value: "Don't mind", label: "Don't mind"},
-        { value: "Yes", label: "Yes" },
-        { value: "No", label: "No" },
-        { value: "Not sure", label: "Not sure" },
-    ];
-    const residencystatusOptions = [
-        { value: "Don't mind", label: "Don't mind"},
-        { value: "Student visa", label: "Student visa"},
-        { value: "Work permit", label: "Work permit"},
-        { value: "Citizen", label: "Citizen"},
-    ];
-
-    const fitnessOptions = [
-        { value: "Don't mind", label: "Don't mind"},
-        { value: "Yes", label: "Yes" },
-        { value: "No", label: "No" },
-    ];
-    const hairColorOptions = [
-        { value: "Don't mind", label: "Don't mind"},
-        { value: "Brown", label: "Brown" },
-        { value: "Black", label: "Black" },
-        { value: "Hidden", label: "Prefer not to say" },
-    ];
 
     const heightOptions = [
-        { value: "Don't mind", label: "Don't mind"},
         {value: '4ft', label: '4ft'},
+        
+        {value: '4ft 1in', label: '4ft 1in'},
+        {value: '4ft 2in', label: '4ft 2in'},
+        {value: '4ft 3in', label: '4ft 3in'},
+        {value: '4ft 4in', label: '4ft 4in'},
         {value: '4ft 5in', label: '4ft 5in'},
+        {value: '4ft 6in', label: '4ft 6in'},
+        {value: '4ft 7in', label: '4ft 7in'},
+        {value: '4ft 8in', label: '4ft 8in'},
+        {value: '4ft 9in', label: '4ft 9in'},
+        {value: '4ft 10in', label: '4ft 10in'},
+        {value: '4ft 11in', label: '4ft 11in'},
+
         {value: '5ft', label: '5ft'},
+        {value: '5ft 1in', label: '5ft 1in'},
+        {value: '5ft 2in', label: '5ft 2in'},
+        {value: '5ft 3in', label: '5ft 3in'},
+        {value: '5ft 4in', label: '5ft 4in'},
         {value: '5ft 5in', label: '5ft 5in'},
         {value: '5ft 6in', label: '5ft 6in'},
         {value: '5ft 7in', label: '5ft 7in'},
         {value: '5ft 8in', label: '5ft 8in'},
         {value: '5ft 9in', label: '5ft 9in'},
+        {value: '5ft 10in', label: '5ft 10in'},
+        {value: '5ft 11in', label: '5ft 11in'},
+
         {value: '6ft', label: '6ft'},
         {value: '6ft 1in', label: '6ft 1in'},
         {value: '6ft 2in', label: '6ft 2in'},
         {value: '6ft 3in', label: '6ft 3in'},
-    ];
+        
 
-    const livingwithOptions = [
-        { value: "Don't mind", label: "Don't mind"},
-        { value: "Parents", label: "Parents" },
-        { value: "Live by myself", label: "Live by myself" },
-        { value: "Hidden", label: "Prefer not say" },
     ];
 
     const maritalStatusOptions = [
-        { value: "Don't mind", label: "Don't mind"},
         { value: "Single", label: "Single" },
         { value: "Divorced", label: "Divorced" },
         { value: "Widowed", label: "Widowed" },
         { value: "Hidden", label: "Prefer not to say" },
     ];
 
-    const haveChildrenOptions = [
-        { value: "Don't mind", label: "Don't mind"},
-        { value: "None", label: "None" },
-        { value: "Hidden", label: "Prefer not to say" },
-        { value: "1", label: "1" },
-        { value: "2", label: "2" },
-        { value: "3", label: "3" },
-        { value: "4", label: "4" },
+
+    const childrenOptions = [
+        { value: "Yes", label: "Yes" },
+        { value: "No", label: "No" },
     ];
 
+    // Siblings
+    let nums = [];
+    let min = 1, max = 20;
+    for(let i = min; i <= max; i++){
+        nums.push(i);
+    }
+
+
+    // Education
+    const educationOptions = [
+        {value: 'Bachelor', label: 'Bachelor'},
+        {value: 'Masters', label: 'Masters'},
+        {value: 'PHD', label: 'PHD'},
+    ];
+
+    const yearsOptions = [
+        {value: 'Newly Joined', label: 'Newly Joined'},
+        {value: '1-3 Years', label: '1-3 Years'},
+        {value: '3-5 Years', label: '3-5 Years'},
+        {value: '5+ Years', label: '5+ Years'},
+    ];
+
+ 
+
+
+
+    // Religious
     const regiousHistoryOptions = [
-        { value: "Convert", label: "Convert" },
+        { value: "From birth", label: "From birth" },
         { value: "Revert", label: "Revert" },
-        { value: "Not sure", label: "Not sure" },
+        { value: "Other", label: "Other" },
+    ];
+
+    const readQuranOptions = [
+        { value: "Yes, I have completed", label: "Yes, I have completed" },
+        { value: "Yes, but I’m still learning", label: "Yes, but I’m still learning" },
+        { value: "Still learning Arabic", label: "Still learning Arabic" },
+        { value: "No, I can’t read ", label: "No, I can’t read " },
     ];
 
     const sectOptions = [
         { value: "Sunni", label: "Sunni" },
         { value: "Shia", label: "Shia" },
-        { value: "Don't mind", label: "Don't mind"},
+        { value: "Ahmadi", label: "Ahmadi" },
+        { value: "Ibadi", label: "Ibadi" },
+        { value: "Ismaili", label: "Ismaili" },
+        { value: "Other", label: "Other" },
     ];
 
     const prayerFrequencyOptions = [
         { value: "Never Missed", label: "Never Missed" },
         { value: "Sometimes Miss", label: "Sometimes Miss" },
         { value: "Occasionally", label: "Occasionally" },
-        { value: "Don't mind", label: "Don't mind"},
+        { value: "Hidden", label: "Prefer not to say" },
     ];
-    
-    const schoolOfThougthsOptions = [
-        { value: "Hanafi", label: "Hanafi" },
-        { value: "Hanbali", label: "Hanbali" },
-        { value: "Maliki", label: "Maliki" },
-        { value: "Shafei", label: "Shafei" },
-        { value: "Don't mind", label: "Don't mind"},
-    ];
-    const educationOptions = [
-        {value: "Don't mind", label: "Don't mind"},
-        {value: 'Masters', label: 'Masters'},
-        {value: 'Bachelor', label: 'Bachelor'},
-        {value: 'PHD', label: 'PHD'},
-    ];
-    const continueWorkingOptions =  [
-        { value: "Yes", label: "Yes" },
+
+    const drinkAlchoholOptions = [
+        { value: "Yes", label: "Yes, doesn’t matter to me" },
         { value: "No", label: "No" },
-        { value: "Don't mind", label: "Don't mind"},
+        { value: "Occasionally", label: "Occasionally" },
+        { value: "Hidden", label: "Prefer not to say" },
     ];
 
-    const moveOutOptions = [
-        { value: "Yes", label: "Yes" },
-        { value: "No", label: "No" },
-        { value: "Don't mind", label: "Don't mind"},
-    ];
-
-    const getMarriedOptions = [
-        {value: 'As soon as possible', label: 'As soon as possible'},
-        {value: 'Between 1-3 Years', label: 'Between 1-3 Years'},
-        {value: 'Not sure', label: 'Not sure'},
-        { value: "Don't mind", label: "Don't mind"},
+    const eatHalalOptions = [
+        { value: "Yes", label: "Yes, always" },
+        { value: "No, doesn’t matter to me", label: "No, doesn’t matter to me" },
+        { value: "Sometimes", label: "Sometimes" },
+        { value: "Hidden", label: "Prefer not to say" },
     ];
 
 
-  
+export {
+    countries,
+    backhomecountries,
+    residencystatusOptions,
+    maritalStatusOptions,
+    childrenOptions,
+    heightOptions,
+}

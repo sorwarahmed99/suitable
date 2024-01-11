@@ -8,6 +8,10 @@ import { Head, Link, useForm } from '@inertiajs/inertia-react';
 import RadioButton from '@/Components/RadioButton';
 import InputSelect from '@/Components/InputSelect';
 
+
+import LogoPurple from '../../../../public/assets/images/logo-purple.svg';
+import LogoLight from '../../../../public/assets/images/logo-light.svg';
+
 export default function Register(props) {
     const [show, setShow] = useState("Show");
     const [password, setpassword] = useState("password");
@@ -34,7 +38,7 @@ export default function Register(props) {
         if (usernameRegex.test(username)) {
           setMessage("");
         } else {
-            setMessage("User name must contain letters and a number*");
+            setMessage("Username must contain letters and a number*");
         }
       }
 
@@ -45,8 +49,8 @@ export default function Register(props) {
             }
             else {
                     setpassword("password");
-                setShow("Show")
-                // setshow(true);                
+                    setShow("Show")
+                    // setshow(true);                
                 }
         }
 
@@ -58,7 +62,6 @@ export default function Register(props) {
 
     const submit = (e) => {
         e.preventDefault();
-
         post(route('register'));
     };
 
@@ -69,17 +72,10 @@ export default function Register(props) {
             <Head title="Suitable | Sign up" />
 
             <div className="text-center">
-                <Link href="/">
-                    {/* <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" /> */}
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-purple-800 dark:text-purple-500 ">Suitable</span>
+                <Link href="/" className="flex">
+                    <img className="w-full h-7 block dark:hidden" src={LogoPurple} alt="shape" />
+                    <img className="w-full h-7 hidden dark:block" src={LogoLight} alt="shape" />
                 </Link>
-                <h2 className="mt-6 text-md font-medium text-gray-900">
-                    {/* Start Your soulmate search with the world's most reliable match making site! */}
-                </h2>
-                {/* <p className="mt-2 text-center text-sm text-gray-600 max-w">
-                    Need Help
-                    <Link href="/faq" className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"> Contact Support</Link>
-                </p> */}
             </div>
 
             <ValidationErrors errors={errors} />
@@ -140,9 +136,9 @@ export default function Register(props) {
                     <Input id="terms-and-privacy" name="terms-and-privacy" type="checkbox" className="dark:bg-indigo-500" required />
                     <label htmlFor="terms-and-privacy" className="ml-2 block text-sm text-gray-900 dark:text-slate-200"
                         >I agree to the
-                        <a href="#" className="text-indigo-600 font-medium hover:text-indigo-500"> Terms </a>
+                        <a href="/terms" className="text-indigo-600 font-medium hover:text-indigo-500"> Terms </a>
                           and
-                        <a href="#" className="text-indigo-600 font-medium hover:text-indigo-500">  Data Policy</a>.
+                        <a href="/privacy-policy" className="text-indigo-600 font-medium hover:text-indigo-500">  Data Policy</a>.
                     </label>
                 </div>
 

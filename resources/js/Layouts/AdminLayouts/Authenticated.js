@@ -89,7 +89,31 @@ export default function Authenticated({ auth, header, href, btnName, children })
                                 </div>
                             </li>
 
-                            
+                            <li className="pl-6 cursor-pointer text-gray-600 dark:text-slate-50 text-sm leading-3 tracking-normal mt-4 mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                <div className="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-puzzle" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" />
+                                        <path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1" />
+                                    </svg>
+                                    <Link href={route('admin.faqs')}>
+                                        <span className="ml-2">Faqs</span>
+                                    </Link>
+                                </div>
+                            </li>
+
+
+                            <li className="pl-6 cursor-pointer text-gray-600 dark:text-slate-50 text-sm leading-3 tracking-normal mt-4 mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                <div className="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-puzzle" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" />
+                                        <path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1" />
+                                    </svg>
+                                    <Link href={route('admin.contacts')}>
+                                        <span className="ml-2">Contact Messages</span>
+                                    </Link>
+                                </div>
+                            </li>
+
                             <li className="pl-6 cursor-pointer text-gray-600 dark:text-slate-50 text-sm leading-3 tracking-normal mt-4 mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                 <div className="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-puzzle" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -102,6 +126,7 @@ export default function Authenticated({ auth, header, href, btnName, children })
 
                                 </div>
                             </li>
+
 
                             
                             {/* <li className="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
@@ -349,7 +374,8 @@ export default function Authenticated({ auth, header, href, btnName, children })
                                         <div className="w-full flex items-center justify-between px-6 pt-1">
                                             <div className="flex items-center">
                                                 <img alt="profile-pic" src="https://tuk-cdn.s3.amazonaws.com/assets/components/boxed_layout/bl_1.png" className="w-8 h-8 rounded-md" />
-                                                <p className="md:text-xl text-gray-800 text-base leading-4 ml-2">{auth.user.firstname}</p>
+                                                <p className="md:text-xl text-gray-800 text-base leading-4 ml-2">Admin</p>
+                                                {/* <p className="md:text-xl text-gray-800 text-base leading-4 ml-2">{auth.user.firstname}</p> */}
                                             </div>
                                             <ul className="flex">
                                                 <li className="cursor-pointer text-white pt-5 pb-3">
@@ -441,12 +467,12 @@ export default function Authenticated({ auth, header, href, btnName, children })
                                                     ""
                                                 )}
                                                 <div className="relative">
-                                                    <img src={auth.user.profile_image || Img} alt={`Profile photo`}  className="rounded-full h-8 w-8 ml-1 object-cover" />
+                                                    <img src={Img} alt={`Profile photo`}  className="rounded-full h-8 w-8 ml-1 object-cover" />
 
                                                     <div className="w-2 h-2 rounded-full bg-green-400 border border-white absolute inset-0 mb-0 mr-0 m-auto" />
                                                 </div>
                                             </div>
-                                            <p className="text-gray-800 dark:text-slate-50 text-sm mx-3">{auth.user.firstname}</p>
+                                            {/* <p className="text-gray-800 dark:text-slate-50 text-sm mx-3">{auth.user.firstname}</p> */}
                                             <div className="cursor-pointer text-gray-600 dark:text-slate-50">
                                                 <svg aria-haspopup="true" xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-down" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" />

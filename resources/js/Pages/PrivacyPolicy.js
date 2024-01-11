@@ -9,12 +9,11 @@ function PrivacyPolicy() {
                 <div className="relative">
                     <div className="absolute">
                         <div className>
-                            <h1 className="my-2 text-gray-800 dark:text-purple-500 dark:text-shadow-sm font-bold text-2xl">
-                                Looks like you've found the
-                                doorway to the great nothing
+                            <h1 className="my-2 text-gray-800 dark:text-slate-50 text-shadow-sm font-bold text-4xl">
+                                Looks like you're lost.
                             </h1>
-                            <p className="my-2 text-gray-800 dark:text-red-400 mb-5">Sorry about that! Please visit our hompage to get where you need to go.</p>
-                            <Link href={route('auth.user.profile')} className="sm:w-full lg:w-auto my-5 mt-5 rounded-md shadow-sm md py-4 px-8 text-center bg-slate-800 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-opacity-50">Go back!</Link>
+                            <p className="my-2 text-lg text-gray-800 dark:text-slate-400 mb-5">Sorry about that! Please visit our hompage to get where you need to go.</p>
+                            <Link href={route('home')} className="sm:w-full lg:w-auto my-5 mt-5 rounded-md shadow-sm md py-4 px-8 text-center bg-slate-800 text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-700 focus:ring-opacity-50">Home</Link>
                         </div>
                     </div>
                     <div>

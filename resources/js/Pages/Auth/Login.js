@@ -7,6 +7,11 @@ import Label from '@/Components/Label';
 import ValidationErrors from '@/Components/ValidationErrors';
 import { Head, Link, useForm } from '@inertiajs/inertia-react';
 
+import LogoPurple from '../../../../public/assets/images/logo-purple.svg';
+import LogoLight from '../../../../public/assets/images/logo-light.svg';
+
+
+
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
@@ -35,16 +40,12 @@ export default function Login({ status, canResetPassword }) {
         >
             <Head title="Log in" />
 
-
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
             <div className="text-center mb-2">
-                <Link href="/" className="flex items-center justify-center">
-                    {/* <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" /> */}
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap text-purple-800 dark:text-purple-500">Suitable</span>
+                <Link href="/" className="flex">
+                    <img className="w-full h-7 block dark:hidden" src={LogoPurple} alt="shape" />
+                    <img className="w-full h-7 hidden dark:block" src={LogoLight} alt="shape" />
                 </Link>
-                <h2 className="mt-6 text-md font-medium text-gray-900">
-                    
-                </h2>
             </div>
             <ValidationErrors errors={errors} />
 

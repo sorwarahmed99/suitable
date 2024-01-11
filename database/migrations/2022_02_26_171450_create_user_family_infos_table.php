@@ -17,15 +17,16 @@ class CreateUserFamilyInfosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->integer('siblings')->nullable();
-            $table->integer('how_many_brothers_and_sisters')->nullable();
-            $table->string('a_day_living_with_family')->nullable();
-            $table->string('get_married')->nullable();
-            $table->string('continue_working')->nullable();
-            $table->string('intend_to_move_out')->nullable();
-            $table->string('issues_living_with_inlaws')->nullable();
-            $table->string('future_plan')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
+            
+            // $table->integer('how_many_brothers_and_sisters')->nullable();
+            // $table->string('a_day_living_with_family')->nullable();
+            // $table->string('get_married')->nullable();
+            // $table->string('continue_working')->nullable();
+            // $table->string('intend_to_move_out')->nullable();
+            // $table->string('issues_living_with_inlaws')->nullable();
+            // $table->string('future_plan')->nullable();
         });
     }
 

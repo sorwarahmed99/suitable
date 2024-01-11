@@ -17,16 +17,18 @@ class CreateUserProfileInfosTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('marital_status')->nullable();
-            $table->string('living_with')->nullable();
             $table->string('have_children')->nullable();
-            $table->string('like_to_have_children')->nullable();
-            $table->string('physical_disability')->nullable();
             $table->string('height')->nullable();
-            $table->string('hair_color')->nullable();
-            $table->string('fitness')->nullable();
             $table->text('bio')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
+
+            // $table->string('living_with')->nullable();
+            // $table->string('like_to_have_children')->nullable();
+            // $table->string('physical_disability')->nullable();
+            // $table->string('hair_color')->nullable();
+            // $table->string('fitness')->nullable();
+
         });
     }
 

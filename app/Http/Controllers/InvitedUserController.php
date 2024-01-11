@@ -26,17 +26,23 @@ class InvitedUserController extends Controller
 
     public function accept($id) {
         $user = auth()->id();
+
         $userToAccept = User::where('id', $id)->first();
+
         $a = InvitedUser::where('invited_user_id', $id)
-                ->when('user_id' == $user, function ($q) {
-                    return $q->where('invited_user_id', '=', $id);
-                })
-                ->first();
-        // dd($a);
-        $a->is_accepted = 1;
-        $a->save();
-        return redirect()->back()->with('success', 'Accepted');
-    }
+            ->when('user_id' == $user, function ($q) use ($id) {
+                return $q->where('invited_user_id', $id);
+            })
+            ->first();
+
+        if ($a) {
+            $a->is_accepted = 1;
+            $a->save();
+            return redirect()->back()->with('success', 'Accepted');
+        } else {
+            return redirect()->back()->with('error', 'Could not accept the invitation.');
+        }
+}
 
     public function reject($id) {
         $user = auth()->user()->id;

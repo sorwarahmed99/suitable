@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Str;
 
 class MessageController extends Controller
 {
@@ -79,7 +80,7 @@ class MessageController extends Controller
                         'isInvited' => auth()->user()->isInvited($user) ?? '',
                         'isAccepted' => auth()->user()->isAccepted($user) ?? '',
 
-                        'last_message' => $user->lastmessages->last()->message ?? '',
+                        'last_message' => optional($user->lastmessages->last())->message ? Str::limit($user->lastmessages->last()->message, 30) : '',
                         'time' => $user->lastmessages->last()->created_at ?? '',
 
                     ];
@@ -147,10 +148,10 @@ class MessageController extends Controller
                 'ethnic_origin' => $user->ethnic_origin,
                 'country' => $user->country,
                 'recidency_status' => $user->recidency_status,
-                'postcode' => $user->postcode,
+                'area' => $user->area,
                 'last_login' => $user->last_login,
 
-                'last_message' => $user->lastmessages->last()->message ?? '',
+                'last_message' => optional($user->lastmessages->last())->message ? Str::limit($user->lastmessages->last()->message, 30) : '',
                 'time' => $user->lastmessages->last()->created_at ?? '',
 
             ],
@@ -196,13 +197,14 @@ class MessageController extends Controller
                         'isInvited' => auth()->user()->isInvited($u) ?? '',
                         'isAccepted' => auth()->user()->isAccepted($u) ?? '',
                         
-                        'last_message' => $u->lastmessages->last()->message ?? '',
+                        'last_message' => optional($u->lastmessages->last())->message ? Str::limit($user->lastmessages->last()->message, 30) : '',
+
+
                         'time' => $u->lastmessages->last()->created_at ?? '',
                     ];
                 }),
         ]);
     }
-
     
 
     /**

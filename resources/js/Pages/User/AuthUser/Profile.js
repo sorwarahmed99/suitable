@@ -9,14 +9,15 @@ import { Inertia } from '@inertiajs/inertia';
 import React, { useRef, useState } from 'react'
 import InputSelect from '@/Components/InputSelect';
 import RadioButton from '@/Components/RadioButton';
-import { useForm, usePage } from '@inertiajs/inertia-react';
+import { Link, useForm, usePage } from '@inertiajs/inertia-react';
+import ValidationErrors from '@/Components/ValidationErrors';
+import { heightOptions, } from '../../../utils/data';
 
-function Profile({auth}) {
+function Profile({auth, errors}) {
+    const {user, interests, userImages} = usePage().props;
+    const baseUrl = 'http://suitable.one/';
 
-
-    const {user, interests} = usePage().props;
-
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, reset } = useForm({
         username: user.username || '',
         email: user.email || '',
         age: user.age || '',
@@ -26,15 +27,17 @@ function Profile({auth}) {
         marital_status: user.marital_status || '',
         have_children: user.have_children || '',
         siblings: user.siblings || '',
+
         ethnic_origin: user.ethnic_origin || '',
         relocate: user.relocate || '',
         country: user.country || '',
         recidency_status: user.recidency_status || '',
         city: user.city || '',
-        postcode: user.postcode || '',
+        area: user.area || '',
         back_home_country: user.back_home_country || '',
         back_home_city: user.back_home_city || '',
         back_home_area: user.back_home_area || '',
+
         highest_education: user.highest_education || '',
         university: user.university || '',
         course_name: user.course_name || '',
@@ -42,39 +45,87 @@ function Profile({auth}) {
         college_course_name: user.college_course_name || '',
         current_profession: user.current_profession || '',
         company_name: user.company_name || '',
+
         religious_history: user.religious_history || '',
         prayer_frequency: user.prayer_frequency || '',
         sect: user.sect || '',
         read_quran: user.read_quran || '',
         eat_halal: user.eat_halal || '',
         drink_alchohol: user.drink_alchohol || '',
-        wear_hijab_keep_beard: user.wear_hijab_keep_beard || '',
+        bio: user.bio || '',
     });
     const photoRef = useRef();
 
-    const [selectedFile, setSelectedFile] = useState();
     const [link, setLink] = useState(false);
     const [values, setValues] = useState({photo: '',});
-    
+    const [images, setImages] = useState([]);
+    const showFileInput = userImages.length < 3;
+
     const [selectedFiles, setSelectedFiles] = useState([]);
+    const canUploadMoreImages = selectedFiles.length <= 4;
+    const [message, setMessage] = useState('');
+    
 
-    const handleImageChange = (e) => {
-        // console.log(e.target.files[])
-        if (e.target.files) {
-        const filesArray = Array.from(e.target.files).map((file) =>
-            URL.createObjectURL(file)
-        );
+    const handleProfileImageChange = (e) => {
+        const newImages = [...e.target.files];
+        setImages(newImages);
 
-        // console.log("filesArray: ", filesArray);
+        if (newImages) {
+            const filesArray = Array.from(e.target.files).map((file) =>
+                URL.createObjectURL(file)
+            );
 
-        setSelectedFiles((prevImages) => prevImages.concat(filesArray));
-        Array.from(e.target.files).map(
-            (file) => URL.revokeObjectURL(file) // avoid memory leak
-        );
+            setSelectedFiles((prevImages) => prevImages.concat(filesArray));
+            Array.from(e.target.files).map(
+                (file) => URL.revokeObjectURL(file) // avoid memory leak
+            );
         }
+
+        e.preventDefault();
+        const formData = new FormData();
+
+        newImages.forEach((image) => {
+            formData.append('images[]', image);
+        });
+
+        Inertia.post('updateprofileimage', formData, {
+            forceFormData: true,
+          });
+        // setSelectedFile(URL.createObjectURL(e.target.files[0]) );
+
+        setLink(true);
     };
 
-        
+    const handleImageChange = (e) => {
+        const newImages = [...e.target.files];
+        setImages(newImages);
+
+        if (newImages) {
+            const filesArray = Array.from(e.target.files).map((file) =>
+                URL.createObjectURL(file)
+            );
+
+            setSelectedFiles((prevImages) => prevImages.concat(filesArray));
+            Array.from(e.target.files).map(
+                (file) => URL.revokeObjectURL(file) // avoid memory leak
+            );
+        }
+
+        e.preventDefault();
+        const formData = new FormData();
+
+        newImages.forEach((image) => {
+            formData.append('images[]', image);
+        });
+
+        Inertia.post('upload', formData, {
+            forceFormData: true,
+          });
+        // setSelectedFile(URL.createObjectURL(e.target.files[0]) );
+
+        setLink(true);
+    };
+
     const handleChecked = (e) => {
         let id = e.target.value;
         if (e.target.checked) {
@@ -88,31 +139,47 @@ function Profile({auth}) {
             );
         }
     };
-
+ 
     const renderPhotos = (source) => {
-        console.log("source: ", source);
+        // const totalUploadedImages = userImages.length + source.length;
+        // const canUploadMoreImages = totalUploadedImages <= 4;
+
+        if (source.length === 0) {
+            return null; // No images to display
+        }
+
+        
+        
+        // if (totalUploadedImages >= 4) {
+        //     setMessage('You can only upload a maximum of 4 images.');
+        // }
+
+        // if (!canUploadMoreImages) {
+        //     setMessage(`{You can upload ${4 - userImages.length} more image(s) to reach the limit of 4.}`);
+        // }
+
         return source.map((photo) => {
-            return <div  key={photo}  className="relative rounded-lg shadow-sm bg-gray-50">
+            return <div key={photo}  className="relative rounded-lg shadow-sm bg-gray-50">
                                 <div onClick={() => setSelectedFiles(selectedFiles.filter((e) => e !== photo))} className="flex justify-center items-baseline absolute z-50 right-0 left-[4rem] -top-[1rem] text-sm border bg-slate-700 shadow-md cursor-pointer hover:bg-slate-900 border-slate-800 text-slate-50 text-center h-6 w-6 rounded-full">x</div>
                                 <img  alt="" src={photo} className="object-cover rounded-lg h-20 w-20 aspect-square" />
-                    
-                    {/* <img src={photo} alt="" key={photo} className="object-cover h-20 w-20 aspect-square" />
-                    <button onClick={() => setSelectedFiles(selectedFiles.filter((e) => e !== photo))}>delete</button> */}
                     </div>;
         });
     };
-    const onHandleChange = e => {    
-        const formData = new FormData();
 
-        formData.append('photo', photoRef.current.files[0])
+    const onHandleChange = e => {   
+        setData(e.target.name, e.target.type === 'hidden' ? e.target.value : e.target.value);
+
+        // const formData = new FormData();
+
+        // formData.append('photo', photoRef.current.files[0])
         // formData.append('photo', values.photo)
         
         // Inertia.post('upload-profile-pic', formData, {
         //     forceFormData: true,
         //   });
-        setSelectedFile(URL.createObjectURL(e.target.files[0]) );
+        // setSelectedFile(URL.createObjectURL(e.target.files[0]) );
 
-        setLink(true);
+        // setLink(true);
 
     }
 
@@ -132,32 +199,23 @@ function Profile({auth}) {
         "name": "Andorra",
         "code": "Andorra"
       }, {
-        "name": "Albania",
-        "code": "Albania"
-      }, {
         "name": "Austria",
         "code": "Austria"
       }, {
-        "name": "Åland Islands",
-        "code": "Åland Islands"
-      }, {
-        "name": "Bosnia and Herzegovina",
-        "code": "Bosnia and Herzegovina"
+        "name": "Australia",
+        "code": "Australia"
       }, {
         "name": "Belgium",
         "code": "Belgium"
       }, {
-        "name": "Bulgaria",
-        "code": "Bulgaria"
-      }, {
-        "name": "Belarus",
-        "code": "Belarus"
+        "name": "Canada",
+        "code": "Canada"
       }, {
         "name": "Switzerland",
         "code": "Switzerland"
       }, {
-        "name": "Cyprus",
-        "code": "Cyprus"
+        "name": "Gibraltar",
+        "code": "Gibraltar"
       }, {
         "name": "Czech Republic",
         "code": "Czech Republic"
@@ -192,8 +250,8 @@ function Profile({auth}) {
         "name": "Greece",
         "code": "Greece"
       }, {
-        "name": "Croatia",
-        "code": "Croatia"
+        "name": "Qatar",
+        "code": "Qatar"
       }, {
         "name": "Hungary",
         "code": "Hungary"
@@ -201,8 +259,8 @@ function Profile({auth}) {
         "name": "Ireland",
         "code": "Ireland"
       }, {
-        "name": "Isle of Man",
-        "code": "Isle of Man"
+        "name": "Kuwait",
+        "code": "Kuwait"
       }, {
         "name": "Iceland",
         "code": "Iceland"
@@ -210,8 +268,8 @@ function Profile({auth}) {
         "name": "Italy",
         "code": "Italy"
       }, {
-        "name": "Jersey",
-        "code": "Jersey"
+        "name": "Saudi Arabia",
+        "code": "Saudi Arabia"
       }, {
         "name": "Liechtenstein",
         "code": "Liechtenstein"
@@ -222,17 +280,14 @@ function Profile({auth}) {
         "name": "Luxembourg",
         "code": "Luxembourg"
       }, {
-        "name": "Latvia",
-        "code": "Latvia"
+        "name": "United States",
+        "code": "United States"
       }, {
         "name": "Monaco",
         "code": "Monaco"
       }, {
-        "name": "Moldova",
-        "code": "Moldova"
-      }, {
-        "name": "Macedonia, The Former Yugoslav Republic of",
-        "code": "Macedonia, The Former Yugoslav Republic of"
+        "name": "New Zealand ",
+        "code": "New Zealand "
       }, {
         "name": "Malta",
         "code": "Malta"
@@ -243,38 +298,17 @@ function Profile({auth}) {
         "name": "Norway",
         "code": "Norway"
       }, {
-        "name": "Poland",
-        "code": "Poland"
+        "name": "Oman",
+        "code": "Oman"
       }, {
         "name": "Portugal",
         "code": "Portugal"
       }, {
-        "name": "Romania",
-        "code": "Romania"
-      }, {
-        "name": "Russian Federation",
-        "code": "Russian Federation"
+        "name": "United Arab Emirates ",
+        "code": "United Arab Emirates "
       }, {
         "name": "Sweden",
         "code": "Sweden"
-      }, {
-        "name": "Slovenia",
-        "code": "Slovenia"
-      }, {
-        "name": "Svalbard and Jan Mayen",
-        "code": "Svalbard and Jan Mayen"
-      }, {
-        "name": "Slovakia",
-        "code": "Slovakia"
-      }, {
-        "name": "San Marino",
-        "code": "San Marino"
-      }, {
-        "name": "Ukraine",
-        "code": "Ukraine"
-      }, {
-        "name": "Holy See (Vatican City State)",
-        "code": "Holy See (Vatican City State)"
       }];
 
     const sortedcs = countries.sort((a,b) => a.name.localeCompare(b.name));
@@ -675,11 +709,25 @@ function Profile({auth}) {
         { value: "Hidden", label: "Prefer not to say" },
     ];
 
+    const handleDelete = (imageId) => {
+        Inertia.delete(`/image/delete/${imageId}`);
+    };
 
     const submit = (e) => {
         e.preventDefault();
-        post('set-up-profile-step-1');
+        post('profile/store');
     };
+
+    const submitPhotos = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+
+        images.forEach((image) => {
+            formData.append('images[]', image);
+        });
+
+        post('/upload', formData);
+    }
 
     return (
         <Authenticated 
@@ -701,9 +749,106 @@ function Profile({auth}) {
             
             <div className="mt-2 sm:mt-0 sm:w-full md:w-2/3 bg-gray-50 dark:bg-slate-800 p-4 sm:p-10 rounded-md shadow-sm">
                 <div className="">
-                    <form id="login" className="dark:bg-slate-800" onSubmit={handleSubmit}>
+                    {/* Multiple image start */}
+                    <div className="py-8">
+                        <div className="flex justify-between items-center">
+                            <div>
+                                <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-50">Photos</h2>
+                                <p className="text-slate-500 mb-2">Upload or remove photos</p>
+                            </div>
+                            <div>
+                                <Link as='a' className='flex justify-center items-center py-2 px-4 border border-purple-500 rounded-md shadow-sm text-sm font-semibold text-purple-500 dark:text-white bg-tranparent hover:bg-purple-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500' href="/public-profile">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                    </svg>
+
+                                    <span className='ml-1'>View As</span>
+                                </Link>
+                            </div>
+                        </div>
+                        {message && ( 
+                            <div className="text-red-400 font-semibold text-md">
+                                {message}
+                            </div>
+                         )}
+                        
+                        <div className="mt-4"> 
+                            <form className="grid grid-cols-2 gap-12 md:grid-cols-2 lg:grid-cols-4">
+                                <div className="relative rounded-lg shadow-sm bg-gray-50 w-[150px] h-[150px]">
+                                    <label className="flex justify-center items-center absolute z-10 right-0 left-[8rem] -top-[0.6rem] text-md border bg-purple-500 shadow-md cursor-pointer hover:bg-purple-500 hover:border-gray-50 border-purple-400 text-slate-50 text-center h-7 w-7 rounded-full ring-1">
+                                        <input ref={photoRef} type="file" value={values.photo} className="opacity-0" onChange={handleProfileImageChange} />
+                                        <p className="font-semibold text-white flex items-center justify-center pr-1 pl-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.6" stroke="currentColor" className="w-4 h-4">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                            </svg>
+                                        </p>
+                                    </label>
+
+                                    <div className="w-[150px] h-[150px] rounded-lg">
+                                        <img src={auth.user.profile_image} layout="fill" className="w-[150px] h-[150px] p-2 rounded-xl object-cover aspect-square" />
+                                        {/* <label className="mt-3 cursor-pointer flex flex-col items-center justify-center w-full h-4 hover:bg-gray-100 dark:hover:bg-slate-800">
+                                            <p className="text-xs tracking-wider text-gray-500 hover:text-gray-700  dark:text-slate-200 dark:hover:text-slate-50">
+                                                Change Profile Photo
+                                            </p>
+                                            <input ref={photoRef} type="file" value={values.photo} className="opacity-0" onChange={handleProfileImageChange} />
+                                        </label> */}
+                                    </div>
+                                </div>
+
+                                {userImages.map(({image, id}) => (
+                                    <div key={id}>
+                                        {/* <div class="flex flex-wrap gap-2"> */}
+                                            <div className="relative rounded-lg shadow-sm bg-slate-100 w-[150px] h-[150px]">
+                                                <div onClick={() => handleDelete(id)} className="flex justify-center items-baseline absolute z-10 right-0 left-[8rem] -top-[0.6rem] text-md border bg-red-400 shadow-md cursor-pointer hover:bg-red-500 hover:border-gray-50 border-red-400 text-slate-50 text-center h-7 w-7 rounded-full">x</div>
+                                                <div className="w-[150px] h-[150px] rounded-lg">
+                                                    <img src={image} layout="fill" className="w-[150px] h-[150px] p-2 rounded-xl object-cover aspect-square" />
+                                                    {/* <label className="mt-3 cursor-pointer flex flex-col items-center justify-center w-full h-4 hover:bg-gray-100 dark:hover:bg-slate-800">
+                                                        <p className="text-xs tracking-wider text-gray-500 hover:text-gray-700  dark:text-slate-200 dark:hover:text-slate-50">
+                                                            Make profile image
+                                                        </p>
+                                                        <input ref={photoRef} type="file" value={values.photo} className="opacity-0" onChange={handleImageChange} />
+                                                    </label> */}
+                                                </div>
+                                            </div>
+                                        {/* </div> */}
+                                    </div>
+                                ))}
+
+                                {showFileInput &&
+                                <div className="flex justify-center items-center">
+                                    <div className="rounded-lg shadow-md bg-gray-50">
+                                        <div className="p-2">
+                                            <div className="flex items-center justify-center w-full">
+                                                <label className="flex flex-col w-[130px] h-[130px] rounded-lg border-4 border-slate-100 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                                                    <div className="flex flex-col items-center justify-center pt-7">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-gray-400 group-hover:text-gray-600"
+                                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                                        </svg>
+                                                        <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+                                                            Choose a photo
+                                                        </p>
+                                                    </div>
+                                                    {/* <input ref={photoRef} type="file" value={values.photo} className="opacity-0" onChange={handleImageChange} /> */}
+                                                    <input ref={photoRef} type="file" name="images" id="images" accept="image/*" value={values.images} className="opacity-0" onChange={handleImageChange} disabled={!canUploadMoreImages} />
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                }
+                            </form>
+                        </div>
+                    </div>
+                    <ValidationErrors errors={errors} />
+                    {/* Multiple image end */}
+
+                    <form id="profile" className="dark:bg-slate-800" onSubmit={submit}>
                         <div className="dark:bg-gray-800">
-                            <div className="p-4 shadow-sm bg-slate-100 dark:bg-slate-700 rounded-md"> 
+                        {auth.user.account_status == 0 && (
+                            <div className="p-4 shadow-sm bg-slate-100 dark:bg-slate-700 rounded-md mt-4"> 
                                 <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-4">Your profile is under validation!</h2>
                                 <div className="flex items-start space-x-2 ">
                                     
@@ -718,49 +863,12 @@ function Profile({auth}) {
                                                 you will receive a confirmation on your registered mail ID.
                                             </p>
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>
+                        )}
 
-                            {/* Multiple image start */}
-                            <div className="py-8">
-                                <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-50">Photos</h2>
-                                <p className="text-slate-500 mb-2">Upload or remove photos</p>
-                                <form className="flex items-start justify-start space-x-2 mt-4">
-                                    <div className="flex justify-center space-x-2">
-                                        <div className="rounded-lg shadow-md bg-gray-50">
-                                            <div className="p-2">
-                                                <div className="flex items-center justify-center w-full">
-                                                    <label className="relative flex flex-col w-20 h-20 border-3 bg-gray-50 border-slate-300 border-dashed hover:bg-gray-100 hover:border-gray-300">
-                                                        <div className="flex flex-col items-center justify-center pt-10">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-gray-400 group-hover:text-gray-600"
-                                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                                            </svg>
-                                                        </div>
-                                                        <input ref={photoRef} type="file" value={values.photo} className="opacity-0" multiple onChange={handleImageChange} />
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {selectedFiles && 
-                                        <div class="flex flex-wrap gap-2">
-                                            <div className="relative rounded-lg shadow-sm bg-gray-50">
-                                                <div onClick={() => setSelectedFiles(selectedFiles.filter((e) => e !== photo))} className="flex justify-center items-baseline absolute z-50 right-0 left-[4rem] -top-[1rem] text-sm border bg-slate-700 shadow-md cursor-pointer hover:bg-slate-900 border-slate-800 text-slate-50 text-center h-6 w-6 rounded-full">x</div>
-                                                <img src={`http://localhost:3000/${auth.user.profile_image}`} alt={`${auth.user.username}'s Profile photo`} className="object-cover h-20 w-20 aspect-square"  />
-                                                <p className="text-xs flex justify-center">Profile photo</p>
-                                            </div>
-                                            {renderPhotos(selectedFiles)}
-                                        </div>
-                                    }
-                                </form>
-                            </div>
-                            {/* Multiple image end */}
-                            
-                            {/* BASIC information start */}
+                        {/* BASIC information start */}
                             <div className="py-4">
                                 <div className="flex items-start space-x-6 border-b pb-2 border-gray-300 dark:border-gray-700 dark:bg-gray-800">
                                     <p className="flex-none text-lg font-semibold text-gray-800 dark:text-gray-100">Basic information</p>
@@ -770,11 +878,6 @@ function Profile({auth}) {
                                                 <path className="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor" />
                                             </svg>
                                         </div>
-                                        <dl className="mt-2 flex flex-wrap text-sm leading-6 font-medium">
-                                            <div className="absolute top-0 right-0 flex items-center space-x-1">
-                                                <Button className="bg-transparent border-2 border-purple-600 text-purple-600 hover:text-white hover:bg-purple-600 dark:border-slate-200 dark:text-slate-200 dark:hover:text-slate-700 dark:hover:bg-slate-50 focus:ring-0 dark:focus:ring-0">Save <span className="hidden sm:flex ml-1">changes</span></Button>
-                                            </div>
-                                        </dl>
                                     </div>
                                 </div>
                                 <p className="mt-3 text-slate-500 mb-3">You can't update basic information once it's public. To update your basic information please contact authority !</p>
@@ -800,8 +903,6 @@ function Profile({auth}) {
                                 </div>
                             </div>
                             {/* BASIC information end */}
-
-
                             
                             <div id="filterSection" className="relative md:py-10 lg:px-2 md:px-6 py-5 px-2 bg-gray-50 dark:bg-slate-800 mt-2 w-full block">
                                 {/* PERSONAL information start */}
@@ -814,12 +915,17 @@ function Profile({auth}) {
                                                     <path className="heroicon-ui" d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0v-4a1 1 0 0 1 1-1zm0-4a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="currentColor" />
                                                 </svg>
                                             </div>
+                                            <dl className="mt-2 flex flex-wrap text-sm leading-6 font-medium">
+                                                <div className="absolute top-0 right-0 flex items-center space-x-1">
+                                                    <Button className="bg-purple-600 border-2 border-purple-600 text-purple-600 hover:text-white hover:bg-purple-600 dark:border-slate-200 dark:text-slate-200 dark:hover:text-slate-700 dark:hover:bg-slate-50 focus:ring-0 dark:focus:ring-0">Save <span className="hidden sm:flex ml-1">changes</span></Button>
+                                                </div>
+                                            </dl>
                                         </div>
                                     </div>
                                     <div className="mt-4">
                                         <Label forInput="height" value="Height" />
                                         <InputSelect 
-                                            defaultValue={data.height} 
+                                            value={data.height} 
                                             onChange={onHandleChange} 
                                             options={heightOptions} 
                                             className={`block w-full sm:text-sm`} 
@@ -831,7 +937,7 @@ function Profile({auth}) {
                                     <div className="mt-4">
                                         <Label forInput="marital_status" value="Marital Status" />
                                         <InputSelect 
-                                            defaultValue={data.marital_status} 
+                                            value={data.marital_status} 
                                             onChange={onHandleChange} 
                                             options={maritalStatusOptions} 
                                             className={`block w-full sm:text-sm`} 
@@ -843,7 +949,7 @@ function Profile({auth}) {
                                     <div className="mt-4">
                                         <Label forInput="have_children" value="Children?" />
                                         <InputSelect 
-                                            defaultValue={data.have_children} 
+                                            value={data.have_children} 
                                             onChange={onHandleChange} 
                                             options={childrenOptions} 
                                             className={`block w-full sm:text-sm`} 
@@ -873,7 +979,7 @@ function Profile({auth}) {
                                     <div className="mt-4">
                                         <Label forInput="ethnic-origin" value="Ethnic origin" />
                                         <InputSelect 
-                                            defaultValue={data.ethnic_origin} 
+                                            value={user.ethnic_origin} 
                                             onChange={onHandleChange} 
                                             options={ethnicOriginOptions} 
                                             className={`block w-full sm:text-sm`} 
@@ -886,7 +992,7 @@ function Profile({auth}) {
                                         <Label forInput="relocate" value="Move abroad" />
 
                                         <InputSelect 
-                                            value={data.relocate} 
+                                            value={user.relocate} 
                                             onChange={onHandleChange} 
                                             options={relocateOptions} 
                                             className={`block w-full sm:text-sm`} 
@@ -909,7 +1015,7 @@ function Profile({auth}) {
                                             }
                                             name="country"
                                             onChange={onHandleChange}
-                                            value={data.country}
+                                            value={user.country}
                                         >
                                             <option value={''}>Select your country</option>
                                             {sortedcs.map((country) => {
@@ -940,25 +1046,25 @@ function Profile({auth}) {
                                             <Input
                                                 type="text"
                                                 name="city"
-                                                value={data.city}
+                                                value={user.city}
                                                 className="mt-1 block w-full"
                                                 handleChange={onHandleChange}
-                                                required
                                                 placeholder="eg: London"
                                             />
                                         </div>
 
                                         <div className="w-1/2">
-                                            <Label forInput="postcode" value="Postcode" />
+                                            <Label forInput="area" value="Area" />
                                             <Input
                                                 type="text"
-                                                name="postcode"
-                                                value={data.postcode}
+                                                name="area"
+                                                value={user.area}
                                                 className="mt-1 block w-full"
                                                 handleChange={onHandleChange}
-                                                required
-                                                placeholder="First part of postcode.."
+                                                placeholder="Enter your area"
                                             />
+                                            {/* <input type="text" value={data.area} className="py-3 dark:text-slate-200" placeholder="City" /> */}
+
                                         </div>
                                     </div>
 
@@ -988,13 +1094,14 @@ function Profile({auth}) {
                                     <div className="flex mt-4">
                                         <div className="w-1/2 pr-2"> 
                                             <Label forInput="back_home_city" value="City" />
+                                            {/* <input type="text" value={user.back_home_city} className="py-3 dark:text-slate-200" placeholder="City" /> */}
+
                                             <Input
                                                 type="text"
                                                 name="back_home_city"
-                                                value={data.back_home_city}
+                                                value={user.back_home_city}
                                                 className="mt-1 block w-full"
                                                 handleChange={onHandleChange}
-                                                required
                                                 placeholder="eg: Sylhet"
                                             />
                                         </div>
@@ -1003,10 +1110,9 @@ function Profile({auth}) {
                                             <Input
                                                 type="text"
                                                 name="back_home_area"
-                                                value={data.back_home_area}
+                                                value={user.back_home_area}
                                                 className="mt-1 block w-full"
                                                 handleChange={onHandleChange}
-                                                required
                                                 placeholder=""
                                             />
                                         </div>
@@ -1053,7 +1159,7 @@ function Profile({auth}) {
                                             <Input
                                                 type="text"
                                                 name="university"
-                                                value={data.university}
+                                                value={user.university}
                                                 className="mt-1 block w-full"
                                                 handleChange={onHandleChange}
                                                 placeholder="Enter university name"
@@ -1065,7 +1171,7 @@ function Profile({auth}) {
                                             <Input
                                                 type="text"
                                                 name="course_name"
-                                                value={data.course_name}
+                                                value={user.course_name}
                                                 className="mt-1 block w-full"
                                                 handleChange={onHandleChange}
                                                 placeholder="Enter course name"
@@ -1096,7 +1202,7 @@ function Profile({auth}) {
                                                 <Input
                                                     type="text"
                                                     name="college_course_name"
-                                                    value={data.college}
+                                                    value={data.college_course_name}
                                                     className="mt-1 block w-full"
                                                     handleChange={onHandleChange}
                                                     placeholder="Enter course name"
@@ -1221,7 +1327,7 @@ function Profile({auth}) {
                                     </div>
                                     
 
-                                    <div className="mt-4">
+                                    {/* <div className="mt-4">
                                         <div className="flex items-baseline mb-2 pb-2 space-x-2">
                                             <div className="w-1/3">
                                                 <Label forInput="wear_hijab_keep_beard" value={`${auth.user.gender == "Male" ? "Keep Beard" : "Wear Hijab ?" }`} />
@@ -1232,6 +1338,12 @@ function Profile({auth}) {
                                                 <RadioButton name="wear_hijab_keep_beard" value={`Hidden`} btnName="Prefer not to say" handleChange={onHandleChange} />
                                             </div>
                                         </div>
+                                    </div> */}
+
+                                    <div className="mt-4">
+                                        <Label forInput="bio" value="About you" />
+                                        <textarea id="about" name="bio" onChange={onHandleChange} className="bg-transparent border mt-1 border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded-lg text-sm focus:outline-none focus:border-indigo-700 resize-none placeholder-gray-500 text-gray-700 dark:text-gray-700" placeholder="Share something nice about you ..." rows={5} defaultValue={data.bio} />
+                                        <p className="w-full text-right text-xs pt-1 text-gray-500 dark:text-gray-400">Character Limit: 2000</p>
                                     </div>
 
                                     

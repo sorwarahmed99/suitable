@@ -38,7 +38,7 @@ class UserFactory extends Factory
             'country' => $country,
             'recidency_status' => $recidency_status,
             'relocate' => $relocate,
-            'postcode' => $this->faker->postcode(),
+            'area' => $this->faker->word,
             'profile_image' => $profile_image,
             'stripe_id' => 'cus_LQBNS94h4pSwCa',
             'email_verified_at' => now(),

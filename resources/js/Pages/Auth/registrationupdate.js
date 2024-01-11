@@ -3,7 +3,7 @@
 // Age:
 // Height: marital status:
 // Ethnicity:
-// Postcode:
+// area:
 // City:
 // Country:
 

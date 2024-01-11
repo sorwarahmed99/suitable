@@ -46,7 +46,7 @@ class AdminController extends Controller
                         'ethnic_origin' => $user->ethnic_origin ?? '',
                         'country' => $user->country ?? '',
                         'city' => $user->city ?? '',
-                        'postcode' => $user->postcode ?? '',
+                        'area' => $user->area ?? '',
                         'recidency_status' => $user->recidency_status ?? '',
                         'back_home_country' => $user->back_home_country ?? '',
                         'back_home_city' => $user->back_home_city ?? '',
@@ -84,7 +84,7 @@ class AdminController extends Controller
                         'current_logged_in_device' => $user->loginInfo->current_logged_in_device ?? '',
                         'login_time' => $user->loginInfo->login_time ?? '',
 
-                        'created_at' => $user->created_at->diffForHumans(),
+                        'created_at' => $user->created_at->format('d/m/Y'),
                         'profile_step' => $user->profile_step,
                     ];
                 })
@@ -142,24 +142,64 @@ class AdminController extends Controller
     public function activeUsers()
     {
         return Inertia::render('Admin/Users/ActiveUsers', [
+            'users' => User::where('account_status', 0),
             'active_users' => User::where('account_status', 1)
                 ->with('qualification')
                 ->with('religion')
+                ->with('savedusers')
                 ->orderBy('created_at', 'desc')
                 ->paginate(5)
                 ->transform(function ($user) {
                     return [
-                        'id' => $user->id,
-                        'firstname' => $user->firstname,
-                        'lastname' => $user->lastname,
-                        'username' => $user->username,
-                        'email' => $user->email,
-                        'age' =>  \Carbon\Carbon::parse($user->date_of_birth)->age,
-                        'profile_image' => $user->profile_image,
-                        'ethnic_origin' => $user->ethnic_origin,
-                        'country' => $user->country,
-                        'recidency_status' => $user->recidency_status,
-                        'created_at' => $user->created_at,
+                        'id' => $user->id ?? '',
+                        'username' => $user->username ?? '',
+                        'email' => $user->email ?? '',
+                        'gender' => $user->gender ?? '',
+                        'date_of_birth' => $user->date_of_birth ?? '',
+                        'age' =>  \Carbon\Carbon::parse($user->date_of_birth)->age ?? '',
+                        'profile_image' => $user->profile_image ?? '',
+                        'ethnic_origin' => $user->ethnic_origin ?? '',
+                        'country' => $user->country ?? '',
+                        'city' => $user->city ?? '',
+                        'area' => $user->area ?? '',
+                        'recidency_status' => $user->recidency_status ?? '',
+                        'back_home_country' => $user->back_home_country ?? '',
+                        'back_home_city' => $user->back_home_city ?? '',
+                        'back_home_area' => $user->back_home_area ?? '',
+                        'relocate' => $user->relocate ?? '',
+
+                        'highest_education' => $user->qualification->highest_education ?? '',
+                        'university' => $user->qualification->university ?? '',
+                        'course_name' => $user->qualification->course_name ?? '',
+                        'college' => $user->qualification->college ?? '',
+                        'college_course_name' => $user->qualification->college_course_name ?? '',
+                        'current_profession' => $user->qualification->current_profession ?? '',
+                        'company_name' => $user->qualification->company_name ?? '',
+
+                        'prayer_frequency' => $user->religion->prayer_frequency ?? '',
+                        'religious_history' => $user->religion->religious_history ?? '',
+                        'wear_hijab_keep_beard' => $user->religion->wear_hijab_keep_beard ?? '',
+                        'read_quran' => $user->religion->read_quran ?? '',
+                        'sect' => $user->religion->sect ?? '',
+                        'eat_halal' => $user->religion->eat_halal ?? '',
+                        'smoke' => $user->religion->smoke ?? '',
+                        'drink_alchohol' => $user->religion->drink_alchohol ?? '',
+                        
+                        'siblings' => $user->family->siblings ?? '',
+                        'marital_status' => $user->profile->marital_status ?? '',
+                        'have_children' => $user->profile->have_children ?? '',
+
+                        'height' => $user->profile->height ?? '',
+                        'bio' => $user->profile->bio ?? '',
+
+
+                        'ip' => $user->loginInfo->ip ?? '',
+                        'location_lat' => $user->loginInfo->location_lat ?? '',
+                        'location_long' => $user->loginInfo->location_long ?? '',
+                        'current_logged_in_device' => $user->loginInfo->current_logged_in_device ?? '',
+                        'login_time' => $user->loginInfo->login_time ?? '',
+
+                        'created_at' => $user->created_at->diffForHumans(),
                         'profile_step' => $user->profile_step,
                     ];
                 })

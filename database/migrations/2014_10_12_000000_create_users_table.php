@@ -15,8 +15,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname')->nullable();
-            $table->string('lastname')->nullable();
+            // $table->string('firstname')->nullable();
+            // $table->string('lastname')->nullable();
             $table->string('nickname')->nullable();
             $table->string('username')->nullable();
             $table->string('email')->unique();
@@ -36,7 +36,7 @@ class CreateUsersTable extends Migration
             $table->string('city')->nullable();
             $table->string('recidency_status')->nullable();
             $table->string('relocate')->nullable();
-            $table->string('postcode')->nullable();
+            $table->string('area')->nullable();
             $table->string('back_home_country')->nullable();
             $table->string('back_home_city')->nullable();
             $table->string('back_home_area')->nullable();
@@ -47,6 +47,8 @@ class CreateUsersTable extends Migration
             $table->string('account_created_with')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->unsignedBigInteger('account_verified_by')->nullable();
+            
+            $table->boolean('deactivated')->default(false);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

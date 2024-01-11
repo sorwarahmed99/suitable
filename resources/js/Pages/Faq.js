@@ -1,30 +1,53 @@
-import { Link } from '@inertiajs/inertia-react'
+import AccordionItem from '@/Components/AccordionItem'
+import { Link, usePage } from '@inertiajs/inertia-react'
+import { ThemeContext } from '@/context/ThemeContext';
 import React from 'react'
 
-function Faq() {
+import LogoPurple from '../../../public/assets/images/logo-purple.svg';
+import LogoLight from '../../../public/assets/images/logo-light.svg';
+function Faq(props) {
+    const { theme, setTheme } = React.useContext(ThemeContext);
+
+    const {faqs} = usePage().props;
+
   return (
     <>
-        <div>
-            <div className="relative py-16 bg-gradient-to-b from-red-600 to-red-400 flex justify-center items-center">
-                <div>
-                    <Link href="/" className="flex items-center mb-4 justify-center">
-                        {/* <img className="h-7 w-full" src="assets/images/logo.svg" alt="shape" /> */}
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Suitable</span>
+        <nav className="bg-white px-5 sm:px-20 py-2  dark:bg-slate-800 border-b border-gray-100 dark:border-slate-500 sticky top-0 z-40 backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-wrap justify-between items-center">
+                    <Link as="a" href="/" className="flex items-center justify-center">
+                        <img className="w-full h-7 block dark:hidden" src={LogoPurple} alt="shape" />
+                        <img className="w-full h-7 hidden dark:block" src={LogoLight} alt="shape" />
                     </Link>
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-10 text-white">How can we help you?</h1>
-                    <div className="rounded relative mt-6 lg:mt-14 py-4 pl-4 flex items-center w-full">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-search" width={16} height={16} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <circle cx={10} cy={10} r={7} />
-                                <line x1={21} y1={21} x2={15} y2={15} />
-                            </svg>
+                    <div className="flex space-x-3">
+                        {theme === 'dark' ? (
+                            <button id="theme-toggle" type="button" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className={`${theme === 'light' ? 'hidden' : ''}text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5`}>
+                                <svg id="theme-toggle-dark-icon" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                            </button>
+
+                                ) : (
+                                <button id="theme-toggle" type="button" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className={`${theme === 'dark' ? 'hidden' : ''}text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5`}>
+                                    <svg id="theme-toggle-light-icon" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fillRule="evenodd" clipRule="evenodd"></path></svg>
+                                </button>
+                            )}
+
+                            {props.auth.user ? (
+                                    <Link href={route('home')} className="main-btn gradient-btn font-semibold">
+                                        {props.auth.user.username}
+                                    </Link>
+                                ) : (
+                                    <Link href={route('login')} className="main-btn gradient-btn font-semibold">
+                                        Get started
+                                    </Link>
+                            )}
                         </div>
-                        <input type="text" placeholder="Search for answers" className=" ml-4 w-full bg-transparent text-base leading-none text-white placeholder-white focus:outline-none" />
-                    </div>
                 </div>
             </div>
-            <div className="container mx-auto py-9 flex flex-col items-center justify-center">
+        </nav>
+           
+        <div>
+            
+            {/* <div className="container mx-auto py-9 flex flex-col items-center justify-center">
                 <div role="list" className="w-11/12 md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div role="listitem" className="focus:outline-none">
                         <a href="javascript:void(0)" className="bg-white focus:outline-none shadow-md flex items-center p-4 lg:p-8 cursor-pointer">
@@ -175,8 +198,71 @@ function Faq() {
                         <button className="mt-4 md:mt-6 py-3 px-6 bg-red-800 hover:bg-red-700 rounded text-white text-center font-medium text-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-800">Contact us</button>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
+
+        <section className="relative z-20 overflow-hidden bg-white pb-12 pt-20 dark:bg-slate-800 lg:pb-[90px] lg:pt-[120px]">
+            <div className="container mx-auto">
+                <div className="-mx-4 flex flex-wrap">
+                <div className="w-full px-4">
+                    <div className="mx-auto mb-[60px] max-w-[520px] text-center lg:mb-20">
+                    <span className="mb-2 block text-lg font-semibold text-slate-800 dark:text-white">
+                        FAQ's
+                    </span>
+                    <h2 className="mb-4 text-3xl lg:text-5xl font-bold text-dark dark:text-white ">
+                        Any Questions? Look Here
+                    </h2>
+                    <p className="text-base text-slate-800 dark:text-slate-300 dark:text-dark-6">
+                        Check below if you have any questions. If you can't find your answers, you can contact us anytime and we will get back to you as soon as possible.
+                    </p>
+                    </div>
+                </div>
+                </div>
+
+                <div className="-mx-4 flex flex-wrap">
+                    {faqs && faqs.map(({ id, question, answer }) => {
+                        return (
+                            <div key={id} className="w-full px-4 lg:w-full">
+                                <AccordionItem
+                                    header={question}
+                                    text={answer}
+                                />
+                            </div>
+                     );
+                    })}  
+                </div>
+            </div>
+
+            <div className="absolute bottom-0 right-0 z-[-1]">
+                <svg
+                width="1440"
+                height="886"
+                viewBox="0 0 1440 886"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                >
+                <path
+                    opacity="0.5"
+                    d="M193.307 -273.321L1480.87 1014.24L1121.85 1373.26C1121.85 1373.26 731.745 983.231 478.513 729.927C225.976 477.317 -165.714 85.6993 -165.714 85.6993L193.307 -273.321Z"
+                    fill="url(#paint0_linear)"
+                />
+                <defs>
+                    <linearGradient
+                    id="paint0_linear"
+                    x1="1308.65"
+                    y1="1142.58"
+                    x2="602.827"
+                    y2="-418.681"
+                    gradientUnits="userSpaceOnUse"
+                    >
+                    <stop stop-color="#3056D3" stop-opacity="0.36" />
+                    <stop offset="1" stop-color="#F5F2FD" stop-opacity="0" />
+                    <stop offset="1" stop-color="#F5F2FD" stop-opacity="0.096144" />
+                    </linearGradient>
+                </defs>
+                </svg>
+            </div>
+            </section>
     </>
   )
 }

@@ -14,11 +14,11 @@ class UserReligiousHistory extends Model
         'religious_history',
         'prayer_frequency',
         'sect',
-        'school_of_thoughts',
         'eat_halal',
         'smoke',
         'drink_alchohol',
-        'wear_hijab_keep_beard',
         'read_quran',
+        // 'school_of_thoughts',
+        // 'wear_hijab_keep_beard',
     ];
 }
